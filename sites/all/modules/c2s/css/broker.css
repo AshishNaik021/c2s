@@ -1,0 +1,518 @@
+#overtime-setting table{border:1px solid #CCC !important; float: left;}
+#overtime-setting table tr.odd{background:#EEE !important;}
+#overtime-setting table td.active{background:#FFFFFF !important;}
+#overtime-setting table td{padding:4px 5px !important; font-size:12px !important;}
+#overtime-setting .item-list{background:#EEE; padding:2px 0px; float:left; width:100%;}
+
+#overtime-setting table thead > tr {
+border-bottom: 1px solid #ccc;
+background:#CCC;
+}
+
+#overtime-application .description{display:none;}
+#overtime-setting .description{display:none;}
+#edit-ot-setting .description{display:none;}
+#overtime-setting .form-item-rates .description{display:block !important; font-size:9px !important;}
+
+.mini-form-item-with-lable-top-ot  /*------------For small size clear left-------------*/
+{
+	width:20%; float:right;font-weight:normal;color: rgb(122, 122, 122);  margin-right:24px;
+}
+.date-input-small-ot
+{
+width: 84% !important;
+-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;-ms-box-sizing: border-box;
+border: 1px solid #D2D2D2  !important;-webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.03), 0 2px 0 #ECF0F0;
+-moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.03), 0 2px 0 #ECF0F0;box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.03), 0 2px 0 #ECF0F0;
+background: #FFF url(../images/calendar.png) no-repeat 96% center; padding: 5px 7px;font-size: 11px;color: #5F5F5F;font-family: Arial, Helvetica, sans-serif;
+background:url(../../support/images/calendar.png) no-repeat 96% center;;
+}
+
+#view-leave-block #report_table tr td {border:none !important;}
+
+#ot-appr-wrap{float:left; width:96.8%; /*height:110px !important;*/ border:1px solid #ccc; padding:1%; /*background: #FCF9E8;*/  }
+
+#overtime-application-approver-list img{}
+.apptxt{display:block; margin-left:5px; float:left;}
+
+#ot-hederwrap{
+/*background-color:rgb(60, 169, 231) !important; height:60px; padding:0 0 0 20px; 
+*/}
+#ot-hederwrap label{
+ 
+}
+.form-item-remark .description{font-size:9px !important;}
+.form-item-approved-hours .description{font-size:9px !important;}
+
+
+#receipt-title {
+	font-size: 15px;
+/*	font-weight: bold;*/
+	color: #fff;
+	text-align: center;
+	width: 100%;
+	/*background-color: #2A7FA7;*/
+        background-color: #1089ce;
+	padding: 0.5% 1px;
+	margin-bottom: 10px;
+}
+
+
+
+#get-attendance-wrap{
+color: red;
+border: 1px solid;
+width: 71%;
+float: left;
+padding: 0.3%;
+}
+
+
+#ot_detail_block
+{
+padding: 5px;
+background: #F5F5F5;
+/*border: 1px solid #D5D5D5; font-family:"Courier New", Courier, monospace;*/
+}
+#overtime-application-employee-list #report_table tr td,
+#overtime-application-approver-list #report_table tr td{
+font-size: 11px;
+}
+
+
+
+
+
+
+.mini-form-item-with-lable-top-clear-otm-lbl {
+width: 10%;
+float: left;
+/*clear: both;
+padding-left:2%;*/
+margin-right: 5px;
+margin-left: 16px;
+}
+.mini-form-item-with-lable-top-otm-lbl {
+width: 7%;
+float: left;
+/*padding-right: 2px;*/
+margin-right: -11px;
+  margin-left: 29px;
+}
+.mini-form-item-with-lable-top-otmshift-lbl {
+width: 10%;
+float: left;
+/*padding-right: 1.5%;*/
+margin-right: 5px;
+margin-left: 27px;
+}
+.mini-form-item-with-lable-top-otm-lbl-to{
+width: 5%;
+float: left;
+/*padding-left:1.5%;*/
+margin-right: 5px;
+margin-left: 45px;
+}
+.mini-form-item-with-lable-top-otm-lbl-ot-hrs {
+width: 6%;
+float: left;
+/*margin-right: 10px;
+padding-left:2%;*/
+margin-right: 5px;
+margin-left: 50px;
+}
+
+
+.mini-form-item-with-lable-top-otm1-lbl {
+width: 6%;
+float: left;
+margin-right: 10px;
+}
+
+.large-form-item-with-lable-top-otm-lbl {
+/*width: 32%;*/
+float: left;
+text-align:center;
+width: 14%;
+}
+
+
+.mini-form-item-with-lable-top-clear-otm {
+width: 9%;
+float: left;
+font-weight: normal;
+color: rgb(122, 122, 122);
+clear: both;
+}
+
+.mini-form-item-with-lable-top-otm {
+width: 12%;
+float: left;
+font-weight: normal;
+color: rgb(122, 122, 122);
+}
+.mini-form-item-with-lable-top-otm {
+width: 6%;
+float: left;
+font-weight: normal;
+color: rgb(122, 122, 122);
+padding-right: 2px;
+margin-right: 10px;
+  margin-left: 23px;
+}
+.mini-form-item-with-lable-top-otmshift {
+width: 13%;
+float: left;
+font-weight: normal;
+color: rgb(122, 122, 122);
+padding-right: 2px;
+margin-right: 10px;
+}
+.mini-form-item-with-lable-top-otm1 {
+width: 6%;
+float: left;
+font-weight: normal;
+color: rgb(122, 122, 122);
+padding-right: 2px;
+margin-right: 10px;
+}
+
+.large-form-item-with-lable-top-otm {
+width: 35%;
+float: left;
+font-weight: normal;
+color: rgb(122, 122, 122);
+}
+
+.large-form-item-with-lable-top-otm {
+  width: 19%;
+  float: right;
+  font-weight: normal;
+  color: rgb(122, 122, 122);
+  margin-top: 0px; 
+}
+
+.page-pms-overtime-application-monthly .mini-form-item-with-lable-top-clear-otm { width: 10% !important; margin-right: 7px;}
+.page-pms-overtime-application-monthly .mini-form-item-with-lable-top-clear-otm .container-inline-date .date-padding { width: 100% !important;}
+.page-pms-overtime-application-monthly-approver-form .container-inline-date {margin-bottom: 12px; margin-left: 24%;}
+.overtimenotdone{width: 96.8%;
+background: #FCFCAF;
+padding: 10px;
+color: #990000;
+float: left;
+margin-bottom: 10px;
+text-align: center;
+font-size: 14px;
+font-weight: bold; 
+padding-top:30px;
+padding-bottom:30px;
+}
+
+.ot-show-btn{float:left; margin-top:20px; }
+
+#form_labels{
+clear: both;
+float: left;
+padding: 4px 6px;
+margin-bottom: 10px;
+width: 97.5%;
+background: #F7F7F7;
+border: 1px solid #E4E9D9;
+border-bottom: 2px solid #D8DBCF;
+border-radius: 2px;
+font-weight: bold;
+font-size: 12px;
+}
+#main_form_div
+{
+clear: both;
+width: 100%;
+float: left;
+padding: 7px 0px 5px 7px;
+box-shadow: 0px 0px 2px #D1CACA;
+border-radius: 5px;
+}
+
+
+#total-tile .large-form-item-with-lable-top-otm-total {
+/*width: 12.7%;*/
+float: left;
+font-weight: normal;
+color: rgb(122, 122, 122);
+width: 14%;
+line-height: 25px;
+/*padding-left:41%;*/
+}
+
+#total-tile .large-form-item-with-lable-top-otm-total label { font-weight: bold !important;}
+
+#total-tile{
+/*width: 94%;
+background: #F7FDF0;
+float: left;
+padding: 10px 0px;
+padding-left: 2%;
+font-weight: bold;
+font-size: 10px;
+clear: both;
+border: 1px solid #E3EEC7;*/
+
+clear: both;
+float: left;
+padding: 15px 6px 10px 6px;
+margin-bottom: 10px;
+width: 97.5%;
+background: #F7F7F7;
+border: 1px solid #E4E9D9;
+border-bottom: 2px solid #D8DBCF;
+border-radius: 2px;
+font-weight: bold;
+font-size: 12px; 
+}
+
+#total-tile #edit-totals{font-size:14px;}
+
+#wrap-col{white-space:inherit; width:50%; background-color:#99CCFF;}
+
+#overtime-application-monthly .mini-form-item-with-lable-top-otm input{ text-align:right !important;}
+
+
+//#overtime-application-monthly-approver-form input{ text-align:right !important;}
+#overtime-application-monthly-approver-form .form-item-remark input{ text-align:left !important;}
+#overtime-application-monthly-approver-form .form-item-application-date input{ text-align:left !important;}
+
+.ph_wo{ background:#EBEEE6; border: 1px solid #E4E9D9; border-bottom: 1px solid #D8DBCF; border-radius: 2px; height:33px; float: left;
+width: 98%; margin-bottom: 8px; padding-top: 5px; padding-left: 5px;}
+.no_ph_wo{width: 98%; margin-bottom: 8px; padding-top: 5px; padding-left: 5px;}  
+
+.approval-massage{float:left; color:#FF0000; font-size: 12px;}
+
+#headerwrap{float:right; width:15%;}
+
+#otform-replace fieldset {
+    background: none repeat scroll 0 0 #ffffff;
+    border: medium none;
+    border-radius: 4px;
+    margin-bottom: 32px;
+    margin-top: 10px;
+    padding: 0 0 10px;
+    position: relative;
+    top: 12px;
+    display: none;
+}
+
+.large-form-item-with-lable-top-otm .form-textarea-wrapper textarea {
+    box-sizing: border-box;
+    display: block;
+    height: 26px;
+    margin: 0;
+    width: 82% !important;
+  margin-left: 19px;
+}
+
+#print-blk-ot {
+    float: right;
+    height: 17px;
+    margin-top: -15px;
+    table-layout: auto;
+    width: 5%;
+}
+#print-blk-ot tr {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0) !important;
+}
+#print-blk-ot tr td, tr th {
+    border: 1px solid #fff;
+    padding: 4px 3px;
+    text-align: left;
+}
+#print-blk-ot a.pnt-img {
+/*    background: url("../../support/images/scan_img.jpg") no-repeat scroll 0 0 rgba(0, 0, 0, 0);*/
+    display: block;
+    height: 20px;
+    width: 20px;
+}
+#print-blk-ot a.edit-id {
+/*    background: url("../../support/images/edit.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);*/
+    display: block;
+    height: 20px;
+    width: 20px;
+}
+
+#ot-approval-table {
+    border: 1px solid #333;
+    float: left;
+    font-size: 11px;
+    margin-left: 5px;
+    margin-top: 5px;
+    padding: 2%;
+    table-layout: fixed;
+    width: 49%;
+}
+#ot-approval-td1 {
+    background-color: #fff;
+    border: 0 solid #999;
+    font-size: 12px;
+    font-weight: bold;
+    height: 25px;
+    padding: 0 5px !important;
+    width: 14%;
+}
+#ot-approval-td2 {
+    background-color: #fff;
+    border: 0 solid #999;
+    height: 25px;
+    padding: 0 !important;
+    width: 37%;
+}
+#ot-approval-td1 {
+    background-color: #fff;
+    border: 0 solid #999;
+    font-size: 12px;
+    font-weight: bold;
+    height: 25px;
+    padding: 0 5px !important;
+    width: 14%;
+}
+#ot-approval-td4 {
+    background-color: #fff;
+    border: 0 solid #999;
+    height: 25px;
+    padding: 0 !important;
+    width: 15%;
+}
+
+#overtime-application-monthly-view table{clear:none !important; margin-left:5px;}
+
+/****** OverTime Application Form *******/
+#overtime-application-monthly .mini-form-item-with-lable-top-otmonth {
+    width: 14%;
+    float: left;
+    font-weight: normal;
+    color: rgb(122, 122, 122);
+    margin-right: 15px;
+}
+
+#overtime-application-monthly .mini-form-item-with-lable-top-otmonth select { width: 100% !important; font-size: 12px !important; font-family: arial;}
+#overtime-application-monthly .mini-form-item-with-lable-top-otmonth .form-item-payroll-month select{ cursor: pointer !important;}
+
+#overtime-application-monthly .mini-form-item-with-lable-top-ot { position: absolute; right: 0; top: 8%;}
+
+#overtime-application-monthly #form_labels { font-weight: normal !important; background: #1089ce; color: #fff;}
+
+/****** My Attendance Details ********/
+#emp-attndence-month-rec-tab-format table th { font-weight: normal !important;}
+#emp-attndence-month-rec-tab-format table th a { font-weight: normal !important;}
+
+#emp-attndence-month-rec-tab-format table thead tr { background: #1089ce !important;}
+#emp-attndence-month-rec-tab-format table tr th { background: transparent !important; font-weight: normal !important;}
+
+#emp-attndence-month-rec-tab-format .y-m-wrapper .active {
+    display: table-cell !important;
+}
+
+#emp-attndence-month-rec-tab-format .date { width: 10%;}
+
+/******** Over-Time History *********/
+#overtime-application-monthly-employee-list #main-form-wrapper { width: 96% !important;}
+#overtime-application-monthly-employee-list table th { font-weight: normal !important;}
+
+/******** Over-Time History View *********/
+#overtime-application-monthly-view #main-form-wrapper { width: 100% !important;}
+
+#ot_monthly_history_view { overflow-y: scroll; height: 230px; border: 1px solid #ccc; border-radius: 6px; padding-bottom: 5px;}
+
+#overtime-application-monthly-view .ot_date { width: 15%;}
+#overtime-application-monthly-view .frm_time { width: 10%;}
+#overtime-application-monthly-view .to_time { width: 10%;}
+#overtime-application-monthly-view .applied_hrs { width: 16%;}
+#overtime-application-monthly-view .reason_for_ot { width: 25%;}
+#overtime-application-monthly-view .approved_hrs { width: 20%;}
+
+#overtime-application-monthly-view table tr th { background: transparent !important; font-weight: normal !important;}
+#overtime-application-monthly-view #report_table td { padding: 2px 3px !important;}
+#overtime-application-monthly-view #report_table { border: 0 !important; margin-bottom: 0 !important; box-shadow: none !important; -webkit-box-shadow : none !important;}
+#report_table tr.table_header { background: #1089ce !important;}
+
+#overtime-application-monthly-view table tr th.ot_details_hrs { color: #3b3b3b !important; font-weight: bold !important;}
+
+//#overtime-application-monthly-view #leave-approval-td1 { padding: 0px 3px !important;}
+
+/****** Overtime Requests *******/
+#overtime-application-monthly-approver-list .sr_no { width: 6%;}
+#overtime-application-monthly-approver-list .app_details { width: 45%;}
+#overtime-application-monthly-approver-list .ofc_admin_approval { width: 20%;}
+#overtime-application-monthly-approver-list .action { width: 10%;}
+#overtime-application-monthly-approver-list .action a img { margin: auto; display: block;}
+
+/****** Overtime Requests View - Application Request Approval Form *******/
+#overtime-application-monthly-approver-form #report_table tr .ot_date { width: 12%;}
+#overtime-application-monthly-approver-form #report_table tr .frm_time { width: 10%; text-align: center;}
+#overtime-application-monthly-approver-form #report_table tr .to_time { width: 10%; text-align: center;}
+#overtime-application-monthly-approver-form #report_table tr .work_hrs { width: 12%; text-align: center;}
+#overtime-application-monthly-approver-form #report_table tr .ot_hrs { width: 10%; text-align: center;}
+#overtime-application-monthly-approver-form #report_table tr .ot_reason { width: 24%; padding-right: 20px;}
+#overtime-application-monthly-approver-form #report_table tr .approved_ot_hrs { width: 22%;}
+
+#overtime-application-monthly-approver-form .approved-ot-hours .large-form-item-with-lable-top .form-item { margin-top: 0 !important; margin-bottom: 0 !important;} 
+
+#overtime-application-monthly-approver-form table tr th { background: transparent !important; font-weight: normal !important;}
+#overtime-application-monthly-approver-form table tr th.tot_hrs { color: #3b3b3b !important; font-weight: bold !important;}
+#overtime-application-monthly-approver-form table tr th.plus_hrs { text-align: right; }
+#overtime-application-monthly-approver-form input#edit-total-approved-ot-hours { width: 91% !important; text-align:right; }
+#overtime-application-monthly-approver-form #leave-approval-td1 { padding: 0px 3px !important;}
+#ot-appr-wrap .xlarge-form-item-with-lable-top label { font-weight: bold !important;}
+.ot_date{
+    text-align:center;
+}
+/**** Overtime Excess Claimswise List - Manager ****/
+#overtime-monthly-excess-claims-list .mini-form-item-with-lable-top { width: 12% !important; margin-right: 15px !important;}
+#overtime-monthly-excess-claims-list .mini-form-item-with-lable-top select { width: 100% !important;}
+#overtime-monthly-excess-claims-list .mini-form-item-with-lable-top .form-item-select-status { padding-top: 0 !important;}
+
+/******* OverTime Setting Form - HR ********/
+#overtime-setting .mini-form-item-with-lable-top { width: 20%; margin-right: 20px;}
+#overtime-setting .mini-form-item-with-lable-top select { width: 100% !important;}
+#overtime-setting .mini-form-item-with-lable-top .container-inline-date .date-padding { width: 100% !important;}
+#overtime-setting .mini-form-item-with-lable-top .container-inline-date input { min-height: 26px !important;}
+#overtime-setting .large-form-item-with-lable-top input { width: 40% !important; padding: 5px 7px;}
+
+#overtime-setting table thead tr { background: #1089ce !important;}
+#overtime-setting table tr th { background: transparent !important; font-weight: normal !important;}
+#overtime-setting table tr.even td.active { background: #efefef !important;}
+
+#overtime-setting .sr_no { width: 10%;}
+#overtime-setting .comp_id { width: 20%;}
+#overtime-setting .loc_id { width: 15%;}
+#overtime-setting .category { width: 12%;}
+#overtime-setting .grade { width: 8%;}
+#overtime-setting .emp_type { width: 16%;}
+#overtime-setting .rate_multiple { width: 8%;}
+#overtime-setting .action { width: 14%;}
+
+/**** Overtime Excess Locationwise List - HR ****/
+#overtime-monthly-location-wise-list .mini-form-item-with-lable-top { width: 16% !important; margin-right: 20px !important;}
+#overtime-monthly-location-wise-list .mini-form-item-with-lable-top .form-item-select-status { padding-top: 0 !important;}
+#overtime-monthly-location-wise-list .mini-form-item-with-lable-top select { width: 100% !important;}
+
+/**** Overtime Monthwise List - HR ****/
+#overtime-monthly-month-wise-list .mini-form-item-with-lable-top { width: 16% !important; margin-right: 20px !important;}
+#overtime-monthly-month-wise-list .mini-form-item-with-lable-top .form-item-select-status { padding-top: 0 !important;}
+#overtime-monthly-month-wise-list .mini-form-item-with-lable-top select { width: 100% !important;}
+
+
+#overtime-application-monthly .form-disabled input,.form_read
+{
+    background: #cccccc !important;
+}
+.flt_right
+{
+    float: right !important;
+}
+.ot_date{
+    text-align:center;
+}
+.page-pms-overtime-application-monthly-approver-form #edit-approve{
+  float: left;
+  margin-left: 84%;
+}
+.page-pms-overtime-application-monthly-approver-form table#leave-approval-table { width: 99% !important;}

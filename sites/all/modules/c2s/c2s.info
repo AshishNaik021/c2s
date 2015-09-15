@@ -1,0 +1,8 @@
+name = C2S	
+description = "City2Shore"
+package = C2S
+core = 7.x
+
+
+stylesheets[all][] = css/c2s.css
+
