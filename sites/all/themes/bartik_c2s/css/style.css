@@ -1639,3 +1639,126 @@ div.admin-panel .description {
 #footer-wrapper .poll .bar .foreground {
   background-color: #ddd;
 }
+/*  C2S CSS  */
+
+@font-face {
+    font-family: 'quicksandbold';
+    src: url('quicksand/quicksand-bold-webfont.eot');
+    src: url('quicksand/quicksand-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('quicksand/quicksand-bold-webfont.woff2') format('woff2'),
+         url('quicksand/quicksand-bold-webfont.woff') format('woff'),
+         url('quicksand/quicksand-bold-webfont.ttf') format('truetype'),
+         url('quicksand/quicksand-bold-webfont.svg#quicksandbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'quicksandbold_italic';
+    src: url('quicksand/quicksand-bolditalic-webfont.eot');
+    src: url('quicksand/quicksand-bolditalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('quicksand/quicksand-bolditalic-webfont.woff2') format('woff2'),
+         url('quicksand/quicksand-bolditalic-webfont.woff') format('woff'),
+         url('quicksand/quicksand-bolditalic-webfont.ttf') format('truetype'),
+         url('quicksand/quicksand-bolditalic-webfont.svg#quicksandbold_italic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'quicksanditalic';
+    src: url('quicksand/quicksand-italic-webfont.eot');
+    src: url('quicksand/quicksand-italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('quicksand/quicksand-italic-webfont.woff2') format('woff2'),
+         url('quicksand/quicksand-italic-webfont.woff') format('woff'),
+         url('quicksand/quicksand-italic-webfont.ttf') format('truetype'),
+         url('quicksand/quicksand-italic-webfont.svg#quicksanditalic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'quicksandregular';
+    src: url('quicksand/quicksand-regular-webfont.eot');
+    src: url('quicksand/quicksand-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('quicksand/quicksand-regular-webfont.woff2') format('woff2'),
+         url('quicksand/quicksand-regular-webfont.woff') format('woff'),
+         url('quicksand/quicksand-regular-webfont.ttf') format('truetype'),
+         url('quicksand/quicksand-regular-webfont.svg#quicksandregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+.wrapper-w100{
+	width:100%;
+	
+}
+.wrapper-w50{
+    width: 48%;
+    float: left;
+    padding: 5px;
+}
+.wrapper-w33{
+    width: 15%;
+    float: left;
+    padding: 5px;
+}
+#content h2 {
+    padding: 10px;
+    padding-left: 25px; 
+    font-size: 22px !important;
+}
+.main_form_title{
+	border-top:1px solid #4c83b0;
+	border-bottom:1px solid #4c83b0;
+	color:#4c83b0;
+	font-family: 'quicksandregular';
+}
+h3.main_form_title{
+	float:left;
+	width:100%;
+}
+
+#main-form-wrapper{
+    border: 1px solid #f4f6f7;
+    background-color: #f4f6f7;
+    padding: 20px;
+    border-radius: 7px;
+    box-shadow: 0px 1px 3px #666666;
+	float:left;
+}
+.inner_section{
+float:left;	
+
+}
+label {
+	font-family: 'quicksandregular';
+	    color: #c4c4c4;
+    font-size: 14px;
+}
+input{
+	font-family: 'quicksandregular';
+	    color: #c4c4c4;
+    font-size: 14px;
+	width:97%;
+}
+input:focus{
+color:#000000;	
+}
+select{
+	    width: 97%;
+    height: 30px;
+}
