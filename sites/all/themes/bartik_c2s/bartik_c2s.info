@@ -1,19 +1,34 @@
-
 name = Bartik C2S
-description = A flexible, recolorable theme with many regions.
+description = Bartik Theme for C2S
 package = Core
 version = VERSION
 core = 7.x
+; theme changes by GS
 
-stylesheets[all][] = css/layout.css
 stylesheets[all][] = css/style.css
-stylesheets[all][] = css/colors.css
 stylesheets[print][] = css/print.css
+stylesheets[all][] = css/responsive.css
+
+;stylesheets[all][] = css/layout.css
+;stylesheets[all][] = css/colors.css
+;stylesheets[all][] = css/public.css
+;stylesheets[all][] = css/fullcalendar.css
+;stylesheets[all][] = css/fullcalendar.print.css
+;stylesheets[all][] = css/jquery.autocomplete.css
+
+;scripts[] = js/jquery-1.9.1.min.js
+scripts[] = js/jquery-1.8.2.min.js
+scripts[] = js/jquery-ui.custom.min.js
+scripts[] = js/fullcalendar.min.js
+scripts[] = js/gcal.js
+scripts[] = js/jquery.autocomplete.js
+scripts[] = js/custom.js
+
 
 regions[header] = Header
 regions[help] = Help
 regions[page_top] = Page top
-regions[page_bottom] = Page bottom
+regions[bottom] = Page bottom
 regions[highlighted] = Highlighted
 
 regions[featured] = Featured
@@ -30,12 +45,9 @@ regions[footer_secondcolumn] = Footer second column
 regions[footer_thirdcolumn] = Footer third column
 regions[footer_fourthcolumn] = Footer fourth column
 regions[footer] = Footer
+regions[pagetop] = Page top
 
 settings[shortcut_module_link] = 0
 
 
-; Information added by Drupal.org packaging script on 2015-08-19
-version = "7.39"
-project = "drupal"
-datestamp = "1440020197"
 

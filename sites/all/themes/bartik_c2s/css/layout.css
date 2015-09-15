@@ -8,7 +8,7 @@ body,
 }
 #page-wrapper {
   min-height: 100%;
-  min-width: 960px;
+  min-width: 1010px;
 }
 #header div.section,
 #featured div.section,
@@ -17,7 +17,7 @@ body,
 #triptych,
 #footer-columns,
 #footer {
-  width: 960px;
+  width: 1010px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -55,13 +55,13 @@ body,
   position: relative;
 }
 .one-sidebar #content {
-  width: 720px;
+  width: 766px;
 }
 .two-sidebars #content {
-  width: 480px;
+  width: 530px;
 }
 .no-sidebars #content {
-  width: 960px;
+  width: 1010px;
   float: none;
 }
 #sidebar-first,
@@ -95,6 +95,6 @@ body,
   width: 220px;
 }
 #footer {
-  width: 940px;
+  width: 1010px;
   min-width: 920px;
 }
