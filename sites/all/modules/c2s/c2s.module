@@ -256,10 +256,11 @@ function c2s_monthly_excess_claims_list($form, &$form_state) {
 // ==================================================================================================
 //                   FORM SUBMITING FUNCTIONS   
 // ==================================================================================================
-/*
-function c2s_application_submit($form,&$form_state){
-		include("submit_inc/c2s_application_submit.inc"); 
+
+function c2s_broker_add_submit($form,&$form_state){
+		include("submit_inc/broker_add_submit.inc"); 
 }
+/*
 function c2s_setting_submit($form,&$form_state){
 		include("submit_inc/c2s_setting_submit.inc"); 
 }
