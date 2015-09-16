@@ -46,11 +46,10 @@ $form['#attached']['css'] = array(
         
 
 	$form['brokerage_start_date'] = array(
-	    '#title'	      => 'Brokerage Start Date',
-	    '#label'          => '',
+	   '#title'	      => 'Brokerage Start Date',
 	    '#type'		      => 'date_popup',
 	    '#required'		  => 'true',
-	    '#default_value'  => '',
+	    '#default_value'  => '1/1/1111',
 	    '#date_format'	  => 'd/m/Y',
 	    '#date_year_range'  => '-3:+3',
 	    '#attributes'       => array(
@@ -64,9 +63,9 @@ $form['#attached']['css'] = array(
 	$form['brokerage_name'] = array(
 	    '#title'           => 'Name of Brokerage',
 	    '#type'		       => 'textfield',
-	    '#maxlength'	   => 3,
+	    '#maxlength'	   => 100,
 	    '#required'		   =>'true',
-	    '#default_value'   =>'',
+	    '#default_value'   =>'asdas',
 	    '#attributes'       => array(
 	        'class'=> array('input-mini'),
 	        'onKeyPress' => array('',),
@@ -79,9 +78,9 @@ $form['#attached']['css'] = array(
 	$form['number_of_owners'] = array(
 	    '#title'          => 'How many Broker Owners are there?',
 	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 3,
+	    '#maxlength'	  => 100,
 	    '#required'		  => 'true',
-	    '#default_value'  => '',
+	    '#default_value'  => 'asdas',
 	    '#attributes'     => array(
 	        'class'=> array('input-mini'),
 	        'onKeyPress' => array('return numbersonly(this, event)',),
@@ -93,7 +92,7 @@ $form['#attached']['css'] = array(
 	
 	$form['section_one_start'] = array(
 	    '#type' => 'item',
-	    '#prefix' => '<h3 class="main_form_title"> Broker One </h3><div id="inner_section">',
+	    '#prefix' => '<h3 class="main_form_title"> Broker One </h3><div id="inner_section"> <h3> Personal Details </h3>',
 	);
 	
 	$form['broker_first_name'] = array(
@@ -101,7 +100,7 @@ $form['#attached']['css'] = array(
 	    '#type'		      => 'textfield',
 	    '#maxlength'	  => 50,
 	    '#required'		  => 'true',
-	    '#default_value'  => '',
+	    '#default_value'  => 'asdas',
 	    '#attributes'     => array(
 	        'placeholder'=> t('First Name'),
 	        'class'=> array('input-mini'),
@@ -117,7 +116,7 @@ $form['#attached']['css'] = array(
 	    '#type'		      => 'textfield',
 	    '#maxlength'	  => 50,
 	    '#required'		  => 'true',
-	    '#default_value'  => '',
+	    '#default_value'  => 'asdas',
 	    '#attributes'     => array(
 	        'placeholder'=> t('First Name'),
 	        'class'=> array('input-mini'),
@@ -133,7 +132,7 @@ $form['#attached']['css'] = array(
 	    '#type'		      => 'textfield',
 	    '#maxlength'	  => 50,
 	    '#required'		  => 'true',
-	    '#default_value'  => '',
+	    '#default_value'  => 'asdas',
 	    '#attributes'     => array(
 	        'placeholder'=> t('First Name'),
 	        'class'=> array('input-mini'),
@@ -150,7 +149,7 @@ $form['#attached']['css'] = array(
 	    '#label'          => '',
 	    '#type'		      => 'date_popup',
 	    '#required'		  => 'true',
-	    '#default_value'  => '',
+	    '#default_value'  => '1/1/1111',
 	    '#date_format'	  => 'd/m/Y',
 	    '#date_year_range'  => '-3:+3',
 	    '#attributes'       => array(
@@ -167,7 +166,7 @@ $form['#attached']['css'] = array(
 	    '#type'		      => 'textfield',
 	    '#maxlength'	  => 100,
 	    '#required'		  => 'true',
-	    '#default_value'  => '',
+	    '#default_value'  => 'asdas',
 	    '#attributes'     => array(
 	        'placeholder'=> t('Personal Email ID'),
 	        'class'=> array('input-mini'),
@@ -183,7 +182,7 @@ $form['#attached']['css'] = array(
 	    '#type'		      => 'textfield',
 	    '#maxlength'	  => 50,
 	    '#required'		  => 'true',
-	    '#default_value'  => '',
+	    '#default_value'  => 'asdas',
 	    '#attributes'     => array(
 	        'placeholder'=> t('Contact Number'),
 	        'class'=> array('input-mini'),
@@ -199,7 +198,7 @@ $form['#attached']['css'] = array(
 	    '#type'		      => 'textfield',
 	    '#maxlength'	  => 100,
 	    '#required'		  => 'true',
-	    '#default_value'  => '',
+	    '#default_value'  => 'asdas',
 	    '#attributes'     => array(
 	        'placeholder'=> t('Street Address'),
 	        'class'=> array('input-mini'),
@@ -210,12 +209,14 @@ $form['#attached']['css'] = array(
 	    '#suffix' => '</span>',
 	);
 
+	$option_city = array('1' => t('city1'));
+	
 	$form['city_id'] = array(
 	    '#title' => t('City'),
 	    '#type'=>'select',
 	    '#required'=>'true',
 	    '#default_value'=>'',
-	    '#options' =>array(),
+	    '#options' =>array($option_city),
 	    '#attributes' => array(
 	        'placeholder' => t(''),
 	        'class' => array('select-xlarge', 'uniform'),
@@ -224,12 +225,14 @@ $form['#attached']['css'] = array(
 	    '#suffix' => '</span>',
 	);
 
+	$option_state = array('1' => t('state1'));
+	
 	$form['state_id'] = array(
 	    '#title' => t('State'),
 	    '#type'=>'select',
 	    '#required'=>'true',
 	    '#default_value'=>'',
-	    '#options' =>array(),
+	    '#options' =>array($option_state),
 	    '#attributes' => array(
 	        'placeholder' => t(''),
 	        'class' => array('select-xlarge', 'uniform'),
@@ -243,7 +246,7 @@ $form['#attached']['css'] = array(
 	    '#type'		      => 'textfield',
 	    '#maxlength'	  => 25,
 	    '#required'		  => 'true',
-	    '#default_value'  => '',
+	    '#default_value'  => 'asdas',
 	    '#attributes'     => array(
 	        'placeholder'=> t('Zip Code'),
 	        'class'=> array('input-mini'),
@@ -256,7 +259,7 @@ $form['#attached']['css'] = array(
 
 	$form['section_serprator'] = array(
 	    '#type' => 'item',
-	    '#suffix' => '<div> Professional Details </div> ',
+	    '#suffix' => '<h3> Professional Details </h3> ',
 	);
 
 	$form['busines_street_address'] = array(
@@ -264,7 +267,7 @@ $form['#attached']['css'] = array(
 	    '#type'		      => 'textfield',
 	    '#maxlength'	  => 100,
 	    '#required'		  => 'true',
-	    '#default_value'  => '',
+	    '#default_value'  => 'asdas',
 	    '#attributes'     => array(
 	        'placeholder'=> t('Street Address'),
 	        'class'=> array('input-mini'),
@@ -280,7 +283,7 @@ $form['#attached']['css'] = array(
 	    '#type'=>'select',
 	    '#required'=>'true',
 	    '#default_value'=>'',
-	    '#options' =>array(),
+	    '#options' =>$option_city,
 	    '#attributes' => array(
 	        'placeholder' => t(''),
 	        'class' => array('select-xlarge', 'uniform'),
@@ -294,7 +297,7 @@ $form['#attached']['css'] = array(
 	    '#type'=>'select',
 	    '#required'=>'true',
 	    '#default_value'=>'',
-	    '#options' =>array(),
+	    '#options' =>$option_state,
 	    '#attributes' => array(
 	        'placeholder' => t(''),
 	        'class' => array('select-xlarge', 'uniform'),
@@ -308,7 +311,7 @@ $form['#attached']['css'] = array(
 	    '#type'		      => 'textfield',
 	    '#maxlength'	  => 25,
 	    '#required'		  => 'true',
-	    '#default_value'  => '',
+	    '#default_value'  => 'asdas',
 	    '#attributes'     => array(
 	        'placeholder'=> t('Zip Code'),
 	        'class'=> array('input-mini'),
@@ -324,7 +327,7 @@ $form['#attached']['css'] = array(
 	    '#type'		      => 'textfield',
 	    '#maxlength'	  => 25,
 	    '#required'		  => 'true',
-	    '#default_value'  => '',
+	    '#default_value'  => 'asdas',
 	    '#attributes'     => array(
 	        'placeholder'=> t('Zip Code'),
 	        'class'=> array('input-mini'),
@@ -340,7 +343,7 @@ $form['#attached']['css'] = array(
 	    '#type'		      => 'textfield',
 	    '#maxlength'	  => 25,
 	    '#required'		  => 'true',
-	    '#default_value'  => '',
+	    '#default_value'  => 'asdas',
 	    '#attributes'     => array(
 	        'placeholder'=> t('Zip Code'),
 	        'class'=> array('input-mini'),
@@ -356,9 +359,25 @@ $form['#attached']['css'] = array(
 	    '#type'		      => 'textfield',
 	    '#maxlength'	  => 25,
 	    '#required'		  => 'true',
-	    '#default_value'  => '',
+	    '#default_value'  => 'asdas',
 	    '#attributes'     => array(
 	        'placeholder'=> t('MLS Username'),
+	        'class'=> array('input-mini'),
+	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //'readonly'=>'readonly',
+	    ),
+	    '#prefix' => '<span class="large-form-item-with-lable-top">',
+	    '#suffix' => '</span>',
+	);
+
+	$form['mls_password'] = array(
+	    '#title'          => 'MLS Password',
+	    '#type'		      => 'password',
+	    '#maxlength'	  => 25,
+	    '#required'		  => 'true',
+	    '#default_value'  => 'asdas',
+	    '#attributes'     => array(
+	        'placeholder'=> t('MLS Password'),
 	        'class'=> array('input-mini'),
 	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
 	        //'readonly'=>'readonly',
@@ -372,7 +391,7 @@ $form['#attached']['css'] = array(
 	    '#type'		      => 'textfield',
 	    '#maxlength'	  => 25,
 	    '#required'		  => 'true',
-	    '#default_value'  => '',
+	    '#default_value'  => 'asdas',
 	    '#attributes'     => array(
 	        'placeholder'=> t('Broker NRDS#'),
 	        'class'=> array('input-mini'),
@@ -394,7 +413,7 @@ $form['#attached']['css'] = array(
 	    '#type'		      => 'textfield',
 	    '#maxlength'	  => 25,
 	    '#required'		  => 'true',
-	    '#default_value'  => '',
+	    '#default_value'  => 'asdas',
 	    '#attributes'     => array(
 	        'placeholder'=> t('Create Email'),
 	        'class'=> array('input-mini'),
@@ -410,7 +429,7 @@ $form['#attached']['css'] = array(
 	    '#type'		      => 'textfield',
 	    '#maxlength'	  => 25,
 	    '#required'		  => 'true',
-	    '#default_value'  => '',
+	    '#default_value'  => 'asdas',
 	    '#attributes'     => array(
 	        'placeholder'=> t('Office Phone'),
 	        'class'=> array('input-mini'),
@@ -426,7 +445,7 @@ $form['#attached']['css'] = array(
 	    '#type'		      => 'textfield',
 	    '#maxlength'	  => 25,
 	    '#required'		  => 'true',
-	    '#default_value'  => '',
+	    '#default_value'  => 'asdas',
 	    '#attributes'     => array(
 	        'placeholder'=> t('Extension'),
 	        'class'=> array('input-mini'),
@@ -437,11 +456,331 @@ $form['#attached']['css'] = array(
 	    '#suffix' => '</span>',
 	);
 	
+	$form['choice_of_charity_org'] = array(
+	    '#title'          => 'Choice of Charity Organization',
+	    '#type'		      => 'textfield',
+	    '#maxlength'	  => 100,
+	    '#required'		  => 'true',
+	    '#default_value'  => 'asdas',
+	    '#attributes'     => array(
+	        'placeholder'=> t('Choice of Charity Organization'),
+	        'class'=> array('input-mini'),
+	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //'readonly'=>'readonly',
+	    ),
+	    '#prefix' => '<span class="large-form-item-with-lable-top">',
+	    '#suffix' => '</span>',
+	);
+	
+	$form['section_serprator_2'] = array(
+	    '#type' => 'item',
+	    '#suffix' => '<h3> Bank Details </h3> ',
+	);
+	
+	$form['section_serprator_3_start'] = array(
+	    '#type' => 'item',
+	    '#suffix' => '<h4> Bank Account Number for Payout Commissions & REAP To Agent </h4> <div> ',
+	);
+
+	$form['account_number'] = array(
+	    '#title'          => 'Account Number',
+	    '#type'		      => 'textfield',
+	    '#maxlength'	  => 50,
+	    '#required'		  => 'true',
+	    '#default_value'  => 'asdas',
+	    '#attributes'     => array(
+	        'placeholder'=> t('Account Number'),
+	        'class'=> array('input-mini'),
+	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //'readonly'=>'readonly',
+	    ),
+	    '#prefix' => '<span class="large-form-item-with-lable-top">',
+	    '#suffix' => '</span>',
+	);
+	
+	$form['name_on_account'] = array(
+	    '#title'          => 'Name on Account',
+	    '#type'		      => 'textfield',
+	    '#maxlength'	  => 100,
+	    '#required'		  => 'true',
+	    '#default_value'  => 'asdas',
+	    '#attributes'     => array(
+	        'placeholder'=> t('Name on Account'),
+	        'class'=> array('input-mini'),
+	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //'readonly'=>'readonly',
+	    ),
+	    '#prefix' => '<span class="large-form-item-with-lable-top">',
+	    '#suffix' => '</span>',
+	);
+	
+	$form['financial_institution_name'] = array(
+	    '#title'          => 'Financial Institution Name',
+	    '#type'		      => 'textfield',
+	    '#maxlength'	  => 100,
+	    '#required'		  => 'true',
+	    '#default_value'  => 'asdas',
+	    '#attributes'     => array(
+	        'placeholder'=> t('Financial Institution Name'),
+	        'class'=> array('input-mini'),
+	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //'readonly'=>'readonly',
+	    ),
+	    '#prefix' => '<span class="large-form-item-with-lable-top">',
+	    '#suffix' => '</span>',
+	);
+	
+	$form['financial_institution_phone'] = array(
+	    '#title'          => 'Financial Institution Phone Number',
+	    '#type'		      => 'textfield',
+	    '#maxlength'	  => 100,
+	    '#required'		  => 'true',
+	    '#default_value'  => 'asdas',
+	    '#attributes'     => array(
+	        'placeholder'=> t('Financial Institution Phone Number'),
+	        'class'=> array('input-mini'),
+	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //'readonly'=>'readonly',
+	    ),
+	    '#prefix' => '<span class="large-form-item-with-lable-top">',
+	    '#suffix' => '</span>',
+	);
+	
+	$acc_types = array('S' => t('Savings'), 'C' => t('Checking'));
+	
+	$form['account_type'] = array(
+	    '#type' => 'radios',
+	    '#title' => t('Account Type'),
+	    '#default_value' => isset($node->acc_types) ? $node->acc_types : 1,
+	    '#options' => $acc_types,
+	    '#prefix' => '<span class="large-form-item-with-lable-top">',
+	    '#suffix' => '</span>',
+	);
+	
+	$form['aba_routing_number'] = array(
+	    '#title'          => 'ABA Routing Number',
+	    '#type'		      => 'textfield',
+	    '#maxlength'	  => 100,
+	    '#required'		  => 'true',
+	    '#default_value'  => 'asdas',
+	    '#attributes'     => array(
+	        'placeholder'=> t('ABA Routing Number'),
+	        'class'=> array('input-mini'),
+	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //'readonly'=>'readonly',
+	    ),
+	    '#prefix' => '<span class="large-form-item-with-lable-top">',
+	    '#suffix' => '</span>',
+	);
+
+	$form['section_serprator_3_end'] = array(
+	    '#type' => 'item',
+	    '#suffix' => '<div> ',
+	);
+	
+	$form['section_serprator_4_start'] = array(
+	    '#type' => 'item',
+	    '#suffix' => '<h4> Bank Account Number for Personal Commissions & REAP </h4> <div> ',
+	);
+	
+	$form['personal_account_number'] = array(
+	    '#title'          => 'Account Number',
+	    '#type'		      => 'textfield',
+	    '#maxlength'	  => 50,
+	    '#required'		  => 'true',
+	    '#default_value'  => 'asdas',
+	    '#attributes'     => array(
+	        'placeholder'=> t('Account Number'),
+	        'class'=> array('input-mini'),
+	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //'readonly'=>'readonly',
+	    ),
+	    '#prefix' => '<span class="large-form-item-with-lable-top">',
+	    '#suffix' => '</span>',
+	);
+	
+	$form['name_on_personal_account'] = array(
+	    '#title'          => 'Name on Account',
+	    '#type'		      => 'textfield',
+	    '#maxlength'	  => 100,
+	    '#required'		  => 'true',
+	    '#default_value'  => 'asdas',
+	    '#attributes'     => array(
+	        'placeholder'=> t('Name on Account'),
+	        'class'=> array('input-mini'),
+	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //'readonly'=>'readonly',
+	    ),
+	    '#prefix' => '<span class="large-form-item-with-lable-top">',
+	    '#suffix' => '</span>',
+	);
+	
+	$form['personal_financial_institution_name'] = array(
+	    '#title'          => 'Financial Institution Name',
+	    '#type'		      => 'textfield',
+	    '#maxlength'	  => 100,
+	    '#required'		  => 'true',
+	    '#default_value'  => 'asdas',
+	    '#attributes'     => array(
+	        'placeholder'=> t('Financial Institution Name'),
+	        'class'=> array('input-mini'),
+	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //'readonly'=>'readonly',
+	    ),
+	    '#prefix' => '<span class="large-form-item-with-lable-top">',
+	    '#suffix' => '</span>',
+	);
+	
+	$form['personal_financial_institution_phone'] = array(
+	    '#title'          => 'Financial Institution Phone Number',
+	    '#type'		      => 'textfield',
+	    '#maxlength'	  => 100,
+	    '#required'		  => 'true',
+	    '#default_value'  => 'asdas',
+	    '#attributes'     => array(
+	        'placeholder'=> t('Financial Institution Phone Number'),
+	        'class'=> array('input-mini'),
+	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //'readonly'=>'readonly',
+	    ),
+	    '#prefix' => '<span class="large-form-item-with-lable-top">',
+	    '#suffix' => '</span>',
+	);
+	
+	$acc_types = array('S' => t('Savings'), 'C' => t('Checking'));
+	
+	$form['personal_account_type'] = array(
+	    '#type' => 'radios',
+	    '#title' => t('Account Type'),
+	    '#default_value' => isset($node->acc_types) ? $node->acc_types : 1,
+	    '#options' => $acc_types,
+	    '#prefix' => '<span class="large-form-item-with-lable-top">',
+	    '#suffix' => '</span>',
+	);
+	
+	$form['personal_aba_routing_number'] = array(
+	    '#title'          => 'ABA Routing Number',
+	    '#type'		      => 'textfield',
+	    '#maxlength'	  => 100,
+	    '#required'		  => 'true',
+	    '#default_value'  => 'asdas',
+	    '#attributes'     => array(
+	        'placeholder'=> t('ABA Routing Number'),
+	        'class'=> array('input-mini'),
+	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //'readonly'=>'readonly',
+	    ),
+	    '#prefix' => '<span class="large-form-item-with-lable-top">',
+	    '#suffix' => '</span>',
+	);
+	
+	$form['section_serprator_4_end'] = array(
+	    '#type' => 'item',
+	    '#suffix' => '<div> ',
+	);
+	
 	$form['section_one_end'] = array(
 	    '#type' => 'item',
 	    '#suffix' => '</div> ',
 	);
 
+// -------------------------------- BROKER DETAIL SECTION ------------------------------------------- //	
+	
+	$form['broker_detail_section_start'] = array(
+	    '#type' => 'item',
+	    '#prefix' => '<h3 class="main_form_title"> Broker Details Section </h3><div id="inner_section"><h3> Cap Amounts </h3>',
+	);
+
+	$form['franchise_fee_cap'] = array(
+	    '#title'          => 'Franchise Fee Cap',
+	    '#type'		      => 'textfield',
+	    '#maxlength'	  => 100,
+	    '#required'		  => 'true',
+	    '#default_value'  => 'asdas',
+	    '#attributes'     => array(
+	        'placeholder'=> t('$3000'),
+	        'class'=> array('input-mini'),
+	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //'readonly'=>'readonly',
+	    ),
+	    '#prefix' => '<span class="large-form-item-with-lable-top">',
+	    '#suffix' => '</span>',
+	);
+
+	$form['transaction_management_fee'] = array(
+	    '#title'          => 'Transaction Management Fee',
+	    '#type'		      => 'textfield',
+	    '#maxlength'	  => 100,
+	    '#required'		  => 'true',
+	    '#default_value'  => 'asdas',
+	    '#attributes'     => array(
+	        'placeholder'=> t('$2.96'),
+	        'class'=> array('input-mini'),
+	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //'readonly'=>'readonly',
+	    ),
+	    '#prefix' => '<span class="large-form-item-with-lable-top">',
+	    '#suffix' => '</span>',
+	);
+	
+	$form['reap_amount_cap'] = array(
+	    '#title'          => 'Reap Amount Cap',
+	    '#type'		      => 'textfield',
+	    '#maxlength'	  => 100,
+	    '#required'		  => 'true',
+	    '#default_value'  => 'asdas',
+	    '#attributes'     => array(
+	        'placeholder'=> t('$18,000'),
+	        'class'=> array('input-mini'),
+	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //'readonly'=>'readonly',
+	    ),
+	    '#prefix' => '<span class="large-form-item-with-lable-top">',
+	    '#suffix' => '</span>',
+	);
+	
+	$form['section_serprator_5'] = array(
+	    '#type' => 'item',
+	    '#suffix' => '<h3> Paper Work Required </h3> ',
+	);
+	
+
+	$option_types = array('1' => t('Option 1'), '2' => t('Option 2'), '3'=> t('Option 3'), '4'=> t('Option 4'), '5'=> t('Option 5'), '6'=> t('Option 6'));
+	
+	$form['paperwork_required'] = array(
+	    '#type' => 'checkboxes',
+	    '#title' => t('Paperwork Required'),
+	    //'#default_value' => isset($node->option_types) ? $node->option_types : 1,
+	    '#options' => $option_types,
+	    '#prefix' => '<span class="large-form-item-with-lable-top">',
+	    '#suffix' => '</span>',
+	);
+	
+	$form['add_new_document_name'] = array(
+	    '#title'          => 'Add New Document Name',
+	    '#type'		      => 'textfield',
+	    '#maxlength'	  => 100,
+	    '#default_value'  => 'asdas',
+	    '#attributes'     => array(
+	        'placeholder'=> t('Add New Document Name'),
+	        'class'=> array('input-mini'),
+	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //'readonly'=>'readonly',
+	    ),
+	    '#prefix' => '<span class="large-form-item-with-lable-top">',
+	    '#suffix' => '</span>',
+	);
+	
+	$form['add_document_button'] = array(
+	    '#type' => 'button',
+	    '#value' => t('Add Document'),
+	);
+	
+	$form['broker_detail_section_end'] = array(
+	    '#type' => 'item',
+	    '#suffix' => '</div> ',
+	);
+	
 	/*
 	    
 
@@ -493,7 +832,7 @@ $form['#attached']['css'] = array(
 	 'placeholder' => t(''),
 	 'class' => array('select-xlarge', 'uniform'),
 	 ),
-	 '#prefix' => '<span id="rep-loc-replace"><span class="mini-form-item-with-lable-top">',
+	 0'#prefix' => '<span id="rep-loc-replace"><span class="mini-form-item-with-lable-top">',
 	 '#suffix' => '</span></span>',
 	 );
 	
@@ -530,7 +869,7 @@ $form['#attached']['css'] = array(
 	 '#suffix' => '</span>',
 	 );
 	
-	
+	0
 	 $grade_options = emp_grade_dd_ot();
 	
 	 $form['grade'] = array(
@@ -567,7 +906,7 @@ $form['#attached']['css'] = array(
 	
 	
 	 $form['submit'] = array('#type'=>'submit',
-	 '#value'=>t(' Submit '),
+	0 '#value'=>t(' Submit '),
 	 '#attributes' => array(
 	 'class' => array('submit-blue-button-float-right'),
 	 ),
@@ -753,3 +1092,7 @@ $form['#attached']['css'] = array(
 	    '#suffix' => '</div> ',
 	);
 	
+	$form['submit'] = array(
+	    '#type' => 'submit',
+	    '#value' => t('Submit'),
+	);
