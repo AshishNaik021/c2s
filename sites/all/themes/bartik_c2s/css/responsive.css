@@ -1,0 +1,91 @@
+@media only screen and (max-width : 700px) {
+ 
+#sidebar-left, #middle, #sidebar-right {
+  width: 100% !important;
+}
+    
+#middle #block-views-top-stories-block .views-row .views-field-field-news-image img, #middle #block-views-company-events-block .views-row .views-field-field-company-event-image img {
+  height: 80px !important;
+  width: 100% !important;
+  max-width: 78%;
+}
+#block-views-photo-gallery-block .jcarousel-container {
+    width: 86%;
+}
+
+#block-menu-menu-secondary-menu {
+ float: none !important;
+}
+
+#block-block-8 {
+  float: left !important;
+  margin-left: 10px !important;
+}
+}
+
+@media only screen and (width : 1600px) {
+ /**************** Login Page ****************/
+/*     .front_rightsidebar { height: 639px; }*/
+     .front_main { background-size: 65% auto;}
+     .front_rightsidebar { top: 16%; width: 58%;}
+     
+    /* @media screen and (-webkit-min-device-pixel-ratio:0) {
+        .front_rightsidebar {
+            height: 670px;
+        }   
+    
+    }*/
+    
+}
+
+@media only screen and (width : 1440px) {
+    .front_main { background-size: 65% auto;}
+    .front_rightsidebar {  top: 16%; width: 57%;}
+/*    .front_rightsidebar {
+        height: 639px;
+    }
+    
+    
+    
+    @media screen and (-webkit-min-device-pixel-ratio:0) {
+        .front_rightsidebar {
+            height: 670px;
+        }
+    
+    }*/
+}
+
+@media only screen and (width : 1366px) {
+    .front_main { background-size: 65% auto;}
+    .front_rightsidebar {  top: 18%; width: 57%;}
+    
+/*    .front_rightsidebar {
+        height: 519px;
+    }
+    
+    .front_main { background-size: 65% auto;}
+    
+    @media screen and (-webkit-min-device-pixel-ratio:0) {
+        .front_rightsidebar {
+            height: 531px;
+        }
+    }*/
+}
+
+@media only screen and (width : 1280px) {
+    
+    .front_main { background-size: 65% auto;}
+    .front_rightsidebar {  width: 56%; top: 21%;}
+    
+/*    .front_rightsidebar {
+        height: 539px;
+    }
+    
+    .front_main { background-size: 65% auto;}
+    
+    @media screen and (-webkit-min-device-pixel-ratio:0) {
+        .front_rightsidebar {
+            height: 571px;
+        }
+    }*/
+}

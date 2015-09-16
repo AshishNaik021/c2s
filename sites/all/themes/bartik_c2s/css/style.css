@@ -1389,3 +1389,285 @@ width: 100% !important;
 }
 
 
+
+
+
+
+
+
+
+
+/*  C2S CSS  */
+
+
+@font-face {
+
+    font-family: 'quicksandbold';
+
+    src: url('quicksand/quicksand-bold-webfont.eot');
+
+    src: url('quicksand/quicksand-bold-webfont.eot?#iefix') format('embedded-opentype'),
+
+         url('quicksand/quicksand-bold-webfont.woff2') format('woff2'),
+
+         url('quicksand/quicksand-bold-webfont.woff') format('woff'),
+
+         url('quicksand/quicksand-bold-webfont.ttf') format('truetype'),
+
+         url('quicksand/quicksand-bold-webfont.svg#quicksandbold') format('svg');
+
+    font-weight: normal;
+
+    font-style: normal;
+
+
+}
+
+
+
+
+
+@font-face {
+
+    font-family: 'quicksandbold_italic';
+
+    src: url('quicksand/quicksand-bolditalic-webfont.eot');
+
+    src: url('quicksand/quicksand-bolditalic-webfont.eot?#iefix') format('embedded-opentype'),
+
+         url('quicksand/quicksand-bolditalic-webfont.woff2') format('woff2'),
+
+         url('quicksand/quicksand-bolditalic-webfont.woff') format('woff'),
+
+         url('quicksand/quicksand-bolditalic-webfont.ttf') format('truetype'),
+
+         url('quicksand/quicksand-bolditalic-webfont.svg#quicksandbold_italic') format('svg');
+
+    font-weight: normal;
+
+    font-style: normal;
+
+
+}
+
+
+
+
+
+@font-face {
+
+    font-family: 'quicksanditalic';
+
+    src: url('quicksand/quicksand-italic-webfont.eot');
+
+    src: url('quicksand/quicksand-italic-webfont.eot?#iefix') format('embedded-opentype'),
+
+         url('quicksand/quicksand-italic-webfont.woff2') format('woff2'),
+
+         url('quicksand/quicksand-italic-webfont.woff') format('woff'),
+
+         url('quicksand/quicksand-italic-webfont.ttf') format('truetype'),
+
+         url('quicksand/quicksand-italic-webfont.svg#quicksanditalic') format('svg');
+
+    font-weight: normal;
+
+    font-style: normal;
+
+
+}
+
+
+
+
+
+@font-face {
+
+    font-family: 'quicksandregular';
+
+    src: url('quicksand/quicksand-regular-webfont.eot');
+
+    src: url('quicksand/quicksand-regular-webfont.eot?#iefix') format('embedded-opentype'),
+
+         url('quicksand/quicksand-regular-webfont.woff2') format('woff2'),
+
+         url('quicksand/quicksand-regular-webfont.woff') format('woff'),
+
+         url('quicksand/quicksand-regular-webfont.ttf') format('truetype'),
+
+         url('quicksand/quicksand-regular-webfont.svg#quicksandregular') format('svg');
+
+    font-weight: normal;
+
+    font-style: normal;
+
+
+}
+
+
+.wrapper-w100{
+
+width:100%;
+ float: left;
+padding: 7px;
+}
+
+.wrapper-w50{
+width: 47%;
+float: left;
+padding: 7px;
+
+}
+
+.wrapper-w33{
+ width:31%;
+float: left;
+ padding:9px;
+
+}
+.wrapper-w25{
+ width:22%;
+ float: left;
+padding:11px;
+
+}
+.wrapper-w16{
+width:15%;
+float: left;
+padding:7px;
+
+}
+
+#content h2 {
+ padding: 10px;
+ padding-left: 25px; 
+font-size: 22px !important;
+
+}
+
+.main_form_title{
+color:#4c83b0;
+font-family: 'quicksandregular';
+padding: 4px;
+
+}
+
+h3.main_form_title{
+float:left;
+width:100%;
+padding: 7px;
+}
+div#edit-broker-nrds-link {
+ padding: 14px;
+}
+#main-form-wrapper{
+border: 1px solid #f4f6f7;
+background-color: #F4F6F7;
+padding: 20px;
+border-radius: 7px;
+ box-shadow: 0px 1px 3px #666666;
+float:left;
+
+}
+
+.inner_section{
+float:left;	
+}
+ .form-type-date-popup .date-padding label{
+display:none;
+}
+.form-item-brokerage-start-date label{
+ margin: -17px -179px 22px 3px;
+}
+input#edit-brokerage-start-date-datepicker-popup-0 {
+    width: 410px;
+}
+.form-type-date-popup label{
+float:left;
+}
+
+.date-padding{
+	padding: 0px 0px 0px 4px;
+}
+
+input#edit-date-of-birth-datepicker-popup-0 {
+    width: 269px;
+}
+
+label {
+ color: #8F9399;
+ font-size: 17px;
+
+}	
+.description {
+ display:none;
+}
+div#edit-section-two-start {
+  padding: 8px;
+}
+div#edit-section-one-start {
+ border: 1px solid #f4f6f7;
+ background-color: #E2E7EC;
+ border-radius: 7px;
+box-shadow: 0px 1px 3px #666666;
+float:left;
+}
+div#edit-section-serprator {
+    padding: 8px;
+}
+input{
+font-family: 'quicksandregular';
+color: #CACCCF;
+font-size: 12px;
+width:97%;
+height: 29px;
+padding: 3px 0px 0px 10px;
+margin: 4px 7px 0px 0px;
+}
+.large-form-item-with-lable-top{
+width: 31%;
+float:left;
+padding: 10px 15px 20px 0px;
+}
+p {
+padding: 30px 10px 0px 32px;
+ color: #8F9399;
+ font-size:13px;
+}
+
+span.form-required {
+  color: red;
+ font-size: 15px;
+}
+h2.main_form_title1 {
+    color: #4c83b0;
+    font-family: 'quicksandregular';
+    padding: 4px;
+    width: 500px;
+    float: left;
+	
+}
+input:focus{
+
+color:#000000;	
+
+}
+div#edit-broker-nrds-link {
+	padding: 13px 0px 27px 11px;
+}
+
+
+select{
+width: 97%;
+height: 37px;
+
+}
+
+input#edit-busines-street-address {
+    font-family: 'quicksandregular';
+    color: #c4c4c4;
+    font-size: 14px;
+    width: 97%;
+}
+
+
