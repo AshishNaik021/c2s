@@ -9,22 +9,8 @@
 <style media="all" type="text/css">
 <style media="print" type="text/css">
 <script src="http://localhost/C2S_Drupal/misc/jquery.js?v=1.4.4" type="text/javascript">
-<script src="http://localhost/C2S_Drupal/misc/jquery.once.js?v=1.2" type="text/javascript">
-<script src="http://localhost/C2S_Drupal/misc/drupal.js?nuimwc" type="text/javascript">
-<script src="http://localhost/C2S_Drupal/sites/all/modules/captcha/captcha.js?nuimwc" type="text/javascript">
-<script src="http://localhost/C2S_Drupal/sites/all/themes/bartik_c2s/js/jquery-1.8.2.min.js?nuimwc" type="text/javascript">
-<script src="http://localhost/C2S_Drupal/sites/all/themes/bartik_c2s/js/jquery-ui.custom.min.js?nuimwc" type="text/javascript">
-<script src="http://localhost/C2S_Drupal/sites/all/themes/bartik_c2s/js/fullcalendar.min.js?nuimwc" type="text/javascript">
-<script src="http://localhost/C2S_Drupal/sites/all/themes/bartik_c2s/js/gcal.js?nuimwc" type="text/javascript">
-<script src="http://localhost/C2S_Drupal/sites/all/themes/bartik_c2s/js/jquery.autocomplete.js?nuimwc" type="text/javascript">
-<script src="http://localhost/C2S_Drupal/sites/all/themes/bartik_c2s/js/custom.js?nuimwc" type="text/javascript">
-<script type="text/javascript">
+
 </head>
-<link href='http://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <body>
         <div id="header">
 		</div>

@@ -118,11 +118,12 @@ function bartik_c2s_js_alter(&$js) {
 function bartik_c2s_theme() {
   $items = array();
   // create custom user-login.tpl.php
-  $items['user_login'] = array(
+  $items['use_login'] = array(
   'render element' => 'form',
   'path' => drupal_get_path('theme', 'ipca_portal') . '/templates',
-  'template' => 'user-login',
+  'template' => 'use-login',
   
  );
 return $items;
 }
+

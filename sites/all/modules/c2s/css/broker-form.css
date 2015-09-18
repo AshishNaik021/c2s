@@ -1,0 +1,43 @@
+#inner_section{
+	float:left;	
+	border:1px solid #000;
+	margin-bottom:10px;
+}
+
+p {
+	padding: 34px 19px 0px 19px;
+	color: #8F9399;
+	font-size:13px;
+}
+span.form-required {
+	color: red;
+	font-size: 15px;
+}
+input:focus{
+	color:#000000;	
+}
+
+div#edit-broker-nrds-link {
+	padding: 4px 0px 60px 11px;
+}
+
+
+select{
+	width: 97%;
+	height: 37px;
+    margin-top: 8px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

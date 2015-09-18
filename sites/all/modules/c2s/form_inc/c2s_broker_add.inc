@@ -40,7 +40,6 @@ $form['#attached']['css'] = array(
 
 	$form['form_start'] = array(
 	   '#type' => 'item',
-	   '#prefix' => '<h1 class="main_form_title"> Broker Enrollment Form </h1>',
 	   '#suffix' => '<div id="main-form-wrapper"> ',
 	);
         
@@ -92,14 +91,15 @@ $form['#attached']['css'] = array(
 	);	
 	
 	
-	$form['section_one_start'] = array(
+	$form['broker_owner_1'] = array(
 	   '#type' => 'item',
-	   '#prefix' => '<h1 class="main_form_title"> Broker One </h1>',
-	   '#suffix' => '<div id="edit-section-one-start"> ',
+	   '#prefix' => '<div id="form_sections"> ',
+	   '#suffix' => '<div class="form_section_title"> Broker One </div>'
 	);
-	$form['section_two_start'] = array(
-	    '#type' => 'item',
-	    '#prefix' => '<h2 class="main_form_title"> Personal Information </h2><div id="inner_section">',
+	$form['personal_info_subsection'] = array(
+	   '#type' => 'item',
+	   '#prefix' => '<div class="form_subsection_title"> Personal Information </div>',
+	   '#suffix' => '<div id="inner_section">',
 	);
 	$form['broker_first_name'] = array(
 	    '#title'          => 'First Name',
@@ -225,7 +225,7 @@ $form['#attached']['css'] = array(
 	        'placeholder' => t(''),
 	        'class' => array('select-xlarge', 'uniform'),
 	    ),
-	    '#prefix' => '<div id="section_left"><span class="wrapper-w16">',
+	    '#prefix' => '<span class="wrapper-w16">',
 	    '#suffix' => '</span>',
 	);
 
@@ -242,7 +242,6 @@ $form['#attached']['css'] = array(
 	    '#prefix' => '<span class="wrapper-w16">',
 	    '#suffix' => '</span>',
 	);
-
 	$form['zip_code'] = array(
 	    '#title'          => 'Zip Code',
 	    '#type'		      => 'textfield',
@@ -258,10 +257,14 @@ $form['#attached']['css'] = array(
 	    '#prefix' => '<span class="wrapper-w16">',
 	    '#suffix' => '</span></div>',
 	);
+	
 
-	$form['section_serprator'] = array(
+	
+
+	$form['professioal_info_subsection'] = array(
 	    '#type' => 'item',
-	    '#prefix' => '<h2 class="main_form_title"> Professional Details </h2><div id="inner_section">',
+	    '#prefix' => '<div class="form_subsection_title"> Professional Information </div>',
+		'#suffix' => '<div id="inner_section">',
 	);
 	$form['busines_street_address'] = array(
 	    '#title'          => 'Business Address',
@@ -307,7 +310,7 @@ $form['#attached']['css'] = array(
 	    '#suffix' => '</span></span>',
 	);
 	
-	$form['business_zip_code'] = array(
+    $form['business_zip_code'] = array(
 	    '#title'          => 'Zip Code',
 	    '#type'		      => 'textfield',
 	    '#maxlength'	  => 25,
@@ -321,8 +324,7 @@ $form['#attached']['css'] = array(
 	    ),
 	    '#prefix' => '<span class="wrapper-w16">',
 	    '#suffix' => '</span>',
-	);	
-
+	);
 	$form['broker_state_id'] = array(
 	    '#title'          => 'Broker State Id #',
 	    '#type'		      => 'textfield',
@@ -330,7 +332,7 @@ $form['#attached']['css'] = array(
 	    '#required'		  => 'true',
 	    '#default_value'  => '',
 	    '#attributes'     => array(
-	        'placeholder'=> t('Zip Code'),
+	        'placeholder'=> t('Broker State Id #'),
 	        'class'=> array('input-mini'),
 	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
 	        //'readonly'=>'readonly',
@@ -346,7 +348,7 @@ $form['#attached']['css'] = array(
 	    '#required'		  => 'true',
 	    '#default_value'  => '',
 	    '#attributes'     => array(
-	        'placeholder'=> t('Zip Code'),
+	        'placeholder'=> t('Broker EIN'),
 	        'class'=> array('input-mini'),
 	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
 	        //'readonly'=>'readonly',
@@ -470,14 +472,19 @@ $form['#attached']['css'] = array(
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
-	    '#suffix' => '</span>',
+	    '#suffix' => '</span></div>',
 	);
-	
-	$form['section_three_start'] = array(
+		
+	$form['bank_details_subsection'] = array(
 	    '#type' => 'item',
-	    '#prefix' => '<h2 class="main_form_title1"> Bank Details </h2><h3 class="main_form_title">Bank Account Number For Payout Commissions & Reap To Agent</h3> <div id="inner_section">',
+	    '#prefix' => '<div class="form_subsection_title"> Bank Details </div>',
 	);
-	$form['account_number'] = array(
+	$form['bank_account1'] = array(
+	    '#type' => 'item',
+	    '#prefix' => '<div class="form_subsection_title2">Bank Account Number For Payout Commissions & Reap To Agent</div>',
+		'#suffix' =>  '<div id="inner_section">',
+	);
+	$form['account_number_1'] = array(
 	    '#title'          => 'Account Number',
 	    '#type'		      => 'textfield',
 	    '#maxlength'	  => 50,
@@ -492,7 +499,7 @@ $form['#attached']['css'] = array(
 	    '#prefix' => '<span class="wrapper-w50">',
 	    '#suffix' => '</span>',
 	);	
-	$form['name_on_account'] = array(
+	$form['name_on_account_1'] = array(
 	    '#title'          => 'Name On Account',
 	    '#type'		      => 'textfield',
 	    '#maxlength'	  => 50,
@@ -507,7 +514,7 @@ $form['#attached']['css'] = array(
 	    '#prefix' => '<span class="wrapper-w50">',
 	    '#suffix' => '</span>',
 	);
-    $form['financial_institution_name'] = array(
+    $form['financial_institution_name_1'] = array(
 	    '#title'          => 'Financial Institution Name',
 	    '#type'		      => 'textfield',
 	    '#maxlength'	  => 50,
@@ -522,7 +529,7 @@ $form['#attached']['css'] = array(
 	    '#prefix' => '<span class="wrapper-w50">',
 	    '#suffix' => '</span>',
 	);	
-    $form['financial_institution_phone_number'] = array(
+    $form['financial_institution_phone_number_1'] = array(
 	    '#title'          => 'Financial Institution Phone Number',
 	    '#type'		      => 'textfield',
 	    '#maxlength'	  => 50,
@@ -537,7 +544,7 @@ $form['#attached']['css'] = array(
 	    '#prefix' => '<span class="wrapper-w50">',
 	    '#suffix' => '</span>',
 	);	
-	 $form['account_type'] = array(
+	 $form['account_type_1'] = array(
 	    '#title'          => 'Account Type',
 	    '#type'		      => 'radio',
 	    '#maxlength'	  => 50,
@@ -553,7 +560,7 @@ $form['#attached']['css'] = array(
 	    '#prefix' => '<span class="wrapper-w50">',
 	    '#suffix' => '</span>',
 	);	
-	$form['aba_routing_number'] = array(
+	$form['aba_routing_number_1'] = array(
 	    '#title'          => 'ABA Routing Number',
 	    '#type'		      => 'textfield',
 	    '#maxlength'	  => 50,
@@ -566,8 +573,108 @@ $form['#attached']['css'] = array(
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
+	    '#suffix' => '</span></div>',
+	);	
+	
+
+	$form['bank_account2'] = array(
+	    '#type' 	=> 'item',
+	    '#prefix' 	=> '<div class="form_subsection_title2">Bank Account Number For Personal Commissions & Reap</div>',
+		'#suffix' 	=> '<div id="inner_section">',
+	);
+	$form['account_number_2'] = array(
+	    '#title'          => 'Account Number',
+	    '#type'		      => 'textfield',
+	    '#maxlength'	  => 50,
+	    '#required'		  => 'true',
+	    '#default_value'  => '',
+	    '#attributes'     => array(
+	        'placeholder'=> t('Account Number'),
+	        'class'=> array('input-mini'),
+//	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //'readonly'=>'readonly',
+	    ),
+	    '#prefix' => '<span class="wrapper-w50">',
 	    '#suffix' => '</span>',
 	);	
+	$form['name_on_account_2'] = array(
+	    '#title'          => 'Name On Account',
+	    '#type'		      => 'textfield',
+	    '#maxlength'	  => 50,
+	    '#required'		  => 'true',
+	    '#default_value'  => '',
+	    '#attributes'     => array(
+	        'placeholder'=> t('Name On Account'),
+	        'class'=> array('input-mini'),
+//	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //'readonly'=>'readonly',
+	    ),
+	    '#prefix' => '<span class="wrapper-w50">',
+	    '#suffix' => '</span>',
+	);
+    $form['financial_institution_name_2'] = array(
+	    '#title'          => 'Financial Institution Name',
+	    '#type'		      => 'textfield',
+	    '#maxlength'	  => 50,
+	    '#required'		  => 'true',
+	    '#default_value'  => '',
+	    '#attributes'     => array(
+	        'placeholder'=> t('Financial Institution Name'),
+	        'class'=> array('input-mini'),
+//	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //'readonly'=>'readonly',
+	    ),
+	    '#prefix' => '<span class="wrapper-w50">',
+	    '#suffix' => '</span>',
+	);	
+    $form['financial_institution_phone_number_2'] = array(
+	    '#title'          => 'Financial Institution Phone Number',
+	    '#type'		      => 'textfield',
+	    '#maxlength'	  => 50,
+	    '#required'		  => 'true',
+	    '#default_value'  => '',
+	    '#attributes'     => array(
+	        'placeholder'=> t('Financial Institution Phone Number'),
+	        'class'=> array('input-mini'),
+//	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //'readonly'=>'readonly',
+	    ),
+	    '#prefix' => '<span class="wrapper-w50">',
+	    '#suffix' => '</span>',
+	);	
+	 $form['account_type_2'] = array(
+	    '#title'          => 'Account Type',
+	    '#type'		      => 'radio',
+	    '#maxlength'	  => 50,
+	    '#required'		  => 'true',
+	    '#default_value'  => '',
+	    '#attributes'     => array(
+	     '#description'=> t('Checking'),
+		 '#values' => array( 0 => 'N', 1 => 'Y'),
+	        'class'=> array('input-mini'),
+//	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //'readonly'=>'readonly',
+	    ),
+	    '#prefix' => '<span class="wrapper-w50">',
+	    '#suffix' => '</span>',
+	);	
+	$form['aba_routing_number_2'] = array(
+	    '#title'          => 'ABA Routing Number',
+	    '#type'		      => 'textfield',
+	    '#maxlength'	  => 50,
+	    '#required'		  => 'true',
+	    '#default_value'  => '',
+	    '#attributes'     => array(
+	        'placeholder'=> t('ABA Routing Number'),
+	        'class'=> array('input-mini'),
+//	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //'readonly'=>'readonly',
+	    ),
+	    '#prefix' => '<span class="wrapper-w50">',
+	    '#suffix' => '</span></div>',
+	);	
+	
+	
 	
 	$form['section_one_end'] = array(
 	    '#type' => 'item',

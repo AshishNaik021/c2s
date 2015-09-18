@@ -1,0 +1,185 @@
+@font-face {
+    font-family: 'quicksandbold';
+    src: url('quicksand/quicksand-bold-webfont.eot');
+    src: url('quicksand/quicksand-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('quicksand/quicksand-bold-webfont.woff2') format('woff2'),
+         url('quicksand/quicksand-bold-webfont.woff') format('woff'),
+         url('quicksand/quicksand-bold-webfont.ttf') format('truetype'),
+         url('quicksand/quicksand-bold-webfont.svg#quicksandbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'quicksandbold_italic';
+    src: url('quicksand/quicksand-bolditalic-webfont.eot');
+    src: url('quicksand/quicksand-bolditalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('quicksand/quicksand-bolditalic-webfont.woff2') format('woff2'),
+         url('quicksand/quicksand-bolditalic-webfont.woff') format('woff'),
+         url('quicksand/quicksand-bolditalic-webfont.ttf') format('truetype'),
+         url('quicksand/quicksand-bolditalic-webfont.svg#quicksandbold_italic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'quicksanditalic';
+    src: url('quicksand/quicksand-italic-webfont.eot');
+    src: url('quicksand/quicksand-italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('quicksand/quicksand-italic-webfont.woff2') format('woff2'),
+         url('quicksand/quicksand-italic-webfont.woff') format('woff'),
+         url('quicksand/quicksand-italic-webfont.ttf') format('truetype'),
+         url('quicksand/quicksand-italic-webfont.svg#quicksanditalic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'quicksandregular';
+    src: url('quicksand/quicksand-regular-webfont.eot');
+    src: url('quicksand/quicksand-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('quicksand/quicksand-regular-webfont.woff2') format('woff2'),
+         url('quicksand/quicksand-regular-webfont.woff') format('woff'),
+         url('quicksand/quicksand-regular-webfont.ttf') format('truetype'),
+         url('quicksand/quicksand-regular-webfont.svg#quicksandregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+div#middle-inner {
+	background:#999;	
+}
+#page{
+	padding: 0% !important;
+}
+
+#header{
+	background:#ff9;
+}
+#header .logo{
+	width:18% !important;
+	padding: 2% 1%;
+	background:#ff6;
+}
+#header .logo img{
+	margin: 1% 0 1% 9%;
+    width: 80%;
+}
+
+#menu-bar{
+	display:none !important;
+}
+#page-title{
+	background: #fff;
+	border-top: 2px solid #1089ce !important;
+	padding: 1% 2%;
+	width:80% !important;
+	margin-left:20% !important;
+	margin-bottom: 0% !important;
+}
+.content{
+	background-color: #fff !important;
+    height: 1700px;
+    width: 80%;
+    float: right;
+	margin:0% !important;
+}
+.content form{
+	width:94%;
+	margin:3%;
+	float:right;
+	
+}
+
+
+/*=========  Form Elements  ============*/
+
+.wrapper-w100{
+	width:100%;
+	float: left;
+	padding: 7px;
+}
+.wrapper-w50{
+	width: 47%;
+	float: left;
+	padding: 7px;
+}
+.wrapper-w33{
+	width:31%;
+	float: left;
+	padding:7px;
+}
+.wrapper-w25{
+	width:23%;
+	float: left;
+	padding:7px;
+}
+.wrapper-w16{
+	width:125px;
+	float: left;
+	padding:7px;
+}
+
+
+#main-form-wrapper{
+	border: 1px solid #f4f6f7;
+	background-color: #F4F6F7;
+	padding: 5% 2%;
+	border-radius: 7px;
+	box-shadow: 0px 1px 3px #666666;
+	float:left;
+}
+#form_sections {
+	background-color: #E2E7EC;
+	border-radius: 1px;
+	float:left;
+	padding:3%;
+}
+label {
+	color: #8F9399;
+	font-size: 17px;
+}
+input{
+	font-family: 'quicksandregular';
+	color: #CACCCF;
+	font-size: 12px;
+	width:97%;
+	height: 29px;
+	margin: 9px 25px 19px 1px;
+	text-indent: 11px;
+}
+.form-type-date-popup .description,
+.form-type-date-popup .date-padding label{
+	display:none;
+}
+.form-type-date-popup .date-padding, 
+.form-type-date-popup .date-padding .form-type-textfield,
+.form-type-date-popup .date-padding .form-type-textfield label,
+.form-type-date-popup .date-padding .form-type-textfield input{
+	width: 100% !important;
+}
+.container-inline-date .form-item input {
+    margin-right: 1px !important;
+}
+
+
+.form_section_title{
+	color:#4c83b0;	
+	font-family: 'quicksandregular';
+	padding: 1% 1% 2% 1% !important;
+	font-size:21px;
+	clear:both;
+}
+.form_subsection_title {
+	color: #4c83b0;
+	font-family: 'quicksandregular';
+	padding: 1% 1% 2% 1% !important;
+	width: 500px;
+	font-size:20px;
+	clear:both;
+}
+.form_subsection_title2{
+	color:#4c83b0;
+	font-family: 'quicksandregular';
+	padding: 1% 1% 2% 1% !important;
+	font-size: 18px;
+	clear:both;
+}
