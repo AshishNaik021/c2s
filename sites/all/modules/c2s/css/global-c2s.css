@@ -67,18 +67,53 @@ div#middle-inner {
 #menu-bar{
 	display:none !important;
 }
+#sidebar-left {
+    float: left;
+    width: 18% !important;
+	margin: 0% !important;
+	min-height:1000px;
+	background:#302e2f;
+}
+#middle-inner{
+	float: left;
+    width: 78%;	
+}
 #page-title{
 	background: #fff;
 	border-top: 2px solid #1089ce !important;
 	padding: 1% 2%;
-	width:80% !important;
-	margin-left:20% !important;
-	margin-bottom: 0% !important;
+/*	width:80% !important;*/
+	margin:0% !important; 
+
 }
+.block-menu .content{
+	background-color:#302e2f !important;
+	float:left;
+	width:100%;
+}
+
+.block-menu .content .menu {
+	margin:0px;
+	padding:0px;
+}
+
+.block-menu .content .menu li{
+list-style: none;
+    margin: 0px;
+    padding: 5px;
+    border-bottom: 1px solid #444444;
+}
+
+.block-menu .content .menu li a{
+	text-decoration:none;
+	color:#ffffff;
+	 font-family: 'quicksandregular';
+	text-transform:capitalize;
+}
+
 .content{
 	background-color: #fff !important;
-    height: 1700px;
-    width: 80%;
+/*    height: 1700px; */
     float: right;
 	margin:0% !important;
 }

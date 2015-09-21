@@ -1,5 +1,10 @@
 <?php
 
+$form['#attached']['js'] = array(
+    drupal_get_path('module', 'c2s') . '/js/validate.js',
+);
+
+
 /*
 	//drupal_add_css(drupal_get_path('module', 'overtime') . '/css/overtime.css');
 $form['#attached']['css'] = array(
@@ -63,12 +68,12 @@ $form['#attached']['css'] = array(
 	$form['brokerage_name'] = array(
 	    '#title'           => 'Name of Brokerage',
 	    '#type'		       => 'textfield',
-	    '#maxlength'	   => 3,
+	    '#maxlength'	   => 100,
 	    '#required'		   =>'true',
 	    '#default_value'   =>'',
 	    '#attributes'       => array(
 	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('',),
+	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
@@ -78,12 +83,12 @@ $form['#attached']['css'] = array(
 	$form['number_of_owners'] = array(
 	    '#title'          => 'How many Broker Owners are there?',
 	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 3,
+	    '#maxlength'	  => 5,
 	    '#required'		  => 'true',
 	    '#default_value'  => '',
 	    '#attributes'     => array(
 	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        'onKeyPress' => array('return IsNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
@@ -110,7 +115,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('First Name'),
 	        'class'=> array('input-mini'),
-//	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        'onKeyPress' => array('return onlyAlphabets(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w33">',
@@ -126,7 +131,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('Middle Name'),
 	        'class'=> array('input-mini'),
-	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        'onKeyPress' => array('return onlyAlphabets(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w33">',
@@ -142,7 +147,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('Last Name'),
 	        'class'=> array('input-mini'),
-	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        'onKeyPress' => array('return onlyAlphabets(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w33">',
@@ -176,7 +181,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('Personal Email ID'),
 	        'class'=> array('input-mini'),
-	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //	        'onKeyPress' => array('return IsNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w33">',
@@ -192,7 +197,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('Contact Number'),
 	        'class'=> array('input-mini'),
-	        	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        'onKeyPress' => array('return IsNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w33">',
@@ -208,7 +213,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('Street Address'),
 	        'class'=> array('input-mini'),
-	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
@@ -251,7 +256,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('Zip Code'),
 	        'class'=> array('input-mini'),
-	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //	        'onKeyPress' => array('return IsNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w16">',
@@ -275,7 +280,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('Street Address'),
 	        'class'=> array('input-mini'),
-	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
@@ -319,7 +324,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('Zip Code'),
 	        'class'=> array('input-mini'),
-	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //	        'onKeyPress' => array('return IsNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w16">',
@@ -334,7 +339,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('Broker State Id #'),
 	        'class'=> array('input-mini'),
-	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //	        'onKeyPress' => array('return IsNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w25">',
@@ -350,7 +355,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('Broker EIN'),
 	        'class'=> array('input-mini'),
-	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        'onKeyPress' => array('return IsNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w25">',
@@ -366,7 +371,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('MLS Username'),
 	        'class'=> array('input-mini'),
-	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w25">',
@@ -382,7 +387,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('MLS Password'),
 	        'class'=> array('input-mini'),
-	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //	        'onKeyPress' => array('return IsNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w25">',
@@ -398,7 +403,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('Broker NRDS#'),
 	        'class'=> array('input-mini'),
-	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        'onKeyPress' => array('return IsNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
@@ -421,7 +426,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('Create Email'),
 	        'class'=> array('input-mini'),
-	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //	        'onKeyPress' => array('return IsNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w33">',
@@ -437,7 +442,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('Office Phone'),
 	        'class'=> array('input-mini'),
-	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        'onKeyPress' => array('return IsNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w25">',
@@ -453,7 +458,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('Extension'),
 	        'class'=> array('input-mini'),
-	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        'onKeyPress' => array('return IsNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w25">',
@@ -468,7 +473,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('Type Min 3 Chars'),
 	        'class'=> array('input-mini'),
-	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+	         'onKeyPress' => array('return isAlphaNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
@@ -493,7 +498,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('Account Number'),
 	        'class'=> array('input-mini'),
-//	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        'onKeyPress' => array('return IsNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
@@ -508,7 +513,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('Name On Account'),
 	        'class'=> array('input-mini'),
-//	        'onKeyPress' => array('return numbersonly(this, event)',),
+	         'onKeyPress' => array('return onlyAlphabets(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
@@ -523,7 +528,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('Financial Institution Name'),
 	        'class'=> array('input-mini'),
-//	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        'onKeyPress' => array('return onlyAlphabets(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
@@ -538,7 +543,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('Financial Institution Phone Number'),
 	        'class'=> array('input-mini'),
-//	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        'onKeyPress' => array('return IsNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
@@ -554,7 +559,7 @@ $form['#attached']['css'] = array(
 	     '#description'=> t('Checking'),
 		 '#values' => array( 0 => 'N', 1 => 'Y'),
 	        'class'=> array('input-mini'),
-//	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        'onKeyPress' => array('return IsNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
@@ -569,7 +574,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('ABA Routing Number'),
 	        'class'=> array('input-mini'),
-//	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        'onKeyPress' => array('return IsNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
@@ -591,7 +596,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('Account Number'),
 	        'class'=> array('input-mini'),
-//	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        'onKeyPress' => array('return IsNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
@@ -606,7 +611,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('Name On Account'),
 	        'class'=> array('input-mini'),
-//	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        'onKeyPress' => array('return IsNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
@@ -621,7 +626,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('Financial Institution Name'),
 	        'class'=> array('input-mini'),
-//	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        'onKeyPress' => array('return onlyAlphabets(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
@@ -636,7 +641,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('Financial Institution Phone Number'),
 	        'class'=> array('input-mini'),
-//	        'onKeyPress' => array('return numbersonly(this, event)',),
+//	        'onKeyPress' => array('return IsNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
@@ -652,7 +657,7 @@ $form['#attached']['css'] = array(
 	     '#description'=> t('Checking'),
 		 '#values' => array( 0 => 'N', 1 => 'Y'),
 	        'class'=> array('input-mini'),
-//	        'onKeyPress' => array('return numbersonly(this, event)',),
+//	        'onKeyPress' => array('return IsNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
@@ -667,7 +672,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('ABA Routing Number'),
 	        'class'=> array('input-mini'),
-//	        'onKeyPress' => array('return numbersonly(this, event)',),
+//	        'onKeyPress' => array('return IsNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
@@ -796,7 +801,7 @@ $form['#attached']['css'] = array(
 	 '#description' 		 => 'Rate Multiple is used for OT Rate calculation <br> e.g. OT Amount = Monthly Basic/30/8 * Rate Multiple * Num of OT Hours',
 	 '#attributes'       => array(
 	 'class'=> array('input-mini'),
-	 'onKeyPress' => array('return numbersonly(this, event)',),
+	 'onKeyPress' => array('return IsNumeric(event, this);',),
 	 //'readonly'=>'readonly',
 	 ),
 	 '#prefix' => '<span class="large-form-item-with-lable-top">',
@@ -955,7 +960,7 @@ $form['#attached']['css'] = array(
 	 '#description' 		 => 'Rate Multiple is used for OT Rate calculation <br> e.g. OT Amount = Monthly Basic/30/8 * Rate Multiple * Num of OT Hours',
 	 '#attributes'       => array(
 	 'class'=> array('input-mini'),
-	 'onKeyPress' => array('return numbersonly(this, event)',),
+	 'onKeyPress' => array('return IsNumeric(event, this);',),
 	 //'readonly'=>'readonly',
 	 ),
 	 '#prefix' => '<span class="large-form-item-with-lable-top">',
