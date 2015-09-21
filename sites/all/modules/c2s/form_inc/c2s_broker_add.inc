@@ -76,7 +76,7 @@ $form['#attached']['css'] = array(
 	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
-	    '#prefix' => '<span class="wrapper-w50">',
+	    '#prefix' => '<p class="C2S"style="float:left;">city2shore</p><span class="wrapper-w25">',
 	    '#suffix' => '</span>',
 	);
 		
@@ -413,7 +413,7 @@ $form['#attached']['css'] = array(
 	$form['broker_nrds_link'] = array(
 	     '#title'          => 'Link to look up NRDS#',
 	    '#type' => 'item',
-	    '#prefix' => '<span class="wrapper-w50">',
+	    '#prefix' => '<span class="wrapper-w50"><a class="url" href="url">http://reg.realtor.org/</a>' ,
 	    '#suffix' => '</span>',
 	);
 	
@@ -430,7 +430,7 @@ $form['#attached']['css'] = array(
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w33">',
-	    '#suffix' => '</span> <p style="float:left;">@city2shore.com</p>',
+	    '#suffix' => '</span> <p class="c2s"style="float:left;">@city2shore.com</p>',
 	);
 	
 	$form['office_phone'] = array(
@@ -551,15 +551,22 @@ $form['#attached']['css'] = array(
 	);	
 	 $form['account_type_1'] = array(
 	    '#title'          => 'Account Type',
-	    '#type'		      => 'radio',
+	    '#type'		      => 'radios',
 	    '#maxlength'	  => 50,
 	    '#required'		  => 'true',
 	    '#default_value'  => '',
+<<<<<<< HEAD
 	    '#attributes'     => array(
 	     '#description'=> t('Checking'),
 		 '#values' => array( 0 => 'N', 1 => 'Y'),
 	        'class'=> array('input-mini'),
 	        'onKeyPress' => array('return IsNumeric(event, this);',),
+=======
+	    '#options'        => array(
+		'checking'        => t('Checking'),
+        'saving'          => t('Saving'),
+//	        'onKeyPress' => array('return numbersonly(this, event)',),
+>>>>>>> FETCH_HEAD
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
@@ -649,15 +656,22 @@ $form['#attached']['css'] = array(
 	);	
 	 $form['account_type_2'] = array(
 	    '#title'          => 'Account Type',
-	    '#type'		      => 'radio',
+	    '#type'		      => 'radios',
 	    '#maxlength'	  => 50,
 	    '#required'		  => 'true',
 	    '#default_value'  => '',
+<<<<<<< HEAD
 	    '#attributes'     => array(
 	     '#description'=> t('Checking'),
 		 '#values' => array( 0 => 'N', 1 => 'Y'),
 	        'class'=> array('input-mini'),
 //	        'onKeyPress' => array('return IsNumeric(event, this);',),
+=======
+	    '#options'        => array(
+		'checking'        => t('Checking'),
+        'saving'          => t('Saving'),
+//	        'onKeyPress' => array('return numbersonly(this, event)',),
+>>>>>>> FETCH_HEAD
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
@@ -678,6 +692,166 @@ $form['#attached']['css'] = array(
 	    '#prefix' => '<span class="wrapper-w50">',
 	    '#suffix' => '</span></div>',
 	);	
+	$form['beneficiary_details_subsection'] = array(
+	    '#type' => 'item',
+	    '#prefix' => '<div class="form_subsection_title"> Beneficiary Details</div>',
+		'#suffix' =>  '<div id="inner_section">',
+	);
+	$form['beneficiary_first_name'] = array(
+	    '#title'          => 'First Name',
+	    '#type'		      => 'textfield',
+	    '#maxlength'	  => 50,
+	    '#required'		  => 'true',
+	    '#default_value'  => '',
+	    '#attributes'     => array(
+	        'placeholder'=> t('First Name'),
+	        'class'=> array('input-mini'),
+//	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //'readonly'=>'readonly',
+	    ),
+	    '#prefix' => '<span class="wrapper-w33">',
+	    '#suffix' => '</span>',
+	);	
+
+	$form['beneficiary_middle_name'] = array(
+	    '#title'          => 'Middle Name',
+	    '#type'		      => 'textfield',
+	    '#maxlength'	  => 50,
+	    '#required'		  => 'true',
+	    '#default_value'  => '',
+	    '#attributes'     => array(
+	        'placeholder'=> t('Middle Name'),
+	        'class'=> array('input-mini'),
+	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //'readonly'=>'readonly',
+	    ),
+	    '#prefix' => '<span class="wrapper-w33">',
+	    '#suffix' => '</span>',
+	);
+
+	$form['beneficiary_last_name'] = array(
+	    '#title'          => 'Last Name',
+	    '#type'		      => 'textfield',
+	    '#maxlength'	  => 50,
+	    '#required'		  => 'true',
+	    '#default_value'  => '',
+	    '#attributes'     => array(
+	        'placeholder'=> t('Last Name'),
+	        'class'=> array('input-mini'),
+	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //'readonly'=>'readonly',
+	    ),
+	    '#prefix' => '<span class="wrapper-w33">',
+	    '#suffix' => '</span>',
+	);
+	$form['beneficiary_relarionship'] = array(
+	    '#title'          => 'Relationship',
+	    '#type'		      => 'textfield',
+	    '#maxlength'	  => 50,
+	    '#required'		  => 'true',
+	    '#default_value'  => '',
+	    '#attributes'     => array(
+	        'placeholder'=> t('Relationship'),
+	        'class'=> array('input-mini'),
+//	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //'readonly'=>'readonly',
+	    ),
+	    '#prefix' => '<span class="wrapper-w33">',
+	    '#suffix' => '</span>',
+	);	
+
+	$form['beneficiary_email_id'] = array(
+	    '#title'          => 'Beneficiary Email ID',
+	    '#type'		      => 'textfield',
+	    '#maxlength'	  => 50,
+	    '#required'		  => 'true',
+	    '#default_value'  => '',
+	    '#attributes'     => array(
+	        'placeholder'=> t('Email ID'),
+	        'class'=> array('input-mini'),
+	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //'readonly'=>'readonly',
+	    ),
+	    '#prefix' => '<span class="wrapper-w33">',
+	    '#suffix' => '</span>',
+	);
+
+	$form['beneficiary_contact_number'] = array(
+	    '#title'          => 'Beneficiary Contact Number',
+	    '#type'		      => 'textfield',
+	    '#maxlength'	  => 50,
+	    '#required'		  => 'true',
+	    '#default_value'  => '',
+	    '#attributes'     => array(
+	        'placeholder'=> t('Contact Number'),
+	        'class'=> array('input-mini'),
+	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //'readonly'=>'readonly',
+	    ),
+	    '#prefix' => '<span class="wrapper-w33">',
+	    '#suffix' => '</span>',
+	);
+    $form['beneficiary_address'] = array(
+	    '#title'          => 'Beneficiary Address',
+	    '#type'		      => 'textfield',
+	    '#maxlength'	  => 100,
+	    '#required'		  => 'true',
+	    '#default_value'  => '',
+	    '#attributes'     => array(
+	        'placeholder'=> t('Beneficiary Address'),
+	        'class'=> array('input-mini'),
+	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //'readonly'=>'readonly',
+	    ),
+	    '#prefix' => '<span class="wrapper-w50">',
+	    '#suffix' => '</span>',
+	);
+	
+	$form['beneficiary_city_id'] = array(
+	    '#title' => t('City'),
+	    '#type'=>'select',
+	    '#required'=>'true',
+	    '#default_value'=>'',
+	    '#options' =>array(),
+	    '#attributes' => array(
+	        'placeholder' => t(''),
+	        'class' => array('select-xlarge', 'uniform'),
+	    ),
+	    '#prefix' => '<span id="rep-loc-replace"><span class="wrapper-w16">',
+	    '#suffix' => '</span></span>',
+	);
+	
+	$form['beneficiary_state_id'] = array(
+	    '#title' => t('State'),
+	    '#type'=>'select',
+	    '#required'=>'true',
+	    '#default_value'=>'',
+	    '#options' =>array(),
+	    '#attributes' => array(
+	        'placeholder' => t(''),
+	        'class' => array('select-xlarge', 'uniform'),
+	    ),
+	    '#prefix' => '<span id="rep-loc-replace"><span class="wrapper-w16">',
+	    '#suffix' => '</span></span>',
+	);
+	
+    $form['beneficiary_zip_code'] = array(
+	    '#title'          => 'Zip Code',
+	    '#type'		      => 'textfield',
+	    '#maxlength'	  => 25,
+	    '#required'		  => 'true',
+	    '#default_value'  => '',
+	    '#attributes'     => array(
+	        'placeholder'=> t('Zip Code'),
+	        'class'=> array('input-mini'),
+	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //'readonly'=>'readonly',
+	    ),
+	    '#prefix' => '<span class="wrapper-w16">',
+	    '#suffix' => '</span></div>',
+	);
+      	
+	 
 	
 	
 	
