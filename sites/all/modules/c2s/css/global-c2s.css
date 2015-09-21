@@ -50,10 +50,14 @@ div#middle-inner {
 #page{
 	padding: 0% !important;
 }
+
+#header{
+	background:#ff9;
+}
 #header .logo{
 	width:18% !important;
 	padding: 2% 1%;
-	
+	background:#ff6;
 }
 #header .logo img{
 	margin: 1% 0 1% 9%;
@@ -109,12 +113,7 @@ list-style: none;
 
 .content{
 	background-color: #fff !important;
-<<<<<<< HEAD
 /*    height: 1700px; */
-=======
-    height: 2600px;
-    width: 80%;
->>>>>>> FETCH_HEAD
     float: right;
 	margin:0% !important;
 }
@@ -125,7 +124,19 @@ list-style: none;
 	
 }
 
+#form_sections{
+	    width: 96%;
+    padding: 2px !important;
+}
 
+.icon_rotate{
+-ms-transform: rotate(-90deg); /* IE 9 */
+    -webkit-transform: rotate(-90deg); /* Chrome, Safari, Opera */
+    transform: rotate(-90deg);
+}
+hr{
+	border-top: 1px solid #1089ce;
+}
 /*=========  Form Elements  ============*/
 
 .wrapper-w100{
@@ -144,14 +155,14 @@ list-style: none;
 	padding:7px;
 }
 .wrapper-w25{
-	width: 22%;
-    float: left;
-    padding: 11px;
+	width:23%;
+	float: left;
+	padding:7px;
 }
 .wrapper-w16{
-	width: 14%;
-    float: left;
-    padding: 11px;
+	width:125px;
+	float: left;
+	padding:7px;
 }
 
 
@@ -191,8 +202,12 @@ input{
 .form-type-date-popup .date-padding .form-type-textfield label,
 .form-type-date-popup .date-padding .form-type-textfield input{
 	width: 100% !important;
-	margin-right:40px !important;
 }
+.container-inline-date .form-item input {
+    margin-right: 1px !important;
+}
+
+
 .form_section_title{
 	color:#4c83b0;	
 	font-family: 'quicksandregular';
@@ -214,16 +229,4 @@ input{
 	padding: 1% 1% 2% 1% !important;
 	font-size: 18px;
 	clear:both;
-}
-.form_subsection_title3{
-	color: #8EB8D6;
-	font-family: 'quicksandregular';
-	padding: 1% 1% 2% 1% !important;
-	width: 500px;
-	font-size:20px;
-	clear:both;
-}
-label.option {
-    float: left;
-	padding: 5% 14% 0% 3%;
 }

@@ -98,14 +98,18 @@ $form['#attached']['css'] = array(
 	
 	$form['broker_owner_1'] = array(
 	   '#type' => 'item',
-	   '#prefix' => '<div id="form_sections"> ',
-	   '#suffix' => '<div class="form_section_title"> Broker One </div>'
+	   '#prefix' => '<div id="form_sections" class="form_sections"> ',
+	   '#suffix' => '<div class="form_section_title" data-item = "form_section_1"> Broker One 
+	    <img src="'.base_path().'/'.drupal_get_path('module', 'c2s').'/images/arrow_toggle.png" id="form_section_1_arrow" style="width:16px;" > </div>
+	    <div id = "form_section_1">'
 	);
-	$form['personal_info_subsection'] = array(
-	   '#type' => 'item',
-	   '#prefix' => '<div class="form_subsection_title"> Personal Information </div>',
-	   '#suffix' => '<div id="inner_section">',
-	);
+    	$form['personal_info_subsection_start'] = array(
+    	   '#type' => 'item',
+    	   '#prefix' => '<div class="form_subsection_title" data-item="inner_section_1"> Personal Information 
+    	    <img src="'.base_path().'/'.drupal_get_path('module', 'c2s').'/images/arrow_toggle.png" id="inner_section_1_arrow" style="width:16px;" >
+    	    </div>',
+    	   '#suffix' => '<div id="inner_section" class="inner_section_1">',
+    	);
 	$form['broker_first_name'] = array(
 	    '#title'          => 'First Name',
 	    '#type'		      => 'textfield',
@@ -260,17 +264,24 @@ $form['#attached']['css'] = array(
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w16">',
-	    '#suffix' => '</span></div>',
+	    '#suffix' => '</span>',
 	);
 	
-
-	
-
-	$form['professioal_info_subsection'] = array(
+	$form['personal_info_subsection_end'] = array(
 	    '#type' => 'item',
-	    '#prefix' => '<div class="form_subsection_title"> Professional Information </div>',
-		'#suffix' => '<div id="inner_section">',
+	    '#suffix' => '</div><hr>',
 	);
+
+	
+
+	$form['professional_info_subsection_start'] = array(
+	    '#type' => 'item',
+	   '#prefix' => '<div class="form_subsection_title" data-item="inner_section_2"> Professional Information 
+	    <img src="'.base_path().'/'.drupal_get_path('module', 'c2s').'/images/arrow_toggle.png" id="inner_section_2_arrow" style="width:16px;" >
+	    </div>',
+	   '#suffix' => '<div id="inner_section" class="inner_section_2">',
+	);
+	
 	$form['busines_street_address'] = array(
 	    '#title'          => 'Business Address',
 	    '#type'		      => 'textfield',
@@ -330,6 +341,7 @@ $form['#attached']['css'] = array(
 	    '#prefix' => '<span class="wrapper-w16">',
 	    '#suffix' => '</span>',
 	);
+    
 	$form['broker_state_id'] = array(
 	    '#title'          => 'Broker State Id #',
 	    '#type'		      => 'textfield',
@@ -464,6 +476,7 @@ $form['#attached']['css'] = array(
 	    '#prefix' => '<span class="wrapper-w25">',
 	    '#suffix' => '</span>',
 	);
+	
 	$form['charity organization of choice'] = array(
 	    '#title'          => 'Charity Organization Of Choice',
 	    '#type'		      => 'textfield',
@@ -477,18 +490,31 @@ $form['#attached']['css'] = array(
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
-	    '#suffix' => '</span></div>',
+	    '#suffix' => '</span>',
 	);
-		
-	$form['bank_details_subsection'] = array(
+	
+	$form['professional_info_subsection_end'] = array(
 	    '#type' => 'item',
-	    '#prefix' => '<div class="form_subsection_title"> Bank Details </div>',
+	    '#suffix' => '</div><hr>',
 	);
-	$form['bank_account1'] = array(
+	
+	$form['bank_details_subsection_start'] = array(
 	    '#type' => 'item',
-	    '#prefix' => '<div class="form_subsection_title2">Bank Account Number For Payout Commissions & Reap To Agent</div>',
-		'#suffix' =>  '<div id="inner_section">',
+	   '#prefix' => '<div class="form_subsection_title" data-item="inner_section_3"> Bank Details
+	    <img src="'.base_path().'/'.drupal_get_path('module', 'c2s').'/images/arrow_toggle.png" id="inner_section_3_arrow" style="width:16px;" >
+	    </div>',
+	   '#suffix' => '<div id="inner_section" class="inner_section_3">',
 	);
+	
+	$form['bank_account1_start'] = array(
+	    '#type' => 'item',
+	    '#prefix' => '<div class="form_subsection_title2" data-item="inner_section2_1">
+	    Bank Account Number For Payout Commissions & Reap To Agent
+	    <img src="'.base_path().'/'.drupal_get_path('module', 'c2s').'/images/arrow_toggle.png" id="inner_section2_1_arrow" style="width:16px;" >
+	    </div>',
+		'#suffix' =>  '<div id="inner_section" class="inner_section2_1">',
+	);
+	
 	$form['account_number_1'] = array(
 	    '#title'          => 'Account Number',
 	    '#type'		      => 'textfield',
@@ -549,29 +575,24 @@ $form['#attached']['css'] = array(
 	    '#prefix' => '<span class="wrapper-w50">',
 	    '#suffix' => '</span>',
 	);	
+    
 	 $form['account_type_1'] = array(
 	    '#title'          => 'Account Type',
 	    '#type'		      => 'radios',
 	    '#maxlength'	  => 50,
 	    '#required'		  => 'true',
 	    '#default_value'  => '',
-<<<<<<< HEAD
 	    '#attributes'     => array(
-	     '#description'=> t('Checking'),
-		 '#values' => array( 0 => 'N', 1 => 'Y'),
-	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return IsNumeric(event, this);',),
-=======
-	    '#options'        => array(
-		'checking'        => t('Checking'),
-        'saving'          => t('Saving'),
+	       'class'=> array('input-mini'),
+	       'onKeyPress' => array('return IsNumeric(event, this);',),
+	       ),             
 //	        'onKeyPress' => array('return numbersonly(this, event)',),
->>>>>>> FETCH_HEAD
 	        //'readonly'=>'readonly',
-	    ),
+	    '#options'        => array('checking' => t('Checking'),'saving'=> t('Saving')),
 	    '#prefix' => '<span class="wrapper-w50">',
 	    '#suffix' => '</span>',
 	);	
+	
 	$form['aba_routing_number_1'] = array(
 	    '#title'          => 'ABA Routing Number',
 	    '#type'		      => 'textfield',
@@ -585,15 +606,23 @@ $form['#attached']['css'] = array(
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
-	    '#suffix' => '</span></div>',
+	    '#suffix' => '</span>',
 	);	
 	
+	$form['bank_account1_end'] = array(
+	    '#type' => 'item',
+	    '#suffix' =>  '</div>',
+	);	
 
-	$form['bank_account2'] = array(
+	$form['bank_account2_start'] = array(
 	    '#type' 	=> 'item',
-	    '#prefix' 	=> '<div class="form_subsection_title2">Bank Account Number For Personal Commissions & Reap</div>',
-		'#suffix' 	=> '<div id="inner_section">',
+	    '#prefix' 	=> '<div class="form_subsection_title2" data-item="inner_section2_2">
+	    Bank Account Number For Personal Commissions & Reap
+	    <img src="'.base_path().'/'.drupal_get_path('module', 'c2s').'/images/arrow_toggle.png" id="inner_section2_2_arrow" style="width:16px;" >
+	    </div>',
+		'#suffix' 	=> '<div id="inner_section" class="inner_section2_2">',
 	);
+	
 	$form['account_number_2'] = array(
 	    '#title'          => 'Account Number',
 	    '#type'		      => 'textfield',
@@ -654,29 +683,25 @@ $form['#attached']['css'] = array(
 	    '#prefix' => '<span class="wrapper-w50">',
 	    '#suffix' => '</span>',
 	);	
+    
+    
+    
 	 $form['account_type_2'] = array(
 	    '#title'          => 'Account Type',
 	    '#type'		      => 'radios',
 	    '#maxlength'	  => 50,
 	    '#required'		  => 'true',
 	    '#default_value'  => '',
-<<<<<<< HEAD
 	    '#attributes'     => array(
-	     '#description'=> t('Checking'),
-		 '#values' => array( 0 => 'N', 1 => 'Y'),
 	        'class'=> array('input-mini'),
-//	        'onKeyPress' => array('return IsNumeric(event, this);',),
-=======
-	    '#options'        => array(
-		'checking'        => t('Checking'),
-        'saving'          => t('Saving'),
+	        ),
+	     '#options'        => array(	'checking'=> t('Checking'),'saving'=> t('Saving')
 //	        'onKeyPress' => array('return numbersonly(this, event)',),
->>>>>>> FETCH_HEAD
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
 	    '#suffix' => '</span>',
-	);	
+	);	 
 	$form['aba_routing_number_2'] = array(
 	    '#title'          => 'ABA Routing Number',
 	    '#type'		      => 'textfield',
@@ -690,13 +715,28 @@ $form['#attached']['css'] = array(
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
-	    '#suffix' => '</span></div>',
+	    '#suffix' => '</span>',
 	);	
-	$form['beneficiary_details_subsection'] = array(
-	    '#type' => 'item',
-	    '#prefix' => '<div class="form_subsection_title"> Beneficiary Details</div>',
-		'#suffix' =>  '<div id="inner_section">',
+	
+	$form['bank_account2_end'] = array(
+	    '#type' 	=> 'item',
+	    '#suffix' 	=> '</div>',
 	);
+	
+	$form['bank_details_subsection_end'] = array(
+	    '#type' => 'item',
+	    '#suffix' => '</div><hr>',
+	);
+
+	
+	$form['beneficiary_details_subsection_start'] = array(
+	    '#type' => 'item',
+	    '#prefix' => '<div class="form_subsection_title" data-item="inner_section_4"> Beneficiary Details
+	    <img src="'.base_path().'/'.drupal_get_path('module', 'c2s').'/images/arrow_toggle.png" id="inner_section_4_arrow" style="width:16px;" >
+	    </div>',
+	    '#suffix' => '<div id="inner_section" class="inner_section_4">',
+	);
+	
 	$form['beneficiary_first_name'] = array(
 	    '#title'          => 'First Name',
 	    '#type'		      => 'textfield',
@@ -848,16 +888,19 @@ $form['#attached']['css'] = array(
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w16">',
-	    '#suffix' => '</span></div>',
+	    '#suffix' => '</span>',
 	);
       	
-	 
-	
+    $form['beneficiary_details_subsection_end'] = array(
+        '#type' => 'item',
+        '#suffix' => '</div>',
+    );
+
 	
 	
 	$form['section_one_end'] = array(
 	    '#type' => 'item',
-	    '#suffix' => '</div> ',
+	    '#suffix' => '</div></div> ',
 	);
 
 	/*
@@ -1163,7 +1206,13 @@ $form['#attached']['css'] = array(
 	
 	 */
 	
-	
+	$form['submit'] = array('#type'=>'submit',
+	    '#value'=>t(' Submit '),
+	    '#attributes' => array(
+	        'class' => array('submit-blue-button-float-right'),
+	    ),
+	    '#suffix'=>'</div>',
+	);
 	
 	
 	$form['form_end'] = array(
