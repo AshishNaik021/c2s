@@ -1,9 +1,11 @@
 <?php
 
 $form['#attached']['js'] = array(
-    drupal_get_path('module', 'c2s') . '/js/validate.js',
+    drupal_get_path('module', 'broker') . '/js/validate.js',
 );
-
+$form['#attached']['css'] = array(
+    drupal_get_path('module', 'broker') . '/css/global-c2s.css',
+);
 
 /*
 	//drupal_add_css(drupal_get_path('module', 'overtime') . '/css/overtime.css');
@@ -105,13 +107,13 @@ $form['#attached']['css'] = array(
 	   '#type' => 'item',
 	   '#prefix' => '<div id="form_sections" class="form_sections"> ',
 	   '#suffix' => '<div class="form_section_title" data-item = "form_section_1"> Broker One 
-	    <img src="'.base_path().'/'.drupal_get_path('module', 'c2s').'/images/arrow_toggle.png" id="form_section_1_arrow" class="inner_section_arrow icon_rotate" > </div>
+	    <img src="'.base_path().'/'.drupal_get_path('module', 'broker').'/images/arrow_toggle.png" id="form_section_1_arrow" class="inner_section_arrow icon_rotate" > </div>
 	    <div id = "form_section_1">'
 	);
     	$form['personal_info_subsection_start'] = array(
     	   '#type' => 'item',
     	   '#prefix' => '<div class="form_subsection_title" data-item="inner_section_1"> Personal Information 
-    	    <img src="'.base_path().'/'.drupal_get_path('module', 'c2s').'/images/arrow_toggle.png" id="inner_section_1_arrow" class="inner_section_arrow" >
+    	    <img src="'.base_path().'/'.drupal_get_path('module', 'broker').'/images/arrow_toggle.png" id="inner_section_1_arrow" class="inner_section_arrow" >
     	    </div>',
     	   '#suffix' => '<div id="inner_section" class="inner_section_1 inner_subsection" style="display: none;">',
     	);
@@ -283,7 +285,7 @@ $form['#attached']['css'] = array(
 	$form['professional_info_subsection_start'] = array(
 	    '#type' => 'item',
 	   '#prefix' => '<div class="form_subsection_title" data-item="inner_section_2"> Professional Information 
-	    <img src="'.base_path().'/'.drupal_get_path('module', 'c2s').'/images/arrow_toggle.png" id="inner_section_2_arrow" class="inner_section_arrow" >
+	    <img src="'.base_path().'/'.drupal_get_path('module', 'broker').'/images/arrow_toggle.png" id="inner_section_2_arrow" class="inner_section_arrow" >
 	    </div>',
 	   '#suffix' => '<div id="inner_section" class="inner_section_2 inner_subsection" style="display: none;">',
 	);
@@ -508,7 +510,7 @@ $form['#attached']['css'] = array(
 	$form['bank_details_subsection_start'] = array(
 	    '#type' => 'item',
 	   '#prefix' => '<div class="form_subsection_title" data-item="inner_section_3"> Bank Details
-	    <img src="'.base_path().'/'.drupal_get_path('module', 'c2s').'/images/arrow_toggle.png" id="inner_section_3_arrow" class="inner_section_arrow" >
+	    <img src="'.base_path().'/'.drupal_get_path('module', 'broker').'/images/arrow_toggle.png" id="inner_section_3_arrow" class="inner_section_arrow" >
 	    </div>',
 	   '#suffix' => '<div id="inner_section" class="inner_section_3 " style="display: none;">',
 	);
@@ -519,7 +521,7 @@ $form['#attached']['css'] = array(
 	    '#type' => 'item',
 	    '#prefix' => '<div class="form_subsection_title2" data-item="inner_section2_1">
 	    Bank Account Number For Payout Commissions & Reap To Agent
-	    <img src="'.base_path().'/'.drupal_get_path('module', 'c2s').'/images/arrow_toggle.png" id="inner_section2_1_arrow" class="inner_section_arrow inner_subsection_arrow" >
+	    <img src="'.base_path().'/'.drupal_get_path('module', 'broker').'/images/arrow_toggle.png" id="inner_section2_1_arrow" class="inner_section_arrow inner_subsection_arrow" >
 	    </div>',
 		'#suffix' =>  '<div id="inner_section" class="inner_section2_1 inner_subsection" style="display: none;">',
 	);
@@ -631,7 +633,7 @@ $form['#attached']['css'] = array(
 	    '#type' 	=> 'item',
 	    '#prefix' 	=> '<div class="form_subsection_title2" data-item="inner_section2_2">
 	    Bank Account Number For Personal Commissions & Reap
-	    <img src="'.base_path().'/'.drupal_get_path('module', 'c2s').'/images/arrow_toggle.png" id="inner_section2_2_arrow" class="inner_section_arrow inner_subsection_arrow" >
+	    <img src="'.base_path().'/'.drupal_get_path('module', 'broker').'/images/arrow_toggle.png" id="inner_section2_2_arrow" class="inner_section_arrow inner_subsection_arrow" >
 	    </div>',
 		'#suffix' 	=> '<div id="inner_section" class="inner_section2_2 inner_subsection" style="display: none;">',
 	);
@@ -747,7 +749,7 @@ $form['#attached']['css'] = array(
 	$form['beneficiary_details_subsection_start'] = array(
 	    '#type' => 'item',
 	    '#prefix' => '<div class="form_subsection_title" data-item="inner_section_4"> Beneficiary Details
-	    <img src="'.base_path().'/'.drupal_get_path('module', 'c2s').'/images/arrow_toggle.png" id="inner_section_4_arrow" class="inner_section_arrow" >
+	    <img src="'.base_path().'/'.drupal_get_path('module', 'broker').'/images/arrow_toggle.png" id="inner_section_4_arrow" class="inner_section_arrow" >
 	    </div>',
 	    '#suffix' => '<div id="inner_section" class="inner_section_4 inner_subsection" style="display: none;">',
 	);
@@ -917,7 +919,7 @@ $form['#attached']['css'] = array(
     $form['broker_detail_section_start'] = array(
         '#type' => 'item',
         '#prefix' => '<div class="form_subsection_title" data-item="inner_section_5"> Broker Detail Section
-	    <img src="'.base_path().'/'.drupal_get_path('module', 'c2s').'/images/arrow_toggle.png" id="inner_section_5_arrow" class="inner_section_arrow" >
+	    <img src="'.base_path().'/'.drupal_get_path('module', 'broker').'/images/arrow_toggle.png" id="inner_section_5_arrow" class="inner_section_arrow" >
 	    </div>',
         	    '#suffix' => '<div id="inner_section" class="inner_section_5 " style="display: none;">',
     );
@@ -928,7 +930,7 @@ $form['#attached']['css'] = array(
 	    '#type' => 'item',
 	    '#prefix' => '<div class="form_subsection_title2" data-item="inner_section2_3">
 	       Cap Amounts Section
-	    <img src="'.base_path().'/'.drupal_get_path('module', 'c2s').'/images/arrow_toggle.png" id="inner_section2_3_arrow" class="inner_section_arrow inner_subsection_arrow" >
+	    <img src="'.base_path().'/'.drupal_get_path('module', 'broker').'/images/arrow_toggle.png" id="inner_section2_3_arrow" class="inner_section_arrow inner_subsection_arrow" >
 	    </div>',
 		'#suffix' =>  '<div id="inner_section" class="inner_section2_3 inner_subsection" style="display: none;">',
 	);
@@ -990,7 +992,7 @@ $form['#attached']['css'] = array(
         '#type' => 'item',
         '#prefix' => '<div class="form_subsection_title2" data-item="inner_section2_4">
 	      Paper Work Required
-	    <img src="'.base_path().'/'.drupal_get_path('module', 'c2s').'/images/arrow_toggle.png" id="inner_section2_4_arrow" class="inner_section_arrow inner_subsection_arrow" >
+	    <img src="'.base_path().'/'.drupal_get_path('module', 'broker').'/images/arrow_toggle.png" id="inner_section2_4_arrow" class="inner_section_arrow inner_subsection_arrow" >
 	    </div>',
         '#suffix' =>  '<div id="inner_section" class="inner_section2_4 inner_subsection" style="display: none;">',
     );
