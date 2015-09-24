@@ -9,6 +9,9 @@
     src: url('/sites/all/themes/ipca_portal/fonts/OPENSANS-BOLD.ttf')format('truetype');
 }*/
 
+
+
+
 @font-face {
   font-family: 'MyriadPro-bold';
   src: url('../fonts/myriadpro-bold.eot');
@@ -1235,7 +1238,7 @@ width: 100% !important;
 
 
 .front_main { 
- background: url("../images/ipca_footer-1.png") no-repeat scroll left bottom rgba(0, 0, 0, 0);
+/* background: url("../images/ipca_footer-1.png") no-repeat scroll left bottom rgba(0, 0, 0, 0); */
     max-width: 100%;
     min-height: 100%;
     width: 100%;

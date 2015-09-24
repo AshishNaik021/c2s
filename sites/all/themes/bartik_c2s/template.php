@@ -3,6 +3,9 @@
 /**
  * Add body classes if certain regions have content.
  */
+
+
+
 function bartik_c2s_preprocess_html(&$variables) {
    //drupal_flush_all_caches();
     if (!empty($variables['page']['featured'])) {
@@ -73,8 +76,42 @@ function bartik_c2s_form_alter(&$form, $form_state, $form_id) {
         case 'user_login_block':
         case 'user_login':
             unset($form['links']);
-            $form['name']['#description'] = t('');
-            $form['pass']['#description'] = t('');            
+            $form['#attached']['css'] = array(
+                drupal_get_path('module', 'broker') . '/css/global-c2s.css',
+            );
+//            $form['name']['#description'] = t('');
+            $form['name'] = array(
+                '#title'           => '',
+                '#type'		       => 'textfield',
+                '#maxlength'	   => 100,
+                '#default_value'   =>'',
+                '#attributes'       => array(
+                    'class'=> array('username_login'),
+                    'placeholder'=> 'Email/ Username',
+                    //'readonly'=>'readonly',
+                ),
+                '#prefix' => '<div style="width: 10%;margin-left: 20%;">
+                <img style="width: 190px;position: absolute;margin-top: -65px;" src="'. base_path() . path_to_theme().'/images/skyline.png" />
+                <img style="width: 190px;margin-top: 11px;" src="'. base_path() . path_to_theme().'/images/logo.png" /></div><p> LOGIN </p>',
+                '#suffix' => '',
+            );
+            
+            $form['pass'] = array(
+                '#title'           => '',
+                '#type'		       => 'password',
+                '#maxlength'	   => 100,
+                '#default_value'   =>'',
+                '#attributes'       => array(
+                    'class'=> array('password_login'),
+                    'placeholder'=> 'Password',
+                    //'readonly'=>'readonly',
+                ),
+             //   '#prefix' => '<div style="width: 10%;margin-left: 20%;">
+             //   <img style="width: 190px;position: absolute;margin-top: -65px;" src="'. base_path() . path_to_theme().'/images/skyline.png" />
+             //   <img style="width: 190px;margin-top: 11px;" src="'. base_path() . path_to_theme().'/images/logo.png" /></div><p> LOGIN </p>',
+            //    '#suffix' => '',
+            );
+           // $form['pass']['#description'] = t('');            
             break;
     }
 }
@@ -86,44 +123,26 @@ function bartik_c2s_user_login(&$edit, $account) {
 
 function bartik_c2s_css_alter(&$css) {
 
-    unset($css[drupal_get_path('module', 'support') . '/css/main.css']);
-    unset($css[drupal_get_path('module', 'pms_dashboard') . '/css/pms_dashboard.css']);
-    unset($css[drupal_get_path('module', 'attendance') . '/css/attendance.css']);
-    unset($css[drupal_get_path('module', 'system') . '/system.menus.css']);
-    unset($css[drupal_get_path('module', 'system') . '/system.theme.css']);
-    unset($css[drupal_get_path('module', 'lightbox2') . '/css/lightbox.css']);
+
 }
 
 function bartik_c2s_js_alter(&$js) {
 
-    unset($js[drupal_get_path('module', 'candidate') . '/js/candidate.js']);
-    unset($js[drupal_get_path('module', 'employee_deputation') . '/js/employee_deputation.js']);
-    unset($js[drupal_get_path('module', 'employee_induction') . '/js/pms.js']);
-    unset($js[drupal_get_path('module', 'employee_transfer') . '/js/employee_transfer.js']);
-    unset($js[drupal_get_path('module', 'manpower_requisition') . '/js/organogram.js']);
-    unset($js[drupal_get_path('module', 'salary_structure') . '/js/salary_structure.js']);
-    unset($js[drupal_get_path('module', 'support') . '/js/field_validations.js']);
-    unset($js[drupal_get_path('module', 'support') . '/js/candidate.js']);
-    unset($js[drupal_get_path('module', 'support') . '/js/main_menu.js']);
-    unset($js[drupal_get_path('module', 'visitor_management') . '/js/visitor_management.js']);
-    unset($js[drupal_get_path('module', 'lightbox2') . '/js/lightbox.js']);
-    unset($js[drupal_get_path('module', 'colorbox') . '/js/jquery.colorbox-min.js']);
-    unset($js[drupal_get_path('module', 'colorbox') . '/js/colorbox.js']);
-    unset($js[drupal_get_path('module', 'colorbox') . '/js/colorbox_load.js']);
+
    
     
     
 }
-
 function bartik_c2s_theme() {
-  $items = array();
-  // create custom user-login.tpl.php
-  $items['use_login'] = array(
-  'render element' => 'form',
-  'path' => drupal_get_path('theme', 'ipca_portal') . '/templates',
-  'template' => 'use-login',
-  
- );
-return $items;
+    $items = array();
+    // create custom user-login.tpl.php
+    $items['user_login'] = array(
+        'render element' => 'form',
+        'path' => drupal_get_path('theme', 'bartik_c2s') . '/templates',
+        'template' => 'use-login',
+
+    );
+    return $items;
 }
+
 

@@ -183,6 +183,7 @@ div.inner_subsection {
 	margin-left:20px;
 }
 
+
 /*=========  Form Elements  ============*/
 
 .wrapper-w100{
@@ -246,7 +247,7 @@ div.inner_subsection {
 	float:left;
 	width:100%;
 }
-input[type="text"]{
+input[type="text"], input[type="password"]{
 	font-family: 'quicksandregular';
 	color: #000000;
 	font-size: 12px;
@@ -343,3 +344,50 @@ background-image: -webkit-gradient(linear, left top, left bottom, from(#3093c7),
  background-image: -o-linear-gradient(top, #26759e, #133d5b);
  background-image: linear-gradient(to bottom, #26759e, #133d5b);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#26759e, endColorstr=#133d5b);
 }
+
+/* ---------------*/
+
+.user_login{
+    width: 30%;
+    margin: 0 auto;
+    margin-top: 5%;
+    height: 446px;
+    padding: 5%;
+    background-color: #c4c4c4;
+}
+
+.user_login .region .block .content{
+    padding-left: 25px;
+    padding-right: 25px;
+    border: 1px solid #a4a4a4;
+    box-shadow: 0px 0px 9px #999999;
+    border-radius: 5px;
+}
+
+.username_login{
+	    background-image: url('../../../../themes/bartik_c2s/images/mail_icon-grey.png');
+    background-repeat: no-repeat;
+    background-position: 16px 16px;
+    padding: 1%;
+    border-radius: 3px !important;
+    background-size: 25px;
+    padding-top: 8px;
+    padding-bottom: 10px;
+    font-size: 18px !important;
+    text-indent: 48px !important;
+}
+
+.password_login{
+    background-image: url('../../../../themes/bartik_c2s/images/icon_lock_grey.png');
+    background-repeat: no-repeat;
+    background-position: 14px 9px;
+    padding: 1%;
+    border-radius: 3px !important;
+    background-size: 22px;
+    padding-top: 8px;
+    padding-bottom: 10px;
+    font-size: 18px !important;
+    text-indent: 48px !important;
+}}
+
+/* --------------- */

@@ -92,24 +92,24 @@ if($_GET['q']=='user/login')
         height: 100% !important;
     }
 </style>
-<?php drupal_set_title('Welcome to Ipca Intranet Portal');
+<?php drupal_set_title('Welcome To City2Shore');
 
 ?>
-<div class="front_main">
-	<div class="front_header">
-	<?php if( $site_name )print $site_name;?>
-	</div>
-    <?php print $messages; ?>
+ <div class="user_login">
+<!--	<div class="front_header">
+	<?php // if( $site_name )print $site_name;?>
+	</div> -->
+    <?php // print $messages; ?>
 <?php
 print render($page['content']);
  ?>
-    <div class="front_rightsidebar"><!--  Banner --></div>
+ <!--     <div class="front_rightsidebar">Banner</div>
                 
               
 	
+</div> -->
+
 </div>
-
-
 
     <?php
 }
