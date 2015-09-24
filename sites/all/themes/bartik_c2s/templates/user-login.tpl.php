@@ -8,7 +8,7 @@
 <style media="all" type="text/css">
 <style media="all" type="text/css">
 <style media="print" type="text/css">
-<script src="http://localhost/C2S_Drupal/misc/jquery.js?v=1.4.4" type="text/javascript">
+<script src="<?php echo $base_url; ?>/misc/jquery.js?v=1.4.4" type="text/javascript">
 
 </head>
 <body>

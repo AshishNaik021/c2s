@@ -103,7 +103,7 @@ if($_GET['q']=='user/login')
 <?php
 print render($page['content']);
  ?>
-    <div class="front_rightsidebar"><img src="../sites/all/themes/ipca_portal/images/banner1.png" /></div>
+    <div class="front_rightsidebar"><!--  Banner --></div>
                 
               
 	

@@ -3,6 +3,9 @@
 $form['#attached']['js'] = array(
     drupal_get_path('module', 'broker') . '/js/validate.js',
 );
+$form['#attached']['js'] = array(
+    drupal_get_path('module', 'broker') . '/js/broker.js',
+);
 $form['#attached']['css'] = array(
     drupal_get_path('module', 'broker') . '/css/global-c2s.css',
 );
@@ -431,10 +434,11 @@ $form['#attached']['css'] = array(
 	);
 	
 	$form['broker_nrds_link'] = array(
-	     '#title'          => 'Link to look up NRDS#',
+	     '#title'    => 'Link to look up NRDS#',
 	    '#type' => 'item',
-	    '#prefix' => '<span class="wrapper-w25"><a class="url" href="url">http://reg.realtor.org/</a>' ,
-	    '#suffix' => '</span>',
+	    '#prefix' => '<span class="wrapper-w25">' ,
+	    '#suffix' => '<div style="float: left;margin: 9px 25px 19px 1px;">
+	    <a class="url" href="http://reg.realtor.org/">http://reg.realtor.org/</a></div></span>',
 	);
 	
 	$form['create_email'] = array(

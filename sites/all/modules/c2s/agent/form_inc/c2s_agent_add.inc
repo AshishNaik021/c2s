@@ -4,7 +4,7 @@ $form['#attached']['js'] = array(
     drupal_get_path('module', 'agent') . '/js/validate.js',
 );
 $form['#attached']['css'] = array(
-    drupal_get_path('module', 'agent') . '/css/global-c2s.css',
+    drupal_get_path('module', 'broker') . '/css/global-c2s.css',
 );
 
 /*

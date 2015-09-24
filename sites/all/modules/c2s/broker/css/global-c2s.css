@@ -108,6 +108,7 @@ div#middle-inner {
 }
 #inner_section{
 	width:96%;
+	float:left;
 }
 .block-menu .content{
 	background-color:#302e2f !important;
@@ -241,7 +242,9 @@ div.inner_subsection {
 #main-form-wrapper label {
 	color: #333333;
 	font-size: 12px;
-		font-family: 'ormontlight';
+	font-family: 'ormontlight';
+	float:left;
+	width:100%;
 }
 input[type="text"]{
 	font-family: 'quicksandregular';
@@ -263,6 +266,8 @@ background-color: transparent;
 background-image:url('../images/select_arrow.png');
     background-repeat: no-repeat;
    background-position: right;
+		margin: 9px 25px 19px 1px;
+	    width: 96%;
 }
 .form-type-radio, .form-type-checkbox{
     width: 46%;
