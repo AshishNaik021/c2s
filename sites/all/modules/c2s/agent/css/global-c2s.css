@@ -1,0 +1,340 @@
+@font-face {
+    font-family: 'quicksandbold';
+    src: url('quicksand/quicksand-bold-webfont.eot');
+    src: url('quicksand/quicksand-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('quicksand/quicksand-bold-webfont.woff2') format('woff2'),
+         url('quicksand/quicksand-bold-webfont.woff') format('woff'),
+         url('quicksand/quicksand-bold-webfont.ttf') format('truetype'),
+         url('quicksand/quicksand-bold-webfont.svg#quicksandbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'quicksandbold_italic';
+    src: url('quicksand/quicksand-bolditalic-webfont.eot');
+    src: url('quicksand/quicksand-bolditalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('quicksand/quicksand-bolditalic-webfont.woff2') format('woff2'),
+         url('quicksand/quicksand-bolditalic-webfont.woff') format('woff'),
+         url('quicksand/quicksand-bolditalic-webfont.ttf') format('truetype'),
+         url('quicksand/quicksand-bolditalic-webfont.svg#quicksandbold_italic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'quicksanditalic';
+    src: url('quicksand/quicksand-italic-webfont.eot');
+    src: url('quicksand/quicksand-italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('quicksand/quicksand-italic-webfont.woff2') format('woff2'),
+         url('quicksand/quicksand-italic-webfont.woff') format('woff'),
+         url('quicksand/quicksand-italic-webfont.ttf') format('truetype'),
+         url('quicksand/quicksand-italic-webfont.svg#quicksanditalic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'quicksandregular';
+    src: url('quicksand/quicksand-regular-webfont.eot');
+    src: url('quicksand/quicksand-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('quicksand/quicksand-regular-webfont.woff2') format('woff2'),
+         url('quicksand/quicksand-regular-webfont.woff') format('woff'),
+         url('quicksand/quicksand-regular-webfont.ttf') format('truetype'),
+         url('quicksand/quicksand-regular-webfont.svg#quicksandregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ormontlight';
+    src: url('ormont/ormont.light-webfont.eot');
+    src: url('ormont/ormont.light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('ormont/ormont.light-webfont.woff2') format('woff2'),
+         url('ormont/ormont.light-webfont.woff') format('woff'),
+         url('ormont/ormont.light-webfont.ttf') format('truetype'),
+         url('ormont/ormont.light-webfont.svg#ormontlight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+#page{
+	float:left;
+	background:#302e2f;
+}
+
+div#middle-inner {
+	background:#999;	
+}
+#page{
+	padding: 0% !important;
+}
+
+#header{
+	background:#ff9;
+}
+#header .logo{
+	width:18% !important;
+	padding: 2% 1%;
+	background:#ff6;
+}
+#header .logo img{
+	margin: 1% 0 1% 9%;
+    width: 80%;
+}
+
+#menu-bar{
+	display:none !important;
+}
+#sidebar-left {
+    float: left;
+    width: 18% !important;
+	margin: 0% !important;
+	min-height:1000px;
+	background:#302e2f;
+}
+#middle-inner{
+	float: left;
+    width: 82%;	
+}
+#page-title{
+	background: #fff;
+		font-family: 'quicksandregular';
+	border-top: 1px solid #1089ce !important;
+	border-bottom: 1px solid #1089ce !important;
+	padding: 1% 2%;
+	width:100% !important;
+	margin:0% !important; 
+	
+
+}
+#inner_section{
+	width:96%;
+}
+.block-menu .content{
+	background-color:#302e2f !important;
+	float:left;
+	width:100%;
+}
+
+.block-menu .content .menu {
+	margin:0px;
+	padding:0px;
+}
+
+.block-menu .content .menu li{
+list-style: none;
+    margin: 0px;
+    padding: 5px;
+    border-bottom: 1px solid #444444;
+}
+
+.block-menu .content .menu li a{
+	text-decoration:none;
+	color:#ffffff;
+	 font-family: 'quicksandregular';
+	text-transform:capitalize;
+	font-size:13px;
+}
+
+.content{
+	background-color: #fff !important;
+/*    height: 1700px; */
+    float: right;
+	margin:0% !important;
+}
+.content form{
+	width:94%;
+	margin:3%;
+	float:right;
+	
+}
+
+#form_sections{
+	    width: 96%;
+    padding: 2px !important;
+}
+
+.icon_rotate{
+-ms-transform: rotate(90deg); /* IE 9 */
+    -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+    transform: rotate(90deg);
+}
+hr{
+	border-top: 1px solid #1089ce;
+	float:left;
+	width:100%;
+}
+
+div.inner_subsection {
+    border: 1px solid #e4e4e4;
+    margin: 1%;
+    border-radius: 12px;
+    padding: 1%;
+} 
+
+.inner_section_arrow{
+ 	width: 6px;
+    float: left;
+    margin: 6px;
+    margin-top: 0px;
+
+}
+.inner_subsection_arrow{
+	margin-left:20px;
+}
+
+/*=========  Form Elements  ============*/
+
+.wrapper-w100{
+	width:100%;
+	float: left;
+	padding: 7px;
+	padding-bottom:0px;
+}
+.wrapper-w50{
+	width: 47%;
+	float: left;
+	padding: 7px;
+	padding-bottom:0px;
+
+}
+.wrapper-w33{
+	width:31%;
+	float: left;
+	padding:7px;
+	padding-bottom:0px;
+
+}
+.wrapper-w25{
+	width:23%;
+	float: left;
+	padding:7px;
+	padding-bottom:0px;
+
+}
+.wrapper-w16{
+	width:125px;
+	float: left;
+	padding:7px;
+	padding-bottom:0px;
+
+}
+
+
+#main-form-wrapper{
+	border: 1px solid #f4f6f7;
+	background-color: #f3f3f3;
+	padding: 5% 2%;
+	border-radius: 7px;
+	box-shadow: 0px 1px 3px #666666;
+	float:left;
+}
+#form_sections {
+	background-color: #fefefe;
+	border-radius: 1px;
+	float:left;
+	padding:3%;
+	    border-radius: 10px;
+    border: 1px solid #d8d8d8;
+	box-shadow:0px 0px 20px #d4d4d4;
+}
+
+#main-form-wrapper label {
+	color: #333333;
+	font-size: 12px;
+		font-family: 'ormontlight';
+}
+input[type="text"]{
+	font-family: 'quicksandregular';
+	color: #000000;
+	font-size: 12px;
+	width:97%;
+	height: 29px;
+	margin: 9px 25px 19px 1px;
+	text-indent: 11px;
+	border:1px solid #d4d4d4;
+	border-radius:5px;
+}
+
+#main-form-wrapper select{
+height: 33px;
+-webkit-appearance: none;
+text-indent: 11px;
+background-color: transparent;
+background-image:url('../images/select_arrow.png');
+    background-repeat: no-repeat;
+   background-position: right;
+}
+.form-type-radio, .form-type-checkbox{
+    width: 46%;
+    margin: 1%;
+    float: left;
+    padding: 1%;
+	
+}
+.form-type-date-popup .description,
+.form-type-date-popup .date-padding label{
+	display:none;
+}
+.form-type-date-popup .date-padding, 
+.form-type-date-popup .date-padding .form-type-textfield,
+.form-type-date-popup .date-padding .form-type-textfield label,
+.form-type-date-popup .date-padding .form-type-textfield input{
+	width: 100% !important;
+}
+.container-inline-date .form-item input {
+    margin-right: 1px !important;
+}
+
+
+.form_section_title{
+	color:#4c83b0;	
+	font-family: 'ormontlight';
+	padding: 1% 1% 2% 1% !important;
+	font-size:16px;
+	clear:both;
+}
+.form_subsection_title {
+	color: #4c83b0;
+	font-family: 'ormontlight';
+	padding: 1% 1% 2% 1% !important;
+	width: 500px;
+	font-size:14px;
+	clear:both;
+}
+.form_subsection_title2{
+	color:#4c83b0;
+	font-family: 'ormontlight';
+	padding: 1% 1% 2% 1% !important;
+	font-size: 14px;
+	clear:both;
+}
+
+#main-form-wrapper input[type="submit"]{
+	    padding: 10px !important;
+    -webkit-appearance: none;
+    border: 1px solid;
+    border-radius: 7px;
+    color: #ffffff;
+    background-color: #2a88c9;
+    font-family: 'ormontlight';
+    font-size: 12px;
+    margin: 3%;
+    float: right;
+    margin-bottom: 1%;
+background-image: -webkit-gradient(linear, left top, left bottom, from(#3093c7), to(#1c5a85));
+ background-image: -webkit-linear-gradient(top, #3093c7, #1c5a85);
+ background-image: -moz-linear-gradient(top, #3093c7, #1c5a85);
+ background-image: -ms-linear-gradient(top, #3093c7, #1c5a85);
+ background-image: -o-linear-gradient(top, #3093c7, #1c5a85);
+ background-image: linear-gradient(to bottom, #3093c7, #1c5a85);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#3093c7, endColorstr=#1c5a85);
+	
+}
+
+#main-form-wrapper input[type="submit"]:hover{
+ background-color: #26759e; background-image: -webkit-gradient(linear, left top, left bottom, from(#26759e), to(#133d5b));
+ background-image: -webkit-linear-gradient(top, #26759e, #133d5b);
+ background-image: -moz-linear-gradient(top, #26759e, #133d5b);
+ background-image: -ms-linear-gradient(top, #26759e, #133d5b);
+ background-image: -o-linear-gradient(top, #26759e, #133d5b);
+ background-image: linear-gradient(to bottom, #26759e, #133d5b);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#26759e, endColorstr=#133d5b);
+}
