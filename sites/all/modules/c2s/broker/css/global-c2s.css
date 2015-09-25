@@ -59,13 +59,13 @@
 #page{
 	float:left;
 	background:#302e2f;
+	padding: 0% !important;
+	width:100%;
 }
+
 
 div#middle-inner {
 	background:#999;	
-}
-#page{
-	padding: 0% !important;
 }
 
 #header{
@@ -141,6 +141,7 @@ list-style: none;
 /*    height: 1700px; */
     float: right;
 	margin:0% !important;
+	width:100%;
 }
 .content form{
 	width:94%;
@@ -191,9 +192,46 @@ div.inner_subsection {
 
 
 .no-input{
-	border:none;
+    border: none !important;
+    -webkit-appearance: none;
+    background: transparent;
 }
 
+#main-view-wrapper{
+	width: 90%;
+    margin: 3%;
+    float: left;
+	min-height:1000px;
+	border: 1px solid #f4f6f7;
+    background-color: #ffffff;
+    padding: 5% 2%;
+    border-radius: 7px;
+    box-shadow: 0px 0px 11px #e8e8e8;
+}
+
+.seperator{
+	border-bottom:1px solid #f4f4f4;
+}
+
+#main-view-wrapper .form_sections{
+width: 99%;
+    padding: 1% !important;
+    background-color: transparent;
+    box-shadow: none;
+    border: none;
+}
+
+#main-view-wrapper .form_sections .inner_subsection{
+border:none;	
+}
+
+#main-view-wrapper .form_sections .inner_subsection .form_subsection_title2 {
+    color: #4c83b0;
+    font-family: 'ormontlight';
+    padding: 1% 1% 2% 1% !important;
+    font-size: 11px;
+    clear: both;
+}
 /*=========  Form Elements  ============*/
 
 .wrapper-w100{
@@ -201,6 +239,13 @@ div.inner_subsection {
 	float: left;
 	padding: 7px;
 	padding-bottom:0px;
+}
+.wrapper-w60{
+	width: 57%;
+	float: left;
+	padding: 7px;
+	padding-bottom:0px;
+
 }
 .wrapper-w50{
 	width: 47%;
@@ -250,13 +295,53 @@ div.inner_subsection {
 	box-shadow:0px 0px 20px #d4d4d4;
 }
 
-#main-form-wrapper label {
+#main-form-wrapper label{
 	color: #333333;
 	font-size: 12px;
 	font-family: 'ormontlight';
 	float:left;
 	width:100%;
 }
+#main-view-wrapper label {
+	color: #333333;
+	font-size: 11px;
+	font-family: 'ormontlight';
+	float:left;
+	width:100%;
+	
+}
+.value_left{
+	font-family: 'quicksandregular';	
+}
+
+.section_full{
+    float: left;
+    width: 98%;
+    background-color: #fff8f2;
+    padding: 7px;
+}
+
+.section_left{
+    float: left;
+    width: 48%;
+    background-color: #fff8f2;
+    margin: 2px;
+    border-radius: 5px;
+    padding: 7px;
+	min-height:300px;
+}
+
+.subsection_left{
+	    float: left;
+    width: 48%;
+    background-color: #ffffff;
+    margin: 2px;
+    border-radius: 5px;
+    padding: 7px;
+	min-height:300px;
+	
+}
+
 input[type="text"], input[type="password"]{
 	font-family: 'quicksandregular';
 	color: #000000;

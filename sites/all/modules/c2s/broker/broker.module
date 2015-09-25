@@ -26,10 +26,9 @@ function broker_menu() {
 	);
 	
 	$items['c2s/broker/view'] = array(
-		'page callback' => 'drupal_get_form',
+		'page callback' => 'c2s_broker_view',
         'title'=>'C2S Broker Profile View',
         'menu_name' 	=> 'c2s-menu',
-		'page arguments' => array('c2s_broker_view'),
 		'access callback' => TRUE,
         'access arguments' => array('C2S Broker Profile View'),
 	);
@@ -164,9 +163,9 @@ function c2s_broker_add($form, &$form_state) {
 	include("form_inc/c2s_broker_add.inc");
 	return $form;
 }
-function c2s_broker_view($form, &$form_state) {
-	include("form_inc/c2s_broker_view.inc");
-	return $form;
+function c2s_broker_view() {
+	include("page_inc/c2s_broker_view.inc");
+	return $data;
 }
 
 function c2s_broker_delete($form, &$form_state) {
