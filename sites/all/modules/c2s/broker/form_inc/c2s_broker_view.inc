@@ -53,16 +53,14 @@ $form['#attached']['css'] = array(
         
 	$form['brokerage_name'] = array(
 	    '#title'           => 'Name of Brokerage',
-	    '#type'		       => 'textfield',
+	    '#type'		       => 'item',
 	    '#maxlength'	   => 100,
 	    '#required'		   =>'true',
 	    '#default_value'   =>'',
 	    '#attributes'       => array(
-	        'class'=> array('input-mini'),
+	        'class'=> array('no-input'),
 	        'placeholder'=> 'City2Shore',
-	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
-	        'onChange'   => array('addPrefix(this, "City2Shore ")'),
-	        'onClick'    => array('removePrefix(this)')
+	        'onClick'    => array('return false;')
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',

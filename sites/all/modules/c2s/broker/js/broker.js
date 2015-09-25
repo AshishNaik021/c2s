@@ -3,10 +3,10 @@ jQuery(document).ready(function(){
 	// ---------- //
 	jQuery('.form_section_title').click(function(){
 		alert("adasd");
-//		section = $(this).attr('data-item');
-//		$('#'+section).slideToggle(500,function(){
-		//	$('#'+section+'_arrow').toggleClass("icon_rotate");
-//		});
+		section = $(this).attr('data-item');
+		$('#'+section).slideToggle(500,function(){
+			$('#'+section+'_arrow').toggleClass("icon_rotate");
+		});
 		
 	});
 	// --------- //
