@@ -4,7 +4,7 @@ package = C2S
 core = 7.x
 
 
-stylesheets[all][] = css/broker-form.css
-stylesheets[all][] = css/global-c2s.css
+stylesheets[all][] = css/agent.css
 
-scripts[] = js/broker.js
+
+scripts[] = js/agent.js
