@@ -1,0 +1,10 @@
+name = Charity Module	
+description = "City2Shore Charity Module"
+package = C2S
+core = 7.x
+
+
+stylesheets[all][] = css/charity.css
+
+
+scripts[] = js/charity.js

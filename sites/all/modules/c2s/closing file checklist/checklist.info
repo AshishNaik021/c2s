@@ -1,0 +1,10 @@
+name = Closing File Checklist Module	
+description = "City2Shore Closing File Checklist Module"
+package = C2S
+core = 7.x
+
+
+stylesheets[all][] = css/checklist.css
+
+
+scripts[] = js/checklist.js

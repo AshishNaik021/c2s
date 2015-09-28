@@ -1,0 +1,63 @@
+#inner_section{
+	float:left;	
+	margin-bottom:10px;
+}
+#inner_section {
+    width: 50%!important;
+    float: left;
+}
+p.C2S {
+    padding: 3% 16% 0% 1%;
+	color: #8F9399;
+    font-size: 15px;
+}
+p.c2s {
+	padding: 3% 4% 0% 2%;
+	color: #8F9399;
+	font-size:13px;
+}
+span.form-required {
+	color: red;
+	font-size: 15px;
+}
+input:focus{
+	color:#000000;	
+}
+select{
+	width: 97%;
+	height: 35px;
+    margin-top: 8px;
+}
+#edit-account-type-1-checking,
+#edit-account-type-2-checking{
+	width: 4%;
+    margin: 4% 3% 0% 1%;
+	float:left;
+}
+#edit-account-type-1-saving,
+#edit-account-type-2-saving{
+	width: 4%;
+    margin: 4% 1% 1% 1%;
+	float:left;
+}
+a.url{
+	float: left;
+	padding: 10% 0% 10% 4%;
+    color: #4c83b0;
+    font-size: 13px;
+}
+
+#edit-broker-nrds-link label{
+	 margin-left:-125px;;
+}
+
+
+
+
+
+
+
+
+
+
+
