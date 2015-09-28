@@ -522,6 +522,172 @@ $form['#attached']['css'] = array(
 	    '#type' => 'item',
 	    '#suffix' => '</div><hr>',
 	);
+	$form['beneficiary_details_subsection_start'] = array(
+	    '#type' => 'item',
+	    '#prefix' => '<div class="form_subsection_title" data-item="inner_section_4"> Beneficiary Details
+	    <img src="'.base_path().'/'.drupal_get_path('module', 'broker').'/images/arrow_toggle.png" id="inner_section_4_arrow" class="inner_section_arrow" >
+	    </div>',
+	    '#suffix' => '<div id="inner_section" class="inner_section_4 inner_subsection" style="display: none;">',
+	);
+	
+	$form['beneficiary_first_name'] = array(
+	    '#title'          => 'First Name',
+	    '#type'		      => 'textfield',
+	    '#maxlength'	  => 50,
+	    '#required'		  => 'true',
+	    '#default_value'  => '',
+	    '#attributes'     => array(
+	        'placeholder'=> t('First Name'),
+	        'class'=> array('input-mini'),
+//	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //'readonly'=>'readonly',
+	    ),
+	    '#prefix' => '<span class="wrapper-w33">',
+	    '#suffix' => '</span>',
+	);	
+
+	$form['beneficiary_middle_name'] = array(
+	    '#title'          => 'Middle Name',
+	    '#type'		      => 'textfield',
+	    '#maxlength'	  => 50,
+	    '#required'		  => 'true',
+	    '#default_value'  => '',
+	    '#attributes'     => array(
+	        'placeholder'=> t('Middle Name'),
+	        'class'=> array('input-mini'),
+	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //'readonly'=>'readonly',
+	    ),
+	    '#prefix' => '<span class="wrapper-w33">',
+	    '#suffix' => '</span>',
+	);
+
+	$form['beneficiary_last_name'] = array(
+	    '#title'          => 'Last Name',
+	    '#type'		      => 'textfield',
+	    '#maxlength'	  => 50,
+	    '#required'		  => 'true',
+	    '#default_value'  => '',
+	    '#attributes'     => array(
+	        'placeholder'=> t('Last Name'),
+	        'class'=> array('input-mini'),
+	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //'readonly'=>'readonly',
+	    ),
+	    '#prefix' => '<span class="wrapper-w33">',
+	    '#suffix' => '</span>',
+	);
+	$form['beneficiary_relarionship'] = array(
+	    '#title'          => 'Relationship',
+	    '#type'		      => 'textfield',
+	    '#maxlength'	  => 50,
+	    '#required'		  => 'true',
+	    '#default_value'  => '',
+	    '#attributes'     => array(
+	        'placeholder'=> t('Relationship'),
+	        'class'=> array('input-mini'),
+//	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //'readonly'=>'readonly',
+	    ),
+	    '#prefix' => '<span class="wrapper-w33">',
+	    '#suffix' => '</span>',
+	);	
+
+	$form['beneficiary_email_id'] = array(
+	    '#title'          => 'Beneficiary Email ID',
+	    '#type'		      => 'textfield',
+	    '#maxlength'	  => 50,
+	    '#required'		  => 'true',
+	    '#default_value'  => '',
+	    '#attributes'     => array(
+	        'placeholder'=> t('Email ID'),
+	        'class'=> array('input-mini'),
+            'onKeyPress' => array('return MailId(event, this)',),
+	        //'readonly'=>'readonly',
+	    ),
+	    '#prefix' => '<span class="wrapper-w33">',
+	    '#suffix' => '</span>',
+	);
+
+	$form['beneficiary_contact_number'] = array(
+	    '#title'          => 'Beneficiary Contact Number',
+	    '#type'		      => 'textfield',
+	    '#maxlength'	  => 50,
+	    '#required'		  => 'true',
+	    '#default_value'  => '',
+	    '#attributes'     => array(
+	        'placeholder'=> t('Contact Number'),
+	        'class'=> array('input-mini'),
+	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //'readonly'=>'readonly',
+	    ),
+	    '#prefix' => '<span class="wrapper-w33">',
+	    '#suffix' => '</span>',
+	);
+    $form['beneficiary_address'] = array(
+	    '#title'          => 'Beneficiary Address',
+	    '#type'		      => 'textfield',
+	    '#maxlength'	  => 100,
+	    '#required'		  => 'true',
+	    '#default_value'  => '',
+	    '#attributes'     => array(
+	        'placeholder'=> t('Beneficiary Address'),
+	        'class'=> array('input-mini'),
+	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //'readonly'=>'readonly',
+	    ),
+	    '#prefix' => '<span class="wrapper-w50">',
+	    '#suffix' => '</span>',
+	);
+	
+	$form['beneficiary_city_id'] = array(
+	    '#title' => t('City'),
+	    '#type'=>'select',
+	    '#required'=>'true',
+	    '#default_value'=>'',
+	    '#options' =>array(1=>'City'),
+	    '#attributes' => array(
+	        'placeholder' => t(''),
+	        'class' => array('select-xlarge', 'uniform'),
+	    ),
+	    '#prefix' => '<span id="rep-loc-replace"><span class="wrapper-w16">',
+	    '#suffix' => '</span></span>',
+	);
+	
+	$form['beneficiary_state_id'] = array(
+	    '#title' => t('State'),
+	    '#type'=>'select',
+	    '#required'=>'true',
+	    '#default_value'=>'',
+	    '#options' =>array(1=>'State'),
+	    '#attributes' => array(
+	        'placeholder' => t(''),
+	        'class' => array('select-xlarge', 'uniform'),
+	    ),
+	    '#prefix' => '<span id="rep-loc-replace"><span class="wrapper-w16">',
+	    '#suffix' => '</span></span>',
+	);
+	
+    $form['beneficiary_zip_code'] = array(
+	    '#title'          => 'Zip Code',
+	    '#type'		      => 'textfield',
+	    '#maxlength'	  => 25,
+	    '#required'		  => 'true',
+	    '#default_value'  => '',
+	    '#attributes'     => array(
+	        'placeholder'=> t('Zip Code'),
+	        'class'=> array('input-mini'),
+	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //'readonly'=>'readonly',
+	    ),
+	    '#prefix' => '<span class="wrapper-w16">',
+	    '#suffix' => '</span>',
+	);
+      	
+    $form['beneficiary_details_subsection_end'] = array(
+        '#type' => 'item',
+        '#suffix' => '</div><hr>',
+    );
 	$form['section_one_end'] = array(
 	    '#type' => 'item',
 	    '#suffix' => '</div></div> ',
@@ -938,6 +1104,162 @@ $form['#attached']['css'] = array(
 	    '#type' => 'item',
 	    '#suffix' => '</div><hr>',
 	);
+	$form['agent_2_beneficiary_details_subsection_start'] = array(
+	    '#type' => 'item',
+	    '#prefix' => '<div class="form_subsection_title" data-item="inner_section_4_2"> Beneficiary Details
+	    <img src="'.base_path().'/'.drupal_get_path('module', 'broker').'/images/arrow_toggle.png" id="inner_section_4_2_arrow" class="inner_section_arrow" >
+	    </div>',
+	    '#suffix' => '<div id="inner_section" class="inner_section_4_2 inner_subsection" style="display: none;">',
+	);
+	
+	$form['agent_2_beneficiary_first_name'] = array(
+	    '#title'          => 'First Name',
+	    '#type'		      => 'textfield',
+	    '#maxlength'	  => 50,
+	    '#default_value'  => '',
+	    '#attributes'     => array(
+	        'placeholder'=> t('First Name'),
+	        'class'=> array('input-mini'),
+//	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //'readonly'=>'readonly',
+	    ),
+	    '#prefix' => '<span class="wrapper-w33">',
+	    '#suffix' => '</span>',
+	);	
+
+	$form['agent_2_beneficiary_middle_name'] = array(
+	    '#title'          => 'Middle Name',
+	    '#type'		      => 'textfield',
+	    '#maxlength'	  => 50,
+	    '#default_value'  => '',
+	    '#attributes'     => array(
+	        'placeholder'=> t('Middle Name'),
+	        'class'=> array('input-mini'),
+	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //'readonly'=>'readonly',
+	    ),
+	    '#prefix' => '<span class="wrapper-w33">',
+	    '#suffix' => '</span>',
+	);
+
+	$form['agent_2_beneficiary_last_name'] = array(
+	    '#title'          => 'Last Name',
+	    '#type'		      => 'textfield',
+	    '#maxlength'	  => 50,
+	    '#default_value'  => '',
+	    '#attributes'     => array(
+	        'placeholder'=> t('Last Name'),
+	        'class'=> array('input-mini'),
+	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //'readonly'=>'readonly',
+	    ),
+	    '#prefix' => '<span class="wrapper-w33">',
+	    '#suffix' => '</span>',
+	);
+	$form['agent_2_beneficiary_relarionship'] = array(
+	    '#title'          => 'Relationship',
+	    '#type'		      => 'textfield',
+	    '#maxlength'	  => 50,
+	    '#default_value'  => '',
+	    '#attributes'     => array(
+	        'placeholder'=> t('Relationship'),
+	        'class'=> array('input-mini'),
+//	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //'readonly'=>'readonly',
+	    ),
+	    '#prefix' => '<span class="wrapper-w33">',
+	    '#suffix' => '</span>',
+	);	
+
+	$form['agent_2_beneficiary_email_id'] = array(
+	    '#title'          => 'Beneficiary Email ID',
+	    '#type'		      => 'textfield',
+	    '#maxlength'	  => 50,
+	    '#default_value'  => '',
+	    '#attributes'     => array(
+	        'placeholder'=> t('Email ID'),
+	        'class'=> array('input-mini'),
+            'onKeyPress' => array('return MailId(event, this)',),
+	        //'readonly'=>'readonly',
+	    ),
+	    '#prefix' => '<span class="wrapper-w33">',
+	    '#suffix' => '</span>',
+	);
+
+	$form['agent_2_beneficiary_contact_number'] = array(
+	    '#title'          => 'Beneficiary Contact Number',
+	    '#type'		      => 'textfield',
+	    '#maxlength'	  => 50,
+	    '#default_value'  => '',
+	    '#attributes'     => array(
+	        'placeholder'=> t('Contact Number'),
+	        'class'=> array('input-mini'),
+	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //'readonly'=>'readonly',
+	    ),
+	    '#prefix' => '<span class="wrapper-w33">',
+	    '#suffix' => '</span>',
+	);
+    $form['agent_2_beneficiary_address'] = array(
+	    '#title'          => 'Beneficiary Address',
+	    '#type'		      => 'textfield',
+	    '#maxlength'	  => 100,
+	    '#default_value'  => '',
+	    '#attributes'     => array(
+	        'placeholder'=> t('Beneficiary Address'),
+	        'class'=> array('input-mini'),
+	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //'readonly'=>'readonly',
+	    ),
+	    '#prefix' => '<span class="wrapper-w50">',
+	    '#suffix' => '</span>',
+	);
+	
+	$form['agent_2_beneficiary_city_id'] = array(
+	    '#title' => t('City'),
+	    '#type'=>'select',
+	    '#default_value'=>'',
+	    '#options' =>array(1=>'City'),
+	    '#attributes' => array(
+	        'placeholder' => t(''),
+	        'class' => array('select-xlarge', 'uniform'),
+	    ),
+	    '#prefix' => '<span id="rep-loc-replace"><span class="wrapper-w16">',
+	    '#suffix' => '</span></span>',
+	);
+	
+	$form['agent_2_beneficiary_state_id'] = array(
+	    '#title' => t('State'),
+	    '#type'=>'select',
+	    '#default_value'=>'',
+	    '#options' =>array(1=>'State'),
+	    '#attributes' => array(
+	        'placeholder' => t(''),
+	        'class' => array('select-xlarge', 'uniform'),
+	    ),
+	    '#prefix' => '<span id="rep-loc-replace"><span class="wrapper-w16">',
+	    '#suffix' => '</span></span>',
+	);
+	
+    $form['agent_2_beneficiary_zip_code'] = array(
+	    '#title'          => 'Zip Code',
+	    '#type'		      => 'textfield',
+	    '#maxlength'	  => 25,
+	    '#default_value'  => '',
+	    '#attributes'     => array(
+	        'placeholder'=> t('Zip Code'),
+	        'class'=> array('input-mini'),
+	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        //'readonly'=>'readonly',
+	    ),
+	    '#prefix' => '<span class="wrapper-w16">',
+	    '#suffix' => '</span>',
+	);
+      	
+    $form['agent_2_beneficiary_details_subsection_end'] = array(
+        '#type' => 'item',
+        '#suffix' => '</div><hr>',
+    );
     $form['agent_owner_2_end'] = array(
         '#type' => 'item',
         '#suffix' => '</div></div>',
