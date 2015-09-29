@@ -160,7 +160,6 @@ function c2s_permission() {
 // ==================================================================================================
 
 function c2s_charity_add($form, &$form_state) {
-//	include("../support/inc/add_js.inc"); 
 	include("form_inc/c2s_charity_add.inc");
 	return $form;
 }

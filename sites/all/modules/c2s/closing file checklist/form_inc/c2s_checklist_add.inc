@@ -1033,6 +1033,48 @@ $form['#attached']['css'] = array(
 	    '#prefix' => '<span class="wrapper-w33">',
 	    '#suffix' => '</span>',
 	);
+	$form['basic'] = array(
+	    '#title'          => 'Basic',
+	    '#type'		      => 'checkbox',
+	    '#maxlength'	  => 25,
+	    '#default_value'  => '',
+	    '#attributes'     => array(
+	        'placeholder'=> t(''),
+	        'class'=> array('input-mini'),
+	        //	        'onKeyPress' => array('return IsNumeric(event, this);',),
+	        //'readonly'=>'readonly',
+	    ),
+	    '#prefix' => '<span class="wrapper-w16">',
+	    '#suffix' => '</span>',
+	);
+	$form['termite'] = array(
+	    '#title'          => 'Termite',
+	    '#type'		      => 'checkbox',
+	    '#maxlength'	  => 25,
+	    '#default_value'  => '',
+	    '#attributes'     => array(
+	        'placeholder'=> t(''),
+	        'class'=> array('input-mini'),
+	        //	        'onKeyPress' => array('return IsNumeric(event, this);',),
+	        //'readonly'=>'readonly',
+	    ),
+	    '#prefix' => '<span class="wrapper-w16">',
+	    '#suffix' => '</span>',
+	);
+	$form['randon'] = array(
+	    '#title'          => 'Randon',
+	    '#type'		      => 'checkbox',
+	    '#maxlength'	  => 25,
+	    '#default_value'  => '',
+	    '#attributes'     => array(
+	        'placeholder'=> t(''),
+	        'class'=> array('input-mini'),
+	        //	        'onKeyPress' => array('return IsNumeric(event, this);',),
+	        //'readonly'=>'readonly',
+	    ),
+	    '#prefix' => '<span class="wrapper-w16">',
+	    '#suffix' => '</span>',
+	);
 	$form['septic_inspection'] = array(
 	    '#title'          => 'Well Septic Inspection',
 	    '#type'		      => 'radios',

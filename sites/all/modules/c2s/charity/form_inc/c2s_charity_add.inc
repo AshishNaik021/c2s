@@ -204,7 +204,7 @@ $form['#attached']['css'] = array(
 	// --------------------Personal Bank Account Details Start------------------- //
 	
 	
-	$form['personal_account_number'] = array(
+	$form['account_number'] = array(
 	    '#title'          => 'Account Number',
 	    '#type'		      => 'textfield',
 	    '#maxlength'	  => 50,
@@ -219,7 +219,7 @@ $form['#attached']['css'] = array(
 	    '#prefix' => '<span class="wrapper-w50">',
 	    '#suffix' => '</span>',
 	);	
-	$form['name_on_personal_account'] = array(
+	$form['name_on_account'] = array(
 	    '#title'          => 'Name On Account',
 	    '#type'		      => 'textfield',
 	    '#maxlength'	  => 50,
@@ -234,7 +234,7 @@ $form['#attached']['css'] = array(
 	    '#prefix' => '<span class="wrapper-w50">',
 	    '#suffix' => '</span>',
 	);
-    $form['personal_financial_institution_name'] = array(
+    $form['financial_institution_name'] = array(
 	    '#title'          => 'Financial Institution Name',
 	    '#type'		      => 'textfield',
 	    '#maxlength'	  => 50,
@@ -249,7 +249,7 @@ $form['#attached']['css'] = array(
 	    '#prefix' => '<span class="wrapper-w50">',
 	    '#suffix' => '</span>',
 	);	
-    $form['personal_financial_institution_phone'] = array(
+    $form['financial_institution_phone'] = array(
 	    '#title'          => 'Financial Institution Phone Number',
 	    '#type'		      => 'textfield',
 	    '#maxlength'	  => 50,
@@ -267,7 +267,7 @@ $form['#attached']['css'] = array(
     
     
     
-	 $form['personal_account_type'] = array(
+	 $form['account_type'] = array(
 	    '#title'          => 'Account Type',
 	    '#type'		      => 'radios',
 	    '#maxlength'	  => 50,
@@ -283,7 +283,7 @@ $form['#attached']['css'] = array(
 	    '#prefix' => '<span class="wrapper-w50">',
 	    '#suffix' => '</span>',
 	);	 
-	$form['personal_aba_routing_number'] = array(
+	$form['aba_routing_number'] = array(
 	    '#title'          => 'ABA Routing Number',
 	    '#type'		      => 'textfield',
 	    '#maxlength'	  => 50,
