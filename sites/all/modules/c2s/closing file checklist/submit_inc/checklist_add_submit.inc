@@ -3,20 +3,18 @@
 // ==================================================================================================
 //                   New Broker and Brokerage Information Submit
 // ==================================================================================================
-$brokerage_start_date	=   $form_state['values']['brokerage_start_date'];
-$brokerage_name			=   $form_state['values']['brokerage_name'];
-$number_of_owners		=   $form_state['values']['number_of_owners'];
-$franchise_fee_cap		=   $form_state['values']['franchise_fee_cap'];
-$reap_amount_cap		=   $form_state['values']['reap_amount_cap'];
-
-
-$first_name				=   $form_state['values']['broker_first_name'];
-$middle_name			=   $form_state['values']['broker_middle_name'];
-$last_name			    =   $form_state['values']['broker_last_name'];
-$dob				    =   $form_state['values']['date_of_birth'];
-$personal_email			=   $form_state['values']['personl_email_id'];
-$personal_phone			=   $form_state['values']['contact_number'];
-$home_address			=   $form_state['values']['street_address'];
+$closing_file_checklist_id	=   $form_state['values']['closing_file_checklist_id'];
+$submitter_agent_id			=   $form_state['values']['submitter_agent_id'];
+$transaction_type		=   $form_state['values']['transaction_type'];
+$title_company_name		=   $form_state['values']['title_company_name'];
+$processor_name		=   $form_state['values']['processor_name'];
+$processor_phone				=   $form_state['values']['processor_phone'];
+$personal_email			=   $form_state['values']['personal_email'];
+$property_address			    =   $form_state['values']['property_address'];
+$property_city				    =   $form_state['values']['property_city'];
+$property_state			=   $form_state['values']['property_state'];
+$property_zip			=   $form_state['values']['property_zip'];
+$parcle_number			=   $form_state['values']['parcle_number'];
 $home_city				=   $form_state['values']['city_id'];
 $home_state				=   $form_state['values']['state_id'];
 $home_zip			    =   $form_state['values']['zip_code'];
