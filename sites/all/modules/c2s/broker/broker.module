@@ -25,21 +25,32 @@ function broker_menu() {
         'access arguments' 	=> array('C2S Broker Enrollment Form'),
 	);
 	
+/*	$items['c2s/broker/edit'] = array(
+	    'title'				=> 'C2S New Broker Form Edit',
+		'page callback' 	=> 'drupal_get_form',
+	    'menu_name' 		=> 'c2s-menu',
+		'page arguments' 	=> array('c2s_broker_edit'),
+		'access callback' 	=> TRUE,
+	    'access arguments' 	=> array('C2S Broker Form Edit'),
+	);
+	*/
+	
 	$items['c2s/broker/view'] = array(
-		'page callback' => 'c2s_broker_view',
-        'title'=>'C2S Broker Profile View',
-        'menu_name' 	=> 'c2s-menu',
-		'access callback' => TRUE,
-        'access arguments' => array('C2S Broker Profile View'),
+	    'title'				=> 'C2S New Broker View Form',
+		'page callback' 	=> 'drupal_get_form',
+	    'menu_name' 		=> 'c2s-menu',
+		'page arguments' 	=> array('c2s_broker_view'),
+		'access callback' 	=> TRUE,
+	    'access arguments' 	=> array('C2S Broker View Form'),
 	);
 
-	$items['c2s/broker/delete'] = array(
+	$items['c2s/broker/deactivate'] = array(
         'title'=>'c2s Application Delete',
 		'page callback' => 'drupal_get_form',
         'menu_name' 	=> 'c2s-menu',
-		'page arguments' => array('c2s_broker_delete'),
+		'page arguments' => array('c2s_broker_deactivate'),
 		'access callback' => TRUE,
-        'access arguments' => array('Delete C2S Broker'),
+        'access arguments' => array('Deactivate C2S Broker'),
 	);
 
 	return $items;
@@ -163,13 +174,20 @@ function c2s_broker_add($form, &$form_state) {
 	include("form_inc/c2s_broker_add.inc");
 	return $form;
 }
-function c2s_broker_view() {
-	include("page_inc/c2s_broker_view.inc");
-	return $data;
+
+function c2s_broker_edit($form, &$form_state) {
+//	include("../support/inc/add_js.inc"); 
+	include("form_inc/c2s_broker_edit.inc");
+	return $form;
 }
 
-function c2s_broker_delete($form, &$form_state) {
-	include("form_inc/c2s_broker_delete.inc");
+function c2s_broker_view($form, &$form_state) {
+	include("form_inc/c2s_broker_view.inc");
+	return $form;
+}
+
+function c2s_broker_deactivate($form, &$form_state) {
+	include("submit_inc/c2s_broker_deactivate.inc");
 	return $form;
 }
 /*

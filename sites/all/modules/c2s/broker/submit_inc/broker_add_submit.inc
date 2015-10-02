@@ -3,6 +3,10 @@
 // ==================================================================================================
 //                   New Broker and Brokerage Information Submit
 // ==================================================================================================
+
+print_r($form_state['values']);
+die;
+
 $brokerage_start_date	=   $form_state['values']['brokerage_start_date'];
 $brokerage_name			=   $form_state['values']['brokerage_name'];
 $number_of_owners		=   $form_state['values']['number_of_owners'];
@@ -70,7 +74,7 @@ $beneficiary_zip		=   $form_state['values']['beneficiary_zip_code'];
         $values_brokerage = array(
 	    'brokerage_id'         =>   $newid_brokerage,
 	    'brokerage_name'       =>   $brokerage_name,
-        '$brokerage_start_date'=> $brokerage_start_date,
+        'brokerage_start_date' => $brokerage_start_date,
 	    'number_of_owners'	   =>	$number_of_owners,
 	    'franchise_fee_cap'	   =>	$franchise_fee_cap,
 	    'reap_amount_cap'	   =>	$reap_amount_cap,
@@ -119,6 +123,8 @@ $beneficiary_zip		=   $form_state['values']['beneficiary_zip_code'];
 		   ->fields(['broker_id'           =>    $newid,
 		                    'brokerage_id'        =>    $newid_brokerage,
 		                    'user_id'             =>    $account->uid,
+		                    'type'                =>    'B',
+		                    'start_date'          =>    $brokerage_start_date,
 							'first_name'      	  =>    $first_name,
 							'middle_name'		  =>	$middle_name,
 							'last_name'			  =>	$last_name,

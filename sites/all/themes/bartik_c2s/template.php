@@ -134,15 +134,16 @@ function bartik_c2s_js_alter(&$js) {
     
 }
 function bartik_c2s_theme() {
+    
     $items = array();
     // create custom user-login.tpl.php
     $items['user_login'] = array(
         'render element' => 'form',
         'path' => drupal_get_path('theme', 'bartik_c2s') . '/templates',
-        'template' => 'use-login',
-
+        'template' => 'user-login',
     );
     return $items;
+
 }
 
 
