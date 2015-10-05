@@ -1,0 +1,107 @@
+<?php
+/*
+function checklist_schema() {
+
+// ------------------------------------- Checklist -------------------------------------
+
+ $schema['checklist_master'] = array(
+        'description' => 'Checklist Master Table',
+        'fields' => array(          
+			'closing_file_checklist_id'     	=> array('type' => 'int',		'length' => 10,),
+			'submitter_agent_id'         		=> array('type' => 'int',		'length' => 10,),
+			'transaction_type'              	=> array('type' => 'varchar', 	'length' => 100,),
+			'title_company_name'            	=> array('type' => 'varchar', 	'length' => 100,),
+			'processor_name'           			=> array('type' => 'varchar', 	'length' => 100,),
+			'processor_phone'             		=> array('type' => 'varchar',	'length' => 100,),
+			'personal_email' 					=> array('type' => 'varchar',	'length' => 100,),
+			'property_address'        			=> array('type' => 'varchar',	'length' => 100,),
+			'property_city' 					=> array('type' => 'varchar',	'length' => 100,),
+			'property_state' 					=> array('type' => 'varchar',	'length' => 100,),
+			'property_zip'            			=> array('type' => 'varchar',	'length' => 100,),
+			'parcle_number'						=> array('type' => 'varchar',	'length' => 100,),
+			'mls_user_name' 					=> array('type' => 'varchar',	'length' => 100,),
+			'price' 							=> array('type' => 'int',		'length' => 10,),
+			'loan_amount'        				=> array('type' => 'int',		'length' => 10,),
+			'transaction_date'         			=> array('type' => 'varchar',	'mysql_type' => 'date',),
+			'closing_date'						=> array('type' => 'int',       'mysql_type' => 'date',),
+			'terms' 							=> array('type' => 'varchar',   'length' => 100,),
+			'association_name'          		=> array('type' => 'varchar',	'length' => 100,),
+			'association_contact_person'    	=> array('type' => 'varchar',	'length' => 100,),
+			'association_phone_number' 			=> array('type' => 'varchar',   'length' => 100,),
+			'association_email' 				=> array('type' => 'varchar',	'length' => 100,),
+			'property_type'          			=> array('type' => 'varchar',	'length' => 100,),
+			'earnest_money'     				=> array('type' => 'varchar',   'length' => 100,),
+			'transaction_management_fee' 		=> array('type' => 'int',       'length' => 10,),
+			'listing_agent_name'				=> array('type' => 'varchar',	'length' => 100,),
+			'listing_agent_company_name'    	=> array('type' => 'varchar',	'length' => 100,),
+			'listing_agent_phone'   			=> array('type' => 'varchar',	'length' => 100,),
+			'listing_agent_fax'     			=> array('type' => 'varchar',	'length' => 100,),
+			'listing_agent_email'				=> array('type' => 'varchar',   'length' => 100,),
+			'listing_agent _commission_%_value' => array('type' => 'varchar',   'length' => 100,),
+			'listing_agent_commission_$_amount'	=> array('type' => 'varchar',	'length' => 100,),
+			'buyers_agent_name'    				=> array('type' => 'varchar',	'length' => 100,),
+			'buyers_agent_company_name'   		=> array('type' => 'varchar',	'length' => 100,),
+			'buyers_agent_phone'     			=> array('type' => 'varchar',	'length' => 100,),
+			'buyers_agent_fax'					=> array('type' => 'varchar',   'length' => 100,),
+			'buyers_agent_email'  				=> array('type' => 'varchar',   'length' => 100,),
+			'buyers_agent_commission_%_value'  	=> array('type' => 'varchar',   'length' => 100,),
+			'buyers_agent_commission_$_amount'  => array('type' => 'varchar',   'length' => 100,),
+			'sellers_first_name'    			=> array('type' => 'varchar',	'length' => 100,),
+			'sellers_middle_name'    			=> array('type' => 'varchar',	'length' => 100,),
+			'sellers_last_name'    				=> array('type' => 'varchar',	'length' => 100,),
+			'sellers_phone_number'    			=> array('type' => 'varchar',	'length' => 100,),
+			'sellers_marital_status'    		=> array('type' => 'varchar',	'length' => 100,),
+			'buyer's_first_name'    			=> array('type' => 'varchar',	'length' => 100,),
+			'buyer's_middle_name'    			=> array('type' => 'varchar',	'length' => 100,),
+			'buyer's_last_name'    				=> array('type' => 'varchar',	'length' => 100,),
+			'buyer's_phone_number'    			=> array('type' => 'varchar',	'length' => 100,),
+			'buyer's_marital_status'    		=> array('type' => 'varchar',	'length' => 100,),
+			'buyer's_current_address'    		=> array('type' => 'varchar',	'length' => 100,),
+			'buyer's_city'    					=> array('type' => 'varchar',	'length' => 100,),
+			'buyer's_state'    					=> array('type' => 'varchar',	'length' => 100,),
+			'buyer's_zip'    					=> array('type' => 'varchar',	'length' => 100,),
+			'buyer's_cost_paid_by_seller'    	=> array('type' => 'varchar',	'length' => 10,),
+			'buyer's_cost_paid'    				=> array('type' => 'int',		'length' => 10,),
+			'lender_name'    					=> array('type' => 'varchar',	'length' => 100,),
+			'lender_loan_officer'    			=> array('type' => 'varchar',	'length' => 100,),
+			'lender_phone_number'    			=> array('type' => 'varchar',	'length' => 100,),
+			'lender_fax'    					=> array('type' => 'varchar',	'length' => 100,),
+			'home_inspection_provider'    		=> array('type' => 'varchar',	'length' => 100,),
+			'termite_provider'    				=> array('type' => 'varchar',	'length' => 100,),
+			'basic'    							=> array('type' => 'varchar',	'length' => 10,),
+			'termite'    						=> array('type' => 'varchar',	'length' => 10,),
+			'randon'    						=> array('type' => 'varchar',	'length' => 10,),
+			'appraiser'    						=> array('type' => 'varchar',	'length' => 100,),
+			'well_septic_inspection'    		=> array('type' => 'varchar',	'length' => 10,),
+			'well_septic_inspection_provided'   => array('type' => 'varchar',	'length' => 100,),
+			'lead_source'    					=> array('type' => 'varchar',	'length' => 100,),
+			'race'    							=> array('type' => 'varchar',	'length' => 100,),
+			'marital_status'    				=> array('type' => 'varchar',	'length' => 100,),
+			'age'    							=> array('type' => 'varchar',	'length' => 100,),
+			'notes'    							=> array('type' => 'varchar',	'length' => 4000,),
+			'created_timestamp' 				=> array('type' => 'int',		'description' => 'The Unix timestamp at which record created',),
+			'last_updated_timestamp' 			=> array('type' => 'int',		'description' => 'The Unix timestamp at which record changed',),
+		),
+		'foreign keys' => array(
+			 'fk1_checklist_details' 		=> array('table' => 'checklist_master',	'columns' => array('checklist_id'	=>'checklist_id'),),
+		),
+        'primary key' => array('checklist_id'),
+
+ );
+
+	return $schema;
+}
+
+// ---------------------------------------------------------------------------------------
+function overtime_install(){
+
+//// ====================  Foreign Key - Alter pms_ot_summary Table ===========
+
+	db_query('
+		ALTER TABLE {checklist_master}
+		ADD CONSTRAINT {fk1_checklist_details}
+		FOREIGN KEY (submitter_agent_id) REFERENCES {checklist_id} (checklist_id)
+	');
+}
+*/
+//// ---------------------------------------------------------------------------------------
