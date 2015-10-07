@@ -49,6 +49,12 @@ function broker_menu() {
     'page callback' => 'c2s_broker_view',
     'access callback' => TRUE,
   );
+  
+  	 $items['c2s/broker/list'] = array(
+    'title' => t('C2S New Broker List'),
+    'page callback' => 'c2s_broker_list',
+    'access callback' => TRUE,
+  );
 
 	$items['c2s/broker/deactivate'] = array(
         'title'=>'c2s Application Delete',
@@ -224,10 +230,13 @@ function c2s_brokerage_edit_view($form, &$form_state){
 	return $form;
 }
 
-function c2s_broker_deactivate($form, &$form_state) {
-	include("submit_inc/c2s_broker_deactivate.inc");
-	return $form;
+
+
+function c2s_broker_list() {
+	include("page_inc/c2s_broker_list.inc");
+	return $data;
 }
+
 /*
 function c2s_application_approver_list($form, &$form_state) {
 	include("form_inc/c2s_application_approver_list.inc");

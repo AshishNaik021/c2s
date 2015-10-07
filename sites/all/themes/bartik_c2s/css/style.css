@@ -507,19 +507,7 @@ margin-bottom: 6%;
 .holiday table { width:80%;}
 .holiday p, .holiday select, .holiday table { margin-left:8%;}
 
-table.sticky-enabled {
-border: 1px solid #CCC !important;
-float: left;
-color: #313131;
-width:99%;
-}
-table.sticky-enabled td {
-padding: 4px 5px !important;
-font-size: 9px !important;
-}
-table.sticky-enabled tr.odd {
-background: #EEE !important;
-}
+
 
 
 /*--------------middle----------------------------------*/

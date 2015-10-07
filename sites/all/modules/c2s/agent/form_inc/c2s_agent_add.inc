@@ -1,8 +1,9 @@
 <?php
 
 $form['#attached']['js'] = array(
-    drupal_get_path('module', 'agent') . '/js/validate.js',
+    drupal_get_path('module', 'broker') . '/js/validate.js',
 );
+
 $form['#attached']['css'] = array(
     drupal_get_path('module', 'broker') . '/css/global-c2s.css',
 );
@@ -44,502 +45,693 @@ $form['#attached']['css'] = array(
 	}
         if(empty($company_code )){$company_code = 1;}
 */
+$result_paperwork = db_query("select document_name from required_paperwork") ;
 
-	$form['form_start'] = array(
-	   '#type' => 'item',
-	   '#suffix' => '<div id="main-form-wrapper"> ',
-	);
-	
-	$form['agents_start_date'] = array(
-	    '#title'	      => 'Agents Start Date',
-	    '#label'          => '',
-	    '#type'		      => 'date_popup',
-	    '#required'		  => 'true',
-	    '#default_value'  => '',
-	    '#date_format'	  => 'm/d/Y',
-	    '#date_year_range'  => '-3:+3',
-	    '#attributes'       => array(
-	        'placeholder'=> t('mm/dd/YYYY'),
-	        'class'=> array('date-input-medium'),
-	        'onKeyPress' => array('return false;'),
-	    ),
-	    '#prefix' => '<span class="wrapper-w50">',
-	    '#suffix' => '</span>',
-	);
-	
+
+$number_to_words = array(1=>"One", 2=> "Two", 3=> "Three", 4=>"Four", 5=>"Five", 6=>"Six");
+$total_brokers = 1;
+
+
+
+
+$form['form_start'] = array(
+    '#type' => 'item',
+    '#suffix' => '<div id="main-view-wrapper">',
+);
+
+
+
+
+$form['brokerage_start_date'] = array(
+    '#label'          => 'invisible',
+    '#type'		      => 'date_popup',
+    '#theme_wrappers'  => array(),
+    '#date_label_position' => 'Within',
+    '#required'       => 'true',
+    '#date_format'	  => 'm/d/Y',
+    '#date_year_range'  => '-3:+3',
+    '#attributes'       => array(
+        'placeholder'=> t('mm/dd/YYYY'),
+        'class'=> array('date-input-medium form_text'),
+        'onKeyPress' => array('return false;'),
+    ),
+    '#prefix' => '<span class="wrapper-w100"><span class="wrapper-w33"><label class="label_left"> Start Date </label><span class="value_left">',
+    '#suffix' => '</span></span>',
+);
+
+$form['parent_id'] = array(
+    '#type'		      => 'textfield',
+    '#maxlength'	  => 50,
+    '#required'		  => 'true',
+    '#theme_wrappers'  => array(),
+    '#attributes'     => array(
+        'placeholder'=> t('Type Min. 3 Characters of Agent Name'),
+        'class'=> array('form_text'),
+        'onKeyPress' => array('return onlyAlphabets(event, this);',),
+        //'readonly'=>'readonly',
+    ),
+    '#prefix' => '<span class="wrapper-w60"><label class="label_left">Select Parent Agent</label><span class="value_left">',
+    '#suffix' => '</span></span></span>',
+);
+
+
+for($i=1; $i<=2; $i++){
+    $class="";
+    if($i==1){
+        $class="selected";
+    }
+    $form['broker_tab_'.$i] = array(
+        '#type' => 'item',
+        '#suffix' => '<div class="form_section_tab '.$class.'" id="tab_'.$i.'" data-item="form_tab_'.$i.'" onclick="click_tabs(\'tab_'.$i.'\')" > Agent '.$number_to_words[$i].' </div>',
+    );
+
+}
+
+
+
+
+
+
+
+
+
+/* Broker Loop */
+/*
+$form['#tree'] = TRUE;
+$form = array(
+    '#type' => 'fieldset',
+    '#theme_wrappers'  => array(),
+    // Set up the wrapper so that AJAX will be able to replace the fieldset.
+    '#prefix' => '<div id="names-fieldset-wrapper">',
+    '#suffix' => '</div>',
+); */
+
+for($i=1; $i<=2; $i++){
+    $display="none";
+    if($i==1){
+        $display="block";
+    }
     
-		
-	$form['parent_agent'] = array(
-	    '#title'          => 'Who sponsored this Agent into C2S (Parent Agent)',
-	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 3,
-	    '#required'		  => 'true',
-	    '#default_value'  => '',
-	    '#attributes'     => array(
-		     'placeholder'=> t('Type Min 3 Chars'),
-	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return IsNumeric(event, this);',),
-	        //'readonly'=>'readonly',
-	    ),
-	    '#prefix' => '<span class="wrapper-w50">',
-	    '#suffix' => '</span>',
-	);	
-	
-	
-	$form['agent_owner_1'] = array(
-	   '#type' => 'item',
-	   '#prefix' => '<div id="form_sections" class="form_sections"> ',
-	   '#suffix' => '<div class="form_section_title" data-item = "form_section_1"> Agent One 
-	    <img src="'.base_path().'/'.drupal_get_path('module', 'agent').'/images/arrow_toggle.png" id="form_section_1_arrow" class="inner_section_arrow icon_rotate" > </div>
-	    <div id = "form_section_1">'
-	);
-    	$form['personal_info_subsection_start'] = array(
-    	   '#type' => 'item',
-    	   '#prefix' => '<div class="form_subsection_title" data-item="inner_section_1"> Personal Information 
-    	    <img src="'.base_path().'/'.drupal_get_path('module', 'agent').'/images/arrow_toggle.png" id="inner_section_1_arrow" class="inner_section_arrow" >
-    	    </div>',
-    	   '#suffix' => '<div id="inner_section" class="inner_section_1 inner_subsection" style="display: none;">',
-    	);
-	$form['agent_first_name'] = array(
-	    '#title'          => 'First Name',
-	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 50,
-	    '#required'		  => 'true',
-	    '#default_value'  => '',
-	    '#attributes'     => array(
-	        'placeholder'=> t('First Name'),
-	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return onlyAlphabets(event, this);',),
-	        //'readonly'=>'readonly',
-	    ),
-	    '#prefix' => '<span class="wrapper-w33">',
-	    '#suffix' => '</span>',
-	);	
+$form['broker_'.$i.'_details_start'] = array(
+    '#type' => 'item',
+    '#theme_wrappers'  => array(),
+    '#suffix' => '<div id="form_tab_'.$i.'" class="form_sections" style="display:'.$display.'">',
+);
 
-	$form['agent_middle_name'] = array(
-	    '#title'          => 'Middle Name',
-	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 50,
-	    '#required'		  => 'true',
-	    '#default_value'  => '',
-	    '#attributes'     => array(
-	        'placeholder'=> t('Middle Name'),
-	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return onlyAlphabets(event, this);',),
-	        //'readonly'=>'readonly',
-	    ),
-	    '#prefix' => '<span class="wrapper-w33">',
-	    '#suffix' => '</span>',
+
+$form['broker_'.$i.'_details_seperator'] = array(
+    '#type' => 'item',
+    '#theme_wrappers'  => array(),
+    '#suffix' => '<div class="seperator" style="height: 10px;width: 100%;float: left;clear: both;"></div>',
+);
+
+$form['broker_'.$i.'_personal_info_start'] = array(
+    '#type' => 'item',
+    '#theme_wrappers'  => array(),
+    '#prefix' => '<div class="section_full"><div class="section_left"> <div class="form_subsection_title" data-item="inner_section_1"> Personal Information</div>',
+);
+
+$form['broker_'.$i.'_first_name'] = array(
+    '#type'		      => 'textfield',
+    '#maxlength'	  => 50,
+    '#required'		  => 'true',
+    '#theme_wrappers'  => array(),
+    '#attributes'     => array(
+        'placeholder'=> t('First Name'),
+        'class'=> array('form_text'),
+        'onKeyPress' => array('return onlyAlphabets(event, this);',),
+        //'readonly'=>'readonly',
+    ),
+    '#prefix' => '<span class="wrapper-w33"><label class="label_left">First Name</label><span class="value_left">',
+    '#suffix' => '</span></span>',
+);
+
+$form['broker_'.$i.'_middle_name'] = array(
+    '#type'		      => 'textfield',
+    '#maxlength'	  => 50,
+    '#required'		  => 'true',
+    '#theme_wrappers'  => array(),
+    '#attributes'     => array(
+        'placeholder'=> t('Middle Name'),
+        'class'=> array('form_text'),
+        'onKeyPress' => array('return onlyAlphabets(event, this);',),
+        //'readonly'=>'readonly',
+    ),
+    '#prefix' => '<span class="wrapper-w33"><label class="label_left">Middle Name</label><span class="value_left">',
+    '#suffix' => '</span></span>',
+);
+
+$form['broker_'.$i.'_last_name'] = array(
+    '#type'		      => 'textfield',
+    '#maxlength'	  => 50,
+    '#required'		  => 'true',
+    '#theme_wrappers'  => array(),
+    '#attributes'     => array(
+        'placeholder'=> t('Last Name'),
+        'class'=> array('form_text'),
+        'onKeyPress' => array('return onlyAlphabets(event, this);',),
+        //'readonly'=>'readonly',
+    ),
+    '#prefix' => '<span class="wrapper-w25"><label class="label_left">Last Name</label><span class="value_left">',
+    '#suffix' => '</span></span>',
+);
+
+
+$form['date_of_birth_'.$i] = array(
+    '#label'          => '',
+    '#type'		      => 'date_popup',
+    '#required'		  => 'true',
+    '#theme_wrappers'  => array(),
+    '#date_format'	  => 'm/d/Y',
+    '#date_year_range'  => '-3:+3',
+    '#attributes'       => array(
+        'placeholder'=> t('mm/dd/YYYY'),
+        'class'=> array('date-input-medium form_text'),
+        'onKeyPress' => array('return false;'),
+    ),
+    '#prefix' => '<span class="wrapper-w33"><label class="label_left">Date of Birth</label><span class="value_left">',
+    '#suffix' => '</span></span>',
+);
+
+
+$form['personl_email_id_'.$i] = array(
+    '#type'		      => 'textfield',
+    '#maxlength'	  => 100,
+    '#required'		  => 'true',
+    '#theme_wrappers'  => array(),
+    '#attributes'     => array(
+        'placeholder'=> t('Personal Email ID'),
+        'class'=> array('form_text'),
+        'onKeyPress' => array('return MailId(event, this);',),
+        //'readonly'=>'readonly',
+    ),
+    '#prefix' => '<span class="wrapper-w33"><label class="label_left">Email Id</label><span class="value_left">',
+    '#suffix' => '</span></span>',
+);
+
+$form['contact_number_'.$i] = array(
+    '#type'		      => 'textfield',
+    '#maxlength'	  => 50,
+    '#required'		  => 'true',
+    '#theme_wrappers'  => array(),
+    '#attributes'     => array(
+        'placeholder'=> t('Contact Number'),
+        'class'=> array('form_text'),
+        'onKeyPress' => array('return IsNumeric(event, this);',),
+        //'readonly'=>'readonly',
+    ),
+    '#prefix' => '<span class="wrapper-w25"><label class="label_left">Contact</label><span class="value_left">',
+    '#suffix' => '</span></span>',
+);
+
+$form['street_address_'.$i] = array(
+    '#type'		      => 'textfield',
+    '#maxlength'	  => 100,
+    '#required'		  => 'true',
+    '#theme_wrappers'  => array(),
+    '#attributes'     => array(
+        'placeholder'=> t('Street Address'),
+        'class'=> array('form_text'),
+        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
+        //'readonly'=>'readonly',
+    ),
+    '#prefix' => '<span class="wrapper-w100"><label class="label_left">Street Address</label><span class="value_left">',
+    '#suffix' => '</span></span>',
+);
+
+$form['city_id_'.$i] = array(
+    '#type'=>'select',
+    '#required'=>'true',
+    '#options' =>array(1=>'City'),
+    '#theme_wrappers'  => array(),
+    '#attributes' => array(
+        'placeholder' => t(''),
+        'class' => array('form_text'),
+    ),
+    '#prefix' => '<span class="wrapper-w33"><label class="label_left">City</label><span class="value_left">',
+    '#suffix' => '</span></span>',
+);
+
+$form['state_id_'.$i] = array(
+    '#type'=>'select',
+    '#required'=>'true',
+    '#options' =>array(1=>'State'),
+    '#theme_wrappers'  => array(),
+    '#attributes' => array(
+        'placeholder' => t(''),
+        'class' => array('form_text'),
+    ),
+    '#prefix' => '<span class="wrapper-w33"><label class="label_left">State</label><span class="value_left">',
+    '#suffix' => '</span></span>',
+);
+
+$form['zip_code_'.$i] = array(
+    '#type'		      => 'textfield',
+    '#maxlength'	  => 25,
+    '#required'		  => 'true',
+    '#theme_wrappers'  => array(),
+    '#attributes'     => array(
+        'placeholder'=> t('Zip Code'),
+        'class'=> array('form_text'),
+        //	        'onKeyPress' => array('return IsNumeric(event, this);',),
+        //'readonly'=>'readonly',
+    ),
+    '#prefix' => '<span class="wrapper-w25"><label class="label_left">Zip Code</label><span class="value_left">',
+    '#suffix' => '</span></span>',
+     
+);
+
+$form['broker_'.$i.'_personal_info_end'] = array(
+    '#type' => 'item',
+    '#theme_wrappers'  => array(),
+    '#prefix' => '</div>',
+);
+
+
+$form['broker_'.$i.'_professional_info_start'] = array(
+    '#type' => 'item',
+    '#theme_wrappers'  => array(),
+    '#prefix' => '<div class="section_left"> <div class="form_subsection_title" data-item="inner_section_1"> Professional Information</div>',
+);
+
+
+
+$form['broker_state_id_number_'.$i] = array(
+    '#type'		      => 'textfield',
+    '#maxlength'	  => 25,
+    '#required'		  => 'true',
+    '#theme_wrappers'  => array(),
+    '#attributes'     => array(
+        'placeholder'=> t('Broker State Id #'),
+        'class'=> array('form_text'),
+        //	        'onKeyPress' => array('return IsNumeric(event, this);',),
+        //'readonly'=>'readonly',
+    ),
+    '#prefix' => '<span class="wrapper-w33"><label class="label_left">State ID#</label><span class="value_left">',
+    '#suffix' => '</span></span>',
+);
+
+
+$form['broker_nrds_'.$i] = array(
+
+    '#type'		      => 'textfield',
+    '#maxlength'	  => 25,
+    '#required'		  => 'true',
+    '#theme_wrappers'  => array(),
+    '#attributes'     => array(
+        'placeholder'=> t('Broker NRDS#'),
+        'class'=> array('form_text'),
+        'onKeyPress' => array('return IsNumeric(event, this);',),
+        //'readonly'=>'readonly',
+    ),
+    '#prefix' => '<span class="wrapper-w25"><label class="label_left">NRDS#</label><span class="value_left">',
+    '#suffix' => '</span></span>',
+);
+
+$form['mls_username_'.$i] = array(
+
+    '#type'		      => 'textfield',
+    '#maxlength'	  => 25,
+    '#required'		  => 'true',
+    '#theme_wrappers'  => array(),
+    '#attributes'     => array(
+        'placeholder'=> t('MLS User Id'),
+        'class'=> array('form_text'),
+        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
+        //'readonly'=>'readonly',
+    ),
+    '#prefix' => '<span class="wrapper-w33"><label class="label_left">MLS User Id</label><span class="value_left">',
+    '#suffix' => '</span></span>',
+);
+
+$form['mls_password_'.$i] = array(
+
+    '#type'		      => 'textfield',
+    '#maxlength'	  => 25,
+    '#required'		  => 'true',
+    '#theme_wrappers'  => array(),
+    '#attributes'     => array(
+        'placeholder'=> t('MLS Password'),
+        'class'=> array('form_text'),
+        //	        'onKeyPress' => array('return IsNumeric(event, this);',),
+        //'readonly'=>'readonly',
+    ),
+    '#prefix' => '<span class="wrapper-w33"><label class="label_left">MLS Password</label><span class="value_left">',
+    '#suffix' => '</span></span>',
+);
+
+
+
+$form['office_phone_'.$i] = array(
+    '#type'		      => 'textfield',
+    '#maxlength'	  => 25,
+    '#required'		  => 'true',
+    '#theme_wrappers'  => array(),
+    '#attributes'     => array(
+        'placeholder'=> t('Office Phone'),
+        'class'=> array('form_text'),
+        'onKeyPress' => array('return IsNumeric(event, this);',),
+        //'readonly'=>'readonly',
+    ),
+    '#prefix' => '<span class="wrapper-w25"><label class="label_left">Office Phone</label><span class="value_left">',
+    '#suffix' => '</span></span>',
+);
+
+$form['extension_'.$i] = array(
+    '#type'		      => 'textfield',
+    '#maxlength'	  => 25,
+    '#required'		  => 'true',
+    '#theme_wrappers'  => array(),
+    '#attributes'     => array(
+        'placeholder'=> t('Extension'),
+        'class'=> array('form_text'),
+        'onKeyPress' => array('return IsNumeric(event, this);',),
+        //'readonly'=>'readonly',
+    ),
+    '#prefix' => '<span class="wrapper-w33"><label class="label_left">Extension</label><span class="value_left">',
+    '#suffix' => '</span></span>',
+);
+$form['create_email_'.$i] = array(
+    '#type'		      => 'textfield',
+    '#maxlength'	  => 25,
+    '#required'		  => 'true',
+    '#theme_wrappers'  => array(),
+    '#attributes'     => array(
+        'placeholder'=> t('example@c2semail.com'),
+        'class'=> array('form_text'),
+        //	        'onKeyPress' => array('return IsNumeric(event, this);',),
+        //'readonly'=>'readonly',
+    ),
+    '#prefix' => '<span class="wrapper-w60"><label class="label_left">C2S Email</label><span class="value_left">',
+    '#suffix' => '</span></span>',
+);
+$form['choice_of_charity_org_'.$i] = array(
+    '#type'		      => 'textfield',
+    '#maxlength'	  => 250,
+    '#required'		  => 'true',
+    '#theme_wrappers'  => array(),
+    '#attributes'     => array(
+        'placeholder'=> t('Type Min 3 Chars'),
+        'class'=> array('form_text'),
+        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
+        //'readonly'=>'readonly',
+    ),
+    '#prefix' => '<span class="wrapper-w100"><label class="label_left">Charity Organization Chosen</label><span class="value_left">',
+    '#suffix' => '</span></span>',
+);
+
+
+$form['broker_'.$i.'_professional_info_end'] = array(
+    '#type' => 'item',
+    '#theme_wrappers'  => array(),
+    '#prefix' => '</div><div class="seperator" style="height: 10px;width: 100%;float: left;clear: both;"></div></div>',
+);
+
+
+// --------- //
+//---------- //
+
+$form['broker_'.$i.'_bank_info_right_start_'.$i] = array(
+    '#type' => 'item',
+    '#theme_wrappers'  => array(),
+    '#prefix' => '<div class="section_full"><div class="section_left"><div class="form_subsection_title" data-item="inner_section_1">Bank Details</div>',
+);
+
+$form['personal_account_number_'.$i] = array(
+    '#type'		      => 'textfield',
+    '#maxlength'	  => 50,
+    '#required'		  => 'true',
+    '#theme_wrappers'  => array(),
+    '#attributes'     => array(
+        'placeholder'=> t('Account Number'),
+        'class'=> array('form_text'),
+        'onKeyPress' => array('return IsNumeric(event, this);',),
+        //'readonly'=>'readonly',
+    ),
+    '#prefix' => '<span class="wrapper-w33"><label class="label_left">Account Number</label><span class="value_left">',
+    '#suffix' => '</span></span>',
+);
+$form['name_on_personal_account_'.$i] = array(
+    '#type'		      => 'textfield',
+    '#maxlength'	  => 50,
+    '#required'		  => 'true',
+    '#theme_wrappers'  => array(),
+    '#attributes'     => array(
+        'placeholder'=> t('Name On Account'),
+        'class'=> array('form_text'),
+        'onKeyPress' => array('return IsNumeric(event, this);',),
+        //'readonly'=>'readonly',
+    ),
+    '#prefix' => '<span class="wrapper-w60"><label class="label_left">Name On Account</label><span class="value_left">',
+    '#suffix' => '</span></span>',
+);
+$form['personal_financial_institution_name_'.$i] = array(
+    '#type'		      => 'textfield',
+    '#maxlength'	  => 50,
+    '#required'		  => 'true',
+    '#theme_wrappers'  => array(),
+    '#attributes'     => array(
+        'placeholder'=> t('Financial Institution Name'),
+        'class'=> array('form_text'),
+        'onKeyPress' => array('return onlyAlphabets(event, this);',),
+        //'readonly'=>'readonly',
+    ),
+    '#prefix' => '<span class="wrapper-w100"><label class="label_left">Bank Name</label><span class="value_left">',
+    '#suffix' => '</span></span>',
+);
+$form['personal_financial_institution_phone_'.$i] = array(
+    '#type'		      => 'textfield',
+    '#maxlength'	  => 50,
+    '#required'		  => 'true',
+    '#theme_wrappers'  => array(),
+    '#attributes'     => array(
+        'placeholder'=> t('Financial Institution Phone Number'),
+        'class'=> array('form_text'),
+        //	        'onKeyPress' => array('return IsNumeric(event, this);',),
+        //'readonly'=>'readonly',
+    ),
+    '#prefix' => '<span class="wrapper-w33"><label class="label_left">Bank Phone</label><span class="value_left">',
+    '#suffix' => '</span></span>',
+);
+
+
+
+$form['personal_account_type_'.$i] = array(
+    '#type'		      => 'select',
+    '#maxlength'	  => 50,
+    '#required'		  => 'true',
+    '#theme_wrappers'  => array(),
+    '#attributes'     => array(
+        'class'=> array('form_text'),
+    ),
+    '#options'        => array(	'checking'=> t('Checking'),'saving'=> t('Saving')
+        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+        //'readonly'=>'readonly',
+    ),
+    '#prefix' => '<span class="wrapper-w33"><label class="label_left">Account Type</label><span class="value_left">',
+    '#suffix' => '</span></span>',
+);
+$form['personal_aba_routing_number_'.$i] = array(
+    '#type'		      => 'textfield',
+    '#maxlength'	  => 50,
+    '#required'		  => 'true',
+    '#theme_wrappers'  => array(),
+    '#attributes'     => array(
+        'placeholder'=> t('ABA Routing Number'),
+        'class'=> array('form_text'),
+        //	        'onKeyPress' => array('return IsNumeric(event, this);',),
+        //'readonly'=>'readonly',
+    ),
+    '#prefix' => '<span class="wrapper-w25"><label class="label_left">ABA Routing#</label><span class="value_left">',
+    '#suffix' => '</span></span>',
+);
+
+
+$form['broker_'.$i.'_bank_info_right_end'] = array(
+    '#type' => 'item',
+    '#theme_wrappers'  => array(),
+    '#prefix' => '</div>',
+);
+
+$form['broker_'.$i.'_beneficiary_start'] = array(
+    '#type' => 'item',
+    '#theme_wrappers'  => array(),
+    '#prefix' => '<div class="section_left"><div class="form_subsection_title" data-item="inner_section_1">Beneficiary Details</div>',
+);
+
+$form['beneficiary_first_name_'.$i] = array(
+
+    '#type'		      => 'textfield',
+    '#maxlength'	  => 50,
+    '#required'		  => 'true',
+    '#theme_wrappers'  => array(),
+    '#attributes'     => array(
+        'placeholder'=> t('First Name'),
+        'class'=> array('form_text'),
+        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+        //'readonly'=>'readonly',
+    ),
+    '#prefix' => '<span class="wrapper-w33"><label class="label_left">First Name</label><span class="value_left">',
+    '#suffix' => '</span></span>',
+);
+
+$form['beneficiary_middle_name_'.$i] = array(
+
+    '#type'		      => 'textfield',
+    '#maxlength'	  => 50,
+    '#required'		  => 'true',
+    '#theme_wrappers'  => array(),
+    '#attributes'     => array(
+        'placeholder'=> t('Middle Name'),
+        'class'=> array('form_text'),
+        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+        //'readonly'=>'readonly',
+    ),
+    '#prefix' => '<span class="wrapper-w33"><label class="label_left">Middle Name</label><span class="value_left">',
+    '#suffix' => '</span></span>',
+);
+
+$form['beneficiary_last_name_'.$i] = array(
+
+    '#type'		      => 'textfield',
+    '#maxlength'	  => 50,
+    '#required'		  => 'true',
+    '#theme_wrappers'  => array(),
+    '#attributes'     => array(
+        'placeholder'=> t('Last Name'),
+        'class'=> array('form_text'),
+        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+        //'readonly'=>'readonly',
+    ),
+    '#prefix' => '<span class="wrapper-w25"><label class="label_left">Last Name</label><span class="value_left">',
+    '#suffix' => '</span></span>',
+);
+$form['beneficiary_relarionship_'.$i] = array(
+
+    '#type'		      => 'textfield',
+    '#maxlength'	  => 50,
+    '#required'		  => 'true',
+    '#theme_wrappers'  => array(),
+    '#attributes'     => array(
+        'placeholder'=> t('Relationship'),
+        'class'=> array('form_text'),
+        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+        //'readonly'=>'readonly',
+    ),
+    '#prefix' => '<span class="wrapper-w33"><label class="label_left">Relationship</label><span class="value_left">',
+    '#suffix' => '</span></span>',
+);
+
+$form['beneficiary_email_id_'.$i] = array(
+
+    '#type'		      => 'textfield',
+    '#maxlength'	  => 50,
+    '#required'		  => 'true',
+    '#theme_wrappers'  => array(),
+    '#attributes'     => array(
+        'placeholder'=> t('Email ID'),
+        'class'=> array('form_text'),
+        'onKeyPress' => array('return MailId(event, this)',),
+        //'readonly'=>'readonly',
+    ),
+    '#prefix' => '<span class="wrapper-w33"><label class="label_left">Email Id</label><span class="value_left">',
+    '#suffix' => '</span></span>',
+);
+
+$form['beneficiary_contact_number_'.$i] = array(
+    '#type'		      => 'textfield',
+    '#maxlength'	  => 50,
+    '#required'		  => 'true',
+    '#theme_wrappers'  => array(),
+    '#attributes'     => array(
+        'placeholder'=> t('Contact Number'),
+        'class'=> array('form_text'),
+        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+        //'readonly'=>'readonly',
+    ),
+    '#prefix' => '<span class="wrapper-w25"><label class="label_left">Contact</label><span class="value_left">',
+    '#suffix' => '</span></span>',
+);
+$form['beneficiary_address_'.$i] = array(
+
+    '#type'		      => 'textfield',
+    '#maxlength'	  => 100,
+    '#required'		  => 'true',
+    '#theme_wrappers'  => array(),
+    '#attributes'     => array(
+        'placeholder'=> t('Beneficiary Address'),
+        'class'=> array('form_text'),
+        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+        //'readonly'=>'readonly',
+    ),
+    '#prefix' => '<span class="wrapper-w100"><label class="label_left">Street Address</label><span class="value_left">',
+    '#suffix' => '</span></span>',
+);
+
+$form['beneficiary_city_id_'.$i] = array(
+    '#type'=>'select',
+    '#required'=>'true',
+    '#theme_wrappers'  => array(),
+    '#options' =>array(1=>'City'),
+    '#attributes' => array(
+        'placeholder' => t(''),
+        'class' => array('form_text'),
+    ),
+    '#prefix' => '<span class="wrapper-w33"><label class="label_left">City</label><span class="value_left">',
+    '#suffix' => '</span></span>',
+);
+
+$form['beneficiary_state_id_'.$i] = array(
+    '#type'=>'select',
+    '#required'=>'true',
+    '#theme_wrappers'  => array(),
+    '#options' =>array(1=>'State'),
+    '#attributes' => array(
+        'placeholder' => t(''),
+        'class' => array('form_text'),
+    ),
+    '#prefix' => '<span class="wrapper-w33"><label class="label_left">State</label><span class="value_left">',
+    '#suffix' => '</span></span>',
+);
+
+$form['beneficiary_zip_code_'.$i] = array(
+    '#type'		      => 'textfield',
+    '#maxlength'	  => 25,
+    '#required'		  => 'true',
+    '#theme_wrappers'  => array(),
+    '#attributes'     => array(
+        'placeholder'=> t('Zip Code'),
+        'class'=> array('form_text'),
+        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+        //'readonly'=>'readonly',
+    ),
+    '#prefix' => '<span class="wrapper-w25"><label class="label_left">Zip Code</label><span class="value_left">',
+    '#suffix' => '</span></span>',
+     
+);
+
+$form['broker_'.$i.'_beneficiary_end'] = array(
+    '#type' => 'item',
+    '#theme_wrappers'  => array(),
+    '#prefix' => '</div></div>',
+);
+
+//-----------//
+
+
+$form['broker_'.$i.'_details_end'] = array(
+    '#type' => 'item',
+    '#suffix' => '</div>',
+);
+
+
+	}
+	$form['submit'] = array(
+	    '#type' => 'submit',
+	    '#value' => t('Save'),
 	);
 
-	$form['agent_last_name'] = array(
-	    '#title'          => 'Last Name',
-	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 50,
-	    '#required'		  => 'true',
-	    '#default_value'  => '',
-	    '#attributes'     => array(
-	        'placeholder'=> t('Last Name'),
-	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return onlyAlphabets(event, this);',),
-	        //'readonly'=>'readonly',
-	    ),
-	    '#prefix' => '<span class="wrapper-w33">',
-	    '#suffix' => '</span>',
-	);
-	
-	
-	$form['date_of_birth'] = array(
-	    '#title'	      => 'Date of Birth',
-	    '#label'          => '',
-	    '#type'		      => 'date_popup',
-	    '#required'		  => 'true',
-	    '#default_value'  => '',
-	    '#date_format'	  => 'm/d/Y',
-	    '#date_year_range'  => '-3:+3',
-	    '#attributes'       => array(
-	        'placeholder'=> t('mm/dd/YYYY'),
-	        'class'=> array('date-input-medium'),
-	        'onKeyPress' => array('return false;'),
-	    ),
-	    '#prefix' => '<span class="wrapper-w33">',
-	    '#suffix' => '</span>',
-	);
-	
-	
-	$form['personl_email_id'] = array(
-	    '#title'          => 'Personal Email ID',
-	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 100,
-	    '#required'		  => 'true',
-	    '#default_value'  => '',
-	    '#attributes'     => array(
-	        'placeholder'=> t('Personal Email ID'),
-	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return MailId(event, this);',),
-	        //'readonly'=>'readonly',
-	    ),
-	    '#prefix' => '<span class="wrapper-w33">',
-	    '#suffix' => '</span>',
-	);
-	
-	$form['contact_number'] = array(
-	    '#title'          => 'Contact Number',
-	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 50,
-	    '#required'		  => 'true',
-	    '#default_value'  => '',
-	    '#attributes'     => array(
-	        'placeholder'=> t('Contact Number'),
-	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return IsNumeric(event, this);',),
-	        //'readonly'=>'readonly',
-	    ),
-	    '#prefix' => '<span class="wrapper-w33">',
-	    '#suffix' => '</span>',
-	);
-
-	$form['street_address'] = array(
-	    '#title'          => 'Street Address',
-	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 100,
-	    '#required'		  => 'true',
-	    '#default_value'  => '',
-	    '#attributes'     => array(
-	        'placeholder'=> t('Street Address'),
-	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
-	        //'readonly'=>'readonly',
-	    ),
-	    '#prefix' => '<span class="wrapper-w50">',
-	    '#suffix' => '</span>',
-	);
-
-	$form['city_id'] = array(
-	    '#title' => t('City'),
-	    '#type'=>'select',
-	    '#required'=>'true',
-	    '#default_value'=>'',
-	    '#options' =>array(1=>'City'),
-	    '#attributes' => array(
-	        'placeholder' => t(''),
-	        'class' => array('select-xlarge', 'uniform'),
-	    ),
-	    '#prefix' => '<span class="wrapper-w16">',
-	    '#suffix' => '</span>',
-	);
-
-	$form['state_id'] = array(
-	    '#title' => t('State'),
-	    '#type'=>'select',
-	    '#required'=>'true',
-	    '#default_value'=>'',
-	    '#options' =>array(1=>'State'),
-	    '#attributes' => array(
-	        'placeholder' => t(''),
-	        'class' => array('select-xlarge', 'uniform'),
-	    ),
-	    '#prefix' => '<span class="wrapper-w16">',
-	    '#suffix' => '</span>',
-	);
-	$form['zip_code'] = array(
-	    '#title'          => 'Zip Code',
-	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 25,
-	    '#required'		  => 'true',
-	    '#default_value'  => '',
-	    '#attributes'     => array(
-	        'placeholder'=> t('Zip Code'),
-	        'class'=> array('input-mini'),
-	        //	        'onKeyPress' => array('return IsNumeric(event, this);',),
-	        //'readonly'=>'readonly',
-	    ),
-	    '#prefix' => '<span class="wrapper-w16">',
-	    '#suffix' => '</span>',
-	);
-	
-	$form['personal_info_subsection_end'] = array(
-	    '#type' => 'item',
-	    '#suffix' => '</div><hr>',
-	);
-
-	
-
-	$form['professional_info_subsection_start'] = array(
-	    '#type' => 'item',
-	   '#prefix' => '<div class="form_subsection_title" data-item="inner_section_2"> Professional Information 
-	    <img src="'.base_path().'/'.drupal_get_path('module', 'agent').'/images/arrow_toggle.png" id="inner_section_2_arrow" class="inner_section_arrow" >
-	    </div>',
-	   '#suffix' => '<div id="inner_section" class="inner_section_2 inner_subsection" style="display: none;">',
-	);
-	
-	
-	$form['agent_state_id'] = array(
-	    '#title'          => 'Agent State Id #',
-	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 25,
-	    '#required'		  => 'true',
-	    '#default_value'  => '',
-	    '#attributes'     => array(
-	        'placeholder'=> t('Agent State Id #'),
-	        'class'=> array('input-mini'),
-	        //	        'onKeyPress' => array('return IsNumeric(event, this);',),
-	        //'readonly'=>'readonly',
-	    ),
-	    '#prefix' => '<span class="wrapper-w50">',
-	    '#suffix' => '</span>',
-	);
-	$form['agent_nrds'] = array(
-	    '#title'          => 'Agent NRDS#',
-	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 25,
-	    '#required'		  => 'true',
-	    '#default_value'  => '',
-	    '#attributes'     => array(
-	        'placeholder'=> t('Agent NRDS#'),
-	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return IsNumeric(event, this);',),
-	        //'readonly'=>'readonly',
-	    ),
-	    '#prefix' => '<span class="wrapper-w50">',
-	    '#suffix' => '</span>',
-	);
-	
-	$form['mls_username'] = array(
-	    '#title'          => 'MLS Username',
-	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 25,
-	    '#required'		  => 'true',
-	    '#default_value'  => '',
-	    '#attributes'     => array(
-	        'placeholder'=> t('MLS Username'),
-	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
-	        //'readonly'=>'readonly',
-	    ),
-	    '#prefix' => '<span class="wrapper-w25">',
-	    '#suffix' => '</span>',
-	);
-	
-	$form['mls_password'] = array(
-	    '#title'          => 'MLS Password',
-	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 25,
-	    '#required'		  => 'true',
-	    '#default_value'  => '',
-	    '#attributes'     => array(
-	        'placeholder'=> t('MLS Password'),
-	        'class'=> array('input-mini'),
-	        //	        'onKeyPress' => array('return IsNumeric(event, this);',),
-	        //'readonly'=>'readonly',
-	    ),
-	    '#prefix' => '<span class="wrapper-w25">',
-	    '#suffix' => '</span>',
-	);
-	
-	$form['create_email'] = array(
-	    '#title'          => 'Create Email',
-	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 25,
-	    '#required'		  => 'true',
-	    '#default_value'  => '',
-	    '#attributes'     => array(
-	        'placeholder'=> t('Create Email'),
-	        'class'=> array('input-mini'),
-	        //	        'onKeyPress' => array('return IsNumeric(event, this);',),
-	        //'readonly'=>'readonly',
-	    ),
-	    '#prefix' => '<span class="wrapper-w33">',
-	    '#suffix' => '</span> <p class="c2s"style="float:left;width: 105px;padding-left: 0px;margin-left: 0px;">@city2shore.com</p>',
-	);
-	
-	$form['office_phone'] = array(
-	    '#title'          => 'Office Phone',
-	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 25,
-	    '#required'		  => 'true',
-	    '#default_value'  => '',
-	    '#attributes'     => array(
-	        'placeholder'=> t('Office Phone'),
-	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return IsNumeric(event, this);',),
-	        //'readonly'=>'readonly',
-	    ),
-	    '#prefix' => '<span class="wrapper-w25">',
-	    '#suffix' => '</span>',
-	);
-	
-	$form['extension'] = array(
-	    '#title'          => 'Extension',
-	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 25,
-	    '#required'		  => 'true',
-	    '#default_value'  => '',
-	    '#attributes'     => array(
-	        'placeholder'=> t('Extension'),
-	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return IsNumeric(event, this);',),
-	        //'readonly'=>'readonly',
-	    ),
-	    '#prefix' => '<span class="wrapper-w25">',
-	    '#suffix' => '</span>',
-	);
-	
-	$form['choice_of_charity_org'] = array(
-	    '#title'          => 'Charity Organization Of Choice',
-	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 250,
-	    '#required'		  => 'true',
-	    '#default_value'  => '',
-	    '#attributes'     => array(
-	        'placeholder'=> t('Type Min 3 Chars'),
-	        'class'=> array('input-mini'),
-	         'onKeyPress' => array('return isAlphaNumeric(event, this);',),
-	        //'readonly'=>'readonly',
-	    ),
-	    '#prefix' => '<span class="wrapper-w50">',
-	    '#suffix' => '</span>',
-	); 
-	
-	
-	$form['professional_info_subsection_end'] = array(
-	    '#type' => 'item',
-	    '#suffix' => '</div><hr>',
-	);
-	
-	$form['bank_details_subsection_start'] = array(
-	    '#type' => 'item',
-	   '#prefix' => '<div class="form_subsection_title" data-item="inner_section_3"> Bank Details
-	    <img src="'.base_path().'/'.drupal_get_path('module', 'agent').'/images/arrow_toggle.png" id="inner_section_3_arrow" class="inner_section_arrow" >
-	    </div>',
-	   '#suffix' => '<div id="inner_section" class="inner_section_3 " style="display: none;">',
-	);
-	
-	
-	// --------------------Personal Bank Account Details Start------------------- //
-	
-	
-	$form['personal_account_number'] = array(
-	    '#title'          => 'Account Number',
-	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 50,
-	    '#required'		  => 'true',
-	    '#default_value'  => '',
-	    '#attributes'     => array(
-	        'placeholder'=> t('Account Number'),
-	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return IsNumeric(event, this);',),
-	        //'readonly'=>'readonly',
-	    ),
-	    '#prefix' => '<span class="wrapper-w50">',
-	    '#suffix' => '</span>',
-	);	
-	$form['name_on_personal_account'] = array(
-	    '#title'          => 'Name On Account',
-	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 50,
-	    '#required'		  => 'true',
-	    '#default_value'  => '',
-	    '#attributes'     => array(
-	        'placeholder'=> t('Name On Account'),
-	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return IsNumeric(event, this);',),
-	        //'readonly'=>'readonly',
-	    ),
-	    '#prefix' => '<span class="wrapper-w50">',
-	    '#suffix' => '</span>',
-	);
-    $form['personal_financial_institution_name'] = array(
-	    '#title'          => 'Financial Institution Name',
-	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 50,
-	    '#required'		  => 'true',
-	    '#default_value'  => '',
-	    '#attributes'     => array(
-	        'placeholder'=> t('Financial Institution Name'),
-	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return onlyAlphabets(event, this);',),
-	        //'readonly'=>'readonly',
-	    ),
-	    '#prefix' => '<span class="wrapper-w50">',
-	    '#suffix' => '</span>',
-	);	
-    $form['personal_financial_institution_phone'] = array(
-	    '#title'          => 'Financial Institution Phone Number',
-	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 50,
-	    '#required'		  => 'true',
-	    '#default_value'  => '',
-	    '#attributes'     => array(
-	        'placeholder'=> t('Financial Institution Phone Number'),
-	        'class'=> array('input-mini'),
-//	        'onKeyPress' => array('return IsNumeric(event, this);',),
-	        //'readonly'=>'readonly',
-	    ),
-	    '#prefix' => '<span class="wrapper-w50">',
-	    '#suffix' => '</span>',
-	);	
-    
-    
-    
-	 $form['personal_account_type'] = array(
-	    '#title'          => 'Account Type',
-	    '#type'		      => 'radios',
-	    '#maxlength'	  => 50,
-	    '#required'		  => 'true',
-	    '#default_value'  => '',
-	    '#attributes'     => array(
-	        'class'=> array('input-mini'),
-	        ),
-	     '#options'        => array(	'checking'=> t('Checking'),'saving'=> t('Saving')
-//	        'onKeyPress' => array('return numbersonly(this, event)',),
-	        //'readonly'=>'readonly',
-	    ),
-	    '#prefix' => '<span class="wrapper-w50">',
-	    '#suffix' => '</span>',
-	);	 
-	$form['personal_aba_routing_number'] = array(
-	    '#title'          => 'ABA Routing Number',
-	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 50,
-	    '#required'		  => 'true',
-	    '#default_value'  => '',
-	    '#attributes'     => array(
-	        'placeholder'=> t('ABA Routing Number'),
-	        'class'=> array('input-mini'),
-//	        'onKeyPress' => array('return IsNumeric(event, this);',),
-	        //'readonly'=>'readonly',
-	    ),
-	    '#prefix' => '<span class="wrapper-w50">',
-	    '#suffix' => '</span>',
-	);	
-	
-// --------------------Personal Bank Account Details End------------------- //
-	
-	
-	
-	$form['bank_details_subsection_end'] = array(
-	    '#type' => 'item',
-	    '#suffix' => '</div><hr>',
-	);
-	$form['section_one_end'] = array(
-	    '#type' => 'item',
-	    '#suffix' => '</div></div> ',
-	);
-	
-
-	
-	$form['submit'] = array('#type'=>'submit',
-	    '#value'=>t(' Submit '),
-	    '#attributes' => array(
-	        'class' => array('submit-blue-button-float-right'),
-	    ),
-	    '#suffix'=>'</div>',
-	);
-	
-	
-	$form['form_end'] = array(
-	    '#type' => 'item',
-	    '#suffix' => '</div> ',
-	);
-	
+ $form['form_end'] = array(
+ '#type' => 'item',
+ '#suffix' => '</div> ',
+ );

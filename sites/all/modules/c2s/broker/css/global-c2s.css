@@ -133,6 +133,7 @@ div#middle-inner {
 	
 
 }
+
 #inner_section{
 	width:96%;
 	float:left;
@@ -290,6 +291,30 @@ form form {
     float: left !Important;
     width: 100% !important;
 	height: 0px !important;
+}
+
+table.sticky-enabled th{
+	background: #4c83b0 !important;
+	padding: 1%;
+}
+table.sticky-enabled td{
+	padding: 1%;
+	    font-family: 'quicksandregular';
+    font-size: 12px !important;
+}
+
+table.sticky-enabled tr:nth-child(even){ background-color:#c3d3e0; }
+
+table.sticky-enabled tr:nth-child(odd){ background-color: #ffffff;}
+
+table.sticky-enabled th a {
+    text-decoration: none;
+    color: #ffffff;
+    font-family: 'quicksandregular';
+    font-size: 12px;
+}
+th.active img{
+	margin-left:5px;
 }
 /*=========  Form Elements  ============*/
 
