@@ -23,6 +23,7 @@ select{
 	width: 97%;
 	height: 35px;
     margin-top: 8px;
+	    background-color: #ffffff;
 }
 #edit-account-type-1-checking,
 #edit-account-type-2-checking{

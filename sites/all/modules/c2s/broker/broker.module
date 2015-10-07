@@ -34,7 +34,7 @@ function broker_menu() {
 	    'access arguments' 	=> array('C2S Broker Form Edit'),
 	);
 	*/
-	
+	/*
 	$items['c2s/broker/view'] = array(
 	    'title'				=> 'C2S New Broker View Form',
 		'page callback' 	=> 'drupal_get_form',
@@ -42,7 +42,13 @@ function broker_menu() {
 		'page arguments' 	=> array('c2s_broker_view'),
 		'access callback' 	=> TRUE,
 	    'access arguments' 	=> array('C2S Broker View Form'),
-	);
+	);*/
+	
+	 $items['c2s/broker/view'] = array(
+    'title' => t('C2S New Broker View Form'),
+    'page callback' => 'c2s_broker_view',
+    'access callback' => TRUE,
+  );
 
 	$items['c2s/broker/deactivate'] = array(
         'title'=>'c2s Application Delete',
@@ -182,7 +188,39 @@ function c2s_broker_edit($form, &$form_state) {
 }
 
 function c2s_broker_view($form, &$form_state) {
+//	include("form_inc/c2s_broker_view.inc");
+//	return $form;
+$brokerage_id = arg(3);
+  $build = array();
+
+  $build['form_one'] = drupal_get_form('c2s_brokerage_edit_view');
+  
+  $result = db_query("SELECT broker_agent_id FROM broker_master WHERE brokerage_id = ".$brokerage_id." and deactivate = 0");
+$broker_id = array();
+$n=0;
+  foreach($result as $value){
+  $n++;
+  $broker_id[$n] = $value->broker_agent_id;
+  }
+  $total_brokers = $n;
+  for($i=1; $i<=$total_brokers; $i++){
+  	$build['form_'.$i] = drupal_get_form('c2s_broker_edit_view',$broker_id[$i],$i);
+  }
+  return $build;
+
+}
+
+function c2s_broker_edit_view($form, &$form_state,$var,$i){
+	$form_state['broker_id'] = $var;
+	$form_state['form_id'] = $i;
 	include("form_inc/c2s_broker_view.inc");
+	return $form;
+}
+
+
+
+function c2s_brokerage_edit_view($form, &$form_state){
+	include("form_inc/c2s_brokerage-edit-view.inc");
 	return $form;
 }
 
@@ -299,3 +337,39 @@ function c2s_application_monthly_approver_submit($form,&$form_state){
 // --------------------------------------------------------------------------------------------------
   //include("func_inc/workflow.inc"); 
 // --------------------------------------------------------------------------------------------------
+
+
+// ==================================================================================================
+//  				ADD MORE FUNCTIONS
+// ==================================================================================================
+
+
+function spower_add_more_callback($form, $form_state) {
+  return $form['names_fieldset'];
+}
+function spower_add_more_callback_tabs($form, $form_state) {
+  return $form['names_fieldset_tabs'];
+}
+
+/**
+ * Submit handler for the "add-one-more" button.
+ *
+ * Increments the max counter and causes a rebuild.
+ */
+function spower_add_more_add_one($form, &$form_state) {
+  $form_state['num_names']++;
+  drupal_set_message($form_state['num_names']);
+  $form_state['rebuild'] = TRUE;
+}
+
+/**
+ * Submit handler for the "remove one" button.
+ *
+ * Decrements the max counter and causes a form rebuild.
+ */
+function spower_add_more_remove_one($form, &$form_state) {
+  if ($form_state['num_names'] > 1) {
+    $form_state['num_names']--;
+  }
+  $form_state['rebuild'] = TRUE;
+}

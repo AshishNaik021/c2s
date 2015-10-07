@@ -39,7 +39,7 @@ $form['#attached']['css'] = array(
 	}
         if(empty($company_code )){$company_code = 1;}
 */
-
+/*
 $brokerage_id = arg(3);
 $result = db_query("SELECT * FROM brokerage_details WHERE brokerage_id = ".$brokerage_id);
 foreach($result as $value){
@@ -51,15 +51,17 @@ foreach($result as $value){
     $created 		          = $value->created;
     $changed 		          = $value->changed;
 }
-
-$result = db_query("SELECT * FROM broker_master WHERE brokerage_id = ".$brokerage_id." and deactivate = 0");
+ */
+$brokerage_id = arg(3);
+$result = db_query("SELECT * FROM broker_master WHERE broker_agent_id = ".$form_state['broker_id']." and deactivate = 0");
 $broker_details = array();
 
 $city = array('0'=>'City','1'=>'City1');
 $state = array('0'=>'State','1'=>'State1');
-$n = 0;
+//$n = 0;
 foreach($result as $value){
-    $n++;
+//    $n++;
+    $n = $form_state['broker_id'];
     $broker_details[$n]['id']	      = $value->broker_agent_id;    
     $broker_details[$n]['fname']	  = $value->first_name;
     $broker_details[$n]['mname']	  = $value->middle_name;
@@ -116,11 +118,11 @@ foreach($result as $value){
     
     
 }
-$total_brokers = $n;
-
+//$total_brokers = $n;
+/*
 $result_paperwork = db_query("select document_name from required_paperwork where `paperwork_id` in 
     (SELECT `paperwork_id` FROM `brokerage_paperwork` where `brokerage_id` = ".$brokerage_id.")") ;
-    
+
 
 
 
@@ -303,7 +305,9 @@ $number_to_words = array(1=>"One", 2=> "Two", 3=> "Three", 4=>"Four", 5=>"Five",
 	
 	/* Broker Loop */
 	
-	for($i=1; $i<=$total_brokers; $i++){
+$i = $form_state['broker_id'];
+	
+//	for($i=1; $i<=$total_brokers; $i++){
 	$form['broker_'.$i.'_details_start'] = array(
 	    '#type' => 'item',
 	    '#suffix' => '<div id="form_tab_'.$i.'" class="form_sections" style="display:none">',
@@ -312,6 +316,8 @@ $number_to_words = array(1=>"One", 2=> "Two", 3=> "Three", 4=>"Four", 5=>"Five",
 	
 	$form['broker_'.$i.'_details_seperator'] = array(
 	    '#type' => 'item',
+	    '#prefix' => '<input type="button" value="Edit Broker" style="float: right; margin:5px;" onclick="convert_edit('.$form_state['form_id'].')">
+	     <input type="button" value="Deactivate Broker" style="float: right; margin:5px;" onclick="window.location=\''.base_path().'c2s/broker/deactivate/'.$broker_details[$i]['id'].'/'.$brokerage_id.'\'">',
 	    '#suffix' => '<div class="seperator" style="height: 10px;width: 100%;float: left;clear: both;"></div>',
 	);
 	
@@ -1125,9 +1131,9 @@ $number_to_words = array(1=>"One", 2=> "Two", 3=> "Three", 4=>"Four", 5=>"Five",
 	    '#suffix' => '</div>',
 	);
 	
-	}
+//	}
 
-    
+  /*  
     $form['form_end'] = array(
         '#type' => 'item',
         '#suffix' => '</div> ',

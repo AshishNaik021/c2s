@@ -128,7 +128,7 @@ div#middle-inner {
 	border-top: 1px solid #1089ce !important;
 	border-bottom: 1px solid #1089ce !important;
 	padding: 1% 2%;
-	width:100% !important;
+	width:96% !important;
 	margin:0% !important; 
 	
 
@@ -257,7 +257,9 @@ width: 99%;
 .input_disabled {
     margin: 0px !important;
     border: 0px !important;
-	background: transparent;
+	background: transparent !important;
+	background-image: none !Important;
+
     text-indent: 0px !Important;
 	color: #000000;
     -webkit-appearance: none;
@@ -281,6 +283,13 @@ border:none;
     padding: 1% 1% 2% 1% !important;
     font-size: 11px;
     clear: both;
+}
+
+form form {
+    margin: 0px !important;
+    float: left !Important;
+    width: 100% !important;
+	height: 0px !important;
 }
 /*=========  Form Elements  ============*/
 
@@ -369,6 +378,7 @@ border:none;
     width: 99%;
     background-color: #fff8f2;
     padding: 7px;
+	margin-top:10px;
 }
 
 .section_left{
@@ -404,11 +414,11 @@ input[type="text"], input[type="password"]{
 	border-radius:5px;
 }
 
-#main-form-wrapper select{
+#main-form-wrapper select, .value_left select{
 height: 33px;
 -webkit-appearance: none;
 text-indent: 11px;
-background-color: transparent;
+background-color: #ffffff;
 background-image:url('../images/select_arrow.png');
     background-repeat: no-repeat;
    background-position: right;
