@@ -2,14 +2,14 @@
 
 function charity_schema() {
 
- -------------------------------------  Charity Master -------------------------------------
+ //------------------------------------- Charity Master  -------------------------------------
 
  $schema['Charity_Master'] = array(
-        'description' => 'Charity', 
+        'description' => 'Charity Master Table', 
         'fields' => array(          
-			'charity_org_id' 				=> array('type' => 'int',		'length' => 10,), 
+			'charity_organization_id' 		=> array('type' => 'int',		'length' => 10,), 
 			'charity_org_name' 				=> array('type' => 'varchar',	'length' => 100,),
-			'501_c_3_number' 				=> array('type' => 'varchar', 	'length' => '100',),
+			'501_c_3_number' 				=> array('type' => 'varchar', 	'length' => 100,),
 			'charity_org_address' 			=> array('type' => 'varchar', 	'length' => 100,), 
 			'charity_org_city' 				=> array('type' => 'varchar', 	'length' => 100,),
 			'charity_org_state' 			=> array('type' => 'varchar', 	'length' => 100,),
@@ -39,7 +39,7 @@ function charity_schema() {
 
 
 
- ---------------------------------------------------------------------------------------
+ //---------------------------------------------------------------------------------------
 
 
 

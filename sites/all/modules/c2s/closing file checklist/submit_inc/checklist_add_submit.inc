@@ -1,181 +1,179 @@
 <?php
 
 // ==================================================================================================
-//                   New Broker and Brokerage Information Submit
+//                   New Checklist Information Submit
 // ==================================================================================================
-$closing_file_checklist_id	=   $form_state['values']['closing_file_checklist_id'];
-$submitter_agent_id			=   $form_state['values']['submitter_agent_id'];
-$transaction_type		=   $form_state['values']['transaction_type'];
-$title_company_name		=   $form_state['values']['title_company_name'];
-$processor_name		=   $form_state['values']['processor_name'];
-$processor_phone				=   $form_state['values']['processor_phone'];
-$personal_email			=   $form_state['values']['personal_email'];
-$property_address			    =   $form_state['values']['property_address'];
-$property_city				    =   $form_state['values']['property_city'];
-$property_state			=   $form_state['values']['property_state'];
-$property_zip			=   $form_state['values']['property_zip'];
-$parcle_number			=   $form_state['values']['parcle_number'];
-$home_city				=   $form_state['values']['city_id'];
-$home_state				=   $form_state['values']['state_id'];
-$home_zip			    =   $form_state['values']['zip_code'];
-$business_address		=   $form_state['values']['busines_street_address'];
-$business_city			=   $form_state['values']['business_city_id'];
-$business_state			=   $form_state['values']['business_state_id'];
-$business_zip			=   $form_state['values']['business_zip_code'];
-$state_id_number		=   $form_state['values']['broker_state_id'];
-$ein_number				=   $form_state['values']['broker_ein'];
-$mls_username			=   $form_state['values']['mls_username'];
-$mls_password			=   $form_state['values']['mls_password'];
-$nrds_number			=   $form_state['values']['broker_nrds'];
-$c2s_email_id			=   $form_state['values']['create_email'];
-$office_phone			=   $form_state['values']['office_phone'];
-$office_extension		=   $form_state['values']['extension'];
-// -----///
-$comm_reap_accno		=   $form_state['values']['comm_account_number'];
-$comm_reap_accname		=   $form_state['values']['name_on_comm_account'];
-$comm_reap_bankphone	=   $form_state['values']['comm_financial_institution_phone'];
-$comm_reap_bankname		=   $form_state['values']['comm_financial_institution_name'];
-$comm_reap_acctype		=   $form_state['values']['comm_account_type'];
-$comm_reap_aba_routing	=   $form_state['values']['comm_aba_routing_number'];
-$pers_comm_accno		=   $form_state['values']['personal_account_number'];
-$pers_comm_accname		=   $form_state['values']['name_on_personal_account'];
-$pers_comm_bankname		=   $form_state['values']['personal_financial_institution_name'];
-$pers_comm_bankphone	=   $form_state['values']['personal_financial_institution_phone'];
-$pers_comm_acctype		=   $form_state['values']['personal_account_type'];
-$pers_comm_aba_routing	=   $form_state['values']['personal_aba_routing_number'];
-$choice_charity_orgid	=   $form_state['values']['choice_of_charity_org'];
-// ----- beneficiary --- //
-$beneficiary_first_name	=   $form_state['values']['beneficiary_first_name'];
-$beneficiary_middle_name=   $form_state['values']['beneficiary_middle_name'];
-$beneficiary_last_name  =   $form_state['values']['beneficiary_last_name'];
-$beneficiary_relation   =   $form_state['values']['beneficiary_relarionship'];
-$beneficiary_email      =   $form_state['values']['beneficiary_email_id'];
-$beneficiary_contact	=   $form_state['values']['beneficiary_contact_number'];
-$beneficiary_address	=   $form_state['values']['beneficiary_address'];
-$beneficiary_city		=   $form_state['values']['beneficiary_city_id'];
-$beneficiary_state		=   $form_state['values']['beneficiary_state_id'];
-$beneficiary_zip		=   $form_state['values']['beneficiary_zip_code'];
+$closing_file_checklist_id					=   $form_state['values']['closing_file_checklist_id'];
+$submitter_agent_id							=   $form_state['values']['submitter_agent_id'];
+$transaction_type							=   $form_state['values']['transaction_type'];
+$title_company_name							=   $form_state['values']['title_company_name'];
+$processor_name								=   $form_state['values']['processor_name'];
+$processor_phone							=   $form_state['values']['processor_phone'];
+$personal_email								=   $form_state['values']['personal_email'];
+$property_address			   		 		=   $form_state['values']['property_address'];
+$property_city				    			=   $form_state['values']['property_city'];
+$property_state								=   $form_state['values']['property_state'];
+$property_zip								=   $form_state['values']['property_zip'];
+$parcle_number								=   $form_state['values']['parcle_number'];
+$mls_user_name								=   $form_state['values']['mls_user_name'];
+$price										=   $form_state['values']['price'];
+$loan_amount			    				=   $form_state['values']['loan_amount'];
+$transaction_date							=   $form_state['values']['transaction_date'];
+$closing_date								=   $form_state['values']['closing_date'];
+$terms										=   $form_state['values']['terms'];
+$association_name							=   $form_state['values']['association_name'];
+$association_contact_person					=   $form_state['values']['association_contact_person'];
+$association_phone_number					=   $form_state['values']['association_phone_number'];
+$association_email							=   $form_state['values']['association_email'];
+$property_type								=   $form_state['values']['property_type'];
+$earnest_money								=   $form_state['values']['earnest_money'];
+$transaction_management_fee					=   $form_state['values']['transaction_management_fee'];
+$listing_agent_name							=   $form_state['values']['listing_agent_name'];
+$listing_agent_company_name					=   $form_state['values']['listing_agent_company_name'];
+$listing_agent_phone						=   $form_state['values']['listing_agent_phone'];
+$listing_agent_fax							=   $form_state['values']['listing_agent_fax'];
+$listing_agent_email						=   $form_state['values']['listing_agent_email'];
+$listing_agent_commission_percent			=   $form_state['values']['listing_agent_commission_percent'];
+$listing_agent_commission_amount			=   $form_state['values']['listing_agent_commission_amount'];
+$buyers_agent_name							=   $form_state['values']['buyers_agent_name'];
+$buyers_agent_company_name					=   $form_state['values']['buyers_agent_company_name'];
+$buyers_agent_phone							=   $form_state['values']['buyers_agent_phone'];
+$buyers_agent_fax							=   $form_state['values']['buyers_agent_fax'];
+$buyers_agent_email							=   $form_state['values']['buyers_agent_email'];
+$buyers_agent_commission_percent			=   $form_state['values']['buyers_agent_commission_percent'];
+$buyers_agent_commission_amount				=   $form_state['values']['buyers_agent_commission_amount'];
+$sellers_first_name							=   $form_state['values']['sellers_first_name'];
+$sellers_middle_name						=   $form_state['values']['sellers_middle_name'];
+$sellers_last_name							=   $form_state['values']['sellers_last_name'];
+$sellers_phone_number  						=   $form_state['values']['sellers_phone_number'];
+$sellers_marital_status   					=   $form_state['values']['sellers_marital_status'];
+$buyers_first_name      					=   $form_state['values']['buyers_first_name'];
+$buyers_middle_name							=   $form_state['values']['buyers_middle_name'];
+$buyers_last_name							=   $form_state['values']['buyers_last_name'];
+$buyers_phone_number						=   $form_state['values']['buyers_phone_number'];
+$buyers_marital_status						=   $form_state['values']['buyers_marital_status'];
+$buyers_current_address						=   $form_state['values']['buyers_current_address'];
+$buyers_city								=   $form_state['values']['buyers_city'];
+$buyers_state								=   $form_state['values']['buyers_state'];
+$buyers_zip									=   $form_state['values']['buyers_zip'];
+$buyers_cost_paid_by_seller					=   $form_state['values']['buyers_cost_paid_by_seller'];
+$buyers_cost_paid							=   $form_state['values']['buyers_cost_paid'];
+$lender_name								=   $form_state['values']['lender_name'];
+$lender_loan_officer						=   $form_state['values']['lender_loan_officer'];
+$lender_phone_number						=   $form_state['values']['lender_phone_number'];
+$lender_fax									=   $form_state['values']['lender_fax'];
+$lender_email									=   $form_state['values']['lender_email'];
+$home_inspection_provider					=   $form_state['values']['home_inspection_provider'];
+$termite_provider							=   $form_state['values']['termite_provider'];
+$basic										=   $form_state['values']['basic'];
+$termite									=   $form_state['values']['termite'];
+$randon										=   $form_state['values']['randon'];
+$appraiser									=   $form_state['values']['appraiser'];
+$well_septic_inspection						=   $form_state['values']['well_septic_inspection'];
+$well_septic_inspection_provided			=   $form_state['values']['well_septic_inspection_provided'];
+$lead_source								=   $form_state['values']['lead_source'];
+$race										=   $form_state['values']['race'];
+$age										=   $form_state['values']['age'];
+$notes										=   $form_state['values']['notes'];
+
 
 
 	try{
 	    
-	    $result_brokerage = db_query("SELECT max(brokerage_id) as maxid_brokerage FROM brokerage_details ");
-	    foreach($result_brokerage as $value){
-	        $id_brokerage = $value->maxid_brokerage;
+	    $result_checklist = db_query("SELECT max(closing_file_checklist_id) as maxid_checklist FROM checklist_details ");
+	    foreach($result_checklist as $value){
+	        $id_checklist = $value->maxid_checklist;
 	    }
-	    $newid_brokerage  =   $id_brokerage + 1;
-	    
-        $values_brokerage = array(
-	    'brokerage_id'         =>   $newid_brokerage,
-	    'brokerage_name'       =>   $brokerage_name,
-        '$brokerage_start_date'=> $brokerage_start_date,
-	    'number_of_owners'	   =>	$number_of_owners,
-	    'franchise_fee_cap'	   =>	$franchise_fee_cap,
-	    'reap_amount_cap'	   =>	$reap_amount_cap,
-	    'created'         	   =>   REQUEST_TIME,
-	    'changed'         	   =>   REQUEST_TIME,
-	    );
-        
-	    db_insert('brokerage_details')
-	    ->fields($values_brokerage)
-	    ->execute();
-
-	      //This will generate a random password, you could set your own here
-            $password = md5('city2shore@123');
- 
-            //set up the user fields
-            $fields = array(
-              'name' => $c2s_email_id,
-              'mail' => $c2s_email_id.'@city2shore.com',
-              'pass' => $password,
-              'status' => 1,
-              'init' => 'email address',
-              'roles' => array(
-                DRUPAL_AUTHENTICATED_RID => 'authenticated user',
-              ),
-            );
- 
-            //the first parameter is left blank so a new user is created
-            $account = user_save('', $fields);
- 
-            // If you want to send the welcome email, use the following code
- 
-            // Manually set the password so it appears in the e-mail.
-            $account->password = $fields['pass'];
-               
-  // Send the e-mail through the user module.
-//  drupal_mail('user', 'register_no_approval_required', $email, NULL, array('account' => $account), variable_get('site_mail', 'noreply@example..com'));
-            
-            
-	    $result = db_query("SELECT max(broker_id) as maxid FROM broker_master ");
-		foreach($result as $value){
-			$id = $value->maxid;
-		}
-		$newid  =   $id + 1;
+	    $newid_checklist  =   $id_checklist + 1;
+		
 	
-		db_insert('broker_master')
-		   ->fields(['broker_id'           =>    $newid,
-		                    'brokerage_id'        =>    $newid_brokerage,
-		                    'user_id'             =>    $account->uid,
-							'first_name'      	  =>    $first_name,
-							'middle_name'		  =>	$middle_name,
-							'last_name'			  =>	$last_name,
-							'dob'				  =>	$dob,
-							'personal_email'	  =>	$personal_email,
-							'personal_phone'	  =>	$personal_phone,
-							'home_address'		  =>	$home_address,
-							'home_city'			  =>	$home_city,
-		                    'home_state'      	  =>    $home_state,
-		                    'home_zip'			  =>	$home_zip,
-		                    'business_address'	  =>	$business_address,
-		                    'business_city'		  =>	$business_city,
-		                    'business_state'	  =>	$business_state,
-		                    'business_zip'		  =>	$business_zip,
-		                    'state_id_number'	  =>	$state_id_number,
-		                    'ein_number'		  =>	$ein_number,
-		                    'mls_username'		  =>	$mls_username,
-		                    'mls_password'		  =>	$mls_password,
-		                    'nrds_number'      	  =>    $nrds_number,
-		                    'c2s_email_id'		  =>	$c2s_email_id,
-		                    'office_phone'		  =>	$office_phone,
-		                    'office_extension'	  =>	$office_extension,
-		                    'comm_reap_accno'	  =>	$comm_reap_accno,
-		                    'comm_reap_accname'	  =>	$comm_reap_accname,
-		                    'comm_reap_bankname'  =>	$comm_reap_bankname,
-		                    'comm_reap_bankphone' =>	$comm_reap_bankphone,
-		                    'comm_reap_acctype'	  =>	$comm_reap_acctype,
-		                    'comm_reap_aba_routing'				=>	$comm_reap_aba_routing,
-		                    'pers_comm_accno'	  =>	$pers_comm_accno,
-		                    'pers_comm_accname'	  =>	$pers_comm_accname,
-		                    'pers_comm_bankname'  =>	$pers_comm_bankname,
-		                    'pers_comm_bankphone' =>	$pers_comm_bankphone,
-		                    'pers_comm_acctype'	  =>	$pers_comm_acctype,
-		                    'pers_comm_aba_routing'				=>	$pers_comm_aba_routing,
-		                    'choice_charity_orgid'				=>	$choice_charity_orgid,
-                            'beneficiary_first_name'      		=>  $beneficiary_first_name,
-                            'beneficiary_middle_name'           =>  $beneficiary_middle_name,
-                            'beneficiary_last_name'             =>  $beneficiary_last_name,
-                            'beneficiary_relationship'          =>  $beneficiary_relation,
-                            'beneficiary_email_id'              =>  $beneficiary_email,
-                            'beneficiary_contact_number'        =>  $beneficiary_contact,
-                            'beneficiary_address'           	=>  $beneficiary_address,
-                            'beneficiary_city_id'            	=>  $beneficiary_city,
-                            'beneficiary_state_id'            	=>  $beneficiary_state,
-                            'beneficiary_zip_code'           	=>  $beneficiary_zip,	       
-							'created'         	  =>    REQUEST_TIME,
-							'changed'         	  =>    REQUEST_TIME,
+		$values_checklist = array(
+							'closing_file_checklist_id'           	=>    $newid,
+		                    'transaction_type'        				=>    $transaction_type,
+		                    'title_company_name'             		=>    $title_company_name,
+							'processor_name'      	  				=>    $processor_name,
+							'processor_phone'		  				=>	  $processor_phone,
+							'processor_email'			  			=>	  $personal_email,
+							'property_address'				  		=>	  $property_address,
+							'property_city'	  						=>	  $property_city,
+							'property_state'	  					=>	  $property_state,
+							'property_zip'		  					=>	  $property_zip,
+							'parcle_number'			  				=>	  $parcle_number,
+		                    'mls_user_name'      	  				=>    $mls_user_name,
+		                    'price'			  						=>	  $price,
+		                    'loan_amount'	  						=>	  $loan_amount,
+		                    'transaction_date'		  				=>	  $transaction_date,
+		                    'closing_date'	  						=>	  $closing_date,
+		                    'terms'		  							=>	  $terms,
+		                    'association_name'	  					=>	  $association_name,
+		                    'association_contact_person'		    =>	  $association_contact_person,
+		                    'association_phone_number'		  		=>	  $association_phone_number,
+		                    'association_email'		  				=>	  $association_email,
+		                    'property_type'      	  				=>    $property_type,
+		                    'earnest_money'		  					=>	  $earnest_money,
+		                    'transaction_management_fee'		    =>	  $transaction_management_fee,
+		                    'listing_agent_name'	  				=>	  $listing_agent_name,
+		                    'listing_agent_company_name'	  		=>	  $listing_agent_company_name,
+		                    'listing_agent_phone'	  				=>	  $listing_agent_phone,
+		                    'listing_agent_fax'  					=>	  $listing_agent_fax,
+		                    'listing_agent_email' 					=>	  $listing_agent_email,
+		                    'listing_agent_commission_percent'	  	=>	  $listing_agent_commission_percent,
+		                    'listing_agent_commission_amount'		=>	  $listing_agent_commission_amount,
+		                    'buyers_agent_name'	  					=>	  $buyers_agent_name,
+		                    'buyers_agent_company_name'	  			=>	  $buyers_agent_company_name,
+		                    'buyers_agent_phone'  					=>	  $buyers_agent_phone,
+		                    'buyers_agent_fax' 						=>	  $buyers_agent_fax,
+		                    'buyers_agent_email'	  				=>	  $buyers_agent_email,
+		                    'buyers_agent_commission_percent'		=>	  $buyers_agent_commission_percent,
+		                    'buyers_agent_commission_amount'		=>	  $buyers_agent_commission_amount,
+                            'sellers_first_name'      				=>    $sellers_first_name,
+                            'sellers_middle_name'           		=>    $sellers_middle_name,
+                            'sellers_last_name'             		=>    $sellers_last_name,
+                            'sellers_phone_number'          		=>    $sellers_phone_number,
+                            'sellers_marital_status'                =>    $sellers_marital_status,
+                            'buyers_first_name'        				=>    $buyers_first_name,
+                            'buyers_middle_name'           			=>    $buyers_middle_name,
+                            'buyers_last_name'            			=>    $buyers_last_name,
+                            'buyers_phone_number'            		=>    $buyers_phone_number,
+                            'buyers_marital_status'           	    =>    $buyers_marital_status,
+                            'buyers_current_address'        		=>    $buyers_current_address,
+                            'buyers_city'        					=>    $buyers_city,
+                            'buyers_state'        					=>    $buyers_state,
+                            'buyers_zip'        					=>    $buyers_zip,							
+							'buyers_cost_paid_by_seller'            =>    $buyers_cost_paid_by_seller,
+							'buyers_cost_paid '        				=>    $buyers_cost_paid,
+							'lender_name'        					=>    $lender_name,
+							'lender_loan_officer'        			=>    $lender_loan_officer,
+							'lender_phone_number'        			=>    $lender_phone_number,
+							'lender_fax'        					=>    $lender_fax,
+							'lender_email'        					=>    $lender_email,    	
+							'home_inspection_provider'        		=>    $home_inspection_provider,
+							'termite_provider'        				=>    $termite_provider,
+							'basic'        							=>    $basic,
+							'termite'        						=>    $termite,
+							'randon'        						=>    $randon,
+							'appraiser'        						=>    $appraiser,
+							'well_septic_inspection'        		=>    $well_septic_inspection,
+							'well_septic_inspection_provided'       =>    $well_septic_inspection_provided,
+							'lead_source'        					=>    $lead_source,
+							'race'        						    =>    $race,
+							'marital_status'        				=>    $marital_status,
+							'age'        							=>    $age,
+							'notes'        							=>    $notes,
+							'created_timestamp'         	  		=>    REQUEST_TIME,
+							'last_update_timestamp'         	  	=>    REQUEST_TIME,
                                                         ])
 			  ->execute();
-				drupal_set_message("New Brokerage and Broker Details Submitted Successfully");
+				drupal_set_message("New Checklist Submitted Successfully");
 	}
 	catch(Exception $e)
 	{
-		drupal_set_message("New Brokerage and Broker Details could not be Inserted <br>" . $e, 'error');				
+		drupal_set_message("New Checklist could not be Inserted <br>" . $e, 'error');				
 	}
 
 
 	 $form_state['redirect'] = array(
-	  'c2s/broker/add',
+	  'c2s/checklist/add',
 	   array(
 		'query' => array(
 	   ),
