@@ -47,3 +47,8 @@ function MailId(e, obj)
     return ret;
 	
 }
+
+function ValidateForm(){
+alert($("#edit-agent-relationship").value()	);
+return false;
+}
