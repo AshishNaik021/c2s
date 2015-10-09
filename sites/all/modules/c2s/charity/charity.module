@@ -11,31 +11,31 @@
 
 
 /**
-* CITY2SHORE NAVIGATION MENU
+* CITY2SHORE CHARITY MODULE NAVIGATION MENU
 */
 
 function charity_menu() {
 	
 	$items['c2s/charity/add'] = array(
-        'title'				=> 'C2S New Charity Enrollment Form',
+        'title'				=> 'New Charity Enrollment Form',
 		'page callback' 	=> 'drupal_get_form',
         'menu_name' 		=> 'c2s-menu',
 		'page arguments' 	=> array('c2s_charity_add'),
 		'access callback' 	=> TRUE,
-        'access arguments' 	=> array('C2S Charity Enrollment Form'),
+        'access arguments' 	=> array('Charity Enrollment Form'),
 	);
 	
 	$items['c2s/charity/view'] = array(
 		'page callback' => 'drupal_get_form',
-        'title'=>'C2S Charity Profile View',
+        'title'=>'Charity Profile View',
         'menu_name' 	=> 'c2s-menu',
 		'page arguments' => array('c2s_charity_view'),
 		'access callback' => TRUE,
-        'access arguments' => array('C2S Charity Profile View'),
+        'access arguments' => array('Charity Profile View'),
 	);
 
 	$items['c2s/charity/delete'] = array(
-        'title'=>'C2S Application Delete',
+        'title'=>'Application Delete',
 		'page callback' => 'drupal_get_form',
         'menu_name' 	=> 'c2s-menu',
 		'page arguments' => array('c2s_charity_delete'),
@@ -173,78 +173,9 @@ function c2s_charity_delete($form, &$form_state) {
 	return $form;
 }
 /*
-function c2s_application_approver_list($form, &$form_state) {
-	include("form_inc/c2s_application_approver_list.inc");
-	return $form;
-}
 
 function c2s_setting($form, &$form_state) {
    include("form_inc/c2s_setting.inc");
-   return $form;
-}
-
-function edit_ot_setting($form, &$form_state) {
-   include("form_inc/edit_ot_setting.inc");
-   return $form;
-}
-
-function c2s_month_wise_list($form, &$form_state) {
-   include("form_inc/c2s_monthly_month_wise_list.inc");
-   return $form;
-}
-
-function c2s_location_wise_list($form, &$form_state) {
-   include("form_inc/c2s_monthly_location_wise_list.inc");
-   return $form;
-}
-
-function c2s_excess_claims_list($form, &$form_state) {
-   include("form_inc/c2s_monthly_excess_claims_list.inc");
-   return $form;
-}
-
-function excess_c2s_application_details($form, &$form_state) {
-   include("form_inc/excess_c2s_application_details.inc");
-   return $form;
-}
-function excess_c2s_list($form, &$form_state) {
-   include("form_inc/excess_c2s_list.inc");
-   return $form;
-}
-function subordinate_c2s_list($form, &$form_state) {
-   include("form_inc/subordinate_c2s_list.inc");
-   return $form;
-}
-function c2s_application_monthly($form, &$form_state) {
-   include("form_inc/c2s_application_monthly.inc");
-   return $form;
-}
-function specific_c2s_application($form, &$form_state) {
-   include("form_inc/specific_c2s_application.inc");
-   return $form;
-}
-function c2s_application_monthly_view($form, &$form_state) {
-   include("form_inc/c2s_application_monthly_view.inc");
-   return $form;
-}
-function c2s_application_monthly_approver_list($form, &$form_state) {
-   include("form_inc/c2s_application_monthly_approver_list.inc");
-   return $form;
-}
-function c2s_application_monthly_approver_form($form, &$form_state) {
-   include("form_inc/c2s_application_monthly_approver_form.inc");
-   return $form;
-}
-function c2s_application_monthly_employee_list($form, &$form_state) {
-   include("form_inc/c2s_application_monthly_employee_list.inc");
-   return $form;
-}
-function c2s_monthly_location_wise_list($form, &$form_state) {
-   include("form_inc/c2s_monthly_location_wise_list.inc");
-   return $form;
-}
-function c2s_monthly_month_wise_list($form, &$form_state) {
-   include("form_inc/c2s_monthly_month_wise_list.inc");
    return $form;
 }
 function c2s_monthly_excess_claims_list($form, &$form_state) {
@@ -279,5 +210,39 @@ function c2s_application_monthly_approver_submit($form,&$form_state){
 // ==================================================================================================
 //include("func_inc/c2s_functions.inc"); 
 // --------------------------------------------------------------------------------------------------
-  //include("func_inc/workflow.inc"); 
+//include("func_inc/workflow.inc"); 
 // --------------------------------------------------------------------------------------------------
+
+
+
+function find_cities_callback($form, $form_state) {
+	return $form['city_id'];
+}
+
+function get_Cities($state_code){
+	$city_options = array();
+	$result_city = db_query("SELECT city FROM cities_extended WHERE state_code = '".$state_code ."'");
+	foreach($result_city as $value){
+		$city_options[$value->city]	=	$value->city;
+	}
+	return $city_options;
+}
+
+function get_States(){
+	$state_options = array();
+	$result_state = db_query("SELECT state, state_code FROM states ");
+	foreach($result_state as $value){
+		$state_options[$value->state_code]	=	$value->state;
+	}
+	return $state_options;
+}
+
+
+
+
+
+
+
+
+
+

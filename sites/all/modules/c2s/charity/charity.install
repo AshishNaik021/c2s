@@ -4,10 +4,10 @@ function charity_schema() {
 
  //------------------------------------- Charity Master  -------------------------------------
 
- $schema['Charity_Master'] = array(
-        'description' => 'Charity Master Table', 
+ $schema['C2S_Charity_Org_Master'] = array(
+        'description' => 'Charity Organization Master Table', 
         'fields' => array(          
-			'charity_organization_id' 		=> array('type' => 'int',		'length' => 10,), 
+			'charity_organization_id' 		=> array('type' => 'serial',	'length' => 10,), 
 			'charity_org_name' 				=> array('type' => 'varchar',	'length' => 100,),
 			'501_c_3_number' 				=> array('type' => 'varchar', 	'length' => 100,),
 			'charity_org_address' 			=> array('type' => 'varchar', 	'length' => 100,), 
@@ -26,9 +26,9 @@ function charity_schema() {
 			'approval_status' 				=> array('type' => 'varchar',	'length' => 10,),
 			'approver_user_id' 				=> array('type' => 'int',		'length' => 10,),
 			'approver_remark' 				=> array('type' => 'varchar',	'length' => 100,),
-			'approval_timestamp' 			=> array('type' => 'int',		'description' => 'The Unix timestamp at which record created',),
-			'created_timestamp' 			=> array('type' => 'int',		'description' => 'The Unix timestamp at which record changed',),
-		    'last_update_timestamp' 		=> array('type' => 'int',		'description' => 'The Unix timestamp at which record changed',),		
+			'approval_timestamp' 			=> array('type' => 'int',		'description' => 'The Unix timestamp at which record was approved',),
+			'created_timestamp' 			=> array('type' => 'int',		'description' => 'The Unix timestamp at which record Created',),
+		    'last_update_timestamp' 		=> array('type' => 'int',		'description' => 'The Unix timestamp at which record Last Changed',),		
 		), 
 		
       'primary key' => array('charity_organization_id'),

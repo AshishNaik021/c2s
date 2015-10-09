@@ -1,49 +1,18 @@
 <?php
+	$city_options = array();
+	$state_options = array();
 
-$form['#attached']['js'] = array(
-    drupal_get_path('module', 'agent') . '/js/validate.js',
-);
-$form['#attached']['css'] = array(
-    drupal_get_path('module', 'broker') . '/css/global-c2s.css',
-);
+	$state_options = get_States();
 
-/*
-	//drupal_add_css(drupal_get_path('module', 'overtime') . '/css/overtime.css');
-$form['#attached']['css'] = array(
-		drupal_get_path('module', 'overtime') . '/css/overtime.css',
-);
-	$ot_rate_id			= 0;
 	
-	$location_code 		= '';
-	$category 			= '';
-	$grade		 		= '';
-	$employee_type 		= '';
-	$effective_date 	= '';
-	$rate_multiple 		= '';
-	$created 			= '';
-	$changed 			= '';
+	$form['#attached']['js'] = array(
+		drupal_get_path('module', 'agent') . '/js/validate.js',
+	);
+	$form['#attached']['css'] = array(
+		drupal_get_path('module', 'broker') . '/css/global-c2s.css',
+	);
 
-	if(isset($_GET['ot_rate_id'])){
-		$ot_rate_id = $_GET['ot_rate_id'];
-	}
-
-		
-	$result = db_query("SELECT * 
-                              FROM pms_setting_overtime 
-                              WHERE ot_rate_id = ".$ot_rate_id);
-	foreach($result as $value){
-		$company_code 		= $value->company_id;
-		$location_code 		= $value->location_id;
-		$category 		= $value->category_id;
-		$grade		 	= $value->grade_id;
-		$employee_type 		= $value->employee_type;
-		$effective_date 	= $value->effective_date;
-		$rate_multiple 		= $value->rate_multiple;
-		$created 		= $value->created;
-		$changed 		= $value->changed;
-	}
-        if(empty($company_code )){$company_code = 1;}
-*/
+// ==========  Form Starts  ================ //
 
 	$form['form_start'] = array(
 	   '#type' => 'item',
@@ -58,8 +27,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('Charity Organizations Name'),
 	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return onlyAlphabets(event, this);',),
-	        //'readonly'=>'readonly',
+	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
 	    '#suffix' => '</span>',
@@ -71,7 +39,7 @@ $form['#attached']['css'] = array(
 	$form['501_c_3_#'] = array(
 	    '#title'          => '501 (c)(3)#',
 	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 3,
+	    '#maxlength'	  => 10,
 	    '#required'		  => 'true',
 	    '#default_value'  => '',
 	    '#attributes'     => array(
@@ -84,6 +52,7 @@ $form['#attached']['css'] = array(
 	    '#suffix' => '</span>',
 	);	
 	
+
 	$form['street_address'] = array(
 	    '#title'          => 'Street Address',
 	    '#type'		      => 'textfield',
@@ -93,40 +62,51 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('Street Address'),
 	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
-	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
 	    '#suffix' => '</span>',
 	);
 
-	$form['city_id'] = array(
-	    '#title' => t('City'),
-	    '#type'=>'select',
-	    '#required'=>'true',
-	    '#default_value'=>'',
-	    '#options' =>array(1=>'City'),
-	    '#attributes' => array(
-	        'placeholder' => t(''),
-	        'class' => array('select-xlarge', 'uniform'),
+//--------------  Ajax CallBack for Cities and ZipCodes  ---------------------
+
+	if (isset($form_state['values']['state_id'])) {
+		$selected_state_id = isset($form_state['values']['state_id']) ? $form_state['values']['state_id'] : key($state_options);
+	}else{
+		$selected_state_id = 'AL';
+	}
+	$city_options = get_Cities($selected_state_id);
+	
+	$form['state_id'] = array(
+	    '#type'				=>	'select',
+	    '#title' 			=> 	t('State'),
+	    '#options'			=>	$state_options,
+		'#default_value' 	=>	$selected_state_id,
+	    '#required'			=>	'true',
+	    '#attributes' 	=> array(
+	        'class' 	=> array('select-xlarge', 'uniform'),
 	    ),
-	    '#prefix' => '<span class="wrapper-w16">',
-	    '#suffix' => '</span>',
+		'#ajax' 		=> array(
+			'callback' 	=> 'find_cities_callback1',
+			'wrapper' 	=> 'cities-wrapper',
+		),
+	    '#prefix' 		=> '<span class="wrapper-w16">',
+	    '#suffix' 		=> '</span>',
 	);
 
-	$form['state_id'] = array(
-	    '#title' => t('State'),
-	    '#type'=>'select',
-	    '#required'=>'true',
-	    '#default_value'=>'',
-	    '#options' =>array(1=>'State'),
-	    '#attributes' => array(
-	        'placeholder' => t(''),
-	        'class' => array('select-xlarge', 'uniform'),
+	$form['city_id'] = array(
+	    '#type'				=>	'select',
+	    '#title' 			=> 	t('City'),
+	    '#required'			=>	'true',
+		'#default_value' 	=> 	isset($form_state['values']['city_id']) ? $form_state['values']['city_id'] : '',
+	    '#options' 			=>	get_Cities($selected_state_id),
+	    '#attributes' 	=> array(
+	        'placeholder' 	=>	t(''),
+	        'class' 		=>	array('select-xlarge', 'uniform'),
 	    ),
-	    '#prefix' => '<span class="wrapper-w16">',
-	    '#suffix' => '</span>',
+	    '#prefix' 		=> '<div id="cities-wrapper"> <span class="wrapper-w16"> selected_state_id = '.$selected_state_id,
+	    '#suffix' 		=> '</span></div>',
 	);
+
 	$form['zip_code'] = array(
 	    '#title'          => 'Zip Code',
 	    '#type'		      => 'textfield',
