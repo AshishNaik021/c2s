@@ -88,7 +88,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('Agent Name'),
 	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return IsNumeric(event, this);',),
+	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
@@ -103,7 +103,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('Firm Name'),
 	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return IsNumeric(event, this);',),
+	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
@@ -178,7 +178,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('Agent Email'),
 	        'class'=> array('input-mini'),
-//	        'onKeyPress' => array('return IsNumeric(event, this);',),
+//	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
@@ -244,7 +244,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('Agent Name'),
 	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return IsNumeric(event, this);',),
+	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
@@ -259,7 +259,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('Firm Name'),
 	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return IsNumeric(event, this);',),
+	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
@@ -334,7 +334,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('Agent Email'),
 	        'class'=> array('input-mini'),
-//	        'onKeyPress' => array('return IsNumeric(event, this);',),
+//	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
@@ -401,7 +401,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('Client Name'),
 	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return IsNumeric(event, this);',),
+	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
@@ -416,7 +416,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('Email'),
 	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return IsNumeric(event, this);',),
+	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
@@ -536,7 +536,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('Best Time to Contact'),
 	        'class'=> array('input-mini'),
-//	        'onKeyPress' => array('return IsNumeric(event, this);',),
+//	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w25">',
@@ -595,7 +595,7 @@ $form['#attached']['css'] = array(
 	    '#default_value'  => '',
 	    '#attributes'     => array(
 	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return IsNumeric(event, this);',),
+	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
@@ -611,7 +611,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('Receiving Agent'),
 	        'class'=> array('input-mini'),
-//	        'onKeyPress' => array('return IsNumeric(event, this);',),
+//	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
@@ -626,7 +626,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('Referring Agent'),
 	        'class'=> array('input-mini'),
-//	        'onKeyPress' => array('return IsNumeric(event, this);',),
+//	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
@@ -680,7 +680,7 @@ $form['#attached']['css'] = array(
 	    '#default_value'  => '',
 	    '#attributes'     => array(
 	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return IsNumeric(event, this);',),
+	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w100">',

@@ -38,7 +38,7 @@ function charity_menu() {
         'title'=>'C2S Application Delete',
 		'page callback' => 'drupal_get_form',
         'menu_name' 	=> 'c2s-menu',
-		'page arguments' => array('c2s_chaeity_delete'),
+		'page arguments' => array('c2s_charity_delete'),
 		'access callback' => TRUE,
         'access arguments' => array('Delete C2S Charity'),
 	);
