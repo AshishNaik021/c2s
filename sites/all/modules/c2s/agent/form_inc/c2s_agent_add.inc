@@ -1,7 +1,7 @@
 <?php
 
 $form['#attached']['js'] = array(
-    drupal_get_path('module', 'broker') . '/js/validate.js',
+    drupal_get_path('module', 'agent') . '/js/validate.js',
 );
 
 $form['#attached']['css'] = array(
@@ -67,7 +67,7 @@ $form['brokerage_start_date'] = array(
     '#type'		      => 'date_popup',
     '#theme_wrappers'  => array(),
     '#date_label_position' => 'Within',
-    '#required'       => 'true',
+    
     '#date_format'	  => 'm/d/Y',
     '#date_year_range'  => '-3:+3',
     '#attributes'       => array(
@@ -82,7 +82,7 @@ $form['brokerage_start_date'] = array(
 $form['parent_id'] = array(
     '#type'		      => 'textfield',
     '#maxlength'	  => 50,
-    '#required'		  => 'true',
+    
     '#theme_wrappers'  => array(),
     '#attributes'     => array(
         'placeholder'=> t('Type Min. 3 Characters of Agent Name'),
@@ -100,7 +100,7 @@ for($i=1; $i<=2; $i++){
     if($i==1){
         $class="selected";
     }
-    $form['broker_tab_'.$i] = array(
+    $form['agent_tab_'.$i] = array(
         '#type' => 'item',
         '#suffix' => '<div class="form_section_tab '.$class.'" id="tab_'.$i.'" data-item="form_tab_'.$i.'" onclick="click_tabs(\'tab_'.$i.'\')" > Agent '.$number_to_words[$i].' </div>',
     );
@@ -131,30 +131,47 @@ for($i=1; $i<=2; $i++){
     if($i==1){
         $display="block";
     }
+
     
-$form['broker_'.$i.'_details_start'] = array(
+$form['agent_'.$i.'_details_start'] = array(
     '#type' => 'item',
     '#theme_wrappers'  => array(),
     '#suffix' => '<div id="form_tab_'.$i.'" class="form_sections" style="display:'.$display.'">',
 );
 
+if($i == 2){
+    $form['agent_relationship'] = array(
+        '#type'=>'select',
+        
+        '#options' =>array('0'=>'-- Select --','Sibling'=>'Sibling','Spouse'=>'Spouse','Parent'=>'Parent','OffSpring'=>'OffSpring'),
+        '#theme_wrappers'  => array(),
+        '#attributes' => array(
+            'placeholder' => t(''),
+            'class' => array('form_text'),
+        ),
+        '#prefix' => '<span class="wrapper-w33"><label class="label_left">Select Relation With Agent One</label><span class="value_left">',
+        '#suffix' => '</span></span>',
+    );
+}
 
-$form['broker_'.$i.'_details_seperator'] = array(
+
+$form['agent_'.$i.'_details_seperator'] = array(
     '#type' => 'item',
     '#theme_wrappers'  => array(),
     '#suffix' => '<div class="seperator" style="height: 10px;width: 100%;float: left;clear: both;"></div>',
 );
 
-$form['broker_'.$i.'_personal_info_start'] = array(
+$form['agent_'.$i.'_personal_info_start'] = array(
     '#type' => 'item',
     '#theme_wrappers'  => array(),
     '#prefix' => '<div class="section_full"><div class="section_left"> <div class="form_subsection_title" data-item="inner_section_1"> Personal Information</div>',
 );
 
-$form['broker_'.$i.'_first_name'] = array(
+$form['agent_'.$i.'_first_name'] = array(
     '#type'		      => 'textfield',
+    '#name'           => 'broker['.$i.'][first_name]',
     '#maxlength'	  => 50,
-    '#required'		  => 'true',
+    
     '#theme_wrappers'  => array(),
     '#attributes'     => array(
         'placeholder'=> t('First Name'),
@@ -166,10 +183,11 @@ $form['broker_'.$i.'_first_name'] = array(
     '#suffix' => '</span></span>',
 );
 
-$form['broker_'.$i.'_middle_name'] = array(
+$form['agent_'.$i.'_middle_name'] = array(
     '#type'		      => 'textfield',
+    '#name'           => 'broker['.$i.'][middle_name]',
     '#maxlength'	  => 50,
-    '#required'		  => 'true',
+    
     '#theme_wrappers'  => array(),
     '#attributes'     => array(
         'placeholder'=> t('Middle Name'),
@@ -181,10 +199,11 @@ $form['broker_'.$i.'_middle_name'] = array(
     '#suffix' => '</span></span>',
 );
 
-$form['broker_'.$i.'_last_name'] = array(
+$form['agent_'.$i.'_last_name'] = array(
     '#type'		      => 'textfield',
+    '#name'           => 'broker['.$i.'][last_name]',
     '#maxlength'	  => 50,
-    '#required'		  => 'true',
+    
     '#theme_wrappers'  => array(),
     '#attributes'     => array(
         'placeholder'=> t('Last Name'),
@@ -199,8 +218,9 @@ $form['broker_'.$i.'_last_name'] = array(
 
 $form['date_of_birth_'.$i] = array(
     '#label'          => '',
+    '#name'           => 'broker['.$i.'][dob]',
     '#type'		      => 'date_popup',
-    '#required'		  => 'true',
+    
     '#theme_wrappers'  => array(),
     '#date_format'	  => 'm/d/Y',
     '#date_year_range'  => '-3:+3',
@@ -217,7 +237,7 @@ $form['date_of_birth_'.$i] = array(
 $form['personl_email_id_'.$i] = array(
     '#type'		      => 'textfield',
     '#maxlength'	  => 100,
-    '#required'		  => 'true',
+    
     '#theme_wrappers'  => array(),
     '#attributes'     => array(
         'placeholder'=> t('Personal Email ID'),
@@ -232,7 +252,7 @@ $form['personl_email_id_'.$i] = array(
 $form['contact_number_'.$i] = array(
     '#type'		      => 'textfield',
     '#maxlength'	  => 50,
-    '#required'		  => 'true',
+    
     '#theme_wrappers'  => array(),
     '#attributes'     => array(
         'placeholder'=> t('Contact Number'),
@@ -247,7 +267,7 @@ $form['contact_number_'.$i] = array(
 $form['street_address_'.$i] = array(
     '#type'		      => 'textfield',
     '#maxlength'	  => 100,
-    '#required'		  => 'true',
+    
     '#theme_wrappers'  => array(),
     '#attributes'     => array(
         'placeholder'=> t('Street Address'),
@@ -261,7 +281,7 @@ $form['street_address_'.$i] = array(
 
 $form['city_id_'.$i] = array(
     '#type'=>'select',
-    '#required'=>'true',
+    
     '#options' =>array(1=>'City'),
     '#theme_wrappers'  => array(),
     '#attributes' => array(
@@ -274,7 +294,7 @@ $form['city_id_'.$i] = array(
 
 $form['state_id_'.$i] = array(
     '#type'=>'select',
-    '#required'=>'true',
+    
     '#options' =>array(1=>'State'),
     '#theme_wrappers'  => array(),
     '#attributes' => array(
@@ -288,7 +308,7 @@ $form['state_id_'.$i] = array(
 $form['zip_code_'.$i] = array(
     '#type'		      => 'textfield',
     '#maxlength'	  => 25,
-    '#required'		  => 'true',
+    
     '#theme_wrappers'  => array(),
     '#attributes'     => array(
         'placeholder'=> t('Zip Code'),
@@ -301,14 +321,14 @@ $form['zip_code_'.$i] = array(
      
 );
 
-$form['broker_'.$i.'_personal_info_end'] = array(
+$form['agent_'.$i.'_personal_info_end'] = array(
     '#type' => 'item',
     '#theme_wrappers'  => array(),
     '#prefix' => '</div>',
 );
 
 
-$form['broker_'.$i.'_professional_info_start'] = array(
+$form['agent_'.$i.'_professional_info_start'] = array(
     '#type' => 'item',
     '#theme_wrappers'  => array(),
     '#prefix' => '<div class="section_left"> <div class="form_subsection_title" data-item="inner_section_1"> Professional Information</div>',
@@ -316,10 +336,10 @@ $form['broker_'.$i.'_professional_info_start'] = array(
 
 
 
-$form['broker_state_id_number_'.$i] = array(
+$form['agent_state_id_number_'.$i] = array(
     '#type'		      => 'textfield',
     '#maxlength'	  => 25,
-    '#required'		  => 'true',
+    
     '#theme_wrappers'  => array(),
     '#attributes'     => array(
         'placeholder'=> t('Broker State Id #'),
@@ -332,11 +352,11 @@ $form['broker_state_id_number_'.$i] = array(
 );
 
 
-$form['broker_nrds_'.$i] = array(
+$form['agent_nrds_'.$i] = array(
 
     '#type'		      => 'textfield',
     '#maxlength'	  => 25,
-    '#required'		  => 'true',
+    
     '#theme_wrappers'  => array(),
     '#attributes'     => array(
         'placeholder'=> t('Broker NRDS#'),
@@ -352,7 +372,7 @@ $form['mls_username_'.$i] = array(
 
     '#type'		      => 'textfield',
     '#maxlength'	  => 25,
-    '#required'		  => 'true',
+    
     '#theme_wrappers'  => array(),
     '#attributes'     => array(
         'placeholder'=> t('MLS User Id'),
@@ -368,7 +388,7 @@ $form['mls_password_'.$i] = array(
 
     '#type'		      => 'textfield',
     '#maxlength'	  => 25,
-    '#required'		  => 'true',
+    
     '#theme_wrappers'  => array(),
     '#attributes'     => array(
         'placeholder'=> t('MLS Password'),
@@ -385,7 +405,7 @@ $form['mls_password_'.$i] = array(
 $form['office_phone_'.$i] = array(
     '#type'		      => 'textfield',
     '#maxlength'	  => 25,
-    '#required'		  => 'true',
+    
     '#theme_wrappers'  => array(),
     '#attributes'     => array(
         'placeholder'=> t('Office Phone'),
@@ -400,7 +420,7 @@ $form['office_phone_'.$i] = array(
 $form['extension_'.$i] = array(
     '#type'		      => 'textfield',
     '#maxlength'	  => 25,
-    '#required'		  => 'true',
+    
     '#theme_wrappers'  => array(),
     '#attributes'     => array(
         'placeholder'=> t('Extension'),
@@ -414,7 +434,7 @@ $form['extension_'.$i] = array(
 $form['create_email_'.$i] = array(
     '#type'		      => 'textfield',
     '#maxlength'	  => 25,
-    '#required'		  => 'true',
+    
     '#theme_wrappers'  => array(),
     '#attributes'     => array(
         'placeholder'=> t('example@c2semail.com'),
@@ -428,7 +448,7 @@ $form['create_email_'.$i] = array(
 $form['choice_of_charity_org_'.$i] = array(
     '#type'		      => 'textfield',
     '#maxlength'	  => 250,
-    '#required'		  => 'true',
+    
     '#theme_wrappers'  => array(),
     '#attributes'     => array(
         'placeholder'=> t('Type Min 3 Chars'),
@@ -441,7 +461,7 @@ $form['choice_of_charity_org_'.$i] = array(
 );
 
 
-$form['broker_'.$i.'_professional_info_end'] = array(
+$form['agent_'.$i.'_professional_info_end'] = array(
     '#type' => 'item',
     '#theme_wrappers'  => array(),
     '#prefix' => '</div><div class="seperator" style="height: 10px;width: 100%;float: left;clear: both;"></div></div>',
@@ -451,7 +471,7 @@ $form['broker_'.$i.'_professional_info_end'] = array(
 // --------- //
 //---------- //
 
-$form['broker_'.$i.'_bank_info_right_start_'.$i] = array(
+$form['agent_'.$i.'_bank_info_right_start_'.$i] = array(
     '#type' => 'item',
     '#theme_wrappers'  => array(),
     '#prefix' => '<div class="section_full"><div class="section_left"><div class="form_subsection_title" data-item="inner_section_1">Bank Details</div>',
@@ -460,7 +480,7 @@ $form['broker_'.$i.'_bank_info_right_start_'.$i] = array(
 $form['personal_account_number_'.$i] = array(
     '#type'		      => 'textfield',
     '#maxlength'	  => 50,
-    '#required'		  => 'true',
+    
     '#theme_wrappers'  => array(),
     '#attributes'     => array(
         'placeholder'=> t('Account Number'),
@@ -474,7 +494,7 @@ $form['personal_account_number_'.$i] = array(
 $form['name_on_personal_account_'.$i] = array(
     '#type'		      => 'textfield',
     '#maxlength'	  => 50,
-    '#required'		  => 'true',
+    
     '#theme_wrappers'  => array(),
     '#attributes'     => array(
         'placeholder'=> t('Name On Account'),
@@ -488,7 +508,7 @@ $form['name_on_personal_account_'.$i] = array(
 $form['personal_financial_institution_name_'.$i] = array(
     '#type'		      => 'textfield',
     '#maxlength'	  => 50,
-    '#required'		  => 'true',
+    
     '#theme_wrappers'  => array(),
     '#attributes'     => array(
         'placeholder'=> t('Financial Institution Name'),
@@ -502,7 +522,7 @@ $form['personal_financial_institution_name_'.$i] = array(
 $form['personal_financial_institution_phone_'.$i] = array(
     '#type'		      => 'textfield',
     '#maxlength'	  => 50,
-    '#required'		  => 'true',
+    
     '#theme_wrappers'  => array(),
     '#attributes'     => array(
         'placeholder'=> t('Financial Institution Phone Number'),
@@ -519,7 +539,7 @@ $form['personal_financial_institution_phone_'.$i] = array(
 $form['personal_account_type_'.$i] = array(
     '#type'		      => 'select',
     '#maxlength'	  => 50,
-    '#required'		  => 'true',
+    
     '#theme_wrappers'  => array(),
     '#attributes'     => array(
         'class'=> array('form_text'),
@@ -534,7 +554,7 @@ $form['personal_account_type_'.$i] = array(
 $form['personal_aba_routing_number_'.$i] = array(
     '#type'		      => 'textfield',
     '#maxlength'	  => 50,
-    '#required'		  => 'true',
+    
     '#theme_wrappers'  => array(),
     '#attributes'     => array(
         'placeholder'=> t('ABA Routing Number'),
@@ -547,13 +567,13 @@ $form['personal_aba_routing_number_'.$i] = array(
 );
 
 
-$form['broker_'.$i.'_bank_info_right_end'] = array(
+$form['agent_'.$i.'_bank_info_right_end'] = array(
     '#type' => 'item',
     '#theme_wrappers'  => array(),
     '#prefix' => '</div>',
 );
 
-$form['broker_'.$i.'_beneficiary_start'] = array(
+$form['agent_'.$i.'_beneficiary_start'] = array(
     '#type' => 'item',
     '#theme_wrappers'  => array(),
     '#prefix' => '<div class="section_left"><div class="form_subsection_title" data-item="inner_section_1">Beneficiary Details</div>',
@@ -563,7 +583,7 @@ $form['beneficiary_first_name_'.$i] = array(
 
     '#type'		      => 'textfield',
     '#maxlength'	  => 50,
-    '#required'		  => 'true',
+    
     '#theme_wrappers'  => array(),
     '#attributes'     => array(
         'placeholder'=> t('First Name'),
@@ -579,7 +599,7 @@ $form['beneficiary_middle_name_'.$i] = array(
 
     '#type'		      => 'textfield',
     '#maxlength'	  => 50,
-    '#required'		  => 'true',
+    
     '#theme_wrappers'  => array(),
     '#attributes'     => array(
         'placeholder'=> t('Middle Name'),
@@ -595,7 +615,7 @@ $form['beneficiary_last_name_'.$i] = array(
 
     '#type'		      => 'textfield',
     '#maxlength'	  => 50,
-    '#required'		  => 'true',
+    
     '#theme_wrappers'  => array(),
     '#attributes'     => array(
         'placeholder'=> t('Last Name'),
@@ -610,7 +630,7 @@ $form['beneficiary_relarionship_'.$i] = array(
 
     '#type'		      => 'textfield',
     '#maxlength'	  => 50,
-    '#required'		  => 'true',
+    
     '#theme_wrappers'  => array(),
     '#attributes'     => array(
         'placeholder'=> t('Relationship'),
@@ -626,7 +646,7 @@ $form['beneficiary_email_id_'.$i] = array(
 
     '#type'		      => 'textfield',
     '#maxlength'	  => 50,
-    '#required'		  => 'true',
+    
     '#theme_wrappers'  => array(),
     '#attributes'     => array(
         'placeholder'=> t('Email ID'),
@@ -641,7 +661,7 @@ $form['beneficiary_email_id_'.$i] = array(
 $form['beneficiary_contact_number_'.$i] = array(
     '#type'		      => 'textfield',
     '#maxlength'	  => 50,
-    '#required'		  => 'true',
+    
     '#theme_wrappers'  => array(),
     '#attributes'     => array(
         'placeholder'=> t('Contact Number'),
@@ -656,7 +676,7 @@ $form['beneficiary_address_'.$i] = array(
 
     '#type'		      => 'textfield',
     '#maxlength'	  => 100,
-    '#required'		  => 'true',
+    
     '#theme_wrappers'  => array(),
     '#attributes'     => array(
         'placeholder'=> t('Beneficiary Address'),
@@ -670,7 +690,7 @@ $form['beneficiary_address_'.$i] = array(
 
 $form['beneficiary_city_id_'.$i] = array(
     '#type'=>'select',
-    '#required'=>'true',
+    
     '#theme_wrappers'  => array(),
     '#options' =>array(1=>'City'),
     '#attributes' => array(
@@ -683,7 +703,7 @@ $form['beneficiary_city_id_'.$i] = array(
 
 $form['beneficiary_state_id_'.$i] = array(
     '#type'=>'select',
-    '#required'=>'true',
+    
     '#theme_wrappers'  => array(),
     '#options' =>array(1=>'State'),
     '#attributes' => array(
@@ -697,7 +717,7 @@ $form['beneficiary_state_id_'.$i] = array(
 $form['beneficiary_zip_code_'.$i] = array(
     '#type'		      => 'textfield',
     '#maxlength'	  => 25,
-    '#required'		  => 'true',
+    
     '#theme_wrappers'  => array(),
     '#attributes'     => array(
         'placeholder'=> t('Zip Code'),
@@ -710,7 +730,7 @@ $form['beneficiary_zip_code_'.$i] = array(
      
 );
 
-$form['broker_'.$i.'_beneficiary_end'] = array(
+$form['agent_'.$i.'_beneficiary_end'] = array(
     '#type' => 'item',
     '#theme_wrappers'  => array(),
     '#prefix' => '</div></div>',
@@ -719,7 +739,7 @@ $form['broker_'.$i.'_beneficiary_end'] = array(
 //-----------//
 
 
-$form['broker_'.$i.'_details_end'] = array(
+$form['agent_'.$i.'_details_end'] = array(
     '#type' => 'item',
     '#suffix' => '</div>',
 );

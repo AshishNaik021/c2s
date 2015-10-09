@@ -5,32 +5,37 @@
 // ==================================================================================================
 $brokerage_start_date	=   $form_state['values']['agent_start_date'];
 $parent_id			    =   '2';
+$broker = array();
+$broker['relation_with_agent']  =   $form_state['values']['agent_relationship'];
 
-$first_name				=   $form_state['values']['agent_first_name'];
-$middle_name			=   $form_state['values']['agent_middle_name'];
-$last_name			    =   $form_state['values']['agent_last_name'];
-$dob				    =   $form_state['values']['date_of_birth'];
-$personal_email			=   $form_state['values']['personl_email_id'];
-$personal_phone			=   $form_state['values']['contact_number'];
-$home_address			=   $form_state['values']['street_address'];
-$home_city				=   $form_state['values']['city_id'];
-$home_state				=   $form_state['values']['state_id'];
-$home_zip			    =   $form_state['values']['zip_code'];
-$state_id_number		=   $form_state['values']['agent_state_id'];
-$mls_username			=   $form_state['values']['mls_username'];
-$mls_password			=   $form_state['values']['mls_password'];
-$nrds_number			=   $form_state['values']['agent_nrds'];
-$c2s_email_id			=   $form_state['values']['create_email'];
-$office_phone			=   $form_state['values']['office_phone'];
-$office_extension		=   $form_state['values']['extension'];
-$choice_charity_orgid	=   $form_state['values']['choice_of_charity_org'];
+for($i=0;$i<=2;$i++){
+$broker[$i]['first_name']			=   $form_state['values']['agent_'.$i.'_first_name'];
+$broker[$i]['middle_name']			=   $form_state['values']['agent_'.$i.'_middle_name'];
+$broker[$i]['last_name']		    =   $form_state['values']['agent_'.$i.'_last_name'];
+
+$broker[$i]['dob']				    =   $form_state['values']['date_of_birth_'.$i];
+$broker[$i]['personal_email']		=   $form_state['values']['personl_email_id_'.$i];
+$broker[$i]['personal_phone']		=   $form_state['values']['contact_number_'.$i];
+$broker[$i]['home_address']			=   $form_state['values']['street_address_'.$i];
+$broker[$i]['home_city']			=   $form_state['values']['city_id_'.$i];
+$broker[$i]['home_state']			=   $form_state['values']['state_id_'.$i];
+$broker[$i]['home_zip']			    =   $form_state['values']['zip_code_'.$i];
+$broker[$i]['state_id_number']		=   $form_state['values']['agent_state_id_'.$i];
+$broker[$i]['mls_username']			=   $form_state['values']['mls_username_'.$i];
+$broker[$i]['mls_password']			=   $form_state['values']['mls_password_'.$i];
+$broker[$i]['nrds_number']			=   $form_state['values']['agent_nrds_'.$i];
+$broker[$i]['c2s_email_id']			=   $form_state['values']['create_email_'.$i];
+$broker[$i]['office_phone']			=   $form_state['values']['office_phone_'.$i];
+$broker[$i]['office_extension']		=   $form_state['values']['extension_'.$i];
+$broker[$i]['choice_charity_orgid']	=   $form_state['values']['choice_of_charity_org_'.$i];
 // -----///
-$pers_comm_accno		=   $form_state['values']['personal_account_number'];
-$pers_comm_accname		=   $form_state['values']['name_on_personal_account'];
-$pers_comm_bankname		=   $form_state['values']['personal_financial_institution_name'];
-$pers_comm_bankphone	=   $form_state['values']['personal_financial_institution_phone'];
-$pers_comm_acctype		=   $form_state['values']['personal_account_type'];
-$pers_comm_aba_routing	=   $form_state['values']['personal_aba_routing_number'];
+$broker[$i]['pers_comm_accno']		=   $form_state['values']['personal_account_number_'.$i];
+$broker[$i]['pers_comm_accname']	=   $form_state['values']['name_on_personal_account_'.$i];
+$broker[$i]['pers_comm_bankname']	=   $form_state['values']['personal_financial_institution_name_'.$i];
+$broker[$i]['pers_comm_bankphone']	=   $form_state['values']['personal_financial_institution_phone_'.$i];
+$broker[$i]['pers_comm_acctype']	=   $form_state['values']['personal_account_type_'.$i];
+$broker[$i]['pers_comm_aba_routing']=   $form_state['values']['personal_aba_routing_number_'.$i];
+}
 
 
 

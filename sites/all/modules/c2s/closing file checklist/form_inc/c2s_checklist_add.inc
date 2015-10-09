@@ -735,7 +735,7 @@ $form['#attached']['css'] = array(
 	    '#prefix' => '<span class="wrapper-w50">',
 	    '#suffix' => '</span>',
 	);
-	$form['sellers_marital_atatus'] = array(
+	$form['sellers_marital_status'] = array(
 	    '#title' => t('Marital Status'),
 	    '#type'=>'select',
 	    '#required'=>'true',
@@ -810,7 +810,7 @@ $form['#attached']['css'] = array(
 	    '#prefix' => '<span class="wrapper-w50">',
 	    '#suffix' => '</span>',
 	);
-	$form['buyers_marital_atatus'] = array(
+	$form['buyers_marital_status'] = array(
 	    '#title' => t('Marital Status'),
 	    '#type'=>'select',
 	    '#required'=>'true',
@@ -943,7 +943,7 @@ $form['#attached']['css'] = array(
 	    '#prefix' => '<span class="wrapper-w25">',
 	    '#suffix' => '</span>',
 	);
-	$form['phome_number'] = array(
+	$form['phone_number'] = array(
 	    '#title'          => 'Phone Number',
 	    '#type'		      => 'textfield',
 	    '#maxlength'	  => 25,

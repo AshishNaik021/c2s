@@ -1,0 +1,10 @@
+name = Commission Data Entry Module	
+description = "City2Shore Commission Data Entry Module"
+package = C2S
+core = 7.x
+
+
+stylesheets[all][] = css/commission.css
+
+
+scripts[] = js/commission.js

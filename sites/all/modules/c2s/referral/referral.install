@@ -1,0 +1,62 @@
+<?php
+
+function referral_schema() {
+
+ //------------------------------------- Referral Master  -------------------------------------
+
+ $schema['referral_Master'] = array(
+        'description' => 'Referral Master Table', 
+        'fields' => array(          
+			'referral_id' 								=> array('type' => 'int',		'length' => 10,), 
+			'referral_type' 							=> array('type' => 'varchar',	'length' => 10,),
+			'receiving_office_agent_name' 				=> array('type' => 'varchar', 	'length' => 100,),
+			'receiving_office_ndrs_#' 					=> array('type' => 'varchar', 	'length' => 100,), 
+			'receiving_office_firm_name' 				=> array('type' => 'varchar', 	'length' => 100,),
+			'receiving_office_address' 					=> array('type' => 'varchar', 	'length' => 100,),
+			'receiving_office_city' 					=> array('type' => 'varchar', 	'length' => 100,), 
+			'receiving_office_state'					=> array('type' => 'varchar',	'length' => 100,),
+			'receiving_office_zip' 						=> array('type' => 'varchar',	'length' => 100,),
+			'receiving_office_email_id' 				=> array('type' => 'varchar',	'length' => 100,),
+			'reveiving_office_business_phone'			=> array('type' => 'int',		'length' => 10,),
+			'receiving_office_fax' 						=> array('type' => 'varchar',	'length' => 100,),
+			'referring_office_agent_name' 				=> array('type' => 'varchar',	'length' => 100,),
+			'referring_office_firm_name' 				=> array('type' => 'varchar',	'length' => 100,),
+			'referring_office_address' 					=> array('type' => 'varchar',	'length' => 10,),
+			'referring_office_city' 					=> array('type' => 'int',		'length' => 100,),
+			'referring_office_state' 					=> array('type' => 'varchar',	'length' => 100,),
+			'referring_office_zip' 						=> array('type' => 'varchar',	'length' => 100,),
+			'referring_office_email_id' 				=> array('type' => 'varchar',	'length' => 100,),
+			'referring_office_business_phone' 			=> array('type' => 'int',		'length' => 10,),
+			'referring_office_fax' 						=> array('type' => 'varchar',	'length' => 100,),
+			'client_name' 								=> array('type' => 'varchar',	'length' => 100,),
+			'client_email' 								=> array('type' => 'varchar',	'length' => 100,),
+			'client_address' 							=> array('type' => 'varchar',	'length' => 100,),
+			'client_city' 								=> array('type' => 'varchar',	'length' => 100,),
+			'client_state' 								=> array('type' => 'varchar',	'length' => 100,),
+			'client_zip' 								=> array('type' => 'varchar',	'length' => 100,),
+			'client_business_phone' 					=> array('type' => 'int',		'length' => 10,),
+			'client_fax' 								=> array('type' => 'varchar',	'length' => 100,),
+			'best_time_to_contact' 						=> array('type' => 'varchar',	'length' => 100,),
+			'client_terms_percent_value' 				=> array('type' => 'float',	    'length' => 5,2,),
+			'client_terms_dollar_amount' 				=> array('type' => 'int',		'length' => 10,),
+			'client_receiving_agent' 					=> array('type' => 'varchar',	'length' => 100,),
+			'client_referring_agent' 					=> array('type' => 'varchar',	'length' => 100,),
+			'client_receiving_agent_sign_date' 			=> array('type' => 'varchar',	'mysql_type' => 'date',),
+			'client_referring_agent_sign_date' 			=> array('type' => 'varchar',	'mysql_type' => 'date',),
+			'created_timestamp' 						=> array('type' => 'int',		'description' => 'The Unix timestamp at which record changed',),
+		    'last_update_timestamp' 					=> array('type' => 'int',		'description' => 'The Unix timestamp at which record changed',),		
+		), 
+		
+      'primary key' => array('referral_id'),
+ );
+
+	return $schema;
+}
+
+
+
+ //---------------------------------------------------------------------------------------
+
+
+
+

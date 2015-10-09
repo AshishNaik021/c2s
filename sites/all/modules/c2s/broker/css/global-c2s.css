@@ -404,6 +404,7 @@ th.active img{
     background-color: #fff8f2;
     padding: 7px;
 	margin-top:10px;
+	min-height:260px; 
 }
 
 .section_left{
@@ -413,7 +414,7 @@ th.active img{
     margin: 2px;
     border-radius: 5px;
     padding: 7px;
-	min-height:405px;
+/*	min-height:405px; */
 }
 
 .subsection_left{
@@ -515,7 +516,7 @@ color: #4c83b0;
 	clear:both;
 }
 
-input[type="submit"]{
+.form-submit{
 padding: 5px;
     border: 1px solid #298bca;
     float: right;

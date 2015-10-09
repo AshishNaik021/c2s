@@ -1,0 +1,10 @@
+name = Referral Module	
+description = "City2Shore Referral Module"
+package = C2S
+core = 7.x
+
+
+stylesheets[all][] = css/referral.css
+
+
+scripts[] = js/referral.js

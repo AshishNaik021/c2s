@@ -433,7 +433,7 @@ border-style: solid;
 	clear:both;
 }
 
-input[type="submit"]{
+.form-submit{
 padding: 5px;
     border: 1px solid #298bca;
     float: right;

@@ -1,0 +1,46 @@
+<?php
+
+function commission_schema() {
+
+ //------------------------------------- Commission Master  -------------------------------------
+
+ $schema['Commission_Master'] = array(
+        'description' => 'Commission Master Table', 
+        'fields' => array(          
+			'charity_organization_id' 		=> array('type' => 'int',		'length' => 10,), 
+			'charity_org_name' 				=> array('type' => 'varchar',	'length' => 100,),
+			'501_c_3_number' 				=> array('type' => 'varchar', 	'length' => 100,),
+			'charity_org_address' 			=> array('type' => 'varchar', 	'length' => 100,), 
+			'charity_org_city' 				=> array('type' => 'varchar', 	'length' => 100,),
+			'charity_org_state' 			=> array('type' => 'varchar', 	'length' => 100,),
+			'charity_org_zip' 				=> array('type' => 'varchar', 	'length' => 100,), 
+			'phone_number'					=> array('type' => 'varchar',	'length' => 100,),
+			'email_id' 						=> array('type' => 'varchar',	'length' => 100,),
+			'website_url' 					=> array('type' => 'varchar',	'length' => 100,),
+			'bank_account_number'			=> array('type' => 'int',		'length' => 10,),
+			'bank_account_name' 			=> array('type' => 'varchar',	'length' => 100,),
+			'bank_name' 					=> array('type' => 'varchar',	'length' => 100,),
+			'bank_phone' 					=> array('type' => 'varchar',	'length' => 100,),
+			'bank_account_type' 			=> array('type' => 'varchar',	'length' => 10,),
+			'bank_aba_routing_number' 		=> array('type' => 'int',		'length' => 100,),
+			'approval_status' 				=> array('type' => 'varchar',	'length' => 10,),
+			'approver_user_id' 				=> array('type' => 'int',		'length' => 10,),
+			'approver_remark' 				=> array('type' => 'varchar',	'length' => 100,),
+			'approval_timestamp' 			=> array('type' => 'int',		'description' => 'The Unix timestamp at which record created',),
+			'created_timestamp' 			=> array('type' => 'int',		'description' => 'The Unix timestamp at which record changed',),
+		    'last_update_timestamp' 		=> array('type' => 'int',		'description' => 'The Unix timestamp at which record changed',),		
+		), 
+		
+      'primary key' => array('charity_organization_id'),
+ );
+
+	return $schema;
+}
+
+
+
+ //---------------------------------------------------------------------------------------
+
+
+
+
