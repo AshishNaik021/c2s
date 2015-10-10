@@ -2,7 +2,7 @@
 	$city_options = array();
 	$state_options = array();
 
-	$state_options = get_States();
+	$state_options = getStates();
 
 	
 	$form['#attached']['js'] = array(
@@ -36,17 +36,16 @@
 	
     
 		
-	$form['501_c_3_#'] = array(
-	    '#title'          => '501 (c)(3)#',
+	$form['number_501_c_3'] = array(
+	    '#title'          => '501 (c)(3) Number',
 	    '#type'		      => 'textfield',
 	    '#maxlength'	  => 10,
 	    '#required'		  => 'true',
 	    '#default_value'  => '',
 	    '#attributes'     => array(
-		     'placeholder'=> t('Type Min 3 Chars'),
+		    'placeholder'=> t('Unique Number for Your Charity Organization'),
 	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return IsNumeric(event, this);',),
-	        //'readonly'=>'readonly',
+	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
 	    '#suffix' => '</span>',
@@ -72,9 +71,8 @@
 	if (isset($form_state['values']['state_id'])) {
 		$selected_state_id = isset($form_state['values']['state_id']) ? $form_state['values']['state_id'] : key($state_options);
 	}else{
-		$selected_state_id = 'AL';
+		$selected_state_id = '';
 	}
-	$city_options = get_Cities($selected_state_id);
 	
 	$form['state_id'] = array(
 	    '#type'				=>	'select',
@@ -86,42 +84,55 @@
 	        'class' 	=> array('select-xlarge', 'uniform'),
 	    ),
 		'#ajax' 		=> array(
-			'callback' 	=> 'find_cities_callback1',
+			'callback' 	=> 'find_cities_callback',
 			'wrapper' 	=> 'cities-wrapper',
 		),
 	    '#prefix' 		=> '<span class="wrapper-w16">',
 	    '#suffix' 		=> '</span>',
 	);
 
-	$form['city_id'] = array(
+	$city_options = getCities($selected_state_id);
+	if (isset($form_state['values']['city'])) {
+		$selected_city = isset($form_state['values']['city']) ? $form_state['values']['city'] : key($city_options);
+	}else{
+		$selected_city = '';
+	}
+
+	$form['city'] = array(
 	    '#type'				=>	'select',
 	    '#title' 			=> 	t('City'),
 	    '#required'			=>	'true',
-		'#default_value' 	=> 	isset($form_state['values']['city_id']) ? $form_state['values']['city_id'] : '',
-	    '#options' 			=>	get_Cities($selected_state_id),
+		'#default_value' 	=> 	'',
+	    '#options' 			=>	$city_options,
 	    '#attributes' 	=> array(
 	        'placeholder' 	=>	t(''),
 	        'class' 		=>	array('select-xlarge', 'uniform'),
 	    ),
-	    '#prefix' 		=> '<div id="cities-wrapper"> <span class="wrapper-w16"> selected_state_id = '.$selected_state_id,
+		'#ajax' 		=> array(
+			'callback' 	=> 'find_zip_callback',
+			'wrapper' 	=> 'zip-wrapper',
+		),
+	    '#prefix' 		=> '<div id="cities-wrapper"> <span class="wrapper-w16">',
 	    '#suffix' 		=> '</span></div>',
 	);
 
+	$zip = getZip($selected_city, $selected_state_id);
 	$form['zip_code'] = array(
 	    '#title'          => 'Zip Code',
 	    '#type'		      => 'textfield',
 	    '#maxlength'	  => 25,
 	    '#required'		  => 'true',
-	    '#default_value'  => '',
+	    '#value'  => $zip,
 	    '#attributes'     => array(
 	        'placeholder'=> t('Zip Code'),
 	        'class'=> array('input-mini'),
-	        //	        'onKeyPress' => array('return IsNumeric(event, this);',),
-	        //'readonly'=>'readonly',
+	        'readonly'=>'readonly',
 	    ),
-	    '#prefix' => '<span class="wrapper-w16">',
-	    '#suffix' => '</span>',
+	    '#prefix' => '<div id="zip-wrapper"><span class="wrapper-w16">',
+	    '#suffix' => '</span></div>',
 	);
+	
+// ========================================================================
 
 	$form['contact_number'] = array(
 	    '#title'          => 'Contact Number',
@@ -130,10 +141,9 @@
 	    '#required'		  => 'true',
 	    '#default_value'  => '',
 	    '#attributes'     => array(
-	        'placeholder'=> t('Contact Number'),
+	        'placeholder'=> t('123-456-7890'),
 	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return IsNumeric(event, this);',),
-	        //'readonly'=>'readonly',
+	        'onKeyPress' => array('return phoneNumber(event, this);',),
 	    ),
 	    '#prefix' => '<span class="wrapper-w25">',
 	    '#suffix' => '</span>',
@@ -148,8 +158,7 @@
 	    '#attributes'     => array(
 	        'placeholder'=> t('Personal Email ID'),
 	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return MailId(event, this);',),
-	        //'readonly'=>'readonly',
+	        'onKeyPress' => array('return isMailId(event, this);',),
 	    ),
 	    '#prefix' => '<span class="wrapper-w25">',
 	    '#suffix' => '</span>',
@@ -165,12 +174,14 @@
 	    '#attributes'     => array(
 	        'placeholder'=> t('Website URL'),
 	        'class'=> array('input-mini'),
-	        //	        'onKeyPress' => array('return IsNumeric(event, this);',),
-	        //'readonly'=>'readonly',
+	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
 	    '#suffix' => '</span>',
 	);
+	
+	// --------------------Personal Bank Account Details Start------------------- //
+
 	$form['etf_bank_details_subsection_start'] = array(
 	   '#type' => 'item',
 	   '#prefix' => '<div id="form_sections" class="form_sections"> ',
@@ -178,23 +189,17 @@
 	    <img src="'.base_path().'/'.drupal_get_path('module', 'agent').'/images/arrow_toggle.png" id="form_section_1_arrow" class="inner_section_arrow icon_rotate" > </div>
 	    <div id = "form_section_1">'
 	);
-
-	
-	
-	// --------------------Personal Bank Account Details Start------------------- //
-	
 	
 	$form['account_number'] = array(
 	    '#title'          => 'Account Number',
 	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 50,
+	    '#maxlength'	  => 20,
 	    '#required'		  => 'true',
 	    '#default_value'  => '',
 	    '#attributes'     => array(
-	        'placeholder'=> t('Account Number'),
+	        'placeholder'=> t('Account Number (Without Spaces)'),
 	        'class'=> array('input-mini'),
 	        'onKeyPress' => array('return IsNumeric(event, this);',),
-	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
 	    '#suffix' => '</span>',
@@ -208,8 +213,7 @@
 	    '#attributes'     => array(
 	        'placeholder'=> t('Name On Account'),
 	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return IsNumeric(event, this);',),
-	        //'readonly'=>'readonly',
+	        'onKeyPress' => array('return onlyAlphabets(event, this);',),
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
 	    '#suffix' => '</span>',
@@ -223,7 +227,7 @@
 	    '#attributes'     => array(
 	        'placeholder'=> t('Financial Institution Name'),
 	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return onlyAlphabets(event, this);',),
+	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
@@ -232,37 +236,35 @@
     $form['financial_institution_phone'] = array(
 	    '#title'          => 'Financial Institution Phone Number',
 	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 50,
+	    '#maxlength'	  => 12,
 	    '#required'		  => 'true',
 	    '#default_value'  => '',
 	    '#attributes'     => array(
 	        'placeholder'=> t('Financial Institution Phone Number'),
 	        'class'=> array('input-mini'),
-//	        'onKeyPress' => array('return IsNumeric(event, this);',),
-	        //'readonly'=>'readonly',
+	        'onKeyPress' => array('return phoneNumber(event, this);',),
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
 	    '#suffix' => '</span>',
 	);	
     
     
-    
+
 	 $form['account_type'] = array(
 	    '#title'          => 'Account Type',
 	    '#type'		      => 'radios',
-	    '#maxlength'	  => 50,
 	    '#required'		  => 'true',
-	    '#default_value'  => '',
+	    '#default_value'  => 'checking',
 	    '#attributes'     => array(
 	        'class'=> array('input-mini'),
 	        ),
-	     '#options'        => array(	'checking'=> t('Checking'),'saving'=> t('Saving')
-//	        'onKeyPress' => array('return numbersonly(this, event)',),
-	        //'readonly'=>'readonly',
+	     '#options'        => array(	
+			'checking'=> t('Checking'),'saving'=> t('Saving')
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
 	    '#suffix' => '</span>',
 	);	 
+
 	$form['aba_routing_number'] = array(
 	    '#title'          => 'ABA Routing Number',
 	    '#type'		      => 'textfield',
@@ -272,8 +274,7 @@
 	    '#attributes'     => array(
 	        'placeholder'=> t('ABA Routing Number'),
 	        'class'=> array('input-mini'),
-//	        'onKeyPress' => array('return IsNumeric(event, this);',),
-	        //'readonly'=>'readonly',
+	        'onKeyPress' => array('return IsNumeric(event, this);',),
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
 	    '#suffix' => '</span>',

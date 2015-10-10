@@ -9,7 +9,7 @@ function charity_schema() {
         'fields' => array(          
 			'charity_organization_id' 		=> array('type' => 'serial',	'length' => 10,), 
 			'charity_org_name' 				=> array('type' => 'varchar',	'length' => 100,),
-			'501_c_3_number' 				=> array('type' => 'varchar', 	'length' => 100,),
+			'number_501_c_3' 				=> array('type' => 'varchar', 	'length' => 100,),
 			'charity_org_address' 			=> array('type' => 'varchar', 	'length' => 100,), 
 			'charity_org_city' 				=> array('type' => 'varchar', 	'length' => 100,),
 			'charity_org_state' 			=> array('type' => 'varchar', 	'length' => 100,),
