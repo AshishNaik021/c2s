@@ -1,55 +1,43 @@
 <?php
 
 // ==================================================================================================
-//                   New Charity Organization Information Submit
+//                   New Commission Data Entry Information Submit
 // ==================================================================================================
-$charity_organizations_name				=   $form_state['values']['charity_organizations_name'];
-$501_c_3_#			      		 		=   $form_state['values']['501_c_3_#'];
-$street_address							=   $form_state['values']['street_address'];
-$city_id								=   $form_state['values']['city_id'];
-$state_id								=   $form_state['values']['state_id'];
-$zip_code								=   $form_state['values']['zip_code'];
-$contact_number							=   $form_state['values']['contact_number'];
-$personl_email_id						=   $form_state['values']['personl_email_id'];
-$website_url							=   $form_state['values']['website_url'];
-
-// ----- ETF Bank Account Details --- //
-
-$account_number							=   $form_state['values']['account_number'];
-$name_on_account						=   $form_state['values']['name_on_personal_account'];
-$financial_institution_name 			=   $form_state['values']['financial_institution_name'];
-$financial_institution_phone			=   $form_state['values']['financial_institution_phone'];
-$account_type							=   $form_state['values']['account_type'];
-$aba_routing_number 					=   $form_state['values']['aba_routing_number'];
+			$commission_transaction_date					=   $form_state['values']['commission_transaction_date'];
+			$commission_price			      		 		=   $form_state['values']['commission_price'];
+			$transaction_commission_value					=   $form_state['values']['transaction_commission_value'];
+			$transaction_commission_amount					=   $form_state['values']['transaction_commission_amount'];
+			$transaction_management_fees					=   $form_state['values']['transaction_management_fees'];
+			$transaction_cheque_number						=   $form_state['values']['transaction_cheque_number'];
+			$transaction_cheque_date						=   $form_state['values']['transaction_cheque_date'];
+			$transaction_scanned_copy						=   $form_state['values']['transaction_scanned_copy'];
+			$transaction_scanned_copy_1						=   $form_state['values']['transaction_scanned_copy_1'];
 // -----///
 
 
 	try{
 	    
-	    $result_charity = db_query("SELECT max(charity_organization_id) as maxid_charity FROM Charity_Master ");
-	    foreach($result_charity as $value){
-	        $id_charity = $value->maxid_charity;
+	    $result_charity = db_query("SELECT max(transaction_id) as maxid_charity FROM Commission_Master ");
+	    foreach($result_commission as $value){
+	        $id_commission = $value->maxid_commission;
 	    }
-	    $newid_charity  =   $id_charity + 1;
+	    $newid_transaction  =   $id_tranasaction + 1;
 	    
-        $values_charity = array(
-	    'charity_organization_id'         =>    $newid_charity,
-	    'charity_org_name'       		  =>    $charity_organizations_name	,
-        '501_c_3_number'				  =>    $501_c_3_#,
-	    'charity_org_address'	   		  =>    $street_address,
-	    'charity_org_city'	  		      =>	$city_id,
-	    'charity_org_state'	   			  =>	$state_id,
-		'charity_org_zip'	   			  =>	$zip_code,
-		'phone_number'	   			      =>	$contact_number	,
-		'email_id'	   			     	  =>	$personl_email_id,
-		'website_url'	   			      =>	$website_url,
-		'bank_account_number'	   		  =>	$account_number,
-		'bank_account_name'	   			  =>	$name_on_account,
-		'bank_name'	   			 	      =>	$financial_institution_name,
-		'bank_phone'	   			      =>	$financial_institution_phone,
-		'bank_account_type'	   			  =>	$account_type,
-		'bank_aba_routing_number'	   	  =>	$aba_routing_number,
-	    'created_timestamp'         	  =>   REQUEST_TIME,
+        $values_commission = array(
+	    'transaction_id'         			=>    $newid_transaction,
+	    'closing_file_checklist_id'       	=>    $closing_file_checklist_id	,
+        'transaction_date'				  	=>    $commission_transaction_date#,
+	    'property_price'	   		  =>    $commission_price,
+	    'commission_percent_value'	  		      =>	$transaction_commission_value,
+	    'commission_amount'	   			  =>	$transaction_commission_amount,
+		'transaction_management_fees'	   			  =>	$transaction_management_fees,
+		'cheque_1_number'	   			      =>	$transaction_cheque_number	,
+		'date_on_cheque_1'	   			     	  =>	$transaction_cheque_date,
+		'scanned_cheque_1_id'	   			      =>	$transaction_scanned_copy,
+		'cheque_2_number'	   		  =>	$transaction_scanned_copy_1,
+		'date_on_cheque_2'	   			  =>	$name_on_account,
+		'scanned_cheque_2_id'	   			 	      =>	$financial_institution_name,
+		'created_timestamp'         	  =>   REQUEST_TIME,
 	    'last_update_timestamp'           =>   REQUEST_TIME,
 	    );
         
