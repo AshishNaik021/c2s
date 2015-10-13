@@ -1,4 +1,8 @@
 <?php
+ $city_options = array();
+	$state_options = array();
+
+	$state_options = getStates();
 
 $form['#attached']['js'] = array(
     drupal_get_path('module', 'agent') . '/js/validate.js',
@@ -54,16 +58,14 @@ $form['#attached']['css'] = array(
 	    '#title'          => 'Agent Name',
 	    '#type'		      => 'item',
 	    '#maxlength'	  => 50,
-	    '#required'		  => 'true',
-	    '#default_value'  => 'MS. Laura Carr',
+	    '#default_value'  => '',
 	    '#attributes'     => array(
-	        'placeholder'=> t('MS. Laura Carr'),
 	        'class'=> array('input-mini'),
 	        'onKeyPress' => array('return onlyAlphabets(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
-	    '#suffix' => '</span>',
+	    '#suffix' => 'MS. Laura Carr</span>',
 	);
 	$form['types_of_transaction'] = array(
 	    '#title' => t('Types Of Transaction'),
@@ -87,7 +89,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('Title Company'),
 	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return onlyAlphabets(event, this);',),
+	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w100">',
@@ -96,7 +98,7 @@ $form['#attached']['css'] = array(
 	$form['processor_name'] = array(
 	    '#title'          => 'Processor Name',
 	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 50,
+	    '#maxlength'	  => 20,
 	    '#required'		  => 'true',
 	    '#default_value'  => '',
 	    '#attributes'     => array(
@@ -111,13 +113,13 @@ $form['#attached']['css'] = array(
 	$form['processor_email'] = array(
 	    '#title'          => 'Processor Email',
 	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 50,
+	    '#maxlength'	  => 25,
 	    '#required'		  => 'true',
 	    '#default_value'  => '',
 	    '#attributes'     => array(
 	        'placeholder'=> t('Processor Email'),
 	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return onlyAlphabets(event, this);',),
+	        'onKeyPress' => array('return isMailId(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
@@ -126,7 +128,7 @@ $form['#attached']['css'] = array(
 	$form['property_address'] = array(
 	    '#title'          => 'Property Address',
 	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 100,
+	    '#maxlength'	  => 50,
 	    '#required'		  => 'true',
 	    '#default_value'  => '',
 	    '#attributes'     => array(
@@ -138,53 +140,80 @@ $form['#attached']['css'] = array(
 	    '#prefix' => '<span class="wrapper-w50">',
 	    '#suffix' => '</span>',
 	);
+    //--------------  Ajax CallBack for Cities and ZipCodes  ---------------------
 
-	$form['city_id'] = array(
-	    '#title' => t('City'),
-	    '#type'=>'select',
-	    '#required'=>'true',
-	    '#default_value'=>'',
-	    '#options' =>array(1=>'City'),
-	    '#attributes' => array(
-	        'placeholder' => t(''),
-	        'class' => array('select-xlarge', 'uniform'),
-	    ),
-	    '#prefix' => '<span class="wrapper-w16">',
-	    '#suffix' => '</span>',
-	);
-
+	if (isset($form_state['values']['state_id'])) {
+		$selected_state_id = isset($form_state['values']['state_id']) ? $form_state['values']['state_id'] : key($state_options);
+	}else{
+		$selected_state_id = '';
+	}
+	
 	$form['state_id'] = array(
-	    '#title' => t('State'),
-	    '#type'=>'select',
-	    '#required'=>'true',
-	    '#default_value'=>'',
-	    '#options' =>array(1=>'State'),
-	    '#attributes' => array(
-	        'placeholder' => t(''),
-	        'class' => array('select-xlarge', 'uniform'),
+	    '#type'				=>	'select',
+	    '#title' 			=> 	t('State'),
+	    '#options'			=>	$state_options,
+		'#default_value' 	=>	$selected_state_id,
+	    '#required'			=>	'true',
+	    '#attributes' 	=> array(
+	        'class' 	=> array('select-xlarge', 'uniform'),
 	    ),
-	    '#prefix' => '<span class="wrapper-w16">',
-	    '#suffix' => '</span>',
+		'#ajax' 		=> array(
+			'callback' 	=> 'find_cities_callback',
+			'wrapper' 	=> 'cities-wrapper',
+		),
+	    '#prefix' 		=> '<span class="wrapper-w16">',
+	    '#suffix' 		=> '</span>',
 	);
+
+	$city_options = getCities($selected_state_id);
+	if (isset($form_state['values']['city'])) {
+		$selected_city = isset($form_state['values']['city']) ? $form_state['values']['city'] : key($city_options);
+	}else{
+		$selected_city = '';
+	}
+
+	$form['city'] = array(
+	    '#type'				=>	'select',
+	    '#title' 			=> 	t('City'),
+	    '#required'			=>	'true',
+		'#default_value' 	=> 	'',
+	    '#options' 			=>	$city_options,
+	    '#attributes' 	=> array(
+	        'placeholder' 	=>	t(''),
+	        'class' 		=>	array('select-xlarge', 'uniform'),
+	    ),
+		'#ajax' 		=> array(
+			'callback' 	=> 'find_zip_callback',
+			'wrapper' 	=> 'zip-wrapper',
+		),
+	    '#prefix' 		=> '<div id="cities-wrapper"> <span class="wrapper-w16">',
+	    '#suffix' 		=> '</span></div>',
+	);
+
+	$zip = getZip($selected_city, $selected_state_id);
 	$form['zip_code'] = array(
 	    '#title'          => 'Zip Code',
 	    '#type'		      => 'textfield',
 	    '#maxlength'	  => 25,
 	    '#required'		  => 'true',
-	    '#default_value'  => '',
+	    '#value'  => $zip,
 	    '#attributes'     => array(
 	        'placeholder'=> t('Zip Code'),
 	        'class'=> array('input-mini'),
-	        //	        'onKeyPress' => array('return IsNumeric(event, this);',),
-	        //'readonly'=>'readonly',
+	        'readonly'=>'readonly',
 	    ),
-	    '#prefix' => '<span class="wrapper-w16">',
-	    '#suffix' => '</span>',
+	    '#prefix' => '<div id="zip-wrapper"><span class="wrapper-w16">',
+	    '#suffix' => '</span></div>',
 	);
+	
+// ========================================================================
+
+	
+	
 	$form['parcel_number'] = array(
 	    '#title'          => 'Parcel Number',
 	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 25,
+	    '#maxlength'	  => 20,
 	    '#required'		  => 'true',
 	    '#default_value'  => '',
 	    '#attributes'     => array(
@@ -206,7 +235,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('Write MLS Number'),
 	        'class'=> array('input-mini'),
-	        //	        'onKeyPress' => array('return IsNumeric(event, this);',),
+	        	        'onKeyPress' => array('return IsNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w25">',
@@ -221,7 +250,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('Price'),
 	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
+	        'onKeyPress' => array('return IsNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w25">',
@@ -278,8 +307,16 @@ $form['#attached']['css'] = array(
 	    '#title' => t('Terms'),
 	    '#type'=>'select',
 	    '#required'=>'true',
-	    '#default_value'=>'',
-	    '#options' =>array(1=>'Cash','Conv','FHA','VA','RHS','RD','Other'),
+	    '#default_value'=>'Cash',
+	    '#options' =>array(
+				'Cash'=>'Cash',
+				'Conv'=>'Conv',
+				'FHA'=>'FHA',
+				'VA'=>'VA',
+				'RHS'=>'RHS',
+				'RD'=>'RD',
+				'Other'=>'Other',
+			),
 	    '#attributes' => array(
 	        'placeholder' => t('Buyer'),
 	        'class' => array('select-xlarge', 'uniform'),
@@ -290,16 +327,15 @@ $form['#attached']['css'] = array(
 	 $form['association_information'] = array(
 	    '#title'          => 'Association Information',
 	    '#type'		      => 'radios',
-	    '#maxlength'	  => 50,
 	    '#required'		  => 'true',
-	    '#default_value'  => '',
+	    '#default_value'  => 'NO',
 	    '#attributes'     => array(
 	        'class'=> array('input-mini'),
 	        ),
-	     '#options'        => array(	'YES'=> t('YES'),'NO'=> t('NO')
-//	        'onKeyPress' => array('return numbersonly(this, event)',),
-	        //'readonly'=>'readonly',
-	    ),
+	     '#options'      => array(	
+		                       'YES'=> t('YES'),
+							   'NO'=> t('NO')
+			),				   
 	    '#prefix' => '<span class="wrapper-w50">',
 	    '#suffix' => '</span>',
 	);
@@ -307,8 +343,16 @@ $form['#attached']['css'] = array(
 	    '#title' => t('Amount'),
 	    '#type'=>'select',
 	    '#required'=>'true',
-	    '#default_value'=>'',
-	    '#options' =>array(1=>'Cash','Conv','FHA','VA','RHS','RD','Other'),
+	    '#default_value'=>'Cash',
+	    '#options' =>array(
+				'Cash'=>'Cash',
+				'Conv'=>'Conv',
+				'FHA'=>'FHA',
+				'VA'=>'VA',
+				'RHS'=>'RHS',
+				'RD'=>'RD',
+				'Other'=>'Other',
+			),
 	    '#attributes' => array(
 	        'placeholder' => t('Buyer'),
 	        'class' => array('select-xlarge', 'uniform'),
@@ -319,13 +363,13 @@ $form['#attached']['css'] = array(
 	$form['association_name'] = array(
 	    '#title'          => 'Association Name',
 	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 50,
+	    '#maxlength'	  => 25,
 	    '#required'		  => 'true',
 	    '#default_value'  => '',
 	    '#attributes'     => array(
 	        'placeholder'=> t('Association Name'),
 	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return onlyAlphabets(event, this);',),
+	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
@@ -334,7 +378,7 @@ $form['#attached']['css'] = array(
 	$form['contact_person'] = array(
 	    '#title'          => 'Contact Person',
 	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 50,
+	    '#maxlength'	  => 25,
 	    '#required'		  => 'true',
 	    '#default_value'  => '',
 	    '#attributes'     => array(
@@ -346,16 +390,16 @@ $form['#attached']['css'] = array(
 	    '#prefix' => '<span class="wrapper-w50">',
 	    '#suffix' => '</span>',
 	);
-	$form['phone_number'] = array(
+	$form['association_phone_number'] = array(
 	    '#title'          => 'Phone Number',
 	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 50,
+	    '#maxlength'	  => 15,
 	    '#required'		  => 'true',
 	    '#default_value'  => '',
 	    '#attributes'     => array(
-	        'placeholder'=> t('Phone Number'),
+	        'placeholder'=> t('123-456-789'),
 	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return onlyAlphabets(event, this);',),
+	        'onKeyPress' => array('return phoneNumber(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w25">',
@@ -364,13 +408,13 @@ $form['#attached']['css'] = array(
 	$form['email'] = array(
 	    '#title'          => 'Email',
 	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 50,
+	    '#maxlength'	  => 25,
 	    '#required'		  => 'true',
 	    '#default_value'  => '',
 	    '#attributes'     => array(
 	        'placeholder'=> t('Email'),
 	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return onlyAlphabets(event, this);',),
+	        'onKeyPress' => array('return isMailId(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w25">',
@@ -381,7 +425,7 @@ $form['#attached']['css'] = array(
 	    '#type'		      => 'radios',
 	    '#maxlength'	  => 50,
 	    '#required'		  => 'true',
-	    '#default_value'  => '',
+	    '#default_value'  => 'Residential',
 	    '#attributes'     => array(
 	        'class'=> array('input-mini'),
 	        ),
@@ -396,13 +440,13 @@ $form['#attached']['css'] = array(
 	$form['earnest_money'] = array(
 	    '#title'          => 'Earnest Money',
 	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 50,
+	    '#maxlength'	  => 25,
 	    '#required'		  => 'true',
 	    '#default_value'  => '',
 	    '#attributes'     => array(
 	        'placeholder'=> t('Earnest Money'),
 	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return onlyAlphabets(event, this);',),
+	        'onKeyPress' => array('return IsNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w25">',
@@ -411,13 +455,13 @@ $form['#attached']['css'] = array(
 	$form['transaction_management_fee'] = array(
 	    '#title'          => 'Transaction Management Fee',
 	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 50,
+	    '#maxlength'	  => 25,
 	    '#required'		  => 'true',
 	    '#default_value'  => '',
 	    '#attributes'     => array(
 	        'placeholder'=> t('Transaction Management Fee'),
 	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return onlyAlphabets(event, this);',),
+	        'onKeyPress' => array('return IsNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w25">',
@@ -441,7 +485,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('Listing Name'),
 	        'class'=> array('input-mini'),
-	        //	        'onKeyPress' => array('return IsNumeric(event, this);',),
+	        	        'onKeyPress' => array('return onlyAlphabets(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w100">',
@@ -456,7 +500,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('Listing Company'),
 	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return IsNumeric(event, this);',),
+	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w100">',
@@ -466,13 +510,13 @@ $form['#attached']['css'] = array(
 	$form['listing_phone'] = array(
 	    '#title'          => 'Listing Phone',
 	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 25,
+	    '#maxlength'	  => 15,
 	    '#required'		  => 'true',
 	    '#default_value'  => '',
 	    '#attributes'     => array(
-	        'placeholder'=> t('Listing Phone'),
+	        'placeholder'=> t('123-456-789'),
 	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
+	        'onKeyPress' => array('return phoneNumber(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
@@ -482,13 +526,13 @@ $form['#attached']['css'] = array(
 	$form['listing_fax'] = array(
 	    '#title'          => 'Listing FAX',
 	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 25,
+	    '#maxlength'	  => 15,
 	    '#required'		  => 'true',
 	    '#default_value'  => '',
 	    '#attributes'     => array(
 	        'placeholder'=> t('Listing FAX'),
 	        'class'=> array('input-mini'),
-	        //	        'onKeyPress' => array('return IsNumeric(event, this);',),
+	        	        'onKeyPress' => array('return IsNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
@@ -504,7 +548,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('Listing Email'),
 	        'class'=> array('input-mini'),
-	        //	        'onKeyPress' => array('return IsNumeric(event, this);',),
+	        	        'onKeyPress' => array('return isMailId(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w100">',
@@ -566,7 +610,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('Buyers Name'),
 	        'class'=> array('input-mini'),
-	        //	        'onKeyPress' => array('return IsNumeric(event, this);',),
+	        	        'onKeyPress' => array('return onlyAlphabets(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w100">',
@@ -581,7 +625,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('Buyers Company'),
 	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return IsNumeric(event, this);',),
+	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w100">',
@@ -591,13 +635,13 @@ $form['#attached']['css'] = array(
 	$form['buyers_phone'] = array(
 	    '#title'          => 'Buyers Phone',
 	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 25,
+	    '#maxlength'	  => 15,
 	    '#required'		  => 'true',
 	    '#default_value'  => '',
 	    '#attributes'     => array(
-	        'placeholder'=> t('Buyers Phone'),
+	        'placeholder'=> t('123-456-789'),
 	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
+	        'onKeyPress' => array('return phoneNumber(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
@@ -607,13 +651,13 @@ $form['#attached']['css'] = array(
 	$form['buyers_fax'] = array(
 	    '#title'          => 'Buyers FAX',
 	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 25,
+	    '#maxlength'	  => 15,
 	    '#required'		  => 'true',
 	    '#default_value'  => '',
 	    '#attributes'     => array(
 	        'placeholder'=> t('Buyers FAX'),
 	        'class'=> array('input-mini'),
-	        //	        'onKeyPress' => array('return IsNumeric(event, this);',),
+	        	        'onKeyPress' => array('return IsNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
@@ -629,7 +673,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('Buyers Email'),
 	        'class'=> array('input-mini'),
-	        //	        'onKeyPress' => array('return IsNumeric(event, this);',),
+	        	        'onKeyPress' => array('return isMailId(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w100">',
@@ -674,15 +718,15 @@ $form['#attached']['css'] = array(
 	    '#suffix' => '</div>',
 	);
 	$form['sellers_first_name'] = array(
-	    '#title'          => 'First Name',
+	    '#title'          => 'Sellers First Name',
 	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 50,
+	    '#maxlength'	  => 15,
 	    '#required'		  => 'true',
 	    '#default_value'  => '',
 	    '#attributes'     => array(
 	        'placeholder'=> t('Sellers Name'),
 	        'class'=> array('input-mini'),
-//	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        'onKeyPress' => array('return onlyAlphabets(this, event)',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w33">',
@@ -690,15 +734,15 @@ $form['#attached']['css'] = array(
 	);	
 
 	$form['sellers_middle_name'] = array(
-	    '#title'          => 'Middle Name',
+	    '#title'          => 'Sellers Middle Name',
 	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 50,
+	    '#maxlength'	  => 15,
 	    '#required'		  => 'true',
 	    '#default_value'  => '',
 	    '#attributes'     => array(
 	        'placeholder'=> t('Middle Name'),
 	        'class'=> array('input-mini'),
-	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+	        	        'onKeyPress' => array('return onlyAlphabets(this, event)',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w33">',
@@ -706,16 +750,16 @@ $form['#attached']['css'] = array(
 	);
 
 	$form['sellers_last_name'] = array(
-	    '#title'          => 'Last Name',
+	    '#title'          => 'Sellers Last Name',
 	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 50,
+	    '#maxlength'	  => 15,
 	    '#required'		  => 'true',
 	    '#default_value'  => '',
 	    '#attributes'     => array(
 	        'placeholder'=> t('Last Name'),
 	        'class'=> array('input-mini'),
-	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
-	        //'readonly'=>'readonly',
+	        	        'onKeyPress' => array('return onlyAlphabets(this, event)',),
+	        
 	    ),
 	    '#prefix' => '<span class="wrapper-w33">',
 	    '#suffix' => '</span>',
@@ -723,14 +767,14 @@ $form['#attached']['css'] = array(
 	$form['sellers_phone'] = array(
 	    '#title'          => 'Sellers Phone',
 	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 25,
+	    '#maxlength'	  => 15,
 	    '#required'		  => 'true',
 	    '#default_value'  => '',
 	    '#attributes'     => array(
-	        'placeholder'=> t('Sellers Phone'),
+	        'placeholder'=> t('123-456-789'),
 	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
-	        //'readonly'=>'readonly',
+	        'onKeyPress' => array('return phoneNumber(event, this);',),
+	        
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
 	    '#suffix' => '</span>',
@@ -749,48 +793,48 @@ $form['#attached']['css'] = array(
 	    '#suffix' => '</span>',
 	);
 	$form['buyers_first_name'] = array(
-	    '#title'          => 'First Name',
+	    '#title'          => 'Buyers First Name',
 	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 50,
+	    '#maxlength'	  => 15,
 	    '#required'		  => 'true',
 	    '#default_value'  => '',
 	    '#attributes'     => array(
 	        'placeholder'=> t('Sellers Name'),
 	        'class'=> array('input-mini'),
-//	        'onKeyPress' => array('return numbersonly(this, event)',),
-	        //'readonly'=>'readonly',
+	        'onKeyPress' => array('return onlyAlphabets(this, event)',),
+	        
 	    ),
 	    '#prefix' => '<span class="wrapper-w33">',
 	    '#suffix' => '</span>',
 	);	
 
 	$form['buyers_middle_name'] = array(
-	    '#title'          => 'Middle Name',
+	    '#title'          => 'Buyers Middle Name',
 	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 50,
+	    '#maxlength'	  => 15,
 	    '#required'		  => 'true',
 	    '#default_value'  => '',
 	    '#attributes'     => array(
 	        'placeholder'=> t('Middle Name'),
 	        'class'=> array('input-mini'),
-	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
-	        //'readonly'=>'readonly',
+	        	        'onKeyPress' => array('return onlyAlphabets(this, event)',),
+	        
 	    ),
 	    '#prefix' => '<span class="wrapper-w33">',
 	    '#suffix' => '</span>',
 	);
 
 	$form['buyers_last_name'] = array(
-	    '#title'          => 'Last Name',
+	    '#title'          => 'Buyers Last Name',
 	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 50,
+	    '#maxlength'	  => 15,
 	    '#required'		  => 'true',
 	    '#default_value'  => '',
 	    '#attributes'     => array(
 	        'placeholder'=> t('Last Name'),
 	        'class'=> array('input-mini'),
-	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
-	        //'readonly'=>'readonly',
+	        	        'onKeyPress' => array('return onlyAlphabets(this, event)',),
+	    
 	    ),
 	    '#prefix' => '<span class="wrapper-w33">',
 	    '#suffix' => '</span>',
@@ -802,10 +846,10 @@ $form['#attached']['css'] = array(
 	    '#required'		  => 'true',
 	    '#default_value'  => '',
 	    '#attributes'     => array(
-	        'placeholder'=> t('Sellers Phone'),
+	        'placeholder'=> t('123-456-789'),
 	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
-	        //'readonly'=>'readonly',
+	        'onKeyPress' => array('return phoneNumber(event, this);',),
+	        
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
 	    '#suffix' => '</span>',
@@ -826,68 +870,92 @@ $form['#attached']['css'] = array(
 	 $form['buyers_address'] = array(
 	    '#title'          => 'Buyers Address',
 	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 100,
+	    '#maxlength'	  => 50,
 	    '#required'		  => 'true',
 	    '#default_value'  => '',
 	    '#attributes'     => array(
 	        'placeholder'=> t('Buyers Address'),
 	        'class'=> array('input-mini'),
-	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
-	        //'readonly'=>'readonly',
+	        	        'onKeyPress' => array('return isAlphaNumeric(this, event)',),
+	      
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
 	    '#suffix' => '</span>',
 	);
-	
-	$form['buyers_city_id'] = array(
-	    '#title' => t('City'),
-	    '#type'=>'select',
-	    '#required'=>'true',
-	    '#default_value'=>'',
-	    '#options' =>array(1=>'City'),
-	    '#attributes' => array(
-	        'placeholder' => t(''),
-	        'class' => array('select-xlarge', 'uniform'),
-	    ),
-	    '#prefix' => '<span id="rep-loc-replace"><span class="wrapper-w16">',
-	    '#suffix' => '</span></span>',
-	);
+	//--------------  Ajax CallBack for Cities and ZipCodes  ---------------------
+
+	if (isset($form_state['values']['buyers_state_id'])) {
+		$selected_buyers_state_id = isset($form_state['values']['state_id']) ? $form_state['values']['state_id'] : key($state_options);
+	}else{
+		$selected_buyers_state_id = '';
+	}
 	
 	$form['buyers_state_id'] = array(
-	    '#title' => t('State'),
-	    '#type'=>'select',
-	    '#required'=>'true',
-	    '#default_value'=>'',
-	    '#options' =>array(1=>'State'),
-	    '#attributes' => array(
-	        'placeholder' => t(''),
-	        'class' => array('select-xlarge', 'uniform'),
+	    '#type'				=>	'select',
+	    '#title' 			=> 	t('State'),
+	    '#options'			=>	$state_options,
+		'#default_value' 	=>	$selected_buyers_state_id,
+	    '#required'			=>	'true',
+	    '#attributes' 	=> array(
+	        'class' 	=> array('select-xlarge', 'uniform'),
 	    ),
-	    '#prefix' => '<span id="rep-loc-replace"><span class="wrapper-w16">',
-	    '#suffix' => '</span></span>',
+		'#ajax' 		=> array(
+			'callback' 	=> 'find_cities_callback',
+			'wrapper' 	=> 'cities-wrapper',
+		),
+	    '#prefix' 		=> '<span class="wrapper-w16">',
+	    '#suffix' 		=> '</span>',
 	);
-	
-    $form['buyers_zip_code'] = array(
+
+	$city_options = getCities($selected_buyers_state_id);
+	if (isset($form_state['values']['city'])) {
+		$selected_buyers_city = isset($form_state['values']['city']) ? $form_state['values']['city'] : key($city_options);
+	}else{
+		$selected_buyers_city = '';
+	}
+
+	$form['buyers_city'] = array(
+	    '#type'				=>	'select',
+	    '#title' 			=> 	t('City'),
+	    '#required'			=>	'true',
+		'#default_value' 	=> 	'',
+	    '#options' 			=>	$city_options,
+	    '#attributes' 	=> array(
+	        'placeholder' 	=>	t(''),
+	        'class' 		=>	array('select-xlarge', 'uniform'),
+	    ),
+		'#ajax' 		=> array(
+			'callback' 	=> 'find_zip_callback',
+			'wrapper' 	=> 'zip-wrapper',
+		),
+	    '#prefix' 		=> '<div id="cities-wrapper"> <span class="wrapper-w16">',
+	    '#suffix' 		=> '</span></div>',
+	);
+
+	$zip = getZip($selected_buyers_city, $selected_buyers_state_id);
+	$form['buyers_zip_code'] = array(
 	    '#title'          => 'Zip Code',
 	    '#type'		      => 'textfield',
 	    '#maxlength'	  => 25,
 	    '#required'		  => 'true',
-	    '#default_value'  => '',
+	    '#value'  => $zip,
 	    '#attributes'     => array(
 	        'placeholder'=> t('Zip Code'),
 	        'class'=> array('input-mini'),
-	        //	        'onKeyPress' => array('return numbersonly(this, event)',),
-	        //'readonly'=>'readonly',
+	        'readonly'=>'readonly',
 	    ),
-	    '#prefix' => '<span class="wrapper-w16">',
-	    '#suffix' => '</span>',
+	    '#prefix' => '<div id="zip-wrapper"><span class="wrapper-w16">',
+	    '#suffix' => '</span></div>',
 	);
+	
+// ========================================================================
+
+	
 	$form['buyers_cost'] = array(
 	    '#title'          => 'Buyers Cost Paid By Seller',
 	    '#type'		      => 'radios',
-	    '#maxlength'	  => 50,
 	    '#required'		  => 'true',
-	    '#default_value'  => '',
+	    '#default_value'  => 'NO',
 	    '#attributes'     => array(
 	        'class'=> array('input-mini'),
 	        ),
@@ -901,14 +969,14 @@ $form['#attached']['css'] = array(
 	$form['buyers_cost_how_much'] = array(
 	    '#title'          => 'If Yes How Much',
 	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 25,
+	    '#maxlength'	  => 15,
 	    '#required'		  => 'true',
 	    '#default_value'  => '',
 	    '#attributes'     => array(
 	        'placeholder'=> t(''),
 	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
-	        //'readonly'=>'readonly',
+	        'onKeyPress' => array('return IsNumeric(event, this);',),
+	       
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
 	    '#suffix' => '</span>',
@@ -922,8 +990,8 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('Lender'),
 	        'class'=> array('input-mini'),
-	        //	        'onKeyPress' => array('return IsNumeric(event, this);',),
-	        //'readonly'=>'readonly',
+	        	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
+	        
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
 	    '#suffix' => '</span>',
@@ -931,14 +999,14 @@ $form['#attached']['css'] = array(
 	$form['loan_officer'] = array(
 	    '#title'          => 'Loan Officer',
 	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 25,
+	    '#maxlength'	  => 20,
 	    '#required'		  => 'true',
 	    '#default_value'  => '',
 	    '#attributes'     => array(
 	        'placeholder'=> t('Loan Officer'),
 	        'class'=> array('input-mini'),
-	        //	        'onKeyPress' => array('return IsNumeric(event, this);',),
-	        //'readonly'=>'readonly',
+	        	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
+	        
 	    ),
 	    '#prefix' => '<span class="wrapper-w25">',
 	    '#suffix' => '</span>',
@@ -946,14 +1014,14 @@ $form['#attached']['css'] = array(
 	$form['phone_number'] = array(
 	    '#title'          => 'Phone Number',
 	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 25,
+	    '#maxlength'	  => 15,
 	    '#required'		  => 'true',
 	    '#default_value'  => '',
 	    '#attributes'     => array(
-	        'placeholder'=> t('Phone Number'),
+	        'placeholder'=> t('123-456-789'),
 	        'class'=> array('input-mini'),
-	        //	        'onKeyPress' => array('return IsNumeric(event, this);',),
-	        //'readonly'=>'readonly',
+	        	        'onKeyPress' => array('return phoneNumber(event, this);',),
+	       
 	    ),
 	    '#prefix' => '<span class="wrapper-w25">',
 	    '#suffix' => '</span>',
@@ -961,14 +1029,14 @@ $form['#attached']['css'] = array(
 	$form['lender_fax'] = array(
 	    '#title'          => 'Lender FAX',
 	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 25,
+	    '#maxlength'	  => 15,
 	    '#required'		  => 'true',
 	    '#default_value'  => '',
 	    '#attributes'     => array(
 	        'placeholder'=> t('Lender FAX'),
 	        'class'=> array('input-mini'),
-	        //	        'onKeyPress' => array('return IsNumeric(event, this);',),
-	        //'readonly'=>'readonly',
+	        	        'onKeyPress' => array('return IsNumeric(event, this);',),
+	        
 	    ),
 	    '#prefix' => '<span class="wrapper-w25">',
 	    '#suffix' => '</span>',
@@ -982,8 +1050,8 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('Lender Email'),
 	        'class'=> array('input-mini'),
-	        //	        'onKeyPress' => array('return IsNumeric(event, this);',),
-	        //'readonly'=>'readonly',
+	        	        'onKeyPress' => array('return isMailId(event, this);',),
+	        
 	    ),
 	    '#prefix' => '<span class="wrapper-w25">',
 	    '#suffix' => '</span>',
@@ -991,14 +1059,14 @@ $form['#attached']['css'] = array(
 	$form['home_inspection_provider'] = array(
 	    '#title'          => 'Home Inspection Provider',
 	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 25,
+	    '#maxlength'	  => 20,
 	    '#required'		  => 'true',
 	    '#default_value'  => '',
 	    '#attributes'     => array(
 	        'placeholder'=> t('Home Inspection Provider'),
 	        'class'=> array('input-mini'),
-	        //	        'onKeyPress' => array('return IsNumeric(event, this);',),
-	        //'readonly'=>'readonly',
+	        	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
+	      
 	    ),
 	    '#prefix' => '<span class="wrapper-w33">',
 	    '#suffix' => '</span>',
@@ -1006,14 +1074,14 @@ $form['#attached']['css'] = array(
 	$form['termite_provider'] = array(
 	    '#title'          => 'Termite Provider',
 	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 25,
+	    '#maxlength'	  => 20,
 	    '#required'		  => 'true',
 	    '#default_value'  => '',
 	    '#attributes'     => array(
 	        'placeholder'=> t('Termite Provider'),
 	        'class'=> array('input-mini'),
-	        //	        'onKeyPress' => array('return IsNumeric(event, this);',),
-	        //'readonly'=>'readonly',
+	        	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
+	       
 	    ),
 	    '#prefix' => '<span class="wrapper-w33">',
 	    '#suffix' => '</span>',
@@ -1021,14 +1089,14 @@ $form['#attached']['css'] = array(
 	$form['appraiser'] = array(
 	    '#title'          => 'Appraiser',
 	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 25,
+	    '#maxlength'	  => 20,
 	    '#required'		  => 'true',
 	    '#default_value'  => '',
 	    '#attributes'     => array(
 	        'placeholder'=> t('Appraiser'),
 	        'class'=> array('input-mini'),
-	        //	        'onKeyPress' => array('return IsNumeric(event, this);',),
-	        //'readonly'=>'readonly',
+	        	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
+	    
 	    ),
 	    '#prefix' => '<span class="wrapper-w33">',
 	    '#suffix' => '</span>',
@@ -1036,7 +1104,6 @@ $form['#attached']['css'] = array(
 	$form['basic'] = array(
 	    '#title'          => 'Basic',
 	    '#type'		      => 'checkbox',
-	    '#maxlength'	  => 25,
 	    '#default_value'  => '',
 	    '#attributes'     => array(
 	        'placeholder'=> t(''),
@@ -1050,7 +1117,6 @@ $form['#attached']['css'] = array(
 	$form['termite'] = array(
 	    '#title'          => 'Termite',
 	    '#type'		      => 'checkbox',
-	    '#maxlength'	  => 25,
 	    '#default_value'  => '',
 	    '#attributes'     => array(
 	        'placeholder'=> t(''),
@@ -1064,7 +1130,6 @@ $form['#attached']['css'] = array(
 	$form['randon'] = array(
 	    '#title'          => 'Randon',
 	    '#type'		      => 'checkbox',
-	    '#maxlength'	  => 25,
 	    '#default_value'  => '',
 	    '#attributes'     => array(
 	        'placeholder'=> t(''),
@@ -1080,7 +1145,7 @@ $form['#attached']['css'] = array(
 	    '#type'		      => 'radios',
 	    '#maxlength'	  => 50,
 	    '#required'		  => 'true',
-	    '#default_value'  => '',
+	    '#default_value'  => 'NO',
 	    '#attributes'     => array(
 	        'class'=> array('input-mini'),
 	        ),
@@ -1094,14 +1159,14 @@ $form['#attached']['css'] = array(
 	$form['septic_inspection_provided'] = array(
 	    '#title'          => 'If Yes Provided By',
 	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 25,
+	    '#maxlength'	  => 20,
 	    '#required'		  => 'true',
 	    '#default_value'  => '',
 	    '#attributes'     => array(
 	        'placeholder'=> t(''),
 	        'class'=> array('input-mini'),
 	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
-	        //'readonly'=>'readonly',
+	      
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
 	    '#suffix' => '</span>',
@@ -1167,7 +1232,7 @@ $form['#attached']['css'] = array(
 	    '#attributes'     => array(
 	        'placeholder'=> t('Add Notes'),
 	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return onlyAlphabets(event, this);',),
+	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w100">',

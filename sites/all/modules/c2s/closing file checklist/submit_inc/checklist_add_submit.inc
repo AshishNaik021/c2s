@@ -21,7 +21,7 @@
 			$terms											=   $form_state['values']['terms'];
 			$association_name								=   $form_state['values']['association_name'];
 			$contact_person									=   $form_state['values']['contact_person'];
-			$phone_number									=   $form_state['values']['phone_number'];
+			$association_phone_number						=   $form_state['values']['association_phone_number'];
 			$email											=   $form_state['values']['email'];
 			$property_type									=   $form_state['values']['property_type'];
 			$earnest_money									=   $form_state['values']['earnest_money'];
@@ -107,7 +107,7 @@
 		                    'terms'		  							=>	  $terms,
 		                    'association_name'	  					=>	  $association_name,
 		                    'association_contact_person'		    =>	  $contact_person,
-		                    'association_phone_number'		  		=>	  $phone_number,
+		                    'association_phone_number'		  		=>	  $association_phone_number,
 		                    'association_email'		  				=>	  $email,
 		                    'property_type'      	  				=>    $property_type,
 		                    'earnest_money'		  					=>	  $earnest_money,
