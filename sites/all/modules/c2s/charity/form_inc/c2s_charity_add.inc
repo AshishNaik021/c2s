@@ -1,8 +1,56 @@
 <?php
 	$city_options = array();
 	$state_options = array();
-
 	$state_options = getStates();
+	$arg = arg();
+// ===============  When in Edit mode, 3rd Arg will be set to Charity Org ID =======================
+if(isset($arg[3])){
+	$charity_organization_id = arg(3);
+	$query = "SELECT * FROM c2s_charity_org_master WHERE charity_organization_id = ".$charity_organization_id ;
+	$result = db_query($query);
+	foreach($result as $value){
+		$charity_org_name 				= $value->charity_org_name;
+		$number_501_c_3 	  			= $value->number_501_c_3;
+		$charity_org_address         	= $value->charity_org_address;
+		$charity_org_city		  		= $value->charity_org_city;
+		$charity_org_state	      		= $value->charity_org_state;
+		$charity_org_zip 		        = $value->charity_org_zip;
+		$phone_number 		          	= $value->phone_number;
+		$email_id 		          		= $value->email_id;
+		$website_url 		          	= $value->website_url;
+		$bank_account_number 		    = $value->bank_account_number;
+		$bank_account_name 		        = $value->bank_account_name;
+		$bank_name 		          		= $value->bank_name;
+		$bank_phone 		          	= $value->bank_phone;
+		$bank_account_type 		        = $value->bank_account_type;
+		$bank_aba_routing_number 		= $value->bank_aba_routing_number;
+
+		$value_of_submit_button = 'Update Charity!';
+	}
+}else {
+// ======== Insert Mode - ADD New Values ==================
+		$charity_org_name 				= '';
+		$number_501_c_3 	  			= '';
+		$charity_org_address         	= '';
+		$charity_org_city		  		= '';
+		$charity_org_state	      		= '';
+		$charity_org_zip 		        = '';
+		$phone_number 		          	= '';
+		$email_id 		          		= '';
+		$website_url 		          	= '';
+		$bank_account_number 		    = '';
+		$bank_account_name 		        = '';
+		$bank_name 		          		= '';
+		$bank_phone 		          	= '';
+		$bank_account_type 		        = 'checking';
+		$bank_aba_routing_number 		= '';
+
+		$charity_organization_id = '';
+		$value_of_submit_button = 'Submit';
+}
+
+
+// ======================================================================================================
 
 	
 	$form['#attached']['js'] = array(
@@ -18,12 +66,18 @@
 	   '#type' => 'item',
 	   '#suffix' => '<div id="main-form-wrapper"> ',
 	);
+	
+	$form['charity_organizations_id'] = array(
+	    '#type'		      => 'hidden',
+	    '#default_value'  => $charity_organization_id,
+	);	
+	
 	$form['charity_organizations_name'] = array(
 	    '#title'          => 'Charity Organizations Name',
 	    '#type'		      => 'textfield',
 	    '#maxlength'	  => 50,
 	    '#required'		  => 'true',
-	    '#default_value'  => '',
+	    '#default_value'  => $charity_org_name,
 	    '#attributes'     => array(
 	        'placeholder'=> t('Charity Organizations Name'),
 	        'class'=> array('input-mini'),
@@ -33,15 +87,12 @@
 	    '#suffix' => '</span>',
 	);	
 	
-	
-    
-		
 	$form['number_501_c_3'] = array(
 	    '#title'          => '501 (c)(3) Number',
 	    '#type'		      => 'textfield',
 	    '#maxlength'	  => 10,
 	    '#required'		  => 'true',
-	    '#default_value'  => '',
+	    '#default_value'  => $number_501_c_3,
 	    '#attributes'     => array(
 		    'placeholder'=> t('Unique Number for Your Charity Organization'),
 	        'class'=> array('input-mini'),
@@ -57,10 +108,11 @@
 	    '#type'		      => 'textfield',
 	    '#maxlength'	  => 100,
 	    '#required'		  => 'true',
-	    '#default_value'  => '',
+	    '#default_value'  => $charity_org_address,
 	    '#attributes'     => array(
 	        'placeholder'=> t('Street Address'),
 	        'class'=> array('input-mini'),
+	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
 	    '#suffix' => '</span>',
@@ -71,7 +123,7 @@
 	if (isset($form_state['values']['state_id'])) {
 		$selected_state_id = isset($form_state['values']['state_id']) ? $form_state['values']['state_id'] : key($state_options);
 	}else{
-		$selected_state_id = '';
+		$selected_state_id = $charity_org_state;
 	}
 	
 	$form['state_id'] = array(
@@ -95,14 +147,14 @@
 	if (isset($form_state['values']['city'])) {
 		$selected_city = isset($form_state['values']['city']) ? $form_state['values']['city'] : key($city_options);
 	}else{
-		$selected_city = '';
+		$selected_city = $charity_org_city;
 	}
 
 	$form['city'] = array(
 	    '#type'				=>	'select',
 	    '#title' 			=> 	t('City'),
 	    '#required'			=>	'true',
-		'#default_value' 	=> 	'',
+		'#default_value' 	=> 	$selected_city,
 	    '#options' 			=>	$city_options,
 	    '#attributes' 	=> array(
 	        'placeholder' 	=>	t(''),
@@ -139,7 +191,7 @@
 	    '#type'		      => 'textfield',
 	    '#maxlength'	  => 50,
 	    '#required'		  => 'true',
-	    '#default_value'  => '',
+	    '#default_value'  => $phone_number,
 	    '#attributes'     => array(
 	        'placeholder'=> t('123-456-7890'),
 	        'class'=> array('input-mini'),
@@ -149,12 +201,12 @@
 	    '#suffix' => '</span>',
 	);
 
-	$form['personl_email_id'] = array(
+	$form['personal_email_id'] = array(
 	    '#title'          => 'Personal Email ID',
 	    '#type'		      => 'textfield',
 	    '#maxlength'	  => 100,
 	    '#required'		  => 'true',
-	    '#default_value'  => '',
+	    '#default_value'  => $email_id,
 	    '#attributes'     => array(
 	        'placeholder'=> t('Personal Email ID'),
 	        'class'=> array('input-mini'),
@@ -170,7 +222,7 @@
 	    '#type'		      => 'textfield',
 	    '#maxlength'	  => 25,
 	    '#required'		  => 'true',
-	    '#default_value'  => '',
+	    '#default_value'  => $website_url,
 	    '#attributes'     => array(
 	        'placeholder'=> t('Website URL'),
 	        'class'=> array('input-mini'),
@@ -195,7 +247,7 @@
 	    '#type'		      => 'textfield',
 	    '#maxlength'	  => 20,
 	    '#required'		  => 'true',
-	    '#default_value'  => '',
+	    '#default_value'  => $bank_account_number,
 	    '#attributes'     => array(
 	        'placeholder'=> t('Account Number (Without Spaces)'),
 	        'class'=> array('input-mini'),
@@ -209,7 +261,7 @@
 	    '#type'		      => 'textfield',
 	    '#maxlength'	  => 50,
 	    '#required'		  => 'true',
-	    '#default_value'  => '',
+	    '#default_value'  => $bank_account_name,
 	    '#attributes'     => array(
 	        'placeholder'=> t('Name On Account'),
 	        'class'=> array('input-mini'),
@@ -223,12 +275,11 @@
 	    '#type'		      => 'textfield',
 	    '#maxlength'	  => 50,
 	    '#required'		  => 'true',
-	    '#default_value'  => '',
+	    '#default_value'  => $bank_name,
 	    '#attributes'     => array(
 	        'placeholder'=> t('Financial Institution Name'),
 	        'class'=> array('input-mini'),
 	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
-	        //'readonly'=>'readonly',
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
 	    '#suffix' => '</span>',
@@ -238,7 +289,7 @@
 	    '#type'		      => 'textfield',
 	    '#maxlength'	  => 12,
 	    '#required'		  => 'true',
-	    '#default_value'  => '',
+	    '#default_value'  => $bank_phone,
 	    '#attributes'     => array(
 	        'placeholder'=> t('Financial Institution Phone Number'),
 	        'class'=> array('input-mini'),
@@ -254,7 +305,7 @@
 	    '#title'          => 'Account Type',
 	    '#type'		      => 'radios',
 	    '#required'		  => 'true',
-	    '#default_value'  => 'checking',
+	    '#default_value'  => $bank_account_type,
 	    '#attributes'     => array(
 	        'class'=> array('input-mini'),
 	        ),
@@ -270,7 +321,7 @@
 	    '#type'		      => 'textfield',
 	    '#maxlength'	  => 50,
 	    '#required'		  => 'true',
-	    '#default_value'  => '',
+	    '#default_value'  => $bank_aba_routing_number,
 	    '#attributes'     => array(
 	        'placeholder'=> t('ABA Routing Number'),
 	        'class'=> array('input-mini'),
@@ -286,13 +337,11 @@
 	    '#type' => 'item',
 	    '#suffix' => '</div></div> ',
 	);
-	
-	
-    
+
 
 	
 	$form['submit'] = array('#type'=>'submit',
-	    '#value'=>t(' Submit '),
+	    '#value'=> $value_of_submit_button,
 	    '#attributes' => array(
 	        'class' => array('submit-blue-button-float-right'),
 	    ),

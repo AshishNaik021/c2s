@@ -48,14 +48,102 @@ a.url{
 	 margin-left:-125px;;
 }
 
+#c2s-charity-view-edit .form-submit{
+	display:none;
+}
+
+#form_sections{
+	margin: 0 auto;
+	margin:1% 0%;
+}
 
 
+/* ============  View Page CSS  ============== */
 
+#page-outer-wrapper{
+    font-family: 'quicksandregular';
+	width: 94%;
+	background: #7878FF;
+	min-height:600px;
+	margin: 1% 1%;
+	padding: 1%;
+	border-radius: 6px;
+}
 
+#page-inner-wrapper{
+	width: 100%;
+	background: #ffffff;
+	min-height:600px;
+	float:left;
+}
 
+#view-page-title{
+	width:67%;
+    font-size: 21px;
+    font-weight: bold;
+    color: #ffffff;
+    margin: 0 auto;
+    background-color: #7878FF;
+    padding: 0.5% 0 0.5% 33%;
+	border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+	float:left;
+}
 
+#icon-block{
+	float:right;
+	margin-right:3%;
+	margin-top:0.5%;
+	font-size:13px;
+	font-weight:normal;
+}
+#icon-block a{
+	color: #fff;
+	text-decoration: none;
+}
 
+#view-page-block{
+	width:45.5%;
+	margin:1%;
+	padding:1%;
+	float:left;
+	border: 1px solid #aaa;
+	border-radius: 3px;
+	min-height:180px;
+}
+#view-page-block-label{
+	font-size:14px;
+	font-weight:600;
+	color:#666;
+	margin-top:0.7%;
+	margin-bottom:0.5%;
+}
+#view-page-block-value{
+	font-size:12px;
+	font-weight:100;
+	color:#666;
+}
+#view-page-small-block{
+	float:left;
+	width:100%;
+	margin-top:1%;
+}
+#view-page-small-block2-30p{
+	float:left;
+	margin:0.7%;
+	width:31%;
+}
+#view-page-small-block2-50p{
+	float:left;
+	margin:0.7%;
+	width:48%;
+}
 
-
-
-
+#view-page-fullwidth-block{
+	float:left;
+	width:97%;
+	min-height:50px;
+	margin:1%;
+	border:1px solid #999;
+	border-radius:3px;
+}

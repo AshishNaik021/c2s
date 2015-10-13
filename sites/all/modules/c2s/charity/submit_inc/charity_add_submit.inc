@@ -1,5 +1,6 @@
 <?php
 
+
 // ==================================================================================================
 //                   New Charity Organization Information Submit
 // ==================================================================================================
@@ -23,10 +24,8 @@
 	$aba_routing_number 					=   $form_state['values']['aba_routing_number'];
 // -----///
 
-
+if($form_state['values']['charity_organizations_id'] == '') {  //==== Insert =====
 	try{
-	    
-	    
         $values_charity = array(
 			'charity_org_name'       		  =>    $charity_organizations_name	,
 			'number_501_c_3'				  =>    $number_501_c_3,
@@ -43,14 +42,11 @@
 			'bank_phone'	   			      =>	$financial_institution_phone,
 			'bank_account_type'	   			  =>	$account_type,
 			'bank_aba_routing_number'	   	  =>	$aba_routing_number,
-			'created_timestamp'         	  =>   REQUEST_TIME,
-			'last_update_timestamp'           =>   REQUEST_TIME,
+			'created_timestamp'         	  =>    REQUEST_TIME,
 	    );
-        
 	    db_insert('c2s_charity_org_master')
 	    ->fields($values_charity)
 	    ->execute();
-
 		drupal_set_message("New Charity Organization Details Submitted Successfully");
 	}
 	catch(Exception $e)
@@ -58,20 +54,55 @@
 		drupal_set_message("New Charity Organization Details could not be Inserted <br>" . $e, 'error');				
 	}
 
-
+	//========= Fine the New Charity Org ID created above using AutoIncrement in MySQL Table  ===============
 	
 	$result_charity = db_query("SELECT max(charity_organization_id) as maxid_charity FROM c2s_charity_org_master ");
 	foreach($result_charity as $value){
-		$maxid_charity = $value->maxid_charity;
+		$charity_organizations_id = $value->maxid_charity;
 	}
 	
-	 $form_state['redirect'] = array(
-		'c2s/charity/view/'.$maxid_charity,
+}else{  //==== Update =====
+	try{
+		$charity_organizations_id = $form_state['values']['charity_organizations_id'];
+		
+		db_update('c2s_charity_org_master')
+			->fields(array(
+			'charity_org_name'       		  =>    $charity_organizations_name	,
+			'number_501_c_3'				  =>    $number_501_c_3,
+			'charity_org_address'	   		  =>    $street_address,
+			'charity_org_city'	  		      =>	$city,
+			'charity_org_state'	   			  =>	$state_id,
+			'charity_org_zip'	   			  =>	$zip_code,
+			'phone_number'	   			      =>	$contact_number	,
+			'email_id'	   			     	  =>	$personal_email_id,
+			'website_url'	   			      =>	$website_url,
+			'bank_account_number'	   		  =>	$account_number,
+			'bank_account_name'	   			  =>	$name_on_account,
+			'bank_name'	   			 	      =>	$financial_institution_name,
+			'bank_phone'	   			      =>	$financial_institution_phone,
+			'bank_account_type'	   			  =>	$account_type,
+			'bank_aba_routing_number'	   	  =>	$aba_routing_number,
+			'last_update_timestamp'           =>   REQUEST_TIME,
+	    ))
+		->condition('charity_organization_id', $charity_organizations_id, '=')
+	    ->execute();
+		drupal_set_message("Charity Organization Details for ".$charity_organizations_name." Updated Successfully");
+	}
+	catch(Exception $e)
+	{
+		drupal_set_message("Charity Organization Details could not be Updated for ".$charity_organizations_name."! <br>" . $e, 'error');				
+	}
+	
+}
+
+
+	$form_state['redirect'] = array(
+		'c2s/charity/view/'.$charity_organizations_id,
 	   array(
 		'query' => array(
 	   ),
 	  ),
-	 );	
+	);	
 
 				
 // --------------------------------------------------------------------------------------------------

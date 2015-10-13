@@ -26,21 +26,28 @@ function charity_menu() {
 	);
 	
 	$items['c2s/charity/view'] = array(
-		'page callback' => 'drupal_get_form',
         'title'=>'Charity Profile View',
         'menu_name' 	=> 'c2s-menu',
-		'page arguments' => array('c2s_charity_view'),
+		'page callback' => 'c2s_charity_view',
 		'access callback' => TRUE,
         'access arguments' => array('Charity Profile View'),
 	);
 
-	$items['c2s/charity/delete'] = array(
-        'title'=>'Application Delete',
-		'page callback' => 'drupal_get_form',
-        'menu_name' 	=> 'c2s-menu',
-		'page arguments' => array('c2s_charity_delete'),
-		'access callback' => TRUE,
-        'access arguments' => array('Delete C2S Charity'),
+	$items['c2s/charity/deactivate'] = array(
+        'title'				=> 'Charity Organization Deactivate',
+		'page callback' 	=> 'drupal_get_form',
+        'menu_name' 		=> 'c2s-menu',
+		'page arguments' 	=> array('c2s_charity_deactivate'),
+		'access callback' 	=> TRUE,
+        'access arguments' 	=> array('Delete C2S Charity'),
+	);
+
+	$items['c2s/charity/list'] = array(
+        'title'			=>	'Charity Profile List',
+        'menu_name' 	=> 	'c2s-menu',
+		'page callback' => 'c2s_charity_list',
+		'access callback' 	=> TRUE,
+        'access arguments' 	=> array('Charity Profile List'),
 	);
 
 	return $items;
@@ -163,14 +170,18 @@ function c2s_charity_add($form, &$form_state) {
 	include("form_inc/c2s_charity_add.inc");
 	return $form;
 }
-function c2s_charity_view($form, &$form_state) {
+function c2s_charity_view() {
 	include("form_inc/c2s_charity_view.inc");
+	return $output;
+}
+function c2s_charity_deactivate($form, &$form_state) {
+	include("form_inc/c2s_charity_deactivate.inc");
 	return $form;
 }
 
-function c2s_charity_delete($form, &$form_state) {
-	include("form_inc/c2s_charity_delete.inc");
-	return $form;
+function c2s_charity_list() {
+	include("form_inc/c2s_charity_list.inc");
+	return $output;
 }
 
 // ==================================================================================================
@@ -179,6 +190,9 @@ function c2s_charity_delete($form, &$form_state) {
 
 function c2s_charity_add_submit($form,&$form_state){
 		include("submit_inc/charity_add_submit.inc"); 
+}
+function c2s_charity_view_edit_submit($form,&$form_state){
+		include("submit_inc/charity_view_edit_submit.inc"); 
 }
 
 // ==================================================================================================
