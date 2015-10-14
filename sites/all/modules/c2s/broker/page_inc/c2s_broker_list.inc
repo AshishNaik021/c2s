@@ -6,7 +6,7 @@
 
 
     $header = array(
-       array('data' => 'Employee Name', 'field' => '', 'style'=>'width: 15%;'),
+       array('data' => 'Broker Name', 'field' => '', 'style'=>'width: 15%;'),
        array('data' => 'NRDS #', 'field' => '', 'style'=>'width: 12%;'),
        array('data' => 'EIN #', 'field' => '', 'style'=>'width: 12%;'),
        array('data' => 'Address', 'field' => '', 'style'=>'width: 25%;'),

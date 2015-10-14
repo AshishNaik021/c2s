@@ -1,6 +1,9 @@
 $(document).ready(function() {
 		
-
+$("#user_photo").click(function(){
+	$("#user_menu").toggle();
+	
+});
 		
 		$('#block-menu-menu-secondary-menu ul li span a.active').parent('span').parent('li').addClass('active');
 		

@@ -43,7 +43,7 @@ function charity_menu() {
 	);
 
 	$items['c2s/charity/list'] = array(
-        'title'			=>	'Charity Profile List',
+        'title'			=>	'List of Charity Organizations',
         'menu_name' 	=> 	'c2s-menu',
 		'page callback' => 'c2s_charity_list',
 		'access callback' 	=> TRUE,

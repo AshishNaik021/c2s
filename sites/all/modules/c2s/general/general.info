@@ -3,8 +3,6 @@ description = "City2Shore General Module"
 package = C2S
 core = 7.x
 
-
-stylesheets[all][] = css/broker-form.css
 stylesheets[all][] = css/global-c2s.css
 
-scripts[] = /js/broker.js
+scripts[] = js/validate.js

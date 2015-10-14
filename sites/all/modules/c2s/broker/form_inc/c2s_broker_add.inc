@@ -1,55 +1,14 @@
 <?php
 
-$form['#attached']['js'] = array(
-    drupal_get_path('module', 'broker') . '/js/validate.js',
-);
-
-$form['#attached']['css'] = array(
-    drupal_get_path('module', 'broker') . '/css/global-c2s.css',
-);
-
-/*
-	//drupal_add_css(drupal_get_path('module', 'overtime') . '/css/overtime.css');
-$form['#attached']['css'] = array(
-		drupal_get_path('module', 'overtime') . '/css/overtime.css',
-);
-	$ot_rate_id			= 0;
-	
-	$location_code 		= '';
-	$category 			= '';
-	$grade		 		= '';
-	$employee_type 		= '';
-	$effective_date 	= '';
-	$rate_multiple 		= '';
-	$created 			= '';
-	$changed 			= '';
-
-	if(isset($_GET['ot_rate_id'])){
-		$ot_rate_id = $_GET['ot_rate_id'];
-	}
-
-		
-	$result = db_query("SELECT * 
-                              FROM pms_setting_overtime 
-                              WHERE ot_rate_id = ".$ot_rate_id);
-	foreach($result as $value){
-		$company_code 		= $value->company_id;
-		$location_code 		= $value->location_id;
-		$category 		= $value->category_id;
-		$grade		 	= $value->grade_id;
-		$employee_type 		= $value->employee_type;
-		$effective_date 	= $value->effective_date;
-		$rate_multiple 		= $value->rate_multiple;
-		$created 		= $value->created;
-		$changed 		= $value->changed;
-	}
-        if(empty($company_code )){$company_code = 1;}
-*/
 $result_paperwork = db_query("select document_name from required_paperwork") ;
-
-
 $number_to_words = array(1=>"One", 2=> "Two", 3=> "Three", 4=>"Four", 5=>"Five", 6=>"Six");
 $total_brokers = 1;
+
+
+$form['form_start'] = array(
+    '#type' => 'item',
+    '#suffix' => '<div id="main-view-wrapper">',
+);
 
 if (isset($form_state['values']['broker_owners'])) {
     $total_brokers = isset($form_state['values']['broker_owners']) ? $form_state['values']['broker_owners'] : '1';
@@ -72,13 +31,6 @@ $form['broker_owners'] = array(
 );
 
 
-$form['form_start'] = array(
-    '#type' => 'item',
-    '#suffix' => '<div id="main-view-wrapper">',
-);
-
-
-
 $form['#tree'] = TRUE;
 $form['names_fieldset'] = array(
     '#type' => 'fieldset',
@@ -90,13 +42,13 @@ $form['names_fieldset'] = array(
 
 $form['names_fieldset']['brokerage_tab'] = array(
     '#type' => 'item',
-    '#suffix' => '<div class="form_section_tab selected" id="tab_0" data-item="form_tab_0" onclick="click_tabs(\'tab_0\')" > Brokerage Details </div>',
+    '#suffix' => '<div class="form_section_tab selected" id="tab_0" data-item="form_tab_0" onclick="click_tabs_add(\'tab_0\')" > Brokerage Details </div>',
 );
 
 for($i=1; $i<=$total_brokers; $i++){
     $form['names_fieldset']['broker_tab_'.$i] = array(
         '#type' => 'item',
-        '#suffix' => '<div class="form_section_tab" id="tab_'.$i.'" data-item="form_tab_'.$i.'" onclick="click_tabs(\'tab_'.$i.'\')" > Brokerage '.$number_to_words[$i].' </div>',
+        '#suffix' => '<div class="form_section_tab" id="tab_'.$i.'" data-item="form_tab_'.$i.'" onclick="click_tabs_add(\'tab_'.$i.'\')" > Brokerage '.$number_to_words[$i].' </div>',
     );
 
 }
@@ -153,29 +105,6 @@ $form['names_fieldset']['brokerage_start_date'] = array(
     '#prefix' => '<span class="wrapper-w33"><label class="label_left"> Start Date </label><span class="value_left">',
     '#suffix' => '</span></span>',
 );
-
-/*
-
-$form['names_fieldset']['number_of_owners'] = array(
-    '#title'          => 'Total Owners',
-    '#type'		      => 'textfield',
-    '#maxlength'	  => 5,
-    '#default_value'  => 1,
-    '#required'       => 'true',
-    '#theme_wrappers'  => array(),
-    '#attributes'     => array(
-        'class'=> array('form_text'),
-        'onKeyPress' => array('return IsNumeric(event, this);',),
-        //'readonly'=>'readonly',
-    ),
-    '#ajax' => array(
-        'wrapper' => 'names-fieldset-wrapper',
-        'callback' => 'spower_add_more_callback',
-    ),
-    '#prefix' => '<span class="wrapper-w33"><label class="label_left"> Total Owner </label><span class="value_left">',
-    '#suffix' => '</span></span>',
-); */
-
 
 
 $form['names_fieldset']['franchise_fee_cap'] = array(
@@ -261,15 +190,6 @@ $form['names_fieldset']['brokerage_details_end'] = array(
 
 
 /* Broker Loop */
-/*
-$form['#tree'] = TRUE;
-$form['names_fieldset'] = array(
-    '#type' => 'fieldset',
-    '#theme_wrappers'  => array(),
-    // Set up the wrapper so that AJAX will be able to replace the fieldset.
-    '#prefix' => '<div id="names-fieldset-wrapper">',
-    '#suffix' => '</div>',
-); */
 
 for($i=1; $i<=$total_brokers; $i++){
 $form['names_fieldset']['broker_'.$i.'_details_start'] = array(

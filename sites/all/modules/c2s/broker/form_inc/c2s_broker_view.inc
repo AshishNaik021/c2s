@@ -118,6 +118,7 @@ foreach($result as $value){
     
     
 }
+$number_to_words = array(1=>"One", 2=> "Two", 3=> "Three", 4=>"Four", 5=>"Five", 6=>"Six");
 //$total_brokers = $n;
 /*
 $result_paperwork = db_query("select document_name from required_paperwork where `paperwork_id` in 
@@ -306,7 +307,12 @@ $number_to_words = array(1=>"One", 2=> "Two", 3=> "Three", 4=>"Four", 5=>"Five",
 	/* Broker Loop */
 	
 $i = $form_state['broker_id'];
-	
+$form['#attributes']['style'][] = 'display:none';
+$form['#attributes']['name'][] = 'broker_form_'.$i;
+$form['#attributes']['class'][] = 'broker_form';
+$form['#attributes']['id'][] = 'broker_form_'.$i;
+$form['#submit'][] = 'c2s_broker_edit_view_submit';
+//$form['#action'] = base_path().'c2s/broker/update/'.$broker_details[$i]['id'].'/'.$brokerage_id;
 //	for($i=1; $i<=$total_brokers; $i++){
 	$form['broker_'.$i.'_details_start'] = array(
 	    '#type' => 'item',
@@ -316,7 +322,7 @@ $i = $form_state['broker_id'];
 	
 	$form['broker_'.$i.'_details_seperator'] = array(
 	    '#type' => 'item',
-	    '#prefix' => '<input type="button" value="Edit Broker" style="float: right; margin:5px;" onclick="convert_edit('.$form_state['form_id'].')">
+	    '#prefix' => '<input type="button" value="Edit Broker" style="float: right; margin:5px;" onclick="convert_edit('.$broker_details[$i]['id'].')">
 	     <input type="button" value="Deactivate Broker" style="float: right; margin:5px;" onclick="window.location=\''.base_path().'c2s/broker/deactivate/'.$broker_details[$i]['id'].'/'.$brokerage_id.'\'">',
 	    '#suffix' => '<div class="seperator" style="height: 10px;width: 100%;float: left;clear: both;"></div>',
 	);
@@ -325,6 +331,17 @@ $i = $form_state['broker_id'];
 	    '#type' => 'item',
 	    '#theme_wrappers'  => array(),
 	    '#prefix' => '<div class="section_left"> <div class="form_subsection_title" data-item="inner_section_1"> Personal Information</div>',
+	);
+	
+	$form[$i]['broker_id'] = array(
+	    '#type'		      => 'hidden',
+	    '#value'  => $broker_details[$i]['id'],
+
+	);
+	$form['broker_main_id'] = array(
+	    '#type'		      => 'hidden',
+	    '#value'  => arg(3),
+	
 	);
 	
 	$form['broker_'.$i.'_first_name'] = array(
@@ -1125,7 +1142,14 @@ $i = $form_state['broker_id'];
 	);
 	
 	//-----------//
-
+	$form['submit_'.$i] = array('#type'=>'submit',
+	    '#value' => t('Submit '.$number_to_words[$form_state['form_id']]),
+	    '#id' => 'broker_submit_'.$i,
+	    '#attributes' => array(
+	        'class' => array('submit-blue-button-float-right'),
+	        'style' => 'display:none',
+	    ),
+	);
 	$form['broker_'.$i.'_details_end'] = array(
 	    '#type' => 'item',
 	    '#suffix' => '</div>',

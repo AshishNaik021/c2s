@@ -1,0 +1,89 @@
+<?php
+
+function test_menu() {
+	
+	$items['c2s/test'] = array(
+        'title'				=> 'C2S Test Form',
+		'page callback' 	=> 'drupal_get_form',
+        'menu_name' 		=> 'c2s-menu',
+		'page arguments' 	=> array('test'),
+		'access callback' 	=> TRUE,
+        'access arguments' 	=> array('C2S TESTING'),
+	);
+	
+	return $items;
+}
+
+// ==================================================================================================
+//                   FORMS INC
+// ==================================================================================================
+
+function test($form, &$form_state) {
+	include("form_inc/test.inc");
+	return $form;
+}
+
+// ==================================================================================================
+//                   FORM SUBMITING FUNCTIONS   
+// ==================================================================================================
+
+function test_submit($form,&$form_state){
+		include("submit_inc/test_submit.inc"); 
+}
+
+
+
+
+function aspower_add_more_callback($form, $form_state) {
+  return $form['names_fieldset'];
+}
+
+/**
+ * Submit handler for the "add-one-more" button.
+ *
+ * Increments the max counter and causes a rebuild.
+ */
+function aspower_add_more_add_one($form, &$form_state) {
+  $form_state['num_names']++;
+  $form_state['rebuild'] = TRUE;
+}
+
+/**
+ * Submit handler for the "remove one" button.
+ *
+ * Decrements the max counter and causes a form rebuild.
+ */
+function aspower_add_more_remove_one($form, &$form_state) {
+  if ($form_state['num_names'] > 1) {
+    $form_state['num_names']--;
+  }
+  $form_state['rebuild'] = TRUE;
+}
+
+
+
+function find_cities_callback1($form, &$form_state) {
+	return $form['city_id'];
+}
+
+function get_Cities1($state_code){
+	$city_options = array();
+	$result_city = db_query("SELECT city FROM cities_extended WHERE state_code = '".$state_code ."'");
+	foreach($result_city as $value){
+		$city_options[$value->city]	=	$value->city;
+	}
+	return $city_options;
+}
+function get_States1(){
+	$state_options = array();
+	$state_options[] = '-- Select --';
+
+	$result_state = db_query("SELECT state, state_code FROM states ");
+	foreach($result_state as $value){
+		$state_options[$value->state_code]	=	$value->state;
+	}
+
+	return $state_options;
+}
+
+

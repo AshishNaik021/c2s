@@ -1,50 +1,8 @@
 <?php
 
-$form['#attached']['js'] = array(
-    drupal_get_path('module', 'agent') . '/js/validate.js',
-);
 
-$form['#attached']['css'] = array(
-    drupal_get_path('module', 'broker') . '/css/global-c2s.css',
-);
 
-/*
-	//drupal_add_css(drupal_get_path('module', 'overtime') . '/css/overtime.css');
-$form['#attached']['css'] = array(
-		drupal_get_path('module', 'overtime') . '/css/overtime.css',
-);
-	$ot_rate_id			= 0;
-	
-	$location_code 		= '';
-	$category 			= '';
-	$grade		 		= '';
-	$employee_type 		= '';
-	$effective_date 	= '';
-	$rate_multiple 		= '';
-	$created 			= '';
-	$changed 			= '';
 
-	if(isset($_GET['ot_rate_id'])){
-		$ot_rate_id = $_GET['ot_rate_id'];
-	}
-
-		
-	$result = db_query("SELECT * 
-                              FROM pms_setting_overtime 
-                              WHERE ot_rate_id = ".$ot_rate_id);
-	foreach($result as $value){
-		$company_code 		= $value->company_id;
-		$location_code 		= $value->location_id;
-		$category 		= $value->category_id;
-		$grade		 	= $value->grade_id;
-		$employee_type 		= $value->employee_type;
-		$effective_date 	= $value->effective_date;
-		$rate_multiple 		= $value->rate_multiple;
-		$created 		= $value->created;
-		$changed 		= $value->changed;
-	}
-        if(empty($company_code )){$company_code = 1;}
-*/
 $result_paperwork = db_query("select document_name from required_paperwork") ;
 
 
@@ -62,7 +20,7 @@ $form['form_start'] = array(
 
 
 
-$form['brokerage_start_date'] = array(
+$form['agent_start_date'] = array(
     '#label'          => 'invisible',
     '#type'		      => 'date_popup',
     '#theme_wrappers'  => array(),
@@ -102,7 +60,7 @@ for($i=1; $i<=2; $i++){
     }
     $form['agent_tab_'.$i] = array(
         '#type' => 'item',
-        '#suffix' => '<div class="form_section_tab '.$class.'" id="tab_'.$i.'" data-item="form_tab_'.$i.'" onclick="click_tabs(\'tab_'.$i.'\')" > Agent '.$number_to_words[$i].' </div>',
+        '#suffix' => '<div class="form_section_tab '.$class.'" id="tab_'.$i.'" data-item="form_tab_'.$i.'" onclick="click_tabs_add(\'tab_'.$i.'\')" > Agent '.$number_to_words[$i].' </div>',
     );
 
 }
@@ -169,7 +127,6 @@ $form['agent_'.$i.'_personal_info_start'] = array(
 
 $form['agent_'.$i.'_first_name'] = array(
     '#type'		      => 'textfield',
-    '#name'           => 'broker['.$i.'][first_name]',
     '#maxlength'	  => 50,
     
     '#theme_wrappers'  => array(),
@@ -185,7 +142,6 @@ $form['agent_'.$i.'_first_name'] = array(
 
 $form['agent_'.$i.'_middle_name'] = array(
     '#type'		      => 'textfield',
-    '#name'           => 'broker['.$i.'][middle_name]',
     '#maxlength'	  => 50,
     
     '#theme_wrappers'  => array(),
@@ -201,7 +157,6 @@ $form['agent_'.$i.'_middle_name'] = array(
 
 $form['agent_'.$i.'_last_name'] = array(
     '#type'		      => 'textfield',
-    '#name'           => 'broker['.$i.'][last_name]',
     '#maxlength'	  => 50,
     
     '#theme_wrappers'  => array(),
@@ -218,7 +173,6 @@ $form['agent_'.$i.'_last_name'] = array(
 
 $form['date_of_birth_'.$i] = array(
     '#label'          => '',
-    '#name'           => 'broker['.$i.'][dob]',
     '#type'		      => 'date_popup',
     
     '#theme_wrappers'  => array(),

@@ -54,7 +54,8 @@ foreach($result as $value){
 		$output .= '<div id="view-page-title"> Charity Organization Information 
 						<div id="icon-block">
 							<div id="edit-icon" style="float:left">   <a href="../add/'.$charity_organization_id .'"> Edit </a>  &nbsp; | &nbsp; </div>
-							<div id="delete-icon" style="float:left"> <a href="../deactivate/'.$charity_organization_id .'/'.$deact.'"> '.$deact.' </a> </div>
+							<div id="delete-icon" style="float:left"> <a href="../deactivate/'.$charity_organization_id .'/'.$deact.'"> '.$deact.' </a>  &nbsp; | &nbsp; </div>
+							<div id="delete-icon" style="float:left"> <a href="../list"> List </a> </div>
 						</div>
 					</div>';
 					

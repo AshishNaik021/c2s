@@ -1,3 +1,6 @@
+<style>
+
+</style>
 <?php 
 $brokerage_id = arg(3);
 $result = db_query("SELECT * FROM brokerage_details WHERE brokerage_id = ".$brokerage_id);
@@ -13,7 +16,7 @@ foreach($result as $value){
 
 $result_paperwork = db_query("select document_name from required_paperwork where `paperwork_id` in
     (SELECT `paperwork_id` FROM `brokerage_paperwork` where `brokerage_id` = ".$brokerage_id.")") ;
-
+$form['#attributes']['class'][] = 'brokerage_form';
 /*
 $form['form_start'] = array(
     '#type' => 'item',
@@ -22,7 +25,7 @@ $form['form_start'] = array(
 
 $form['brokerage_tab'] = array(
     '#type' => 'item',
-    '#suffix' => '<div class="form_section_tab selected" data-item="form_tab_0" > Brokerage Details </div>',
+    '#suffix' => '<div class="form_section_tab selected" data-item="form_tab_0" onclick="click_tabs(0)" id="tab_0" > Brokerage Details </div>',
 );
 
 $result = db_query("SELECT broker_agent_id FROM broker_master WHERE brokerage_id = ".$brokerage_id." and deactivate = 0");
@@ -39,7 +42,7 @@ for($i=1; $i<=$total_brokers; $i++){
 
     $form['broker_tab_'.$i] = array(
         '#type' => 'item',
-        '#suffix' => '<div class="form_section_tab" data-item="form_tab_'.$broker_id[$i].'" > Brokerage '.$number_to_words[$i].' </div>',
+        '#suffix' => '<div class="form_section_tab" data-item="form_tab_'.$broker_id[$i].'" onclick="click_tabs('.$broker_id[$i].')" id="tab_'.$broker_id[$i].'" > Broker '.$number_to_words[$i].' </div>',
     );
 
 }
@@ -51,7 +54,7 @@ $form['brokerage_details_start'] = array(
 
 $form['brokerage_details_seperator'] = array(
     '#type' => 'item',
-    '#suffix' => '<div class="seperator" style="height: 10px;width: 100%;float: left;clear: both;"></div>',
+    '#suffix' => '<div class="seperator" style="height: 10px;width: 100%;float: left;border-top: 1px solid #000000;clear: both;"></div>',
 );
 
 $form['brokerage_section_left_start'] = array(

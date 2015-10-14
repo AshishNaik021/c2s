@@ -1,0 +1,5 @@
+name = Test Module	
+description = "Test"
+package = C2S
+core = 7.x
+

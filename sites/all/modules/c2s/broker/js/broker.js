@@ -49,27 +49,55 @@ function removePrefix(obj){
 	}
 }
 function convert_edit(i){
-	form_id = 'c2s-broker-edit-view';
-	if(i>1){
-		form_id = form_id+'--'+i;
-	}
+	form_id = 'broker_form_'+i;
 	$("#"+form_id).each(function(){
 	    $(this).find('select').removeClass('input_disabled').addClass('select-xlarge uniform form-select'); //<-- Should return all input elements in that specific form.
-	    $(this).find('input').removeClass('input_disabled').addClass('form_text'); //<-- Should return all input elements in that specific form.
-	    
+	    $(this).find('input').removeAttr('disabled'); //<-- Should return all input elements in that specific form.
+	    $(this).find('select').removeAttr('disabled'); //<-- Should return all input elements in that specific form.
+	    $(this).find('input').removeClass('input_disabled').addClass('form_text');
+	    $("#broker_submit_"+i).show();
 	});
 }
 
 function click_tabs(obj_id){
-
-		section = $("#"+obj_id).attr('data-item');
+	form_id = 'c2s-broker-edit-view';
+		$(".broker_form").hide();
+		section = $("#tab_"+obj_id).attr('data-item');
 		$('.form_sections').hide();
 		//$('.form_section_tab').find('.selected').removeClass('form_section_tab selected').addClass('form_section_tab');
 		$('.selected').removeClass('form_section_tab selected').addClass('form_section_tab');
-		$("#"+obj_id).addClass('selected');
+		$("#tab_"+obj_id).addClass('selected');
+		$("#broker_form_"+obj_id).show();
 		$('#'+section).show();
 		/*$('#'+section).slideToggle(500,function(){
 //			$('#'+section+'_arrow').toggleClass("icon_rotate");
 		});*/
 		
 }
+
+function click_tabs_add(obj_id){
+	section = $("#"+obj_id).attr('data-item');
+	$(".form_sections").hide();
+	$('.selected').removeClass('form_section_tab selected').addClass('form_section_tab');
+	$("#"+obj_id).addClass('selected');
+	$('#'+section).show();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		//$('.form_section_tab').find('.selected').removeClass('form_section_tab selected').addClass('form_section_tab');
+		/*$('#'+section).slideToggle(500,function(){
+		//			$('#'+section+'_arrow').toggleClass("icon_rotate");
+		});*/
+		

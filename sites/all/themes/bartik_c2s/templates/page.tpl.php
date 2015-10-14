@@ -124,7 +124,18 @@ else
         <div id="header">
             <div class="logo"><a href="<?php print $front_page; ?>"><img src="<?php print $front_page . path_to_theme(); ?>/images/logo.png" /></a></div>
             <div class="header-right">
-                <div><?php print render($page['header']); ?> </div>
+                <div id="profile_pic_wrapper"><?php if(user_is_logged_in()){?>
+                <img src="<?php print $front_page . path_to_theme(); ?>/images/pic_frame.png" id="user_photo" />
+                <div id="user_menu">
+             <!--   <ul>
+                <li>Edit Profile</li>
+                <li>View Profile</li>
+                <li>Sign Out</li>
+                </ul>
+			 -->
+                </div>
+                <?php } ?>
+                <?php print render($page['header']); ?> </div>
                 <?php if ($action_links): ?>
         <ul class="action-links">
           <?php print render($action_links); ?>

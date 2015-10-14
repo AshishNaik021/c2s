@@ -148,86 +148,6 @@ function c2s_user_dashboard() {
 }
 
 
-/*
-function c2s_application_approver_list($form, &$form_state) {
-	include("form_inc/c2s_application_approver_list.inc");
-	return $form;
-}
-
-function c2s_setting($form, &$form_state) {
-   include("form_inc/c2s_setting.inc");
-   return $form;
-}
-
-function edit_ot_setting($form, &$form_state) {
-   include("form_inc/edit_ot_setting.inc");
-   return $form;
-}
-
-function c2s_month_wise_list($form, &$form_state) {
-   include("form_inc/c2s_monthly_month_wise_list.inc");
-   return $form;
-}
-
-function c2s_location_wise_list($form, &$form_state) {
-   include("form_inc/c2s_monthly_location_wise_list.inc");
-   return $form;
-}
-
-function c2s_excess_claims_list($form, &$form_state) {
-   include("form_inc/c2s_monthly_excess_claims_list.inc");
-   return $form;
-}
-
-function excess_c2s_application_details($form, &$form_state) {
-   include("form_inc/excess_c2s_application_details.inc");
-   return $form;
-}
-function excess_c2s_list($form, &$form_state) {
-   include("form_inc/excess_c2s_list.inc");
-   return $form;
-}
-function subordinate_c2s_list($form, &$form_state) {
-   include("form_inc/subordinate_c2s_list.inc");
-   return $form;
-}
-function c2s_application_monthly($form, &$form_state) {
-   include("form_inc/c2s_application_monthly.inc");
-   return $form;
-}
-function specific_c2s_application($form, &$form_state) {
-   include("form_inc/specific_c2s_application.inc");
-   return $form;
-}
-function c2s_application_monthly_view($form, &$form_state) {
-   include("form_inc/c2s_application_monthly_view.inc");
-   return $form;
-}
-function c2s_application_monthly_approver_list($form, &$form_state) {
-   include("form_inc/c2s_application_monthly_approver_list.inc");
-   return $form;
-}
-function c2s_application_monthly_approver_form($form, &$form_state) {
-   include("form_inc/c2s_application_monthly_approver_form.inc");
-   return $form;
-}
-function c2s_application_monthly_employee_list($form, &$form_state) {
-   include("form_inc/c2s_application_monthly_employee_list.inc");
-   return $form;
-}
-function c2s_monthly_location_wise_list($form, &$form_state) {
-   include("form_inc/c2s_monthly_location_wise_list.inc");
-   return $form;
-}
-function c2s_monthly_month_wise_list($form, &$form_state) {
-   include("form_inc/c2s_monthly_month_wise_list.inc");
-   return $form;
-}
-function c2s_monthly_excess_claims_list($form, &$form_state) {
-   include("form_inc/c2s_monthly_excess_claims_list.inc");
-   return $form;
-}
-*/
 // ==================================================================================================
 //                   FORM SUBMITING FUNCTIONS   
 // ==================================================================================================
@@ -237,21 +157,9 @@ function c2s_monthly_excess_claims_list($form, &$form_state) {
 function c2s_setting_submit($form,&$form_state){
 		include("submit_inc/c2s_setting_submit.inc"); 
 }
-function c2s_application_monthly_submit($form,&$form_state){
-		include("submit_inc/c2s_application_monthly_submit.inc"); 
-}
-
-function c2s_application_specific_submit($form,&$form_state){
-		include("submit_inc/c2s_application_specific_submit.inc"); 
-}
-function c2s_application_monthly_approver_submit($form,&$form_state){
-		include("submit_inc/c2s_application_monthly_approver_submit.inc"); 
-}
 */
-// ==================================================================================================
-//  				ALL FUNCTION c2s MANAGEMENT IN FUNCTIONS INC 
-// ==================================================================================================
-//include("func_inc/c2s_functions.inc"); 
-// --------------------------------------------------------------------------------------------------
-  //include("func_inc/workflow.inc"); 
-// --------------------------------------------------------------------------------------------------
+
+
+
+
+
