@@ -182,13 +182,13 @@ if(isset($arg[3])){
 	$form['contact_number'] = array(
 	    '#title'          => 'Contact Number',
 	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 50,
+	    '#maxlength'	  => 12,
 	    '#required'		  => 'true',
 	    '#default_value'  => $phone_number,
 	    '#attributes'     => array(
 	        'placeholder'=> t('123-456-7890'),
 	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return phoneNumber(event, this);',),
+	        'onKeyPress' => array('return IsNumeric(event, this);',),
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
 	    '#suffix' => '</span>',
@@ -197,13 +197,14 @@ if(isset($arg[3])){
 	$form['personal_email_id'] = array(
 	    '#title'          => 'Personal Email ID',
 	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 100,
+	    '#maxlength'	  => 50,
 	    '#required'		  => 'true',
 	    '#default_value'  => $email_id,
 	    '#attributes'     => array(
 	        'placeholder'=> t('Personal Email ID'),
 	        'class'=> array('input-mini'),
 	        'onKeyPress' => array('return isMailId(event, this);',),
+			'onblur' 		=> array('validateEmail(this.value, this);',),
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
 	    '#suffix' => '</span>',
@@ -236,7 +237,7 @@ if(isset($arg[3])){
 	$form['account_number'] = array(
 	    '#title'          => 'Account Number',
 	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 20,
+	    '#maxlength'	  => 16,
 	    '#required'		  => 'true',
 	    '#default_value'  => $bank_account_number,
 	    '#attributes'     => array(
@@ -284,7 +285,7 @@ if(isset($arg[3])){
 	    '#attributes'     => array(
 	        'placeholder'=> t('Financial Institution Phone Number'),
 	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return phoneNumber(event, this);',),
+	        'onKeyPress' => array('return IsNumeric(event, this);',),
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
 	    '#suffix' => '</span>',
@@ -310,13 +311,13 @@ if(isset($arg[3])){
 	$form['aba_routing_number'] = array(
 	    '#title'          => 'ABA Routing Number',
 	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 50,
+	    '#maxlength'	  => 16,
 	    '#required'		  => 'true',
 	    '#default_value'  => $bank_aba_routing_number,
 	    '#attributes'     => array(
 	        'placeholder'=> t('ABA Routing Number'),
 	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return IsNumeric(event, this);',),
+	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
 	    ),
 	    '#prefix' => '<span class="wrapper-w50">',
 	    '#suffix' => '</span>',

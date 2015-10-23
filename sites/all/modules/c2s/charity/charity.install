@@ -22,7 +22,7 @@ function charity_schema() {
 			'bank_name' 					=> array('type' => 'varchar',	'length' => 100,),
 			'bank_phone' 					=> array('type' => 'varchar',	'length' => 100,),
 			'bank_account_type' 			=> array('type' => 'varchar',	'length' => 10,),
-			'bank_aba_routing_number' 		=> array('type' => 'int',		'length' => 100,),
+			'bank_aba_routing_number' 		=> array('type' => 'varchar',	'length' => 100,),
 			'approval_status' 				=> array('type' => 'varchar',	'length' => 10,),
 			'approver_user_id' 				=> array('type' => 'int',		'length' => 10,),
 			'approver_remark' 				=> array('type' => 'varchar',	'length' => 100,),

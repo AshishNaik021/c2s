@@ -87,7 +87,8 @@ $number_to_words = array(1=>"One", 2=> "Two", 3=> "Three", 4=>"Four", 5=>"Five",
 	    '#type' => 'item',
 	    '#prefix' => '<input type="button" value="Edit Broker" style="float: right; margin:5px;" onclick="convert_edit('.$broker_details[$i]['id'].')">
 	     <input type="button" value="Deactivate Broker" style="float: right; margin:5px;" onclick="window.location=\''.base_path().'c2s/broker/deactivate/'.$broker_details[$i]['id'].'/'.$brokerage_id.'\'">',
-	    '#suffix' => '<div class="seperator" style="height: 10px;width: 100%;float: left;clear: both;"></div>',
+		
+		'#suffix' => '<div class="seperator" style="height: 10px;width: 100%;float: left;clear: both;"></div>',
 	);
 	
 	$form['broker_'.$i.'_personal_info_start'] = array(
@@ -278,7 +279,7 @@ $form['contact_number_'.$i] = array(
 	        //	        'onKeyPress' => array('return IsNumeric(event, this);',),
 	        //'readonly'=>'readonly',
 	    ),
-	    '#prefix' => '<span class="wrapper-w100"><label class="label_left">C2S Email</label><span class="value_left">',
+	    '#prefix' => '<span class="wrapper-w100"><label class="label_left">Create My C2S Email As </label><span class="value_left">',
 	    '#suffix' => '</span></span>',
 	);
 

@@ -46,11 +46,13 @@ $form['brokerage_details_start'] = array(
     '#type' => 'item',
     '#suffix' => '<div id="form_tab_0" class="form_sections" style="display:block">',
 );
-
 $form['brokerage_details_seperator'] = array(
-    '#type' => 'item',
-    '#suffix' => '<div class="seperator" style="height: 10px;width: 100%;float: left;border-top: 1px solid #000000;clear: both;"></div>',
-);
+	    '#type' => 'item',
+	    '#prefix' => '<input type="button" value="Edit Brokerage" style="float: right; margin:5px;" onclick="convert_edit('.$broker_details[$i]['id'].')">
+	     <input type="button" value="Deactivate Brokerage" style="float: right; margin:5px;" onclick="window.location=\''.base_path().'c2s/broker/deactivate/'.$broker_details[$i]['id'].'/'.$brokerage_id.'\'">',
+	    '#suffix' => '<div class="seperator" style="height: 10px;width: 100%;float: left;clear: both;"></div>',
+	);
+
 
 $form['brokerage_section_left_start'] = array(
     '#type' => 'item',
@@ -74,8 +76,8 @@ $form['brokerage_name'] = array(
         'onClick'    => array('removePrefix(this)')
         //'readonly'=>'readonly',
     ),
-    '#prefix' => '<span class="wrapper-w100"><label class="label_left"> Name of Brokerage </label><span class="value_left">',
-    '#suffix' => '</span></span> <div class="seperator" style="height: 10px;width: 100%;float: left;clear: both;"></div>',
+    '#prefix' => '<span class="wrapper-w60"><label class="label_left"> Name of Brokerage </label><span class="value_left">',
+    '#suffix' => '</span></span> ',
 );
 
 
@@ -99,22 +101,6 @@ $form['brokerage_start_date'] = array(
 
 
 
-$form['number_of_owners'] = array(
-    '#title'          => 'Total Owners',
-    '#type'		      => 'textfield',
-    '#maxlength'	  => 5,
-    '#disabled'       => 'true',
-    '#theme_wrappers'  => array(),
-    '#default_value'  => $number_of_owners,
-    '#attributes'     => array(
-        'class'=> array('input_disabled'),
-        'onKeyPress' => array('return IsNumeric(event, this);',),
-        //'readonly'=>'readonly',
-    ),
-    '#prefix' => '<span class="wrapper-w33"><label class="label_left"> Total Owner </label><span class="value_left">',
-    '#suffix' => '</span></span>',
-);
-
 $form['franchise_fee_cap'] = array(
     '#type'		      => 'textfield',
     '#maxlength'	  => 100,
@@ -127,8 +113,8 @@ $form['franchise_fee_cap'] = array(
         //	        'onKeyPress' => array('return numbersonly(this, event)',),
         //'readonly'=>'readonly',
     ),
-    '#prefix' => '<span class="wrapper-w25"><label class="label_left">Franchise Cap</label><span class="value_left">',
-    '#suffix' => '</span></span><div class="seperator" style="height: 10px;width: 100%;float: left;clear: both;"></div>',
+    '#prefix' => '<span class="wrapper-w33"><label class="label_left">Franchise Cap</label><span class="value_left">',
+    '#suffix' => '</span></span>',
 );
 $form['transaction_management_fee'] = array(
     '#type'		      => 'textfield',
@@ -158,14 +144,14 @@ $form['reap_amount_cap'] = array(
         //'onKeyPress' => array('return numbersonly(this, event)',),
         //'readonly'=>'readonly',
     ),
-    '#prefix' => '<span class="wrapper-w25"><label class="label_left">Reap Cap</label><span class="value_left">',
-    '#suffix' => '</span></span>',
+    '#prefix' => '<span class="wrapper-w33"><label class="label_left">Reap Cap</label><span class="value_left">',
+    '#suffix' => '</span></span><div class="seperator" style="height: 10px;width: 100%;float: left;clear: both;">',
 );
 
 $form['brokerage_section_left_end'] = array(
     '#type' => 'item',
     '#theme_wrappers'  => array(),
-    '#prefix' => '</div>',
+    '#prefix' => '</div></div>',
 );
 
 $paperwork_selected = getPaperworkSelected($brokerage_id);
