@@ -42,7 +42,8 @@ if($form_state['values']['charity_organizations_id'] == '') {  //==== Insert ===
 			'bank_phone'	   			      =>	$financial_institution_phone,
 			'bank_account_type'	   			  =>	$account_type,
 			'bank_aba_routing_number'	   	  =>	$aba_routing_number,
-			'created_timestamp'         	  =>    REQUEST_TIME,
+			'charity_org_status'	   		  =>	'P',
+			'created'         	  			  =>    REQUEST_TIME,
 	    );
 	    db_insert('c2s_charity_org_master')
 	    ->fields($values_charity)
@@ -73,7 +74,7 @@ if($form_state['values']['charity_organizations_id'] == '') {  //==== Insert ===
 			'charity_org_city'	  		      =>	$city,
 			'charity_org_state'	   			  =>	$state_id,
 			'charity_org_zip'	   			  =>	$zip_code,
-			'phone_number'	   			      =>	$contact_number	,
+			'phone_number'	   			      =>	$contact_number,
 			'email_id'	   			     	  =>	$personal_email_id,
 			'website_url'	   			      =>	$website_url,
 			'bank_account_number'	   		  =>	$account_number,
@@ -82,7 +83,7 @@ if($form_state['values']['charity_organizations_id'] == '') {  //==== Insert ===
 			'bank_phone'	   			      =>	$financial_institution_phone,
 			'bank_account_type'	   			  =>	$account_type,
 			'bank_aba_routing_number'	   	  =>	$aba_routing_number,
-			'last_update_timestamp'           =>   REQUEST_TIME,
+			'changed'           			  =>   	REQUEST_TIME,
 	    ))
 		->condition('charity_organization_id', $charity_organizations_id, '=')
 	    ->execute();

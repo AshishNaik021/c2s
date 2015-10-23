@@ -17,37 +17,46 @@
 function charity_menu() {
 	
 	$items['c2s/charity/add'] = array(
-        'title'				=> 'New Charity Enrollment Form',
+        'title'				=> 'Charity Enrollment Form',
 		'page callback' 	=> 'drupal_get_form',
-        'menu_name' 		=> 'c2s-menu',
+        'menu_name' 		=> 'menu-c2s-menu',
 		'page arguments' 	=> array('c2s_charity_add'),
 		'access callback' 	=> TRUE,
         'access arguments' 	=> array('Charity Enrollment Form'),
+		'weight' 			=> 0,
+		'type' 				=> MENU_NORMAL_ITEM,
 	);
 	
 	$items['c2s/charity/view'] = array(
-        'title'=>'Charity Profile View',
-        'menu_name' 	=> 'c2s-menu',
-		'page callback' => 'c2s_charity_view',
-		'access callback' => TRUE,
-        'access arguments' => array('Charity Profile View'),
+        'title'				=>	'Charity Profile View',
+		'page callback' 	=> 'c2s_charity_view',
+		'access callback' 	=> TRUE,
+        'access arguments' 	=> array('Charity Profile View'),
 	);
 
 	$items['c2s/charity/deactivate'] = array(
         'title'				=> 'Charity Organization Deactivate',
 		'page callback' 	=> 'drupal_get_form',
-        'menu_name' 		=> 'c2s-menu',
 		'page arguments' 	=> array('c2s_charity_deactivate'),
 		'access callback' 	=> TRUE,
         'access arguments' 	=> array('Delete C2S Charity'),
 	);
 
 	$items['c2s/charity/list'] = array(
-        'title'			=>	'List of Charity Organizations',
-        'menu_name' 	=> 	'c2s-menu',
-		'page callback' => 'c2s_charity_list',
+        'title'				=>	'List of Charity Organizations',
+        'menu_name' 		=> 	'menu-c2s-menu',
+		'page callback' 	=> 'c2s_charity_list',
 		'access callback' 	=> TRUE,
         'access arguments' 	=> array('Charity Profile List'),
+	);
+
+	$items['c2s/charity/approval'] = array(
+        'title'				=>	'Approval of Charity Organizations',
+		'page callback' 	=> 	'drupal_get_form',
+        'menu_name' 		=> 	'menu-c2s-menu',
+		'page arguments' 	=> 	array('c2s_charity_approval'),
+		'access callback' 	=>  TRUE,
+        'access arguments' 	=>  array('Charity Approval'),
 	);
 
 	return $items;
@@ -172,6 +181,7 @@ function c2s_charity_add($form, &$form_state) {
 }
 function c2s_charity_view() {
 	include("form_inc/c2s_charity_view.inc");
+	$output .= '</div></div>'; // this is deliberately kept outside of inc file. So that above inc can be reused for approval.
 	return $output;
 }
 function c2s_charity_deactivate($form, &$form_state) {
@@ -182,6 +192,12 @@ function c2s_charity_deactivate($form, &$form_state) {
 function c2s_charity_list() {
 	include("form_inc/c2s_charity_list.inc");
 	return $output;
+}
+function c2s_charity_approval() {
+	include("form_inc/c2s_charity_view.inc");
+	include("form_inc/c2s_charity_approval.inc");
+	$output .= '</div></div>'; // this is deliberately kept outside of inc file. So that above inc can be reused for approval.
+	return $form;
 }
 
 // ==================================================================================================

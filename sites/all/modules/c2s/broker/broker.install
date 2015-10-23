@@ -1,92 +1,165 @@
 <?php
-/*
+
 function broker_schema() {
-
-// -------------------------------------  Broker Master -------------------------------------
-
- $schema['broker_master'] = array(
-        'description' => 'Broker Master Table',
-        'fields' => array(          
-			'broker_agent-id'             => array('type' => 'int',	'length' => 10,),
-			'brokerage_id'          => array('type' => 'int',	'length' => 10,),
-			'user_id'               => array('type' => 'int', 	'length' => 10,),
-			'parent_id'             => array('type' => 'int', 	'length' => 10,),
-			'type'					=> array('type' => 'varchar', 	'length' => 10,),
-			'first_name'            => array('type' => 'varchar', 	'length' => 100,),
-			'middle_name'           => array('type' => 'varchar', 	'length' => 100,),
-			'last_name'             => array('type' => 'varchar',	'length' => 100,),
-			'dob'                   => array('type' => 'varchar',	'mysql_type' => 'date',),
-			'personal_email' 		=> array('type' => 'varchar',	'length' => 100,),
-			'personal_phone'        => array('type' => 'varchar',	'length' => 100,),
-			'home_address' 			=> array('type' => 'varchar',	'length' => 100,),
-			'home_city' 			=> array('type' => 'varchar',	'length' => 100,),
-			'home_state'            => array('type' => 'varchar',	'length' => 100,),
-			'home_zip'              => array('type' => 'varchar',	'length' => 100,),
-			'business_address' 		=> array('type' => 'varchar',	'length' => 100,),
-			'business_city' 		=> array('type' => 'varchar',	'length' => 100,),
-			'business_state'        => array('type' => 'varchar',	'length' => 100,),
-			'businessa_zip'         => array('type' => 'varchar',	'length' => 100,),
-			'state_id_number'		=> array('type' => 'int',       'length' => 10,),
-			'ein_number' 			=> array('type' => 'int',       'length' => 10,),
-			'mls_username'          => array('type' => 'varchar',	'length' => 100,),
-			'mls_password'          => array('type' => 'varchar',	'length' => 500,),
-			'nrds_number' 			=> array('type' => 'int',       'length' => 10,),
-			'c2s_email_id' 			=> array('type' => 'varchar',	'length' => 100,),
-			'office_phone'          => array('type' => 'varchar',	'length' => 100,),
-			'office_extension'      => array('type' => 'int',       'length' => 10,),
-			'comm_reap_accno' 		=> array('type' => 'int',       'length' => 10,),
-			'comm_reap_accname'		=> array('type' => 'varchar',	'length' => 100,),
-			'comm_reap_bankname'    => array('type' => 'varchar',	'length' => 100,),
-			'comm_reap_bankphone'   => array('type' => 'varchar',	'length' => 100,),
-			'comm_reap_acctype'     => array('type' => 'varchar',	'length' => 10,),
-			'comm_reap_aba_rounting'=> array('type' => 'int',       'length' => 100,),
-			'pers_comm_accno' 		=> array('type' => 'int',       'length' => 10,),
-			'pers_comm_accname'		=> array('type' => 'varchar',	'length' => 100,),
-			'pers_comm_bankname'    => array('type' => 'varchar',	'length' => 100,),
-			'pers_comm_bankphone'   => array('type' => 'varchar',	'length' => 100,),
-			'pers_comm_acctype'     => array('type' => 'varchar',	'length' => 10,),
-			'pers_comm_aba_rounting'=> array('type' => 'int',       'length' => 100,),
-			'choice_charity_orgid'  => array('type' => 'int',       'length' => 10,),
-			'disabled'				=> array('type' => 'int',       'length' => 10,),
-			'created' 				=> array('type' => 'int',		'description' => 'The Unix timestamp at which record created',),
-			'changed' 				=> array('type' => 'int',		'description' => 'The Unix timestamp at which record changed',),
-		),
-		'foreign keys' => array(
-			 'fk1_brokerage_details' 		=> array('table' => 'broker_master',	'columns' => array('brokerage_id'	=>'brokerage_id'),),
-		),
-        'primary key' => array('brokerage_id'),
-
- );
-
-//// -------------------------------------  Brokerage Details -------------------------------------
-
- $schema['brokerage_details'] = array(
+//---------------------------  Brokerage Details  -------------------------------------
+	$schema['c2s_brokerage_details'] = array(
         'description' => 'Brokerage Details',
         'fields' => array(          
-			'brokerage_id'			=> array('type' => 'int',		'length' => 10,),
-			'brokerage_name' 		=> array('type' => 'varchar',	'length' => 100,),
-			'brokerage_start_date'	=> array('type' => 'date', 		'mysql_type' => 'date',),
-			'number_of_owners' 		=> array('type' => 'int',       'length' => 10,),
-			'franchise_fee_cap'		=> array('type' => 'int',       'length' => 10,),
-			'reap_amount_cap'		=> array('type' => 'int',       'length' => 10,),
-			'created' 				=> array('type' => 'int',		'description' => 'The Unix timestamp at which record created',),
-			'changed' 				=> array('type' => 'int',		'description' => 'The Unix timestamp at which record changed',),
+			'brokerage_id'					=> array('type' => 'serial',	'length' => 10,),
+			'brokerage_name' 				=> array('type' => 'varchar',	'length' => 100,),
+			'brokerage_start_date'			=> array('type' => 'date', 		'mysql_type' => 'date',),
+			'number_of_owners' 				=> array('type' => 'int',       'length' => 10,),
+			'franchise_fee_cap'				=> array('type' => 'int',       'length' => 10,),
+			'transaction_management_fees'	=> array('type' => 'int',       'length' => 10,),
+			'reap_amount_cap'				=> array('type' => 'int',       'length' => 10,),
+			'created' 						=> array('type' => 'int',		'description' => 'The Unix timestamp at which record created',),
+			'changed' 						=> array('type' => 'int',		'description' => 'The Unix timestamp at which record changed',),
 		), 
-      'primary key' => array('brokerage_id'),
- );
+		'primary key' => array('brokerage_id'),
+	);
+// -------------------------------------  Broker Master -------------------------------------
+
+ $schema['c2s_broker_master'] = array(
+        'description' => 'Broker Master Table',
+        'fields' => array(          
+			'broker_agent_id'       		=> array('type' => 'serial',	'length' => 10,),
+			'brokerage_id'         		 	=> array('type' => 'int',		'length' => 10,),
+			'user_id'               		=> array('type' => 'int', 		'length' => 10, 'unsigned' => TRUE,),
+			'parent_id'             		=> array('type' => 'int', 		'length' => 10,),
+			'type'							=> array('type' => 'varchar', 	'length' => 10,),
+			'first_name'            		=> array('type' => 'varchar', 	'length' => 100,),
+			'middle_name'           		=> array('type' => 'varchar', 	'length' => 100,),
+			'last_name'             		=> array('type' => 'varchar',	'length' => 100,),
+			'dob'                   		=> array('type' => 'varchar',	'mysql_type' => 'date',),
+			'personal_email' 				=> array('type' => 'varchar',	'length' => 100,),
+			'personal_phone'        		=> array('type' => 'varchar',	'length' => 100,),
+			'home_address' 					=> array('type' => 'varchar',	'length' => 100,),
+			'home_city' 					=> array('type' => 'varchar',	'length' => 100,),
+			'home_state'            		=> array('type' => 'varchar',	'length' => 100,),
+			'home_zip'              		=> array('type' => 'varchar',	'length' => 100,),
+			'business_address' 				=> array('type' => 'varchar',	'length' => 100,),
+			'business_city' 				=> array('type' => 'varchar',	'length' => 100,),
+			'business_state'        		=> array('type' => 'varchar',	'length' => 100,),
+			'business_zip'         			=> array('type' => 'varchar',	'length' => 100,),
+			'state_id_number'				=> array('type' => 'int',       'length' => 10,),
+			'ein_number' 					=> array('type' => 'int',       'length' => 10,),
+			'mls_username'          		=> array('type' => 'varchar',	'length' => 100,),
+			'mls_password'          		=> array('type' => 'varchar',	'length' => 500,),
+			'nrds_number' 					=> array('type' => 'int',       'length' => 10,),
+			'c2s_email_id' 					=> array('type' => 'varchar',	'length' => 100,),
+			'office_phone'          		=> array('type' => 'varchar',	'length' => 100,),
+			'office_extension'      		=> array('type' => 'int',       'length' => 10,),
+			'comm_reap_accno' 				=> array('type' => 'int',       'length' => 10,),
+			'comm_reap_accname'				=> array('type' => 'varchar',	'length' => 100,),
+			'comm_reap_bankname'    		=> array('type' => 'varchar',	'length' => 100,),
+			'comm_reap_bankphone'   		=> array('type' => 'varchar',	'length' => 100,),
+			'comm_reap_acctype'     		=> array('type' => 'varchar',	'length' => 10,),
+			'comm_reap_aba_routing'			=> array('type' => 'int',       'length' => 100,),
+			'pers_comm_accno' 				=> array('type' => 'int',       'length' => 10,),
+			'pers_comm_accname'				=> array('type' => 'varchar',	'length' => 100,),
+			'pers_comm_bankname'    		=> array('type' => 'varchar',	'length' => 100,),
+			'pers_comm_bankphone'   		=> array('type' => 'varchar',	'length' => 100,),
+			'pers_comm_acctype'     		=> array('type' => 'varchar',	'length' => 10,),
+			'pers_comm_aba_routing'			=> array('type' => 'int',       'length' => 100,),
+			'beneficiary_first_name'		=> array('type' => 'varchar',    'length' => 100,),
+			'beneficiary_middle_name'		=> array('type' => 'varchar',    'length' => 100,),
+			'beneficiary_last_name'			=> array('type' => 'varchar',    'length' => 100,),
+			'beneficiary_relationship'		=> array('type' => 'varchar',    'length' => 100,),
+			'beneficiary_email_id'			=> array('type' => 'varchar',    'length' => 100,),
+			'beneficiary_contact_number'	=> array('type' => 'varchar',    'length' => 100,),
+			'beneficiary_address'			=> array('type' => 'varchar',    'length' => 100,),
+			'beneficiary_city'				=> array('type' => 'varchar',    'length' => 100,),
+			'beneficiary_state'				=> array('type' => 'varchar',    'length' => 100,),
+			'beneficiary_zip'				=> array('type' => 'varchar',    'length' => 100,),
+			'choice_charity_orgid'  		=> array('type' => 'int',       'length' => 10,),
+			'status'						=> array('type' => 'varchar',       'length' => 10,),
+			'created' 						=> array('type' => 'int',		'description' => 'The Unix timestamp at which record created',),
+			'changed' 						=> array('type' => 'int',		'description' => 'The Unix timestamp at which record changed',),
+		),
+		
+        'primary key' => array('broker_agent_id'),
+		
+		'foreign keys' => array(
+			 'fk1_c2s_broker_master' 	=> array('table' => 'c2s_brokerage_details',	'columns' => array('brokerage_id'	=>'brokerage_id'),),
+			 'fk2_c2s_broker_master' 	=> array('table' => 'user',						'columns' => array('user_id' =>	'uid'),),
+			 'fk3_c2s_broker_master' 	=> array('table' => 'c2s_broker_master',		'columns' => array('parent_id' =>	'broker_agent_id'),),
+		),
+
+	);
+	//---------------------------  Required Paperwork Details  -------------------------------------
+
+	$schema['c2s_required_paperwork'] = array(
+        'description' => 'Required Paperwork Details',
+        'fields' => array(          
+			'paperwork_id'					=> array('type' => 'serial',	'length' => 10,),
+			'paperwork_document_name' 		=> array('type' => 'varchar',	'length' => 200,),
+			'created' 						=> array('type' => 'int',		'description' => 'The Unix timestamp at which record created',),
+			'changed' 						=> array('type' => 'int',		'description' => 'The Unix timestamp at which record changed',),
+		), 
+		'primary key' => array('paperwork_id'),
+	);
+
+
+	
+//---------------------------  Brokerage Paperwork Details  -------------------------------------
+
+	$schema['c2s_brokerage_paperwork'] = array(
+        'description' => 'Brokerage Paperwork Details',
+        'fields' => array(          
+			'brokerage_paperwork_id'		=> array('type' => 'serial',	'length' => 10,),
+			'brokerage_id' 				=> array('type' => 'int',		'length' => 10,),
+			'paperwork_id'				=> array('type' => 'int', 		'length' => 10,),
+			'created' 					=> array('type' => 'int',		'description' => 'The Unix timestamp at which record created',),
+			'changed' 					=> array('type' => 'int',		'description' => 'The Unix timestamp at which record changed',),
+		), 
+		'primary key' => array('brokerage_paperwork_id'),
+		'foreign keys' => array(
+			 'fk1_c2s_brokerage_paperwork' 	=> array('table' => 'c2s_required_paperwork',	'columns' => array('paperwork_id' =>	'paperwork_id'),),
+			 'fk2_c2s_brokerage_paperwork' 	=> array('table' => 'c2s_brokerage_details',	'columns' => array('brokerage_id' =>	'brokerage_id'),),
+		),
+
+	);
+
+
+	
 	return $schema;
 }
 
 // ---------------------------------------------------------------------------------------
-function overtime_install(){
 
-//// ====================  Foreign Key - Alter pms_ot_summary Table ===========
+function broker_install(){
+
+//// ====================  Foreign Key - Alter Broker Table ===========
 
 	db_query('
-		ALTER TABLE {broker_master}
-		ADD CONSTRAINT {fk1_brokerage_details}
-		FOREIGN KEY (brokerage_id) REFERENCES {brokerage_id} (brokerage_id)
+		ALTER TABLE {c2s_broker_master}
+		ADD CONSTRAINT {fk1_c2s_broker_master}
+		FOREIGN KEY (brokerage_id) REFERENCES {c2s_brokerage_details} (brokerage_id)
 	');
+	db_query('
+		ALTER TABLE {c2s_broker_master}
+		ADD CONSTRAINT {fk2_brokerage_details}
+		FOREIGN KEY (user_id) REFERENCES {users} (uid)
+	');
+	db_query('
+		ALTER TABLE {c2s_broker_master}
+		ADD CONSTRAINT {fk3_brokerage_details}
+		FOREIGN KEY (parent_id) REFERENCES {c2s_broker_master} (broker_agent_id)
+	');
+	
+	//----------------- For c2s_brokerage_paperwork Table ---------
+	db_query('
+		ALTER TABLE {c2s_brokerage_paperwork}
+		ADD CONSTRAINT {fk1_c2s_brokerage_paperwork}
+		FOREIGN KEY (paperwork_id) REFERENCES {c2s_required_paperwork} (paperwork_id)
+	');
+	db_query('
+		ALTER TABLE {c2s_brokerage_paperwork}
+		ADD CONSTRAINT {fk2_c2s_brokerage_paperwork}
+		FOREIGN KEY (brokerage_id) REFERENCES {c2s_brokerage_details} (brokerage_id)
+	');
+
+
+
 }
-*/
 //// ---------------------------------------------------------------------------------------

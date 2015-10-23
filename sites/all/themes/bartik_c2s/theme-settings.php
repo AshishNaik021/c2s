@@ -15,14 +15,6 @@ function bartik_c2s_form_system_theme_settings_alter(&$form, &$form_state, $form
 
   // Create the form using Forms API: http://api.drupal.org/api/7
 
-  /* -- Delete this line if you want to use this setting
-  $form['ipca_example'] = array(
-    '#type'          => 'checkbox',
-    '#title'         => t('ipca sample setting'),
-    '#default_value' => theme_get_setting('ipca_example'),
-    '#description'   => t("This option doesn't do anything; it's just an example."),
-  );
-  // */
 
   // Remove some of the base theme's settings.
   /* -- Delete this line if you want to turn off this setting.

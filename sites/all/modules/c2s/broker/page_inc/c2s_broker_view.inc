@@ -1,47 +1,7 @@
 <?php
 
-drupal_add_css( drupal_get_path('module', 'broker') . '/css/global-c2s.css');
-
-/*
-	//drupal_add_css(drupal_get_path('module', 'overtime') . '/css/overtime.css');
-$form['#attached']['css'] = array(
-		drupal_get_path('module', 'overtime') . '/css/overtime.css',
-);
-	$ot_rate_id			= 0;
-	
-	$location_code 		= '';
-	$category 			= '';
-	$grade		 		= '';
-	$employee_type 		= '';
-	$effective_date 	= '';
-	$rate_multiple 		= '';
-	$created 			= '';
-	$changed 			= '';
-
-	if(isset($_GET['ot_rate_id'])){
-		$ot_rate_id = $_GET['ot_rate_id'];
-	}
-
-		
-	$result = db_query("SELECT * 
-                              FROM pms_setting_overtime 
-                              WHERE ot_rate_id = ".$ot_rate_id);
-	foreach($result as $value){
-		$company_code 		= $value->company_id;
-		$location_code 		= $value->location_id;
-		$category 		= $value->category_id;
-		$grade		 	= $value->grade_id;
-		$employee_type 		= $value->employee_type;
-		$effective_date 	= $value->effective_date;
-		$rate_multiple 		= $value->rate_multiple;
-		$created 		= $value->created;
-		$changed 		= $value->changed;
-	}
-        if(empty($company_code )){$company_code = 1;}
-*/
-
 $brokerage_id = arg(3);
-$result = db_query("SELECT * FROM brokerage_details WHERE brokerage_id = ".$brokerage_id);
+$result = db_query("SELECT * FROM c2s_brokerage_details WHERE brokerage_id = ".$brokerage_id);
 foreach($result as $value){
     $brokerage_name 		  = $value->brokerage_name;
     $brokerage_start_date 	  = $value->brokerage_start_date;
@@ -52,7 +12,7 @@ foreach($result as $value){
     $changed 		          = $value->changed;
 }
 
-$result = db_query("SELECT * FROM broker_master WHERE brokerage_id = ".$brokerage_id." and deactivate = 0");
+$result = db_query("SELECT * FROM c2s_broker_master WHERE brokerage_id = ".$brokerage_id." and status = 'A'");
 $broker_details = array();
 
 $city = array('0'=>'City','1'=>'City1');

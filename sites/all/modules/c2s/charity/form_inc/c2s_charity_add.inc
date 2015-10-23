@@ -52,24 +52,17 @@ if(isset($arg[3])){
 
 // ======================================================================================================
 
-	
-	$form['#attached']['js'] = array(
-		drupal_get_path('module', 'agent') . '/js/validate.js',
-	);
-	$form['#attached']['css'] = array(
-		drupal_get_path('module', 'broker') . '/css/global-c2s.css',
-	);
-
 // ==========  Form Starts  ================ //
 
 	$form['form_start'] = array(
 	   '#type' => 'item',
-	   '#suffix' => '<div id="main-form-wrapper"> ',
+	   '#suffix' => '<div id="main-view-wrapper"> ',
 	);
 	
 	$form['charity_organizations_id'] = array(
-	    '#type'		      => 'hidden',
-	    '#default_value'  => $charity_organization_id,
+	    '#type'		      	=> 'hidden',
+	    '#default_value' 	=> $charity_organization_id,
+		'#suffix' 			=> '<div class="section_left">',
 	);	
 	
 	$form['charity_organizations_name'] = array(
@@ -79,30 +72,14 @@ if(isset($arg[3])){
 	    '#required'		  => 'true',
 	    '#default_value'  => $charity_org_name,
 	    '#attributes'     => array(
-	        'placeholder'=> t('Charity Organizations Name'),
-	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
+	        'placeholder'	=> t('Charity Organizations Name'),
+	        'class'			=> array('input-mini'),
+	        'onKeyPress'	=> array('return isAlphaNumeric(event, this);',),
 	    ),
-	    '#prefix' => '<span class="wrapper-w50">',
+	    '#prefix' => '<span class="wrapper-w100">',
 	    '#suffix' => '</span>',
 	);	
 	
-	$form['number_501_c_3'] = array(
-	    '#title'          => '501 (c)(3) Number',
-	    '#type'		      => 'textfield',
-	    '#maxlength'	  => 10,
-	    '#required'		  => 'true',
-	    '#default_value'  => $number_501_c_3,
-	    '#attributes'     => array(
-		    'placeholder'=> t('Unique Number for Your Charity Organization'),
-	        'class'=> array('input-mini'),
-	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
-	    ),
-	    '#prefix' => '<span class="wrapper-w50">',
-	    '#suffix' => '</span>',
-	);	
-	
-
 	$form['street_address'] = array(
 	    '#title'          => 'Street Address',
 	    '#type'		      => 'textfield',
@@ -114,7 +91,7 @@ if(isset($arg[3])){
 	        'class'=> array('input-mini'),
 	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
 	    ),
-	    '#prefix' => '<span class="wrapper-w50">',
+	    '#prefix' => '<span class="wrapper-w100">',
 	    '#suffix' => '</span>',
 	);
 
@@ -139,7 +116,7 @@ if(isset($arg[3])){
 			'callback' 	=> 'find_cities_callback',
 			'wrapper' 	=> 'cities-wrapper',
 		),
-	    '#prefix' 		=> '<span class="wrapper-w16">',
+	    '#prefix' 		=> '<span class="wrapper-w33">',
 	    '#suffix' 		=> '</span>',
 	);
 
@@ -164,7 +141,7 @@ if(isset($arg[3])){
 			'callback' 	=> 'find_zip_callback',
 			'wrapper' 	=> 'zip-wrapper',
 		),
-	    '#prefix' 		=> '<div id="cities-wrapper"> <span class="wrapper-w16">',
+	    '#prefix' 		=> '<div id="cities-wrapper"> <span class="wrapper-w33">',
 	    '#suffix' 		=> '</span></div>',
 	);
 
@@ -180,11 +157,27 @@ if(isset($arg[3])){
 	        'class'=> array('input-mini'),
 	        'readonly'=>'readonly',
 	    ),
-	    '#prefix' => '<div id="zip-wrapper"><span class="wrapper-w16">',
-	    '#suffix' => '</span></div>',
+	    '#prefix' => '<div id="zip-wrapper"><span class="wrapper-w33">',
+	    '#suffix' => '</span></div></div>',
 	);
 	
 // ========================================================================
+	$form['number_501_c_3'] = array(
+	    '#title'          => '501 (c)(3) Number',
+	    '#type'		      => 'textfield',
+	    '#maxlength'	  => 10,
+	    '#required'		  => 'true',
+	    '#default_value'  => $number_501_c_3,
+	    '#attributes'     => array(
+		    'placeholder'=> t('Unique Number for Your Charity Organization'),
+	        'class'=> array('input-mini'),
+	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
+	    ),
+	    '#prefix' => '<div class="section_left"><span class="wrapper-w100">',
+	    '#suffix' => '</span>',
+	);	
+	
+
 
 	$form['contact_number'] = array(
 	    '#title'          => 'Contact Number',
@@ -197,7 +190,7 @@ if(isset($arg[3])){
 	        'class'=> array('input-mini'),
 	        'onKeyPress' => array('return phoneNumber(event, this);',),
 	    ),
-	    '#prefix' => '<span class="wrapper-w25">',
+	    '#prefix' => '<span class="wrapper-w50">',
 	    '#suffix' => '</span>',
 	);
 
@@ -212,7 +205,7 @@ if(isset($arg[3])){
 	        'class'=> array('input-mini'),
 	        'onKeyPress' => array('return isMailId(event, this);',),
 	    ),
-	    '#prefix' => '<span class="wrapper-w25">',
+	    '#prefix' => '<span class="wrapper-w50">',
 	    '#suffix' => '</span>',
 	);
 	
@@ -228,18 +221,16 @@ if(isset($arg[3])){
 	        'class'=> array('input-mini'),
 	        'onKeyPress' => array('return isAlphaNumeric(event, this);',),
 	    ),
-	    '#prefix' => '<span class="wrapper-w50">',
-	    '#suffix' => '</span>',
+	    '#prefix' => '<span class="wrapper-w100">',
+	    '#suffix' => '</span></div>',
 	);
 	
 	// --------------------Personal Bank Account Details Start------------------- //
 
 	$form['etf_bank_details_subsection_start'] = array(
 	   '#type' => 'item',
-	   '#prefix' => '<div id="form_sections" class="form_sections"> ',
-	   '#suffix' => '<div class="form_section_title" data-item = "form_section_1"> ETF Bank Account Details
-	    <img src="'.base_path().'/'.drupal_get_path('module', 'agent').'/images/arrow_toggle.png" id="form_section_1_arrow" class="inner_section_arrow icon_rotate" > </div>
-	    <div id = "form_section_1">'
+	   '#prefix' => '<div class="section_full">',
+	   '#suffix' => '<div class="form_subsection_title" data-item="inner_section_1" >ETF Bank Account Details</div>',
 	);
 	
 	$form['account_number'] = array(
@@ -303,7 +294,7 @@ if(isset($arg[3])){
 
 	 $form['account_type'] = array(
 	    '#title'          => 'Account Type',
-	    '#type'		      => 'radios',
+	    '#type'		      => 'select',
 	    '#required'		  => 'true',
 	    '#default_value'  => $bank_account_type,
 	    '#attributes'     => array(
@@ -335,7 +326,7 @@ if(isset($arg[3])){
 
 	$form['section_one_end'] = array(
 	    '#type' => 'item',
-	    '#suffix' => '</div></div> ',
+	    '#suffix' => '</div>',
 	);
 
 
@@ -351,6 +342,6 @@ if(isset($arg[3])){
 	
 	$form['form_end'] = array(
 	    '#type' => 'item',
-	    '#suffix' => '</div> ',
+	    '#suffix' => '</div></div>  ',
 	);
 	

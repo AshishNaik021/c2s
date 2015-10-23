@@ -4,7 +4,7 @@ function broker_schema() {
 
 // -------------------------------------  Broker Master -------------------------------------
 
- $schema['broker_master'] = array(
+ $schema['c2s_broker_master'] = array(
         'description' => 'Broker Master Table',
         'fields' => array(          
 			'broker_id'             => array('type' => 'int',	'length' => 10,),
@@ -49,7 +49,7 @@ function broker_schema() {
 			'changed' 				=> array('type' => 'int',		'description' => 'The Unix timestamp at which record changed',),
 		),
 		'foreign keys' => array(
-			 'fk1_brokerage_details' 		=> array('table' => 'broker_master',	'columns' => array('brokerage_id'	=>'brokerage_id'),),
+			 'fk1_brokerage_details' 		=> array('table' => 'c2s_broker_master',	'columns' => array('brokerage_id'	=>'brokerage_id'),),
 		),
         'primary key' => array('brokerage_id'),
 
@@ -57,7 +57,7 @@ function broker_schema() {
 
 //// -------------------------------------  Brokerage Details -------------------------------------
 
- $schema['brokerage_details'] = array(
+ $schema['c2s_brokerage_details'] = array(
         'description' => 'Brokerage Details',
         'fields' => array(          
 			'brokerage_id'			=> array('type' => 'int',		'length' => 10,),
@@ -80,7 +80,7 @@ function overtime_install(){
 //// ====================  Foreign Key - Alter pms_ot_summary Table ===========
 
 	db_query('
-		ALTER TABLE {broker_master}
+		ALTER TABLE {c2s_broker_master}
 		ADD CONSTRAINT {fk1_brokerage_details}
 		FOREIGN KEY (brokerage_id) REFERENCES {brokerage_id} (brokerage_id)
 	');

@@ -84,14 +84,14 @@
 
 #page{
 	float:left;
-	background:#302e2f;
+	/*background:#302e2f;*/
 	padding: 0% !important;
 	width:100%;
 }
 
 
 div#middle-inner {
-	background:#999;	
+	/*background:#999;	*/
 }
 
 #header{
@@ -170,21 +170,20 @@ list-style: none;
 }
 
 .user_login .region #block-system-main .content{
-	    min-height: 400px; 
+    min-height: 345px; 
+	background-color: #fff !important;
+    float: left;
+	margin-left:25% !important;
+	width:30%;
 }
 
 .content{
-	background-color: #fff !important;
-    min-height: 1700px; 
-    float: right;
-	margin:0% !important;
-	width:100%;
 }
 .content form{
 }
 
 #form_sections{
-	    width: 96%;
+    width: 96%;
     padding: 2px !important;
 }
 
@@ -223,6 +222,13 @@ div.inner_subsection {
 	padding-top:1em;
 }
 
+.container-inline-date input{
+	background-image: url("../../general/images/calendar-icon-blue.png");
+	background-size: 25px 25px;
+	background-repeat: no-repeat;
+	background-position: right center;
+	padding-right: 5px;
+}
 
 .no-input{
     border: none !important;
@@ -231,17 +237,19 @@ div.inner_subsection {
 }
 
 #main-view-wrapper{
-	width: 90%;
-	margin: 0 auto;
-    min-height: 1000px;
-    border: 1px solid #f4f6f7;
+	width: 			90%;
+    min-height: 	300px;
+	float:			left;	
+	margin: 		0 auto;
+	margin:			1% 0 1% 3%;
+    border: 		1px solid #f4f6f7;
     background-color: #ffffff;
-    padding: 1% 2%;
-    border-radius: 7px;
-    box-shadow: 0px 0px 11px #e8e8e8;
+    padding: 		1% 2%;
+    border-radius: 	7px;
+    box-shadow: 	0px 0px 3px #999;	
 }
 
-.seperator{
+.separator{
 	border-bottom:1px solid #f4f4f4;
 }
 
@@ -295,6 +303,7 @@ form form {
 .broker_form {
     margin-top: 0px !important;
     border-top: 1px solid;
+    float:left;
 }
 .brokerage_form {
     margin-bottom: 0px !important;
@@ -333,19 +342,19 @@ th.active img{
 .wrapper-w60{
 	width: 62%;
 	float: left;
-	padding: 7px;
+	padding: 0px;
 	padding-bottom:0px;
 
 }
 .wrapper-w50{
-	width: 47%;
+	width: 48%;
 	float: left;
-	padding: 7px;
+	padding: 1%;
 	padding-bottom:0px;
 
 }
 .wrapper-w33{
-	width:31%;
+	width:30%;
 	float: left;
 	padding:7px;
 	padding-bottom:0px;
@@ -366,7 +375,10 @@ th.active img{
 
 }
 
-
+.form-wrapper{
+	border: 0px;
+	float: left;
+}
 #main-form-wrapper{
 	border: 1px solid #f4f6f7;
 	background-color: #f3f3f3;
@@ -400,6 +412,20 @@ th.active img{
 	width:100%;
 	
 }
+
+#main-view-wrapper .form-checkboxes label {
+	float:right;
+	width:90%;
+}
+
+#main-view-wrapper  .form-type-radios label{
+	margin-bottom: 10px;
+}
+
+#main-view-wrapper  .form-type-radio input{
+	margin-left: 10px;
+}
+
 .value_left{
 	font-family: 'quicksandregular';	
 }
@@ -407,7 +433,7 @@ th.active img{
 .section_full{
     float: left;
     width: 99%;
-    background-color: #fff8f2;
+    background-color: #eeeeff;
     padding: 7px;
 	margin-top:10px;
 	min-height:260px; 
@@ -416,12 +442,30 @@ th.active img{
 .section_left{
     float: left;
     width: 48%;
-    background-color: #fff8f2;
+    background-color: #eeeeff;
     margin: 2px;
     border-radius: 5px;
     padding: 7px;
-/*	min-height:405px; */
+	min-height:247px; 
 }
+.section_right{
+    float: left;
+    width: 48%;
+    background-color: #eeeeff;
+    margin: 2px;
+    border-radius: 5px;
+    padding: 7px;
+	min-height:420px; 
+}
+.section_center{
+    float: left;
+    width: 98%;
+    background-color: #eeeeff;
+    margin: 2px;
+    border-radius: 5px;
+    padding: 7px;
+}
+
 
 .subsection_left{
 	    float: left;
@@ -447,7 +491,7 @@ input[type="text"], input[type="password"]{
 }
 
 #main-form-wrapper select, .value_left select{
-height: 33px;
+height: 29px;
 -webkit-appearance: none;
 text-indent: 11px;
 background-color: #ffffff;
@@ -501,6 +545,14 @@ background-image:url('../images/select_arrow.png');
 	cursor:pointer;
 }
 
+.form-item {
+    margin-top: 0em !important; 
+    margin-bottom: 0em !important; 
+}
+.container-inline-date {
+    padding-top: 0em !important; 
+}
+
 .form_section_tab.selected{
 	color:#ffffff !important;	
 	border-color:#4c83b0 !important;
@@ -508,11 +560,12 @@ background-image:url('../images/select_arrow.png');
 }
 
 .form_subsection_title {
-	color: #4c83b0;
+	color: rgba(54, 86, 183, 0.87);
 	font-family: 'hero_lightlight';
 	padding: 1% 1% 2% 1% !important;
 	width: 500px;
-	font-size:14px;
+	font-size:16px;
+	font-weight:900;
 	clear:both;
 }
 .form_subsection_title2{
@@ -524,16 +577,17 @@ background-image:url('../images/select_arrow.png');
 }
 
 .form-submit{
-padding: 5px;
+	padding: 5px;
     border: 1px solid #298bca;
     float: right;
-    /* width: 97px; */
+    min-width: 100px;
     font-size: 16px;
     background-color: #298bca;
     color: #ffffff;
     font-family: 'hero_lightlight';
     font-weight: 100;
     padding-top: 8px;
+    margin-top: 10px;
     box-shadow: -2px 2px 1px #1e6ea0;
     border-radius: 2px;
 
@@ -572,10 +626,10 @@ background-image: -webkit-gradient(linear, left top, left bottom, from(#3093c7),
 /* ---------------*/
 
 .user_login{
-    width: 30%;
-    margin: 0 auto;
+	float:left;
+    width: 100%;
+    margin: auto;
     margin-top: 5%;
-    height: 446px;
     padding: 5%;
     background-color: #c4c4c4;
 }
@@ -586,7 +640,7 @@ background-image: -webkit-gradient(linear, left top, left bottom, from(#3093c7),
     border: 1px solid #a4a4a4;
     box-shadow: 0px 0px 9px #999999;
     border-radius: 5px;
-    width: auto;
+    width: 33%;
 }
 
 .username_login{
@@ -613,6 +667,46 @@ background-image: -webkit-gradient(linear, left top, left bottom, from(#3093c7),
     padding-bottom: 10px;
     font-size: 18px !important;
     text-indent: 48px !important;
-}}
+}
 
 /* --------------- */
+
+#user_menu {
+position: absolute;
+    margin-left: 210px;
+    margin-top: 67px;
+    display: none;
+    width:186px;
+}
+#user_menu ul li {
+    color: #ffffff;
+    list-style: none;
+    border-bottom: 1px solid;
+    width: 84%;
+    padding: 8%;
+    font-family: "quicksandregular";
+    background-color: #4c83b0;
+}
+#user_menu ul {
+    padding-left: 15%;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+#user_photo{
+	width: 70%;
+    float: right;
+    margin: 4% 10% 1% 1%;
+    background-image: url('https://drshannonreece.files.wordpress.com/2011/05/icon-female-teacher-2-hi.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+input[type="button"] {
+	height: 32px;
+    background-color: #4C83B0;
+    color: #f0f0f0;
+}
+table.sticky-enabled {
+    width: 100%;
+}

@@ -6,5 +6,4 @@ core = 7.x
 
 stylesheets[all][] = css/charity.css
 
-
 scripts[] = js/charity.js

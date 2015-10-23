@@ -27,8 +27,9 @@ function charity_schema() {
 			'approver_user_id' 				=> array('type' => 'int',		'length' => 10,),
 			'approver_remark' 				=> array('type' => 'varchar',	'length' => 100,),
 			'approval_timestamp' 			=> array('type' => 'int',		'description' => 'The Unix timestamp at which record was approved',),
-			'created_timestamp' 			=> array('type' => 'int',		'description' => 'The Unix timestamp at which record Created',),
-		    'last_update_timestamp' 		=> array('type' => 'int',		'description' => 'The Unix timestamp at which record Last Changed',),		
+			'charity_org_status'			=> array('type' => 'varchar',	'length' => 10,),
+			'created' 						=> array('type' => 'int',		'description' => 'The Unix timestamp at which record Created',),
+		    'changed' 						=> array('type' => 'int',		'description' => 'The Unix timestamp at which record Last Changed',),		
 		), 
 		
       'primary key' => array('charity_organization_id'),

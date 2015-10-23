@@ -1,9 +1,6 @@
-<style>
-
-</style>
 <?php 
 $brokerage_id = arg(3);
-$result = db_query("SELECT * FROM brokerage_details WHERE brokerage_id = ".$brokerage_id);
+$result = db_query("SELECT * FROM c2s_brokerage_details WHERE brokerage_id = ".$brokerage_id);
 foreach($result as $value){
     $brokerage_name 		  = $value->brokerage_name;
     $brokerage_start_date 	  = $value->brokerage_start_date;
@@ -14,21 +11,19 @@ foreach($result as $value){
     $changed 		          = $value->changed;
 }
 
-$result_paperwork = db_query("select document_name from required_paperwork where `paperwork_id` in
-    (SELECT `paperwork_id` FROM `brokerage_paperwork` where `brokerage_id` = ".$brokerage_id.")") ;
+	$result_paperwork = db_query("select paperwork_document_name from c2s_required_paperwork where `paperwork_id` in
+								(SELECT `paperwork_id` FROM `c2s_brokerage_paperwork` where `brokerage_id` = ".$brokerage_id.")") ;
+
 $form['#attributes']['class'][] = 'brokerage_form';
-/*
-$form['form_start'] = array(
-    '#type' => 'item',
-    '#suffix' => '<div id="main-view-wrapper">',
-);*/
+
 
 $form['brokerage_tab'] = array(
     '#type' => 'item',
     '#suffix' => '<div class="form_section_tab selected" data-item="form_tab_0" onclick="click_tabs(0)" id="tab_0" > Brokerage Details </div>',
 );
+$query = "SELECT broker_agent_id FROM c2s_broker_master WHERE brokerage_id = ".$brokerage_id." and status = 'A'";
 
-$result = db_query("SELECT broker_agent_id FROM broker_master WHERE brokerage_id = ".$brokerage_id." and deactivate = 0");
+$result = db_query($query);
 $broker_id = array();
 $n=0;
 foreach($result as $value){
@@ -160,7 +155,7 @@ $form['reap_amount_cap'] = array(
     '#attributes'     => array(
         'placeholder'=> t('$18,000'),
         'class'=> array('input_disabled'),
-        //	        'onKeyPress' => array('return numbersonly(this, event)',),
+        //'onKeyPress' => array('return numbersonly(this, event)',),
         //'readonly'=>'readonly',
     ),
     '#prefix' => '<span class="wrapper-w25"><label class="label_left">Reap Cap</label><span class="value_left">',
@@ -173,32 +168,22 @@ $form['brokerage_section_left_end'] = array(
     '#prefix' => '</div>',
 );
 
-$paperwork_list = "";
-foreach($result_paperwork as $value_paperwork){
-    $paperwork_list .='<span class="wrapper-w33">
-	        <img src="'.base_path().'/'.drupal_get_path('module', 'broker').'/images/arrow_toggle.png" id="inner_section2_4_arrow" class="inner_section_arrow inner_subsection_arrow" >
-	        '.$value_paperwork->document_name.'</span>';
-     
-}
-
-$form['brokerage_section_right_start'] = array(
-    '#type' => 'item',
-    '#theme_wrappers'  => array(),
-    '#prefix' => '<div class="section_left">',
-    '#suffix' => $paperwork_list,
+$paperwork_selected = getPaperworkSelected($brokerage_id);
+$form['names_fieldset']['brokerage_paperwork'] = array(
+	'#title' 	=> t('Selected Paperwork'),
+    '#type' 	=> 'checkboxes',
+    '#required' => 'true',
+	'#options'	=> $paperwork_selected,
+	'#value'	=> $paperwork_selected,
+	'#disabled' => TRUE,
+    '#prefix' 	=> '<div class="section_left"> <div class="form_subsection_title" data-item="inner_section_1" >Statutory Requirements</div>',
+    '#suffix' 	=> '</div>',
 );
 
-
-
-$form['brokerage_section_right_end'] = array(
-    '#type' => 'item',
-    '#theme_wrappers'  => array(),
-    '#prefix' => '</div>',
-);
 
 $form['brokerage_details_end'] = array(
-    '#type' => 'item',
-    '#suffix' => '</div>',
+    '#type' 	=> 'item',
+    '#suffix' 	=> '</div>',
 );
 
 

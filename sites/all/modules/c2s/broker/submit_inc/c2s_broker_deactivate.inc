@@ -7,10 +7,10 @@
 
 try{
     $id = arg(3);
-    db_update('broker_master')
+    db_update('c2s_broker_master')
     ->fields(array(
-        'deactivate'				=>	1,
-        'changed'         			=>  REQUEST_TIME,
+        'status'				=>	'D',
+        'changed'         		=>  REQUEST_TIME,
     ))
     ->condition('broker_agent_id', $id, '=')
     ->execute();
@@ -20,7 +20,7 @@ try{
 }
 catch(Exception $e)
 {
-    drupal_set_message("Over-Time Setting Records could not be Inserted <br>" . $e, 'error');
+    drupal_set_message("Broker Could Not Be Successfully Deactivated <br>" . $e, 'error');
 }
 
 				

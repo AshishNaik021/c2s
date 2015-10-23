@@ -37,12 +37,12 @@
 					$org_status		 	= $row->charity_org_status;	
 					$approval_status	= $row->approval_status;	
 					
-					if($approval_status=='A'){
-						$approval_image = "<img src='".base_path()."/".drupal_get_path('module', 'general')."/images/approved-stamp.jpg' width='50px'>";
-					}elseif($approval_status=='P'){
-						$approval_image = "<img src='".base_path()."/".drupal_get_path('module', 'general')."/images/pending-stamp.jpg' width='50px'>";
-					}else{
+					if($approval_status=='R'){
 						$approval_image = "<img src='".base_path()."/".drupal_get_path('module', 'general')."/images/rejected-stamp.jpg' width='50px'>";
+					}elseif($approval_status=='A'){
+						$approval_image = "<img src='".base_path()."/".drupal_get_path('module', 'general')."/images/approved-stamp.jpg' width='50px'>";
+					}else{
+						$approval_image = "<img src='".base_path()."/".drupal_get_path('module', 'general')."/images/pending-stamp.jpg' width='50px'>";
 					}
 					
 					$edit	= "<a href='add/".$id."' id='edit_link' title='Edit Charity Organization'>

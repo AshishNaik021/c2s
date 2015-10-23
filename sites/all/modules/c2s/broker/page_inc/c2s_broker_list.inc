@@ -1,4 +1,4 @@
-<link href="<?php echo base_path()."/".drupal_get_path('module', 'broker') . '/css/global-c2s.css'; ?>" rel="stylesheet" />
+<link href="<?php echo base_path()."/".drupal_get_path('module', 'general') . '/css/global-c2s.css'; ?>" rel="stylesheet" />
 <?php
 
     $count = 0;
@@ -18,12 +18,13 @@
 	$data = array(); 
 	
 	try{
-                $query = db_select('broker_master', 'tbl')
+                $query = db_select('c2s_broker_master', 'tbl')
                 ->extend('PagerDefault')
                 ->extend('TableSort');
 
-                $query->condition('deactivate','0')
-                         ->fields('tbl', array('broker_agent_id', 'first_name','last_name','home_address', 'home_city','home_state','home_zip','personal_email','personal_phone','nrds_number','ein_number'))
+                $query->condition('status','A')
+                ->condition('type','B')
+                         ->fields('tbl', array('broker_agent_id', 'first_name','last_name','home_address', 'home_city','home_state','home_zip','personal_email','personal_phone','nrds_number','ein_number','brokerage_id'))
                          ->limit(20)
                          ->orderByHeader($header)
                          ->orderBy('broker_agent_id', 'DESC');
@@ -40,10 +41,10 @@
                                         $phone   	  = $row->personal_phone;
                                         $nrds    	  = $row->nrds_number;
                                         $ein     	  = $row->ein_number;
-                                        $alloclink	  = "<a href='pms_employee_allocation?erid=".$id."&edt=2' id='edit_link' title=' Edit Employee Allocation'>
-                                                        <img src='".base_path()."/".drupal_get_path('module', 'broker')."/images/edit.png' style='width: 15px;margin-left: 10px;float:left'></a>";
-                                        $view		  = "<a href='pms_employee_view?erid=".$id."' id='view_link'  title='View Employee Profile'>
-                                                        <img src='".base_path()."/".drupal_get_path('module', 'broker')."/images/delete.png' style='width: 15px;margin-left: 10px;float:left'></a>";
+                                        $view	  = "<a href='view/".$row->brokerage_id."' id='edit_link' title=' View Broker Details'>
+                                                        <img src='".base_path().drupal_get_path('module', 'general')."/images/edit.png' style='width: 15px;margin-left: 10px;float:left'></a>";
+                                        $delete		  = "<a href='deactivate/".$id."/".$row->brokerage_id."' id='view_link'  title='Deactivate Broker'>
+                                                        <img src='".base_path().drupal_get_path('module', 'general')."/images/delete.png' style='width: 15px;margin-left: 10px;float:left'></a>";
 
 
 
@@ -55,7 +56,7 @@
                                         $email   ,
                                         $phone   ,
   
-                                        $alloclink.$view,
+                                        $view.$delete,
                                 );
                           
                           $count++;

@@ -77,7 +77,7 @@ function bartik_c2s_form_alter(&$form, $form_state, $form_id) {
         case 'user_login':
             unset($form['links']);
             $form['#attached']['css'] = array(
-                drupal_get_path('module', 'broker') . '/css/global-c2s.css',
+                drupal_get_path('module', 'general') . '/css/global-c2s.css',
             );
 //            $form['name']['#description'] = t('');
             $form['name'] = array(

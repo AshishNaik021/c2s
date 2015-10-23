@@ -57,7 +57,7 @@ try{
     $id = arg(3);
 
    
-    db_update('broker_master')
+    db_update('c2s_broker_master')
     ->fields(array(
 
 							'first_name'      	  =>    $first_name,
@@ -102,9 +102,9 @@ try{
                             'beneficiary_email_id'              =>  $beneficiary_email,
                             'beneficiary_contact_number'        =>  $beneficiary_contact,
                             'beneficiary_address'           	=>  $beneficiary_address,
-                            'beneficiary_city_id'            	=>  $beneficiary_city,
-                            'beneficiary_state_id'            	=>  $beneficiary_state,
-                            'beneficiary_zip_code'           	=>  $beneficiary_zip,	
+                            'beneficiary_city'            	=>  $beneficiary_city,
+                            'beneficiary_state'            	=>  $beneficiary_state,
+                            'beneficiary_zip'           	=>  $beneficiary_zip,	
     ))
     ->condition('broker_agent_id', $broker_id, '=')
     ->execute();
@@ -114,7 +114,7 @@ try{
 }
 catch(Exception $e)
 {
-    drupal_set_message("Over-Time Setting Records could not be Inserted <br>" . $e, 'error');
+    drupal_set_message("Broker Could Not Be Successfully Updated <br>" . $e, 'error');
 }
 
 				

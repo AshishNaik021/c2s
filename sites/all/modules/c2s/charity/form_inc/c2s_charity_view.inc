@@ -27,7 +27,7 @@ foreach($result as $value){
 	$bank_phone 		          	= $value->bank_phone;
 	$bank_account_type 		        = $value->bank_account_type;
 	$bank_aba_routing_number 		= $value->bank_aba_routing_number;
-	$charity_org_status 			= $value->Charity_Org_Status;
+	$charity_org_status 			= $value->charity_org_status;
 
 	$approver_user_id		 		= $value->approver_user_id;
 	$approval_status	          	= $value->approval_status;
@@ -138,20 +138,16 @@ foreach($result as $value){
 		$output .= '<div id="view-page-fullwidth-block">';
 				$output .= '<div id="view-page-small-block2-30p">';
 					$output .= '<div id="view-page-block-label"> Approval Status </div>';
-					if($approval_status=='P'){
-						$output .= '<div id="view-page-block-value" style="padding-left:20px;"> 
-									<img src="/C2S_Drupal2/sites/all/modules/c2s/general/images/pending-stamp.jpg" width="75px" height="75px" />
-									</div>';
+					if($approval_status=='R'){
+						$image = base_path().drupal_get_path('module', 'general')."/images/rejected-stamp.jpg";
 					}elseif($approval_status=='A'){
-						$output .= '<div id="view-page-block-value" style="padding-left:20px;"> 
-									<img src="/C2S_Drupal2/sites/all/modules/c2s/general/images/approved-stamp.jpg" width="75px" height="75px" />
-									</div>';
+						$image = base_path().drupal_get_path('module', 'general')."/images/approved-stamp.jpg";
 					}else{
-						$output .= '<div id="view-page-block-value" style="padding-left:20px;"> 
-									<img src="/C2S_Drupal2/sites/all/modules/c2s/general/images/rejected-stamp.jpg" width="75px" height="75px" />
-									</div>';
+						$image = base_path().drupal_get_path('module', 'general')."/images/pending-stamp.jpg";
 					}
-					
+					$output .= '<div id="view-page-block-value" style="padding-left:20px;"> 
+								<img src='.$image.' width="75px" height="75px" />
+								</div>';
 				$output .= '</div>'; //end of small-block2
 				$output .= '<div id="view-page-small-block2-30p">';
 					$output .= '<div id="view-page-block-label"> Approved By </div>';

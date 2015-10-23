@@ -17,61 +17,47 @@
 function broker_menu() {
 	
 	$items['c2s/broker/add'] = array(
-        'title'				=> 'C2S New Broker Enrollment Form',
+        'title'				=> 'Broker Enrollment Form',
 		'page callback' 	=> 'drupal_get_form',
-        'menu_name' 		=> 'c2s-menu',
+        'menu_name' 		=> 'menu-c2s-menu',
 		'page arguments' 	=> array('c2s_broker_add'),
 		'access callback' 	=> TRUE,
         'access arguments' 	=> array('C2S Broker Enrollment Form'),
 	);
 	
-/*	$items['c2s/broker/edit'] = array(
-	    'title'				=> 'C2S New Broker Form Edit',
-		'page callback' 	=> 'drupal_get_form',
-	    'menu_name' 		=> 'c2s-menu',
-		'page arguments' 	=> array('c2s_broker_edit'),
-		'access callback' 	=> TRUE,
-	    'access arguments' 	=> array('C2S Broker Form Edit'),
-	);
-	*/
-	/*
 	$items['c2s/broker/view'] = array(
-	    'title'				=> 'C2S New Broker View Form',
-		'page callback' 	=> 'drupal_get_form',
-	    'menu_name' 		=> 'c2s-menu',
-		'page arguments' 	=> array('c2s_broker_view'),
+		'title' 			=> t('Broker View Form'),
+		'page callback' 	=> 'c2s_broker_view',
 		'access callback' 	=> TRUE,
-	    'access arguments' 	=> array('C2S Broker View Form'),
-	);*/
-	
-	 $items['c2s/broker/view'] = array(
-    'title' => t('C2S New Broker View Form'),
-    'page callback' => 'c2s_broker_view',
-    'access callback' => TRUE,
-  );
+	);
   
-  	 $items['c2s/broker/update'] = array(
-    'title' => t('C2S New Broker View Form'),
-    		'page callback' 	=> 'drupal_get_form',
-	    'menu_name' 		=> 'c2s-menu',
+  	$items['c2s/broker/update'] = array(
+		'title' => t('Broker View Form'),
+    	'page callback' 	=> 'drupal_get_form',
 		'page arguments' 	=> array('c2s_broker_update'),
 		'access callback' 	=> TRUE,
-
-  );
+	);
   
-  	 $items['c2s/broker/list'] = array(
-    'title' => t('C2S New Broker List'),
-    'page callback' => 'c2s_broker_list',
-    'access callback' => TRUE,
-  );
+  	$items['c2s/broker/list'] = array(
+		'title' 			=> t('List of Brokers'),
+		'menu_name' 		=> 'menu-c2s-menu',
+		'page callback' 	=> 'c2s_broker_list',
+		'access callback' 	=> TRUE,
+
+	);
 
 	$items['c2s/broker/deactivate'] = array(
-        'title'=>'c2s Application Delete',
-		'page callback' => 'drupal_get_form',
-        'menu_name' 	=> 'c2s-menu',
-		'page arguments' => array('c2s_broker_deactivate'),
-		'access callback' => TRUE,
-        'access arguments' => array('Deactivate C2S Broker'),
+        'title'				=>'Broker Deactivate',
+		'page callback' 	=> 'drupal_get_form',
+		'page arguments' 	=> array('c2s_broker_deactivate'),
+		'access callback' 	=> TRUE,
+        'access arguments' 	=> array('Deactivate C2S Broker'),
+	);
+
+	$items['charity/autocomplete'] = array(
+		'page callback' 	=> 'charity_autocomplete',
+		'access arguments' 	=> array('Charity AutoComplete'),
+		'type' 				=> MENU_CALLBACK
 	);
 
 	return $items;
@@ -87,90 +73,6 @@ function c2s_permission() {
       
     'c2s Application' => array(
       'title' => 'c2s Application',
-        ),
-
-    'View c2s Application' => array(
-      'title' => 'View c2s Application',
-        ),
-      
-    'Delete c2s Application' => array(
-      'title' => 'Delete c2s Application',
-        ),
-
-    'Employee List c2s Application' => array(
-      'title' => 'Employee List c2s Application',
-        ),
-
-    'Approval List c2s Application' => array(
-      'title' => 'Approval List c2s Application',
-        ),
-
-    'Setting c2s' => array(
-      'title' => 'Setting c2s',
-        ),
-
-    'Delete c2s Setting' => array(
-      'title' => 'Delete c2s Setting',
-        ),
-
-    'Edit c2s Setting' => array(
-      'title' => 'Edit c2s Setting',
-        ),
-
-    'Month Wise List c2s' => array(
-      'title' => 'Month Wise List c2s',
-        ),	  
-	  
-    'Location Wise List c2s' => array(
-      'title' => 'Location Wise List c2s',
-        ),
-
-    'Claim List c2s Excess' => array(
-      'title' => 'Claim List c2s Excess',
-        ),
-      
-    'Application Details c2s Excess' => array(
-      'title' => 'Application Details c2s Excess',
-        ),
-
-    'Excess List c2s' => array(
-      'title' => 'Excess List c2s',
-        ),
-
-    'Subordinate List c2s' => array(
-      'title' => 'Subordinate List c2s',
-        ),
-
-    'Monthly c2s Application' => array(
-      'title' => 'Monthly c2s Application',
-        ),
-
-    'Specific c2s Application' => array(
-      'title' => 'Specific c2s Application',
-        ),
-
-    'View Monthly c2s Application' => array(
-      'title' => 'View Monthly c2s Application',
-        ),
-
-    'Monthly Approval c2s Application' => array(
-      'title' => 'Monthly Approval c2s Application',
-        ),	  
-		
-    'Approval Form Monthly c2s Application' => array(
-      'title' => 'Approval Form Monthly c2s Application',
-        ),
-
-    'Employee List Monthly c2s Application' => array(
-      'title' => 'Employee List Monthly c2s Application',
-        ),
-      
-    'Locationwise List Monthly c2s' => array(
-      'title' => 'Locationwise List Monthly c2s',
-        ),
-
-    'Monthwise List Monthly c2s' => array(
-      'title' => 'Monthwise List Monthly c2s',
         ),
 
     'Claim List c2s Monthly Excess' => array(
@@ -201,26 +103,33 @@ function c2s_broker_edit($form, &$form_state) {
 }
 
 function c2s_broker_view($form) {
-//	include("form_inc/c2s_broker_view.inc");
-//	return $form;
-$brokerage_id = arg(3);
-  $build = array();
+	$brokerage_id = arg(3);
+	$build = array();
+	$build['form_wrapper_start'] = array(
+		'#type' => 'item',
+		'#suffix' => '<div id="main-view-wrapper">',
+	);
 
-  $build['form_one'] = drupal_get_form('c2s_brokerage_edit_view');
-  
-  $result = db_query("SELECT broker_agent_id FROM broker_master WHERE brokerage_id = ".$brokerage_id." and deactivate = 0");
-$broker_id = array();
-$n=0;
-  foreach($result as $value){
-  $n++;
-  $broker_id[$n] = $value->broker_agent_id;
-  }
-  $total_brokers = $n;
-  for($i=1; $i<=$total_brokers; $i++){
-  	$build['form_'.$i] = drupal_get_form('c2s_broker_edit_view',$broker_id[$i],$i);
-  }
-  return $build;
+	$build['form_one'] = drupal_get_form('c2s_brokerage_edit_view');
+	$result = db_query("SELECT broker_agent_id FROM c2s_broker_master WHERE brokerage_id = ".$brokerage_id." and status = 'A'");
+	$broker_id = array();
+	$n=0;
+	foreach($result as $value){
+		$n++; 
+		$broker_id[$n] = $value->broker_agent_id;
+	}
+	$total_brokers = $n;
+	
+	for($i=1; $i<=$total_brokers; $i++){
+		$build['form_'.$i] = drupal_get_form('c2s_broker_edit_view',$broker_id[$i],$i);
+	}
+	
 
+	$build['form_wrapper_end'] = array(
+		'#type' => 'item',
+		'#suffix' => '</div>',
+	);	
+	return $build;
 }
 
 function c2s_broker_edit_view($form, &$form_state,$var,$i){
@@ -245,87 +154,11 @@ function c2s_broker_list() {
 	include("page_inc/c2s_broker_list.inc");
 	return $data;
 }
-
-/*
-function c2s_application_approver_list($form, &$form_state) {
-	include("form_inc/c2s_application_approver_list.inc");
-	return $form;
+function c2s_broker_deactivate() {
+	include("submit_inc/c2s_broker_deactivate.inc");
+	return $data;
 }
 
-function c2s_setting($form, &$form_state) {
-   include("form_inc/c2s_setting.inc");
-   return $form;
-}
-
-function edit_ot_setting($form, &$form_state) {
-   include("form_inc/edit_ot_setting.inc");
-   return $form;
-}
-
-function c2s_month_wise_list($form, &$form_state) {
-   include("form_inc/c2s_monthly_month_wise_list.inc");
-   return $form;
-}
-
-function c2s_location_wise_list($form, &$form_state) {
-   include("form_inc/c2s_monthly_location_wise_list.inc");
-   return $form;
-}
-
-function c2s_excess_claims_list($form, &$form_state) {
-   include("form_inc/c2s_monthly_excess_claims_list.inc");
-   return $form;
-}
-
-function excess_c2s_application_details($form, &$form_state) {
-   include("form_inc/excess_c2s_application_details.inc");
-   return $form;
-}
-function excess_c2s_list($form, &$form_state) {
-   include("form_inc/excess_c2s_list.inc");
-   return $form;
-}
-function subordinate_c2s_list($form, &$form_state) {
-   include("form_inc/subordinate_c2s_list.inc");
-   return $form;
-}
-function c2s_application_monthly($form, &$form_state) {
-   include("form_inc/c2s_application_monthly.inc");
-   return $form;
-}
-function specific_c2s_application($form, &$form_state) {
-   include("form_inc/specific_c2s_application.inc");
-   return $form;
-}
-function c2s_application_monthly_view($form, &$form_state) {
-   include("form_inc/c2s_application_monthly_view.inc");
-   return $form;
-}
-function c2s_application_monthly_approver_list($form, &$form_state) {
-   include("form_inc/c2s_application_monthly_approver_list.inc");
-   return $form;
-}
-function c2s_application_monthly_approver_form($form, &$form_state) {
-   include("form_inc/c2s_application_monthly_approver_form.inc");
-   return $form;
-}
-function c2s_application_monthly_employee_list($form, &$form_state) {
-   include("form_inc/c2s_application_monthly_employee_list.inc");
-   return $form;
-}
-function c2s_monthly_location_wise_list($form, &$form_state) {
-   include("form_inc/c2s_monthly_location_wise_list.inc");
-   return $form;
-}
-function c2s_monthly_month_wise_list($form, &$form_state) {
-   include("form_inc/c2s_monthly_month_wise_list.inc");
-   return $form;
-}
-function c2s_monthly_excess_claims_list($form, &$form_state) {
-   include("form_inc/c2s_monthly_excess_claims_list.inc");
-   return $form;
-}
-*/
 // ==================================================================================================
 //                   FORM SUBMITING FUNCTIONS   
 // ==================================================================================================
@@ -336,29 +169,6 @@ function c2s_broker_add_submit($form,&$form_state){
 function c2s_broker_edit_view_submit($form,&$form_state){
 		include("submit_inc/c2s_broker_update.inc"); 
 }
-/*
-function c2s_setting_submit($form,&$form_state){
-		include("submit_inc/c2s_setting_submit.inc"); 
-}
-function c2s_application_monthly_submit($form,&$form_state){
-		include("submit_inc/c2s_application_monthly_submit.inc"); 
-}
-
-function c2s_application_specific_submit($form,&$form_state){
-		include("submit_inc/c2s_application_specific_submit.inc"); 
-}
-function c2s_application_monthly_approver_submit($form,&$form_state){
-		include("submit_inc/c2s_application_monthly_approver_submit.inc"); 
-}
-*/
-// ==================================================================================================
-//  				ALL FUNCTION c2s MANAGEMENT IN FUNCTIONS INC 
-// ==================================================================================================
-//include("func_inc/c2s_functions.inc"); 
-// --------------------------------------------------------------------------------------------------
-  //include("func_inc/workflow.inc"); 
-// --------------------------------------------------------------------------------------------------
-
 
 // ==================================================================================================
 //  				ADD MORE FUNCTIONS
@@ -394,3 +204,91 @@ function spower_add_more_remove_one($form, &$form_state) {
   }
   $form_state['rebuild'] = TRUE;
 }
+
+
+function find_cities_callback_broker($form, $form_state) {
+	$abc = $form_state['trigerring_element'];
+	drupal_set_message('abc = '.$abc);
+	return $form['names_fieldset']['city_'.$i];
+}
+
+function find_cities_callback_2($form, $form_state) {
+	return $form['city_2'];
+}
+
+function find_zip_callback11($form, $form_state) {
+	return $form['zip_code'];
+}
+
+
+function find_cities_callback_22($form, $form_state) {
+	return $form['names_fieldset']['business_city_id_'.$i];
+}
+
+function find_zip_callback22($form, $form_state) {
+	return $form['names_fieldset']['business_zip_code_'.$i];
+}
+function find_cities_callback_33($form, $form_state) {
+	return $form['names_fieldset']['beneficiary_city_id_'.$i];
+}
+
+function find_zip_callback44($form, $form_state) {
+	return $form['names_fieldset']['beneficiary_zip_code_'.$i];
+}
+
+function getPaperworkRequired(){
+	$paperwork_options = array();
+	$result_paperwork = db_query("SELECT paperwork_id, paperwork_document_name FROM c2s_required_paperwork ORDER BY 1");
+	foreach($result_paperwork as $value){
+		$paperwork_options[$value->paperwork_id]	=	$value->paperwork_document_name;
+	}
+	return $paperwork_options;
+}
+
+function getPaperworkSelected($brokerage_id){
+	$paperwork_selected = array();
+	$result_paperwork = db_query("SELECT paperwork_id, paperwork_document_name FROM c2s_required_paperwork 
+								   WHERE paperwork_id IN (SELECT paperwork_id FROM c2s_brokerage_paperwork WHERE brokerage_id = ".$brokerage_id." )	
+								   ORDER BY 1");
+	foreach($result_paperwork as $value){
+		$paperwork_selected[$value->paperwork_id]	=	$value->paperwork_document_name;
+	}
+	return $paperwork_selected;
+}
+
+
+function getCitiesBroker(){
+	$city_options = array();
+	$city_options[] = '-- Select --';
+	$result_city = db_query("SELECT city FROM cities_extended ORDER BY 1 limit 1,10");
+	foreach($result_city as $value){
+		$city_options[$value->city]	=	$value->city;
+	}
+	return $city_options;
+}
+
+
+// ----------- Auto Complete Functions ------
+
+function charity_autocomplete($string) {
+  $matches = array();
+  
+  // Some fantasy DB table which holds cities
+  $query = db_select('c2s_charity_org_master', 'c');
+
+  // Select rows that match the string
+  $return = $query
+    ->fields('c', array('charity_organization_id','charity_org_name'))
+    ->condition('c.charity_org_name', '%' . db_like($string) . '%', 'LIKE')
+    ->range(0, 10)
+    ->execute();
+  
+  // add matches to $matches  
+  foreach ($return as $row) {
+    $matches[$row->charity_org_name] = check_plain($row->charity_org_name);
+  }
+  
+  // return for JS
+  drupal_json_output($matches);
+}
+
